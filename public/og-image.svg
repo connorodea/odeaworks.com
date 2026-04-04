@@ -1,0 +1,9 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#000000"/>
+  <text x="100" y="260" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="600" fill="#ffffff" letter-spacing="-2">Odea Works</text>
+  <text x="100" y="340" font-family="system-ui, -apple-system, sans-serif" font-size="32" fill="#ababab">AI Consulting &amp; Software Engineering</text>
+  <text x="100" y="420" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="#666666">Strategy. Architecture. Production code.</text>
+  <text x="100" y="530" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#10a37f">odeaworks.com</text>
+  <!-- Subtle accent line -->
+  <rect x="100" y="370" width="120" height="3" fill="#10a37f" rx="1"/>
+</svg>

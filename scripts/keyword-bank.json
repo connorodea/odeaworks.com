@@ -15,24 +15,30 @@
       "category": "ai-consulting",
       "postType": "industry-analysis",
       "difficulty": "low",
-      "used": false,
-      "priority": 1
+      "used": true,
+      "priority": 1,
+      "usedDate": "2026-04-04",
+      "outputFile": "2026-04-04-how-much-does-ai-consulting-cost.md"
     },
     {
       "keyword": "ai implementation roadmap for startups",
       "category": "ai-consulting",
       "postType": "strategy-guide",
       "difficulty": "low",
-      "used": false,
-      "priority": 1
+      "used": true,
+      "priority": 1,
+      "usedDate": "2026-04-04",
+      "outputFile": "2026-04-04-ai-implementation-roadmap-for-startups.md"
     },
     {
       "keyword": "should i hire an ai consultant or build in house",
       "category": "ai-consulting",
       "postType": "strategy-guide",
       "difficulty": "low",
-      "used": false,
-      "priority": 1
+      "used": true,
+      "priority": 1,
+      "usedDate": "2026-04-04",
+      "outputFile": "2026-04-04-should-i-hire-an-ai-consultant-or-build-in-house.md"
     },
     {
       "keyword": "ai consulting process what to expect",
@@ -103,16 +109,20 @@
       "category": "ai-engineering",
       "postType": "technical-deep-dive",
       "difficulty": "low",
-      "used": false,
-      "priority": 1
+      "used": true,
+      "priority": 1,
+      "usedDate": "2026-04-04",
+      "outputFile": "2026-04-04-how-to-build-rag-pipeline-python.md"
     },
     {
       "keyword": "claude api integration tutorial",
       "category": "ai-engineering",
       "postType": "technical-deep-dive",
       "difficulty": "low",
-      "used": false,
-      "priority": 1
+      "used": true,
+      "priority": 1,
+      "usedDate": "2026-04-04",
+      "outputFile": "2026-04-04-claude-api-integration-tutorial.md"
     },
     {
       "keyword": "llm agent orchestration patterns",

@@ -1,145 +1,51 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-const processSteps = [
-  { number: '1', label: 'Understand', description: 'Deep-dive into your goals, constraints, and users.' },
-  { number: '2', label: 'Architect', description: 'Design systems that scale with your ambition.' },
-  { number: '3', label: 'Build', description: 'Ship production-grade code, iteratively.' },
-  { number: '4', label: 'Ship', description: 'Deploy with confidence and zero downtime.' },
-  { number: '5', label: 'Support', description: 'Monitor, optimize, and evolve over time.' },
-];
 ---
 
 <BaseLayout title="About | Odea Works" description="Learn about Odea Works — founded by Connor O'Dea. AI consulting, software engineering, and technical strategy.">
 
   <!-- Hero -->
-  <section class="relative overflow-hidden border-b border-border bg-surface pt-32 pb-20">
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--color-accent-indigo)_0%,_transparent_60%)] opacity-[0.07]"></div>
-    <div class="relative mx-auto max-w-5xl px-6 text-center">
-      <h1 class="mb-6 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
-        About Odea Works
+  <section class="py-32 lg:py-40">
+    <div class="mx-auto max-w-5xl px-6">
+      <h1 class="text-5xl font-semibold tracking-tight text-white lg:text-6xl">
+        About
       </h1>
-      <p class="mx-auto max-w-2xl text-lg leading-relaxed text-text-secondary sm:text-xl">
-        Building intelligent systems at the intersection of AI and engineering.
-      </p>
     </div>
   </section>
 
-  <!-- Founder section -->
-  <section class="border-b border-border bg-surface py-24">
-    <div class="mx-auto max-w-6xl px-6">
-      <div class="flex flex-col items-center gap-12 lg:flex-row lg:gap-16">
-
-        {/* Portrait placeholder */}
-        <div class="w-full max-w-sm lg:w-2/5">
-          <div class="aspect-square w-full rounded-2xl border border-border bg-gradient-to-br from-indigo-500/10 to-cyan-500/10 flex items-center justify-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="0.75"
-              stroke="currentColor"
-              class="h-24 w-24 text-white/15"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-            </svg>
-          </div>
-        </div>
-
-        {/* Bio */}
-        <div class="w-full lg:w-3/5">
-          <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-accent">Founder</p>
-          <h2 class="mb-6 text-3xl font-bold tracking-tight text-white">
-            Connor O'Dea
-          </h2>
-          <div class="space-y-4 text-text-secondary leading-relaxed">
-            <p>
-              Software engineer, entrepreneur, and AI architect with a track record of building systems that work at scale. Connor has founded 10+ technology ventures spanning e-commerce, logistics, computer vision, and AI infrastructure.
-            </p>
-            <p>
-              His background bridges full-stack development, AI systems engineering, and DevOps — giving him a rare ability to see projects through from high-level architecture to production deployment. He's currently an MBA candidate, combining deep technical expertise with business strategy.
-            </p>
-            <p>
-              Based in the US, Connor works with clients globally, bringing the same intensity and precision to every engagement — whether it's a startup building their first AI feature or an enterprise modernizing their tech stack.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Philosophy -->
-  <section class="border-b border-border bg-surface-2 py-24">
-    <div class="mx-auto max-w-4xl px-6 text-center">
-      <p class="mb-4 text-sm font-semibold uppercase tracking-widest text-accent">Our Philosophy</p>
-      <blockquote class="text-2xl font-medium leading-relaxed text-white sm:text-3xl">
-        "We believe technology should amplify human potential. Every system we build is designed to make people more effective, not to replace them."
-      </blockquote>
-    </div>
-  </section>
-
-  <!-- Approach / Process -->
-  <section class="border-b border-border bg-surface py-24">
-    <div class="mx-auto max-w-6xl px-6">
-      <div class="mb-16 text-center">
-        <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-accent">Our Approach</p>
-        <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-          How We Work
-        </h2>
+  <!-- Content -->
+  <section class="pb-32 lg:pb-40">
+    <div class="mx-auto max-w-3xl px-6">
+      <div class="space-y-8 text-lg text-text-secondary leading-relaxed">
+        <p>
+          Odea Works is a software engineering and AI consulting practice founded by Connor O'Dea.
+        </p>
+        <p>
+          We build production systems — AI agents, web platforms, infrastructure, and automation — for companies that need things to actually work. Not decks. Not demos. Working software.
+        </p>
+        <p>
+          Connor has built 10+ ventures from the ground up, from first line of code to production serving real users. Background spans full-stack engineering, AI systems, DevOps, and technical architecture.
+        </p>
+        <p>
+          Based in Michigan. Working with clients everywhere.
+        </p>
       </div>
 
-      {/* Process timeline — horizontal on desktop, vertical on mobile */}
-      <div class="relative">
-        {/* Horizontal connector line (desktop only) */}
-        <div class="absolute top-8 left-0 right-0 hidden h-px bg-border lg:block"></div>
-
-        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
-          {processSteps.map((step) => (
-            <div class="relative text-center">
-              {/* Step number circle */}
-              <div class="relative z-10 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full border border-border bg-surface-2 text-xl font-bold text-accent">
-                {step.number}
-              </div>
-              <h3 class="mb-2 text-lg font-semibold text-white">
-                {step.label}
-              </h3>
-              <p class="text-sm text-text-secondary">
-                {step.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Connect -->
-  <section class="relative bg-surface-2 py-24">
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--color-accent-indigo)_0%,_transparent_60%)] opacity-[0.05]"></div>
-    <div class="relative mx-auto max-w-3xl px-6 text-center">
-      <h2 class="mb-8 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-        Let's Connect
-      </h2>
-      <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+      <!-- Connect -->
+      <div class="mt-16 space-y-4">
+        <a
+          href="mailto:connor@odeaworks.com"
+          class="block text-white transition-colors hover:text-accent"
+        >
+          connor@odeaworks.com
+        </a>
         <a
           href="https://github.com/connorodea"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-3 rounded-xl border border-border bg-surface px-6 py-3.5 text-base font-medium text-white transition-all duration-300 hover:border-border-hover hover:bg-surface-3"
+          class="block text-text-muted transition-colors hover:text-white"
         >
-          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-          </svg>
-          GitHub
-        </a>
-        <a
-          href="mailto:connor@odeaworks.com"
-          class="inline-flex items-center gap-3 rounded-xl bg-accent px-6 py-3.5 text-base font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-indigo-500/25"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-          </svg>
-          connor@odeaworks.com
+          github.com/connorodea
         </a>
       </div>
     </div>

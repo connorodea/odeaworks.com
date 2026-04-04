@@ -1,67 +1,11 @@
 ---
-interface Category {
-  label: string;
-  items: string[];
-}
-
-const categories: Category[] = [
-  { label: "Languages", items: ["Python", "TypeScript", "Go", "Rust", "SQL"] },
-  { label: "Frameworks", items: ["React", "Next.js", "FastAPI", "Astro", "Textual"] },
-  { label: "AI / ML", items: ["Claude", "OpenAI", "LangChain", "YOLO", "RAG"] },
-  { label: "Infrastructure", items: ["Docker", "Hetzner", "Linux", "Nginx", "GitHub Actions"] },
-  { label: "Databases", items: ["PostgreSQL", "Redis", "MongoDB", "SQLite"] },
-];
 ---
 
-<section class="tech-stack-section relative py-24 sm:py-32">
+<section class="bg-black py-24 lg:py-32">
   <div class="mx-auto max-w-5xl px-6">
-    <!-- Section heading -->
-    <div class="mb-14 text-center">
-      <h2 class="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
-        Our Stack
-      </h2>
-      <p class="mx-auto max-w-2xl text-lg text-zinc-400">
-        We use the right tool for the job.
-      </p>
-    </div>
-
-    <!-- Categories -->
-    <div class="space-y-10">
-      {categories.map((cat) => (
-        <div>
-          <h3 class="mb-4 text-xs font-semibold uppercase tracking-widest text-zinc-600">
-            {cat.label}
-          </h3>
-          <div class="flex flex-wrap gap-3">
-            {cat.items.map((item) => (
-              <span class="tech-pill rounded-full border px-4 py-2 text-sm font-medium transition-all duration-200">
-                {item}
-              </span>
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
+    <h2 class="text-2xl font-medium text-white">Stack</h2>
+    <p class="mt-6 text-sm text-text-muted">
+      Python · TypeScript · React · Next.js · FastAPI · Astro · Claude · Docker · PostgreSQL · Redis · Linux · GitHub Actions
+    </p>
   </div>
 </section>
-
-<style>
-  .tech-stack-section {
-    background-color: #0f0f11;
-  }
-
-  .tech-pill {
-    background-color: rgba(255, 255, 255, 0.03);
-    border-color: rgba(255, 255, 255, 0.06);
-    color: #a1a1aa;
-    cursor: default;
-    user-select: none;
-  }
-
-  .tech-pill:hover {
-    background-color: rgba(255, 255, 255, 0.06);
-    border-color: rgba(255, 255, 255, 0.12);
-    color: #fafafa;
-    box-shadow: 0 0 16px rgba(99, 102, 241, 0.1);
-  }
-</style>

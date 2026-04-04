@@ -1,41 +1,10 @@
 ---
-interface Metric {
-  value: string;
-  label: string;
-}
-
-const metrics: Metric[] = [
-  { value: "10+", label: "Ventures Founded" },
-  { value: "50+", label: "Projects Shipped" },
-  { value: "13K+", label: "Lines in ClawdHub" },
-  { value: "24hr", label: "Response Time" },
-];
 ---
 
-<section class="metrics-section relative py-24 sm:py-32">
-  <div class="mx-auto max-w-7xl px-6">
-    <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
-      {metrics.map((metric) => (
-        <div class="text-center">
-          <div class="metric-value text-5xl font-bold">{metric.value}</div>
-          <div class="mt-3 text-sm font-medium uppercase tracking-widest text-zinc-500">
-            {metric.label}
-          </div>
-        </div>
-      ))}
-    </div>
+<section class="bg-black py-32 lg:py-40">
+  <div class="mx-auto max-w-3xl px-6 text-center">
+    <p class="text-2xl font-light tracking-tight text-text-secondary lg:text-3xl">
+      10+ ventures built. Millions in revenue generated. Systems serving thousands daily.
+    </p>
   </div>
 </section>
-
-<style>
-  .metrics-section {
-    background-color: #0c0c0e;
-  }
-
-  .metric-value {
-    background: linear-gradient(135deg, #6366f1, #06b6d4);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-</style>

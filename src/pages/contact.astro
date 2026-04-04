@@ -5,199 +5,130 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout title="Contact | Odea Works" description="Get in touch with Odea Works. Tell us about your project and we'll get back to you within 24 hours.">
 
   <!-- Hero -->
-  <section class="relative overflow-hidden border-b border-border bg-surface pt-32 pb-20">
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--color-accent-indigo)_0%,_transparent_60%)] opacity-[0.07]"></div>
-    <div class="relative mx-auto max-w-5xl px-6 text-center">
-      <h1 class="mb-6 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
-        Contact Us
+  <section class="py-32 lg:py-40">
+    <div class="mx-auto max-w-5xl px-6">
+      <h1 class="text-5xl font-semibold tracking-tight text-white lg:text-6xl">
+        Contact
       </h1>
-      <p class="mx-auto max-w-2xl text-lg leading-relaxed text-text-secondary sm:text-xl">
-        Tell us about your project. We'll get back to you within 24 hours.
+      <p class="mt-6 text-xl text-text-secondary">
+        Tell us about your project.
       </p>
     </div>
   </section>
 
   <!-- Two-column layout -->
-  <section class="bg-surface py-24">
-    <div class="mx-auto max-w-6xl px-6">
+  <section class="pb-32 lg:pb-40">
+    <div class="mx-auto max-w-5xl px-6">
       <div class="grid gap-16 lg:grid-cols-2">
 
         <!-- Left column: Info -->
-        <div>
-          <h2 class="mb-4 text-3xl font-bold tracking-tight text-white">
-            Let's Build Something Together
-          </h2>
-          <p class="mb-10 text-lg leading-relaxed text-text-secondary">
-            Tell us about your project and we'll get back to you within 24 hours. We work with companies of all sizes — from startups shipping their first product to enterprises modernizing their stack.
-          </p>
+        <div class="mt-0">
+          <div>
+            <p class="text-sm uppercase tracking-wider text-text-muted">Email</p>
+            <a href="mailto:connor@odeaworks.com" class="mt-2 block text-lg text-white transition-colors hover:text-accent">
+              connor@odeaworks.com
+            </a>
+          </div>
 
-          <div class="space-y-6">
-            <!-- Email -->
-            <div class="flex items-start gap-4">
-              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border bg-surface-2">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 text-accent">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-                </svg>
-              </div>
-              <div>
-                <p class="text-sm font-medium text-text-muted">Email</p>
-                <a href="mailto:connor@odeaworks.com" class="text-white hover:text-accent transition-colors">connor@odeaworks.com</a>
-              </div>
-            </div>
+          <div class="mt-8">
+            <p class="text-sm uppercase tracking-wider text-text-muted">Location</p>
+            <p class="mt-2 text-text-secondary">Michigan, USA</p>
+          </div>
 
-            <!-- Alt email -->
-            <div class="flex items-start gap-4">
-              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border bg-surface-2">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 text-accent">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-                </svg>
-              </div>
-              <div>
-                <p class="text-sm font-medium text-text-muted">Alternate Email</p>
-                <a href="mailto:connor@upscaledinc.com" class="text-white hover:text-accent transition-colors">connor@upscaledinc.com</a>
-              </div>
-            </div>
+          <div class="mt-8">
+            <p class="text-sm uppercase tracking-wider text-text-muted">GitHub</p>
+            <a
+              href="https://github.com/connorodea"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-2 block text-text-secondary transition-colors hover:text-white"
+            >
+              github.com/connorodea
+            </a>
+          </div>
 
-            <!-- GitHub -->
-            <div class="flex items-start gap-4">
-              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border bg-surface-2">
-                <svg class="h-5 w-5 text-accent" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                </svg>
-              </div>
-              <div>
-                <p class="text-sm font-medium text-text-muted">GitHub</p>
-                <a href="https://github.com/connorodea" target="_blank" rel="noopener noreferrer" class="text-white hover:text-accent transition-colors">github.com/connorodea</a>
-              </div>
-            </div>
-
-            <!-- Location -->
-            <div class="flex items-start gap-4">
-              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border bg-surface-2">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 text-accent">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
-                </svg>
-              </div>
-              <div>
-                <p class="text-sm font-medium text-text-muted">Location</p>
-                <p class="text-white">Based in Michigan, USA. Working globally.</p>
-              </div>
-            </div>
+          <div class="mt-8">
+            <p class="text-sm uppercase tracking-wider text-text-muted">Response time</p>
+            <p class="mt-2 text-text-secondary">Usually within 24 hours.</p>
           </div>
         </div>
 
         <!-- Right column: Form -->
-        <div>
-          <form action="#" method="POST" class="space-y-6">
+        <div class="mt-0">
+          <form action="#" method="POST" class="space-y-0">
 
             <!-- Name -->
-            <div>
-              <label for="name" class="mb-2 block text-sm font-medium text-text-secondary">
-                Name <span class="text-red-400">*</span>
-              </label>
+            <div class="border-b border-white/10 focus-within:border-white/30 transition-colors">
               <input
                 type="text"
                 id="name"
                 name="name"
                 required
-                placeholder="Your full name"
-                class="w-full rounded-xl border border-border bg-surface-2 px-4 py-3 text-white placeholder-text-muted outline-none transition-colors focus:border-accent focus:ring-1 focus:ring-accent"
+                placeholder="Name"
+                class="w-full bg-transparent py-4 text-white placeholder-text-muted outline-none"
               />
             </div>
 
             <!-- Email -->
-            <div>
-              <label for="email" class="mb-2 block text-sm font-medium text-text-secondary">
-                Email <span class="text-red-400">*</span>
-              </label>
+            <div class="border-b border-white/10 focus-within:border-white/30 transition-colors">
               <input
                 type="email"
                 id="email"
                 name="email"
                 required
-                placeholder="you@company.com"
-                class="w-full rounded-xl border border-border bg-surface-2 px-4 py-3 text-white placeholder-text-muted outline-none transition-colors focus:border-accent focus:ring-1 focus:ring-accent"
+                placeholder="Email"
+                class="w-full bg-transparent py-4 text-white placeholder-text-muted outline-none"
               />
             </div>
 
             <!-- Company -->
-            <div>
-              <label for="company" class="mb-2 block text-sm font-medium text-text-secondary">
-                Company
-              </label>
+            <div class="border-b border-white/10 focus-within:border-white/30 transition-colors">
               <input
                 type="text"
                 id="company"
                 name="company"
-                placeholder="Your company (optional)"
-                class="w-full rounded-xl border border-border bg-surface-2 px-4 py-3 text-white placeholder-text-muted outline-none transition-colors focus:border-accent focus:ring-1 focus:ring-accent"
+                placeholder="Company"
+                class="w-full bg-transparent py-4 text-white placeholder-text-muted outline-none"
               />
             </div>
 
-            <!-- Budget range + Project type — side by side on larger screens -->
-            <div class="grid gap-6 sm:grid-cols-2">
-              <!-- Budget Range -->
-              <div>
-                <label for="budget" class="mb-2 block text-sm font-medium text-text-secondary">
-                  Budget Range
-                </label>
-                <select
-                  id="budget"
-                  name="budget"
-                  class="w-full rounded-xl border border-border bg-surface-2 px-4 py-3 text-white outline-none transition-colors focus:border-accent focus:ring-1 focus:ring-accent appearance-none"
-                >
-                  <option value="" disabled selected class="text-text-muted">Select budget</option>
-                  <option value="under-10k">Under $10K</option>
-                  <option value="10k-25k">$10K - $25K</option>
-                  <option value="25k-50k">$25K - $50K</option>
-                  <option value="50k-100k">$50K - $100K</option>
-                  <option value="100k-plus">$100K+</option>
-                </select>
-              </div>
-
-              <!-- Project Type -->
-              <div>
-                <label for="project-type" class="mb-2 block text-sm font-medium text-text-secondary">
-                  Project Type
-                </label>
-                <select
-                  id="project-type"
-                  name="project_type"
-                  class="w-full rounded-xl border border-border bg-surface-2 px-4 py-3 text-white outline-none transition-colors focus:border-accent focus:ring-1 focus:ring-accent appearance-none"
-                >
-                  <option value="" disabled selected class="text-text-muted">Select type</option>
-                  <option value="ai-consulting">AI Consulting</option>
-                  <option value="technical-consulting">Technical Consulting</option>
-                  <option value="engineering">Engineering</option>
-                  <option value="software-development">Software Development</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
+            <!-- Budget -->
+            <div class="border-b border-white/10 focus-within:border-white/30 transition-colors">
+              <select
+                id="budget"
+                name="budget"
+                class="w-full appearance-none bg-transparent py-4 text-text-muted outline-none [&:has(option:checked:not([value='']))]:text-white"
+              >
+                <option value="" disabled selected>Budget</option>
+                <option value="under-10k">Under $10K</option>
+                <option value="10k-25k">$10K - $25K</option>
+                <option value="25k-50k">$25K - $50K</option>
+                <option value="50k-100k">$50K - $100K</option>
+                <option value="100k-plus">$100K+</option>
+              </select>
             </div>
 
             <!-- Message -->
-            <div>
-              <label for="message" class="mb-2 block text-sm font-medium text-text-secondary">
-                Message <span class="text-red-400">*</span>
-              </label>
+            <div class="border-b border-white/10 focus-within:border-white/30 transition-colors">
               <textarea
                 id="message"
                 name="message"
                 required
-                rows="5"
-                placeholder="Tell us about your project, goals, and timeline..."
-                class="w-full resize-y rounded-xl border border-border bg-surface-2 px-4 py-3 text-white placeholder-text-muted outline-none transition-colors focus:border-accent focus:ring-1 focus:ring-accent"
+                rows="4"
+                placeholder="Message"
+                class="w-full resize-none bg-transparent py-4 text-white placeholder-text-muted outline-none"
               ></textarea>
             </div>
 
             <!-- Submit -->
-            <button
-              type="submit"
-              class="w-full rounded-xl bg-accent px-8 py-4 text-base font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-indigo-500/25 sm:w-auto"
-            >
-              Send Message
-            </button>
+            <div class="pt-8">
+              <button
+                type="submit"
+                class="rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90"
+              >
+                Send message
+              </button>
+            </div>
           </form>
         </div>
       </div>

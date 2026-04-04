@@ -2,7 +2,6 @@
 interface Props {
   title: string;
   subtitle?: string;
-  gradient?: boolean;
   align?: "left" | "center";
   class?: string;
 }
@@ -10,7 +9,6 @@ interface Props {
 const {
   title,
   subtitle,
-  gradient = false,
   align = "center",
   class: className = "",
 } = Astro.props;
@@ -19,12 +17,7 @@ const alignClasses = align === "center" ? "text-center" : "text-left";
 ---
 
 <div class:list={[alignClasses, className]}>
-  <h2
-    class:list={[
-      "text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl",
-      gradient ? "text-gradient" : "text-text-primary",
-    ]}
-  >
+  <h2 class="text-3xl font-semibold tracking-tight text-text-primary sm:text-4xl lg:text-5xl">
     {title}
   </h2>
   {

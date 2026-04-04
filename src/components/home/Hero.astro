@@ -1,196 +1,54 @@
 ---
 ---
 
-<section class="hero-section relative min-h-screen flex items-center justify-center overflow-hidden">
-  <!-- Animated gradient mesh background -->
-  <div class="hero-gradient-mesh absolute inset-0 z-0">
-    <div class="hero-blob hero-blob-1"></div>
-    <div class="hero-blob hero-blob-2"></div>
-    <div class="hero-blob hero-blob-3"></div>
-  </div>
-
-  <!-- Grid pattern overlay -->
-  <div class="hero-grid-overlay absolute inset-0 z-[1]"></div>
-
-  <!-- Content -->
-  <div class="hero-content relative z-10 mx-auto max-w-4xl px-6 text-center">
-    <!-- Badge pill -->
-    <div class="hero-fade-in mb-8 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm font-medium tracking-wide text-zinc-400 backdrop-blur-sm">
+<section class="hero-section min-h-[90vh] flex items-center justify-center" style="background-color: #000;">
+  <div class="hero-content mx-auto max-w-4xl px-6 text-center">
+    <!-- Eyebrow -->
+    <p class="mb-6 text-sm uppercase tracking-widest" style="color: #666;">
       AI Consulting & Software Engineering
-    </div>
+    </p>
 
     <!-- Main headline -->
-    <h1 class="hero-fade-in hero-fade-in-delay-1 mb-6 text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
-      We Build <span class="hero-gradient-text">Intelligent Systems</span> That Drive Business Forward
+    <h1 class="mx-auto max-w-4xl text-6xl font-semibold leading-[1.05] tracking-tight text-white md:text-7xl lg:text-8xl">
+      We build software that thinks.
     </h1>
 
     <!-- Subheadline -->
-    <p class="hero-fade-in hero-fade-in-delay-2 mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-zinc-400 sm:text-xl">
-      AI consulting, software engineering, and technical strategy for companies ready to lead with technology.
+    <p class="mx-auto mt-8 max-w-2xl text-xl leading-relaxed" style="color: #ababab;">
+      Strategy, architecture, and engineering for companies using AI to build real products.
     </p>
 
     <!-- CTA buttons -->
-    <div class="hero-fade-in hero-fade-in-delay-3 mb-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+    <div class="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
       <a
         href="/contact"
-        class="inline-flex items-center justify-center rounded-xl bg-indigo-500 px-8 py-4 text-base font-semibold text-white transition-all duration-300 hover:bg-indigo-400 hover:shadow-lg hover:shadow-indigo-500/25"
+        class="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-opacity duration-200 hover:opacity-90"
       >
-        Start a Project
+        Get in touch
       </a>
       <a
         href="/work"
-        class="inline-flex items-center justify-center rounded-xl border border-white/20 bg-transparent px-8 py-4 text-base font-semibold text-white transition-all duration-300 hover:border-white/40 hover:bg-white/5"
+        class="inline-flex items-center justify-center rounded-full border px-8 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-white/5"
+        style="border-color: rgba(255, 255, 255, 0.2);"
       >
-        View Our Work
+        See our work
       </a>
-    </div>
-
-    <!-- Tech stack row -->
-    <div class="hero-fade-in hero-fade-in-delay-4 text-sm tracking-widest text-zinc-600">
-      Python &middot; TypeScript &middot; React &middot; Claude &middot; Docker &middot; PostgreSQL
     </div>
   </div>
 </section>
 
 <style>
-  /* ── Background ── */
-  .hero-section {
-    background-color: #09090b;
-  }
-
-  /* ── Animated gradient blobs ── */
-  .hero-gradient-mesh {
-    pointer-events: none;
-  }
-
-  .hero-blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(120px);
-    will-change: transform;
-  }
-
-  .hero-blob-1 {
-    width: 600px;
-    height: 600px;
-    top: -10%;
-    left: -5%;
-    background: radial-gradient(circle, #6366f1 0%, transparent 70%);
-    opacity: 0.15;
-    animation: blobDrift1 15s ease-in-out infinite alternate;
-  }
-
-  .hero-blob-2 {
-    width: 500px;
-    height: 500px;
-    bottom: -10%;
-    right: -5%;
-    background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
-    opacity: 0.15;
-    animation: blobDrift2 18s ease-in-out infinite alternate;
-  }
-
-  .hero-blob-3 {
-    width: 400px;
-    height: 400px;
-    top: 40%;
-    left: 50%;
-    background: radial-gradient(circle, #6366f1 0%, transparent 70%);
-    opacity: 0.1;
-    animation: blobDrift3 20s ease-in-out infinite alternate;
-  }
-
-  @keyframes blobDrift1 {
-    0% {
-      transform: translate(0, 0) scale(1);
-    }
-    50% {
-      transform: translate(80px, 40px) scale(1.15);
-    }
-    100% {
-      transform: translate(-30px, 80px) scale(0.95);
-    }
-  }
-
-  @keyframes blobDrift2 {
-    0% {
-      transform: translate(0, 0) scale(1);
-    }
-    50% {
-      transform: translate(-60px, -50px) scale(1.1);
-    }
-    100% {
-      transform: translate(40px, -30px) scale(1.05);
-    }
-  }
-
-  @keyframes blobDrift3 {
-    0% {
-      transform: translate(-50%, 0) scale(1);
-    }
-    50% {
-      transform: translate(-40%, -40px) scale(1.2);
-    }
-    100% {
-      transform: translate(-60%, 30px) scale(0.9);
-    }
-  }
-
-  /* ── Grid pattern overlay ── */
-  .hero-grid-overlay {
-    pointer-events: none;
-    background-image:
-      repeating-linear-gradient(
-        0deg,
-        rgba(255, 255, 255, 0.03) 0px,
-        rgba(255, 255, 255, 0.03) 1px,
-        transparent 1px,
-        transparent 60px
-      ),
-      repeating-linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 0.03) 0px,
-        rgba(255, 255, 255, 0.03) 1px,
-        transparent 1px,
-        transparent 60px
-      );
-  }
-
-  /* ── Gradient text ── */
-  .hero-gradient-text {
-    background: linear-gradient(135deg, #6366f1, #06b6d4);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  /* ── Fade-in animation ── */
-  .hero-fade-in {
+  .hero-content {
     opacity: 0;
-    transform: translateY(20px);
-    animation: heroFadeIn 0.8s ease-out forwards;
-  }
-
-  .hero-fade-in-delay-1 {
-    animation-delay: 0.15s;
-  }
-
-  .hero-fade-in-delay-2 {
-    animation-delay: 0.3s;
-  }
-
-  .hero-fade-in-delay-3 {
-    animation-delay: 0.45s;
-  }
-
-  .hero-fade-in-delay-4 {
-    animation-delay: 0.6s;
+    animation: heroFadeIn 0.6s ease-out forwards;
   }
 
   @keyframes heroFadeIn {
+    from {
+      opacity: 0;
+    }
     to {
       opacity: 1;
-      transform: translateY(0);
     }
   }
 </style>

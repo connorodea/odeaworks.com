@@ -1,7 +1,7 @@
 ---
 interface Props {
   href?: string;
-  variant?: "primary" | "secondary" | "ghost";
+  variant?: "primary" | "secondary";
   size?: "sm" | "md" | "lg";
   class?: string;
   type?: "button" | "submit" | "reset";
@@ -17,21 +17,17 @@ const {
 } = Astro.props;
 
 const baseStyles =
-  "inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:ring-offset-2 focus:ring-offset-background";
+  "inline-flex items-center justify-center font-medium rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white/20 focus:ring-offset-2 focus:ring-offset-background";
 
 const variants: Record<string, string> = {
-  primary:
-    "bg-accent text-white hover:bg-accent-light hover:shadow-lg hover:shadow-accent/20 active:scale-[0.98]",
-  secondary:
-    "border border-border text-text-primary hover:border-border-hover hover:bg-surface active:scale-[0.98]",
-  ghost:
-    "text-text-secondary hover:text-text-primary hover:bg-surface active:scale-[0.98]",
+  primary: "bg-white text-black hover:bg-white/90",
+  secondary: "border border-white/20 text-white hover:bg-white/5",
 };
 
 const sizes: Record<string, string> = {
-  sm: "px-4 py-2 text-sm gap-1.5",
-  md: "px-6 py-3 text-sm gap-2",
-  lg: "px-8 py-4 text-base gap-2.5",
+  sm: "px-5 py-2 text-sm gap-1.5",
+  md: "px-6 py-2.5 text-sm gap-2",
+  lg: "px-8 py-3 text-base gap-2.5",
 };
 
 const classes = [baseStyles, variants[variant], sizes[size], className]

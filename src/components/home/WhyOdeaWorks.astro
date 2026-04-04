@@ -1,109 +1,48 @@
 ---
-interface Reason {
+interface Item {
+  number: string;
   title: string;
   description: string;
-  icon: "person" | "layers" | "shield";
 }
 
-const reasons: Reason[] = [
+const items: Item[] = [
   {
-    title: "Founder-Led",
+    number: "01",
+    title: "Founder-led",
     description:
-      "Every engagement is led by Connor O'Dea personally. No account managers, no handoffs to junior developers.",
-    icon: "person",
+      "Every project is led personally by Connor O'Dea. No hand-offs, no junior developers, no account managers.",
   },
   {
-    title: "Full-Stack Depth",
+    number: "02",
+    title: "End-to-end",
     description:
-      "From AI model architecture to production deployment. We don't just advise — we build and ship.",
-    icon: "layers",
+      "From architecture to deployment. We don't just consult — we write the code, build the infrastructure, and ship to production.",
   },
   {
-    title: "Battle-Tested",
+    number: "03",
+    title: "Proven",
     description:
-      "10+ ventures founded, systems serving thousands of users, infrastructure handling real-world scale.",
-    icon: "shield",
+      "Ten ventures built from scratch. Systems handling real users, real data, and real revenue.",
   },
 ];
 ---
 
-<section class="why-section relative py-24 sm:py-32">
-  <div class="mx-auto max-w-7xl px-6">
-    <!-- Section heading -->
-    <div class="mb-16 text-center">
-      <h2 class="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
-        Why Odea Works
-      </h2>
-    </div>
+<section class="bg-black py-32 lg:py-40">
+  <div class="mx-auto max-w-5xl px-6">
+    <h2 class="text-4xl font-semibold tracking-tight text-white lg:text-5xl">
+      Approach
+    </h2>
 
-    <!-- Columns -->
-    <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
-      {reasons.map((reason) => (
-        <div class="text-center lg:text-left">
-          <!-- Icon -->
-          <div class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white/5">
-            {reason.icon === "person" && (
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#6366f1"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
-                <path d="M4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-              </svg>
-            )}
-            {reason.icon === "layers" && (
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#6366f1"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M12 2.25 2.25 7.5 12 12.75l9.75-5.25L12 2.25Z" />
-                <path d="M2.25 12 12 17.25 21.75 12" />
-                <path d="M2.25 16.5 12 21.75l9.75-5.25" />
-              </svg>
-            )}
-            {reason.icon === "shield" && (
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#6366f1"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
-              </svg>
-            )}
-          </div>
-
-          <!-- Title -->
-          <h3 class="text-lg font-semibold text-white">{reason.title}</h3>
-
-          <!-- Description -->
-          <p class="mt-3 text-sm leading-relaxed text-zinc-400">
-            {reason.description}
+    <div class="mt-16 grid grid-cols-1 gap-12 sm:gap-16 lg:grid-cols-3">
+      {items.map((item) => (
+        <div>
+          <span class="font-mono text-sm text-text-muted">{item.number}</span>
+          <h3 class="mt-4 text-xl font-medium text-white">{item.title}</h3>
+          <p class="mt-3 leading-relaxed text-text-secondary">
+            {item.description}
           </p>
         </div>
       ))}
     </div>
   </div>
 </section>
-
-<style>
-  .why-section {
-    background-color: #09090b;
-  }
-</style>

@@ -1,0 +1,131 @@
+---
+interface Project {
+  title: string;
+  tags: string[];
+  description: string;
+  href: string;
+}
+
+const projects: Project[] = [
+  {
+    title: "ClawdHub",
+    tags: ["Python", "AI Agents", "TUI"],
+    description:
+      "Interactive terminal IDE that spawns, monitors, and orchestrates multiple Claude Code AI agents in real-time. 13K+ lines, 26 files.",
+    href: "https://github.com/connorodea/clawd-hub",
+  },
+  {
+    title: "QuickLotz WMS",
+    tags: ["TypeScript", "React", "PostgreSQL"],
+    description:
+      "Enterprise warehouse management system powering circular economy operations — inventory tracking, 3PL logistics, and real-time analytics.",
+    href: "#",
+  },
+  {
+    title: "QuickVisionz",
+    tags: ["Python", "YOLO", "Computer Vision"],
+    description:
+      "Computer vision sorting pipeline with YOLO object detection, automated categorization, and thermal label printing.",
+    href: "#",
+  },
+];
+---
+
+<section class="featured-work-section relative py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6">
+    <!-- Section heading -->
+    <div class="mb-16 text-center">
+      <h2 class="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
+        Selected <span class="featured-gradient-text">Projects</span>
+      </h2>
+      <p class="mx-auto max-w-2xl text-lg text-zinc-400">
+        Real systems built for real businesses.
+      </p>
+    </div>
+
+    <!-- Cards grid -->
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {projects.map((project) => (
+        <a
+          href={project.href}
+          target={project.href.startsWith("http") ? "_blank" : undefined}
+          rel={project.href.startsWith("http") ? "noopener noreferrer" : undefined}
+          class="project-card group flex flex-col overflow-hidden rounded-2xl border transition-all duration-300"
+        >
+          <!-- Screenshot placeholder -->
+          <div class="project-card-preview aspect-video w-full p-6">
+            <div class="flex h-full w-full items-center justify-center rounded-lg border border-white/5">
+              <span class="text-sm font-medium text-zinc-600">{project.title}</span>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="flex flex-1 flex-col p-6 pt-4">
+            <!-- Tags -->
+            <div class="mb-4 flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <span class="rounded-full border border-white/6 bg-white/5 px-3 py-1 text-xs font-medium text-zinc-400">
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <!-- Title -->
+            <h3 class="text-xl font-semibold text-white">{project.title}</h3>
+
+            <!-- Description -->
+            <p class="mt-2 flex-1 text-sm leading-relaxed text-zinc-400">
+              {project.description}
+            </p>
+
+            <!-- Link -->
+            <div class="mt-5">
+              <span class="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-400 transition-colors duration-300 group-hover:text-white">
+                View project
+                <svg
+                  class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .featured-work-section {
+    background-color: #09090b;
+  }
+
+  .featured-gradient-text {
+    background: linear-gradient(135deg, #6366f1, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .project-card {
+    background-color: #18181b;
+    border-color: rgba(255, 255, 255, 0.06);
+  }
+
+  .project-card:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 0 40px rgba(99, 102, 241, 0.1), 0 0 80px rgba(99, 102, 241, 0.05);
+  }
+
+  .project-card-preview {
+    background: linear-gradient(135deg, #18181b 0%, #27272a 50%, #18181b 100%);
+  }
+</style>

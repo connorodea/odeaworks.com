@@ -1,0 +1,37 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  gradient?: boolean;
+  align?: "left" | "center";
+  class?: string;
+}
+
+const {
+  title,
+  subtitle,
+  gradient = false,
+  align = "center",
+  class: className = "",
+} = Astro.props;
+
+const alignClasses = align === "center" ? "text-center" : "text-left";
+---
+
+<div class:list={[alignClasses, className]}>
+  <h2
+    class:list={[
+      "text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl",
+      gradient ? "text-gradient" : "text-text-primary",
+    ]}
+  >
+    {title}
+  </h2>
+  {
+    subtitle && (
+      <p class="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-text-secondary">
+        {subtitle}
+      </p>
+    )
+  }
+</div>

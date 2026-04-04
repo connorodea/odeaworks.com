@@ -1,0 +1,139 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const projects = [
+  {
+    title: 'ClawdHub',
+    description:
+      'A terminal-native IDE and AI agent visualizer that gives developers full visibility into Claude agent workflows. Real-time monitoring, session replay, and deep introspection tools — all from the terminal.',
+    tech: ['Python', 'Textual', 'Claude SDK'],
+    gradient: 'from-indigo-600 to-violet-600',
+  },
+  {
+    title: 'QuickLotz WMS',
+    description:
+      'A full-featured warehouse management system for liquidation operations. Tracks inbound shipments, inventory, sorting, pricing, and fulfillment — built to handle high-volume throughput with precision.',
+    tech: ['TypeScript', 'React', 'PostgreSQL'],
+    gradient: 'from-cyan-600 to-blue-600',
+  },
+  {
+    title: 'QuickVisionz',
+    description:
+      'Computer vision-powered sorting system that identifies, classifies, and routes liquidation products in real time. Reduces manual inspection time and increases throughput accuracy.',
+    tech: ['Python', 'YOLO', 'OpenCV'],
+    gradient: 'from-emerald-600 to-teal-600',
+  },
+  {
+    title: 'Vidmation',
+    description:
+      'AI-driven video automation platform that generates, edits, and publishes video content at scale. Handles everything from script generation to final render and distribution.',
+    tech: ['Next.js', 'Python', 'FFmpeg'],
+    gradient: 'from-rose-600 to-pink-600',
+  },
+  {
+    title: 'LiquidationOS',
+    description:
+      'An end-to-end management platform for liquidation businesses. Integrates sourcing, manifesting, inventory, sales channels, and analytics into a single unified system.',
+    tech: ['TypeScript', 'React'],
+    gradient: 'from-orange-600 to-amber-600',
+  },
+  {
+    title: 'AgentAgent',
+    description:
+      'A multi-agent orchestration framework that coordinates autonomous Claude agents across complex, multi-step workflows. Built for reliability, observability, and graceful failure handling.',
+    tech: ['Python', 'Claude Code'],
+    gradient: 'from-violet-600 to-purple-600',
+  },
+];
+---
+
+<BaseLayout title="Work | Odea Works" description="Real projects, real results. Explore the work Odea Works has delivered across AI, engineering, and software development.">
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden border-b border-border bg-surface pt-32 pb-20">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--color-accent-cyan)_0%,_transparent_60%)] opacity-[0.07]"></div>
+    <div class="relative mx-auto max-w-5xl px-6 text-center">
+      <h1 class="mb-6 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+        Our Work
+      </h1>
+      <p class="mx-auto max-w-2xl text-lg leading-relaxed text-text-secondary sm:text-xl">
+        Real projects. Real results.
+      </p>
+    </div>
+  </section>
+
+  <!-- Project grid -->
+  <section class="bg-surface py-24">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid gap-8 md:grid-cols-2">
+        {projects.map((project) => (
+          <article class="group rounded-2xl border border-border bg-surface-2 transition-all duration-300 hover:border-border-hover hover:shadow-lg hover:shadow-black/20">
+            {/* Screenshot placeholder */}
+            <div class={`aspect-video w-full rounded-t-2xl bg-gradient-to-br ${project.gradient} opacity-80 flex items-center justify-center`}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1"
+                stroke="currentColor"
+                class="h-16 w-16 text-white/30"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0 0 22.5 18.75V5.25A2.25 2.25 0 0 0 20.25 3H3.75A2.25 2.25 0 0 0 1.5 5.25v13.5A2.25 2.25 0 0 0 3.75 21z" />
+              </svg>
+            </div>
+
+            {/* Content */}
+            <div class="p-6">
+              <h3 class="mb-2 text-xl font-bold text-white">
+                {project.title}
+              </h3>
+              <p class="mb-4 text-sm leading-relaxed text-text-secondary">
+                {project.description}
+              </p>
+
+              {/* Tech badges */}
+              <div class="mb-4 flex flex-wrap gap-2">
+                {project.tech.map((t) => (
+                  <span class="rounded-full border border-border bg-surface-3 px-3 py-1 text-xs font-medium text-text-secondary">
+                    {t}
+                  </span>
+                ))}
+              </div>
+
+              {/* Link */}
+              <a
+                href="#"
+                class="inline-flex items-center gap-1.5 text-sm font-semibold text-accent transition-colors hover:text-accent-hover"
+              >
+                View details
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="relative border-t border-border bg-surface-2 py-24">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--color-accent-indigo)_0%,_transparent_60%)] opacity-[0.05]"></div>
+    <div class="relative mx-auto max-w-3xl px-6 text-center">
+      <h2 class="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+        Have a project in mind?
+      </h2>
+      <p class="mb-8 text-lg text-text-secondary">
+        We'd love to hear about it. Let's talk about how we can help.
+      </p>
+      <a
+        href="/contact"
+        class="inline-flex items-center justify-center rounded-xl bg-accent px-8 py-4 text-base font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-indigo-500/25"
+      >
+        Start a Conversation
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

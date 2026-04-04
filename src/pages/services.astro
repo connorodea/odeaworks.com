@@ -1,0 +1,159 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const services = [
+  {
+    title: 'AI Consulting & Engineering',
+    description:
+      'We design and build production-grade AI systems that solve real business problems. From initial strategy through deployment and monitoring, we partner with your team to integrate intelligent capabilities that create measurable competitive advantage.',
+    bullets: [
+      'LLM Agent Systems',
+      'RAG Architectures',
+      'Computer Vision',
+      'ML Operations',
+      'AI Strategy & Roadmapping',
+    ],
+    gradient: 'from-indigo-500/20 to-cyan-500/20',
+    iconPath:
+      'M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5',
+  },
+  {
+    title: 'Technical Consulting',
+    description:
+      'We audit, advise, and guide engineering teams toward better architecture, faster delivery, and lower operational cost. Whether you need a second opinion on system design or a full infrastructure overhaul, we bring clarity to complexity.',
+    bullets: [
+      'Architecture Reviews',
+      'Infrastructure Optimization',
+      'Cloud Migration',
+      'DevOps Strategy',
+      'Performance Engineering',
+    ],
+    gradient: 'from-cyan-500/20 to-emerald-500/20',
+    iconPath:
+      'M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085',
+  },
+  {
+    title: 'Engineering',
+    description:
+      'We architect and build the infrastructure that modern applications demand. Robust APIs, resilient databases, automated pipelines, and comprehensive monitoring — engineered for reliability at scale.',
+    bullets: [
+      'System Design',
+      'API Development',
+      'Database Architecture',
+      'CI/CD Pipelines',
+      'Monitoring & Observability',
+    ],
+    gradient: 'from-violet-500/20 to-indigo-500/20',
+    iconPath:
+      'M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5',
+  },
+  {
+    title: 'Software Development',
+    description:
+      'From concept to launch, we build software products that users love and businesses depend on. Full-stack applications, SaaS platforms, developer tools, and automation systems — shipped fast, built to last.',
+    bullets: [
+      'Full-Stack Web Apps',
+      'SaaS Platforms',
+      'Terminal / CLI Tools',
+      'Mobile Applications',
+      'Automation Systems',
+    ],
+    gradient: 'from-rose-500/20 to-orange-500/20',
+    iconPath:
+      'M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0 0 21 18V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v12a2.25 2.25 0 0 0 2.25 2.25z',
+  },
+];
+---
+
+<BaseLayout title="Services | Odea Works" description="Comprehensive AI consulting, software engineering, and technical strategy services from Odea Works.">
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden border-b border-border bg-surface pt-32 pb-20">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--color-accent-indigo)_0%,_transparent_60%)] opacity-[0.07]"></div>
+    <div class="relative mx-auto max-w-5xl px-6 text-center">
+      <h1 class="mb-6 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+        Our Services
+      </h1>
+      <p class="mx-auto max-w-2xl text-lg leading-relaxed text-text-secondary sm:text-xl">
+        Comprehensive AI and engineering services, from strategy to deployment.
+      </p>
+    </div>
+  </section>
+
+  <!-- Service sections -->
+  {services.map((service, i) => (
+    <section class={`relative border-b border-border py-24 ${i % 2 === 0 ? 'bg-surface' : 'bg-surface-2'}`}>
+      <div class="mx-auto max-w-6xl px-6">
+        <div class={`flex flex-col items-center gap-12 lg:gap-16 ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
+
+          {/* Visual side */}
+          <div class="w-full lg:w-1/2">
+            <div class={`aspect-video w-full rounded-2xl border border-border bg-gradient-to-br ${service.gradient} flex items-center justify-center`}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1"
+                stroke="currentColor"
+                class="h-20 w-20 text-white/20"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d={service.iconPath} />
+              </svg>
+            </div>
+          </div>
+
+          {/* Text side */}
+          <div class="w-full lg:w-1/2">
+            <h2 class="mb-4 text-3xl font-bold tracking-tight text-white">
+              {service.title}
+            </h2>
+            <p class="mb-6 text-text-secondary leading-relaxed">
+              {service.description}
+            </p>
+            <ul class="mb-8 space-y-3">
+              {service.bullets.map((item) => (
+                <li class="flex items-center gap-3 text-text-secondary">
+                  <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-accent/10 text-accent">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-3.5 w-3.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                    </svg>
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <a
+              href="/contact"
+              class="inline-flex items-center gap-2 text-accent font-semibold transition-colors hover:text-accent-hover"
+            >
+              Start a Project
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="h-4 w-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- Bottom CTA -->
+  <section class="relative bg-surface py-24">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--color-accent-indigo)_0%,_transparent_60%)] opacity-[0.05]"></div>
+    <div class="relative mx-auto max-w-3xl px-6 text-center">
+      <h2 class="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+        Ready to get started?
+      </h2>
+      <p class="mb-8 text-lg text-text-secondary">
+        Tell us about your project and let's build something great together.
+      </p>
+      <a
+        href="/contact"
+        class="inline-flex items-center justify-center rounded-xl bg-accent px-8 py-4 text-base font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-indigo-500/25"
+      >
+        Contact Us
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,57 @@
+---
+---
+
+<section class="cta-section relative overflow-hidden py-24 sm:py-32">
+  <!-- Subtle background glow -->
+  <div class="pointer-events-none absolute inset-0 flex items-center justify-center">
+    <div class="cta-glow"></div>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-2xl px-6 text-center">
+    <!-- Heading -->
+    <h2 class="mb-6 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
+      Ready to Build Something Extraordinary?
+    </h2>
+
+    <!-- Subtitle -->
+    <p class="mx-auto mb-10 max-w-xl text-lg leading-relaxed text-zinc-400">
+      Let's discuss your project. We typically respond within 24 hours.
+    </p>
+
+    <!-- CTA button -->
+    <a
+      href="/contact"
+      class="cta-button inline-flex items-center justify-center rounded-xl px-8 py-4 text-base font-semibold text-white transition-all duration-300"
+    >
+      Get in Touch
+    </a>
+
+    <!-- Email -->
+    <p class="mt-6 text-sm text-zinc-600">connor@odeaworks.com</p>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    background: linear-gradient(180deg, #0f0f11 0%, #09090b 40%, #09090b 100%);
+  }
+
+  .cta-glow {
+    width: 700px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+    filter: blur(60px);
+  }
+
+  .cta-button {
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    box-shadow: 0 0 32px rgba(99, 102, 241, 0.25);
+  }
+
+  .cta-button:hover {
+    background: linear-gradient(135deg, #818cf8, #6366f1);
+    box-shadow: 0 0 48px rgba(99, 102, 241, 0.4);
+    transform: translateY(-1px);
+  }
+</style>

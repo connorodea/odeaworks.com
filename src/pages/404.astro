@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="404 — Page Not Found | Odea Works" description="The page you're looking for doesn't exist.">
+
+  <section class="flex min-h-[80vh] items-center justify-center bg-surface px-6">
+    <div class="text-center">
+      <p class="mb-4 text-8xl font-bold tracking-tight text-white sm:text-9xl">
+        <span class="bg-gradient-to-r from-accent-indigo to-accent-cyan bg-clip-text text-transparent">404</span>
+      </p>
+      <h1 class="mb-4 text-2xl font-bold text-white sm:text-3xl">
+        Page Not Found
+      </h1>
+      <p class="mb-8 text-lg text-text-secondary">
+        The page you're looking for doesn't exist or has been moved.
+      </p>
+      <a
+        href="/"
+        class="inline-flex items-center justify-center rounded-xl bg-accent px-8 py-4 text-base font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-indigo-500/25"
+      >
+        Back to Home
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

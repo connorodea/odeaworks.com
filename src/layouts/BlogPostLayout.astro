@@ -1,0 +1,179 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  author: string;
+  category: string;
+  tags: string[];
+  targetKeyword: string;
+  slug: string;
+}
+
+const { title, description, pubDate, author, category, tags, targetKeyword, slug } = Astro.props;
+
+// Format date
+const formattedDate = new Date(pubDate).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+// Calculate reading time from slotted content
+const html = await Astro.slots.render('default');
+const textContent = html.replace(/<[^>]*>/g, '');
+const wordCount = textContent.split(/\s+/).filter(Boolean).length;
+const readingTime = Math.max(1, Math.ceil(wordCount / 250));
+
+// Category display mapping
+const categoryLabels: Record<string, string> = {
+  'ai-consulting': 'AI Consulting',
+  'software-engineering': 'Software Engineering',
+  'technical-strategy': 'Technical Strategy',
+  'devops-infrastructure': 'DevOps & Infrastructure',
+  'ai-engineering': 'AI Engineering',
+};
+
+// Get all posts for prev/next navigation
+const allPosts = (await getCollection('blog'))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+
+const currentIndex = allPosts.findIndex((p) => p.id === slug);
+const prevPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
+const nextPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
+
+// Article JSON-LD
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: description,
+  author: {
+    '@type': 'Person',
+    name: author,
+    url: 'https://odeaworks.com/about',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Odea Works',
+    url: 'https://odeaworks.com',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://odeaworks.com/favicon.svg',
+    },
+  },
+  datePublished: new Date(pubDate).toISOString(),
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': `https://odeaworks.com/blog/${slug}`,
+  },
+  keywords: tags.join(', '),
+};
+---
+
+<BaseLayout title={`${title} — Odea Works`} description={description}>
+  <!-- Article JSON-LD -->
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} slot="head" />
+
+  <article class="mx-auto max-w-3xl px-6 py-16 sm:py-24">
+    <!-- Header -->
+    <header class="mb-12">
+      <div class="mb-4">
+        <a
+          href="/blog"
+          class="text-sm text-text-muted transition-colors hover:text-text-secondary"
+        >
+          &larr; Back to Blog
+        </a>
+      </div>
+
+      <span
+        class="inline-block text-xs font-medium uppercase tracking-wider text-text-muted mb-4"
+      >
+        {categoryLabels[category] || category}
+      </span>
+
+      <h1 class="text-3xl font-semibold tracking-tight text-text-primary sm:text-4xl lg:text-[2.75rem] leading-[1.15]">
+        {title}
+      </h1>
+
+      <div class="mt-6 flex items-center gap-3 text-sm text-text-muted">
+        <span>{author}</span>
+        <span class="text-border">&middot;</span>
+        <time datetime={new Date(pubDate).toISOString()}>{formattedDate}</time>
+        <span class="text-border">&middot;</span>
+        <span>{readingTime} min read</span>
+      </div>
+
+      <div class="mt-4 flex flex-wrap gap-2">
+        {tags.map((tag) => (
+          <span class="rounded-full border border-border px-3 py-1 text-xs text-text-muted">
+            {tag}
+          </span>
+        ))}
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="prose">
+      <Fragment set:html={html} />
+    </div>
+
+    <!-- Divider -->
+    <hr class="my-16 border-t border-border" />
+
+    <!-- Related Services CTA -->
+    <section class="mb-16">
+      <h2 class="text-xl font-semibold text-text-primary mb-4">Related Services</h2>
+      <p class="text-text-secondary mb-6 leading-relaxed">
+        If this post resonated with your challenges, Odea Works can help.
+        We offer hands-on AI engineering, technical strategy, and full-stack development
+        for teams building serious software.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a
+          href="/services"
+          class="inline-flex items-center rounded-lg border border-border px-5 py-2.5 text-sm font-medium text-text-primary transition-colors hover:border-border-hover hover:bg-surface-2"
+        >
+          View Services
+        </a>
+        <a
+          href="/contact"
+          class="inline-flex items-center rounded-lg bg-accent px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent-hover"
+        >
+          Get in Touch
+        </a>
+      </div>
+    </section>
+
+    <!-- Previous/Next Navigation -->
+    <nav class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      {prevPost && (
+        <a
+          href={`/blog/${prevPost.id}`}
+          class="group rounded-lg border border-border p-5 transition-colors hover:border-border-hover hover:bg-surface"
+        >
+          <span class="text-xs text-text-muted uppercase tracking-wider">Previous</span>
+          <p class="mt-2 text-sm font-medium text-text-primary group-hover:text-accent transition-colors">
+            {prevPost.data.title}
+          </p>
+        </a>
+      )}
+      {nextPost && (
+        <a
+          href={`/blog/${nextPost.id}`}
+          class={`group rounded-lg border border-border p-5 transition-colors hover:border-border-hover hover:bg-surface ${!prevPost ? 'sm:col-start-2' : ''}`}
+        >
+          <span class="text-xs text-text-muted uppercase tracking-wider">Next</span>
+          <p class="mt-2 text-sm font-medium text-text-primary group-hover:text-accent transition-colors">
+            {nextPost.data.title}
+          </p>
+        </a>
+      )}
+    </nav>
+  </article>
+</BaseLayout>

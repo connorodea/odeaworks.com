@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://odeaworks.com/sitemap-index.xml

@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = (await getCollection('blog'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+
+const categoryLabels: Record<string, string> = {
+  'ai-consulting': 'AI Consulting',
+  'software-engineering': 'Software Engineering',
+  'technical-strategy': 'Technical Strategy',
+  'devops-infrastructure': 'DevOps & Infrastructure',
+  'ai-engineering': 'AI Engineering',
+};
+
+function getReadingTime(description: string): number {
+  // Estimate from description — actual reading time will be calculated in the post layout
+  return Math.max(3, Math.ceil(description.split(/\s+/).length / 50) + 5);
+}
+---
+
+<BaseLayout
+  title="Blog — Odea Works"
+  description="Insights on AI, engineering, and building software that works."
+>
+  <section class="mx-auto max-w-3xl px-6 py-16 sm:py-24">
+    <!-- Hero -->
+    <div class="mb-16">
+      <h1 class="text-4xl font-semibold tracking-tight text-text-primary sm:text-5xl">
+        Blog
+      </h1>
+      <p class="mt-4 text-lg text-text-secondary leading-relaxed">
+        Insights on AI, engineering, and building software that works.
+      </p>
+    </div>
+
+    <!-- Posts list -->
+    {allPosts.length === 0 && (
+      <p class="text-text-muted">No posts yet. Check back soon.</p>
+    )}
+
+    <div>
+      {allPosts.map((post) => {
+        const date = new Date(post.data.pubDate).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        });
+        const readTime = getReadingTime(post.data.description);
+
+        return (
+          <article class="border-t border-white/10 py-8">
+            <span class="text-xs uppercase tracking-wider text-[#666]">
+              {categoryLabels[post.data.category] || post.data.category}
+            </span>
+
+            <h2 class="mt-2">
+              <a
+                href={`/blog/${post.id}`}
+                class="text-2xl font-medium text-white transition-colors hover:text-accent"
+              >
+                {post.data.title}
+              </a>
+            </h2>
+
+            <p class="mt-2 text-[#ababab] leading-relaxed">
+              {post.data.description}
+            </p>
+
+            <div class="mt-4 flex items-center gap-3 text-sm text-[#666]">
+              <time datetime={new Date(post.data.pubDate).toISOString()}>{date}</time>
+              <span>&middot;</span>
+              <span>{readTime} min read</span>
+            </div>
+
+            <a
+              href={`/blog/${post.id}`}
+              class="mt-3 inline-block text-sm text-accent transition-colors hover:text-white"
+            >
+              Read more &rarr;
+            </a>
+          </article>
+        );
+      })}
+    </div>
+  </section>
+</BaseLayout>

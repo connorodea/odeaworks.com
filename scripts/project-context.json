@@ -1,0 +1,66 @@
+{
+  "projects": [
+    {
+      "name": "ClawdHub",
+      "description": "Terminal IDE for AI agent orchestration — 13K+ lines of Python with a rich TUI built on Textual. Manages multiple AI agents, provides real-time monitoring, and enables complex multi-step workflows from the terminal.",
+      "tech": "Python, Textual, Claude SDK",
+      "url": "/work"
+    },
+    {
+      "name": "Vidmation",
+      "description": "AI-powered YouTube video automation pipeline. Generates scripts, voiceovers, visuals, and edits — end-to-end content creation driven by Claude API and custom orchestration.",
+      "tech": "Python, FastAPI, Claude API",
+      "url": "/work"
+    },
+    {
+      "name": "QuickVisionz",
+      "description": "YOLO-based computer vision sorting pipeline for warehouse inventory. Classifies items on a conveyor belt in real-time, routing them to correct bins with >95% accuracy.",
+      "tech": "Python, YOLO, OpenCV",
+      "url": "/work"
+    },
+    {
+      "name": "QuickLotz WMS",
+      "description": "Enterprise warehouse management system handling receiving, put-away, picking, and shipping for a liquidation business. Full-stack TypeScript with real-time dashboards.",
+      "tech": "TypeScript, React, PostgreSQL",
+      "url": "/work"
+    },
+    {
+      "name": "AgentAgent",
+      "description": "Multi-agent orchestration system that spawns and coordinates AI agents via tmux sessions. Each agent runs independently with shared context and message passing.",
+      "tech": "Shell, Python",
+      "url": "/work"
+    },
+    {
+      "name": "AI Schematic Generator",
+      "description": "Generate circuit schematics from natural language descriptions. Takes plain English input and produces valid, downloadable schematic files.",
+      "tech": "Python, Claude API",
+      "url": "/work"
+    }
+  ],
+  "services": [
+    {
+      "name": "AI Engineering",
+      "description": "Build production AI systems — RAG pipelines, agent orchestration, computer vision, LLM integration",
+      "url": "/services"
+    },
+    {
+      "name": "Technical Strategy",
+      "description": "Architecture reviews, technology selection, build-vs-buy analysis, technical due diligence",
+      "url": "/services"
+    },
+    {
+      "name": "Software Engineering",
+      "description": "Full-stack development — TypeScript, React, Python, PostgreSQL, API design",
+      "url": "/services"
+    },
+    {
+      "name": "Infrastructure & DevOps",
+      "description": "CI/CD pipelines, VPS management, monitoring, deployment automation",
+      "url": "/services"
+    }
+  ],
+  "founder": {
+    "name": "Connor O'Dea",
+    "background": "Built 10+ ventures from first line of code to production. Specializes in AI engineering, full-stack development, and turning complex technical problems into working software."
+  }
+}

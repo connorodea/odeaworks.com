@@ -41,6 +41,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: ci
     steps:
+      - name: Checkout (for contact-api files)
+        uses: actions/checkout@v4
+
       - name: Validate required secrets
         run: |
           if [[ -z "${{ secrets.HETZNER_CO_HOST }}" ]]; then
@@ -81,6 +84,15 @@ jobs:
             dist/ \
             "${{ secrets.HETZNER_CO_USER }}@${{ secrets.HETZNER_CO_HOST }}:/var/www/odeaworks.com/dist-incoming/"
 
+      - name: Rsync contact-api to VPS
+        run: |
+          SSH_PORT="${{ secrets.HETZNER_CO_PORT }}"
+          SSH_PORT="${SSH_PORT:-22}"
+          rsync -az \
+            -e "ssh -i ~/.ssh/deploy_key -p ${SSH_PORT} -o StrictHostKeyChecking=no" \
+            contact-api/server.mjs contact-api/package.json \
+            "${{ secrets.HETZNER_CO_USER }}@${{ secrets.HETZNER_CO_HOST }}:/var/www/odeaworks-api/"
+
       - name: Run deploy script on VPS
         run: |
           SSH_PORT="${{ secrets.HETZNER_CO_PORT }}"
@@ -90,3 +102,13 @@ jobs:
             -o StrictHostKeyChecking=no \
             "${{ secrets.HETZNER_CO_USER }}@${{ secrets.HETZNER_CO_HOST }}" \
             'bash /var/www/odeaworks.com/deploy.sh'
+
+      - name: Deploy contact-api on VPS
+        run: |
+          SSH_PORT="${{ secrets.HETZNER_CO_PORT }}"
+          SSH_PORT="${SSH_PORT:-22}"
+          ssh -i ~/.ssh/deploy_key \
+            -p "${SSH_PORT}" \
+            -o StrictHostKeyChecking=no \
+            "${{ secrets.HETZNER_CO_USER }}@${{ secrets.HETZNER_CO_HOST }}" \
+            'cd /var/www/odeaworks-api && npm install --omit=dev && systemctl restart odeaworks-api && systemctl status odeaworks-api --no-pager'

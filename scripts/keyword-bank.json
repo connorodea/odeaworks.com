@@ -1,0 +1,644 @@
+{
+  "keywords": [
+    {
+      "keyword": "ai consultant for small business",
+      "category": "ai-consulting",
+      "postType": "strategy-guide",
+      "difficulty": "low",
+      "used": false,
+      "priority": 1
+    },
+    {
+      "keyword": "how much does ai consulting cost",
+      "category": "ai-consulting",
+      "postType": "industry-analysis",
+      "difficulty": "low",
+      "used": false,
+      "priority": 1
+    },
+    {
+      "keyword": "ai implementation roadmap for startups",
+      "category": "ai-consulting",
+      "postType": "strategy-guide",
+      "difficulty": "low",
+      "used": false,
+      "priority": 1
+    },
+    {
+      "keyword": "should i hire an ai consultant or build in house",
+      "category": "ai-consulting",
+      "postType": "strategy-guide",
+      "difficulty": "low",
+      "used": false,
+      "priority": 1
+    },
+    {
+      "keyword": "ai consulting process what to expect",
+      "category": "ai-consulting",
+      "postType": "strategy-guide",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "ai proof of concept development services",
+      "category": "ai-consulting",
+      "postType": "case-study",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "ai readiness assessment for business",
+      "category": "ai-consulting",
+      "postType": "strategy-guide",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "when is ai not the right solution",
+      "category": "ai-consulting",
+      "postType": "industry-analysis",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "ai consulting for ecommerce businesses",
+      "category": "ai-consulting",
+      "postType": "strategy-guide",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 3
+    },
+    {
+      "keyword": "roi of ai implementation small business",
+      "category": "ai-consulting",
+      "postType": "industry-analysis",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 3
+    },
+    {
+      "keyword": "ai strategy consulting services",
+      "category": "ai-consulting",
+      "postType": "strategy-guide",
+      "difficulty": "high",
+      "used": false,
+      "priority": 5
+    },
+    {
+      "keyword": "ai consulting firms for startups",
+      "category": "ai-consulting",
+      "postType": "industry-analysis",
+      "difficulty": "high",
+      "used": false,
+      "priority": 5
+    },
+    {
+      "keyword": "how to build rag pipeline python",
+      "category": "ai-engineering",
+      "postType": "technical-deep-dive",
+      "difficulty": "low",
+      "used": false,
+      "priority": 1
+    },
+    {
+      "keyword": "claude api integration tutorial",
+      "category": "ai-engineering",
+      "postType": "technical-deep-dive",
+      "difficulty": "low",
+      "used": false,
+      "priority": 1
+    },
+    {
+      "keyword": "llm agent orchestration patterns",
+      "category": "ai-engineering",
+      "postType": "technical-deep-dive",
+      "difficulty": "low",
+      "used": false,
+      "priority": 1
+    },
+    {
+      "keyword": "computer vision pipeline for inventory management",
+      "category": "ai-engineering",
+      "postType": "case-study",
+      "difficulty": "low",
+      "used": false,
+      "priority": 1
+    },
+    {
+      "keyword": "prompt engineering for production applications",
+      "category": "ai-engineering",
+      "postType": "technical-deep-dive",
+      "difficulty": "low",
+      "used": false,
+      "priority": 1
+    },
+    {
+      "keyword": "ai agent error handling best practices",
+      "category": "ai-engineering",
+      "postType": "technical-deep-dive",
+      "difficulty": "low",
+      "used": false,
+      "priority": 1
+    },
+    {
+      "keyword": "building terminal ui with python textual",
+      "category": "ai-engineering",
+      "postType": "technical-deep-dive",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "structured output from llm apis",
+      "category": "ai-engineering",
+      "postType": "technical-deep-dive",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "llm caching strategies for production",
+      "category": "ai-engineering",
+      "postType": "technical-deep-dive",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "multi agent system architecture patterns",
+      "category": "ai-engineering",
+      "postType": "technical-deep-dive",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 3
+    },
+    {
+      "keyword": "fine tuning vs rag when to use which",
+      "category": "ai-engineering",
+      "postType": "strategy-guide",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 3
+    },
+    {
+      "keyword": "ai video automation pipeline python",
+      "category": "ai-engineering",
+      "postType": "case-study",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "yolo object detection custom training guide",
+      "category": "ai-engineering",
+      "postType": "technical-deep-dive",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 3
+    },
+    {
+      "keyword": "llm token cost optimization techniques",
+      "category": "ai-engineering",
+      "postType": "technical-deep-dive",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "building ai features into existing saas",
+      "category": "ai-engineering",
+      "postType": "strategy-guide",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 3
+    },
+    {
+      "keyword": "ai agent memory and context management",
+      "category": "ai-engineering",
+      "postType": "technical-deep-dive",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 3
+    },
+    {
+      "keyword": "production ai system monitoring and observability",
+      "category": "ai-engineering",
+      "postType": "technical-deep-dive",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 3
+    },
+    {
+      "keyword": "typescript api design patterns 2026",
+      "category": "software-engineering",
+      "postType": "technical-deep-dive",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 3
+    },
+    {
+      "keyword": "next.js vs astro for business websites",
+      "category": "software-engineering",
+      "postType": "industry-analysis",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 3
+    },
+    {
+      "keyword": "database design for saas applications",
+      "category": "software-engineering",
+      "postType": "technical-deep-dive",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 3
+    },
+    {
+      "keyword": "automating business workflows with python",
+      "category": "software-engineering",
+      "postType": "strategy-guide",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "building real time dashboards with react",
+      "category": "software-engineering",
+      "postType": "technical-deep-dive",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 3
+    },
+    {
+      "keyword": "terminal ui applications python textual",
+      "category": "software-engineering",
+      "postType": "technical-deep-dive",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "warehouse management system custom development",
+      "category": "software-engineering",
+      "postType": "case-study",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "postgresql advanced query optimization",
+      "category": "software-engineering",
+      "postType": "technical-deep-dive",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 3
+    },
+    {
+      "keyword": "react server components practical guide",
+      "category": "software-engineering",
+      "postType": "technical-deep-dive",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 4
+    },
+    {
+      "keyword": "full stack typescript project structure",
+      "category": "software-engineering",
+      "postType": "technical-deep-dive",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "building inventory management software from scratch",
+      "category": "software-engineering",
+      "postType": "case-study",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "api rate limiting strategies node.js",
+      "category": "software-engineering",
+      "postType": "technical-deep-dive",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "technical due diligence checklist startup",
+      "category": "technical-strategy",
+      "postType": "strategy-guide",
+      "difficulty": "low",
+      "used": false,
+      "priority": 1
+    },
+    {
+      "keyword": "build vs buy ai capabilities",
+      "category": "technical-strategy",
+      "postType": "strategy-guide",
+      "difficulty": "low",
+      "used": false,
+      "priority": 1
+    },
+    {
+      "keyword": "how to evaluate ai vendors",
+      "category": "technical-strategy",
+      "postType": "strategy-guide",
+      "difficulty": "low",
+      "used": false,
+      "priority": 1
+    },
+    {
+      "keyword": "software architecture review process",
+      "category": "technical-strategy",
+      "postType": "strategy-guide",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 3
+    },
+    {
+      "keyword": "technology stack selection framework",
+      "category": "technical-strategy",
+      "postType": "strategy-guide",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 3
+    },
+    {
+      "keyword": "reducing engineering costs without cutting quality",
+      "category": "technical-strategy",
+      "postType": "strategy-guide",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "when to rewrite vs refactor legacy code",
+      "category": "technical-strategy",
+      "postType": "strategy-guide",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "startup cto fractional vs full time",
+      "category": "technical-strategy",
+      "postType": "industry-analysis",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "technical debt prioritization framework",
+      "category": "technical-strategy",
+      "postType": "strategy-guide",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 3
+    },
+    {
+      "keyword": "mvp development timeline and cost estimation",
+      "category": "technical-strategy",
+      "postType": "strategy-guide",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 3
+    },
+    {
+      "keyword": "scaling engineering team from 1 to 10",
+      "category": "technical-strategy",
+      "postType": "strategy-guide",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 4
+    },
+    {
+      "keyword": "how to write a technical requirements document",
+      "category": "technical-strategy",
+      "postType": "strategy-guide",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 3
+    },
+    {
+      "keyword": "github actions ci cd tutorial astro",
+      "category": "devops-infrastructure",
+      "postType": "technical-deep-dive",
+      "difficulty": "low",
+      "used": false,
+      "priority": 1
+    },
+    {
+      "keyword": "nginx reverse proxy node.js setup",
+      "category": "devops-infrastructure",
+      "postType": "technical-deep-dive",
+      "difficulty": "low",
+      "used": false,
+      "priority": 1
+    },
+    {
+      "keyword": "vps vs aws for small business",
+      "category": "devops-infrastructure",
+      "postType": "industry-analysis",
+      "difficulty": "low",
+      "used": false,
+      "priority": 1
+    },
+    {
+      "keyword": "zero downtime deployment guide",
+      "category": "devops-infrastructure",
+      "postType": "technical-deep-dive",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "monitoring node.js applications production",
+      "category": "devops-infrastructure",
+      "postType": "technical-deep-dive",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "ssl certificate automation lets encrypt",
+      "category": "devops-infrastructure",
+      "postType": "technical-deep-dive",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "docker compose production deployment guide",
+      "category": "devops-infrastructure",
+      "postType": "technical-deep-dive",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 3
+    },
+    {
+      "keyword": "systemd service management for web apps",
+      "category": "devops-infrastructure",
+      "postType": "technical-deep-dive",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "automated backup strategy for vps",
+      "category": "devops-infrastructure",
+      "postType": "technical-deep-dive",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "cloudflare dns and cdn setup guide",
+      "category": "devops-infrastructure",
+      "postType": "technical-deep-dive",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "rsync deployment scripts for static sites",
+      "category": "devops-infrastructure",
+      "postType": "technical-deep-dive",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "hetzner vps setup web application hosting",
+      "category": "devops-infrastructure",
+      "postType": "technical-deep-dive",
+      "difficulty": "low",
+      "used": false,
+      "priority": 1
+    },
+    {
+      "keyword": "kubernetes vs docker compose for small teams",
+      "category": "devops-infrastructure",
+      "postType": "industry-analysis",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 4
+    },
+    {
+      "keyword": "infrastructure as code for startups terraform",
+      "category": "devops-infrastructure",
+      "postType": "strategy-guide",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 4
+    },
+    {
+      "keyword": "ai powered code review automation",
+      "category": "ai-engineering",
+      "postType": "technical-deep-dive",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 3
+    },
+    {
+      "keyword": "building ai chatbot for customer support",
+      "category": "ai-engineering",
+      "postType": "strategy-guide",
+      "difficulty": "high",
+      "used": false,
+      "priority": 5
+    },
+    {
+      "keyword": "enterprise ai adoption challenges and solutions",
+      "category": "ai-consulting",
+      "postType": "industry-analysis",
+      "difficulty": "high",
+      "used": false,
+      "priority": 5
+    },
+    {
+      "keyword": "ai model evaluation and testing framework",
+      "category": "ai-engineering",
+      "postType": "technical-deep-dive",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 3
+    },
+    {
+      "keyword": "cost effective ai infrastructure setup",
+      "category": "devops-infrastructure",
+      "postType": "strategy-guide",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "building production grade api with fastapi",
+      "category": "software-engineering",
+      "postType": "technical-deep-dive",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 3
+    },
+    {
+      "keyword": "data pipeline architecture for small teams",
+      "category": "software-engineering",
+      "postType": "technical-deep-dive",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "choosing between python and typescript for backend",
+      "category": "technical-strategy",
+      "postType": "industry-analysis",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 3
+    },
+    {
+      "keyword": "ai automation for warehouse operations",
+      "category": "ai-consulting",
+      "postType": "case-study",
+      "difficulty": "low",
+      "used": false,
+      "priority": 1
+    },
+    {
+      "keyword": "continuous deployment pipeline small team guide",
+      "category": "devops-infrastructure",
+      "postType": "strategy-guide",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "website performance optimization checklist 2026",
+      "category": "software-engineering",
+      "postType": "strategy-guide",
+      "difficulty": "high",
+      "used": false,
+      "priority": 5
+    },
+    {
+      "keyword": "ai integration testing strategies",
+      "category": "ai-engineering",
+      "postType": "technical-deep-dive",
+      "difficulty": "low",
+      "used": false,
+      "priority": 2
+    },
+    {
+      "keyword": "real world ai use cases for small business",
+      "category": "ai-consulting",
+      "postType": "industry-analysis",
+      "difficulty": "medium",
+      "used": false,
+      "priority": 3
+    }
+  ]
+}

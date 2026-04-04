@@ -6,6 +6,7 @@ interface Project {
   tags: string[];
   description: string;
   href: string;
+  live?: string;
 }
 
 const projects: Project[] = [
@@ -28,7 +29,8 @@ const projects: Project[] = [
     tags: ["TypeScript", "React", "PostgreSQL"],
     description:
       "Enterprise warehouse management system powering inventory, 3PL logistics, and real-time analytics for circular economy operations.",
-    href: "#",
+    href: "https://github.com/connorodea/upscaled-quicklotz-dashboard",
+    live: "https://v0-sourcing-platform-ui.vercel.app",
   },
   {
     title: "QuickVisionz",
@@ -66,14 +68,26 @@ const projects: Project[] = [
                     </span>
                   ))}
                 </div>
-                <a
-                  href={project.href}
-                  target={project.href.startsWith("http") ? "_blank" : undefined}
-                  rel={project.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  class="mt-6 inline-block text-sm text-[#666] transition-colors duration-200 hover:text-white"
-                >
-                  View project &rarr;
-                </a>
+                <div class="mt-6 flex items-center gap-4">
+                  <a
+                    href={project.href}
+                    target={project.href.startsWith("http") ? "_blank" : undefined}
+                    rel={project.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    class="inline-block text-sm text-[#666] transition-colors duration-200 hover:text-white"
+                  >
+                    View project &rarr;
+                  </a>
+                  {project.live && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-block text-sm text-[#10a37f] transition-colors duration-200 hover:text-white"
+                    >
+                      Live Demo &rarr;
+                    </a>
+                  )}
+                </div>
               </div>
               <div>
                 <div class="aspect-video w-full rounded-lg bg-[#141414]"></div>

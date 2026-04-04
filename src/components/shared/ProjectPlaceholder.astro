@@ -1,0 +1,32 @@
+---
+interface Props {
+  title: string;
+  category: string;
+  rounded?: 'lg' | 't-xl';
+}
+
+const { title, category, rounded = 'lg' } = Astro.props;
+
+function getCategoryGradient(cat: string): [string, string] {
+  if (cat.includes('AI')) return ['#0a0a16', '#12081a'];
+  if (cat.includes('Enterprise') || cat.includes('SaaS') || cat.includes('Healthcare') || cat.includes('Education') || cat.includes('Communication') || cat.includes('SEO')) return ['#080f0a', '#0a1410'];
+  if (cat.includes('Infrastructure') || cat.includes('Automation') || cat.includes('Developer') || cat.includes('Data') || cat.includes('E-commerce')) return ['#0f0a08', '#14100a'];
+  return ['#0a0a0f', '#0f0a0f'];
+}
+
+const [gradientStart, gradientEnd] = getCategoryGradient(category);
+const roundedClass = rounded === 't-xl' ? 'rounded-t-xl' : 'rounded-lg';
+---
+
+<div
+  class={`aspect-video w-full ${roundedClass} relative overflow-hidden`}
+  style={`background: linear-gradient(135deg, ${gradientStart}, ${gradientEnd});`}
+>
+  <div class="absolute inset-0 flex items-center justify-center">
+    <span class="text-2xl font-semibold text-white/10 select-none sm:text-3xl">{title}</span>
+  </div>
+  <div
+    class="absolute inset-0 opacity-[0.03]"
+    style="background-image: radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px); background-size: 24px 24px;"
+  ></div>
+</div>

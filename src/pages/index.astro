@@ -7,9 +7,18 @@ import Metrics from "../components/home/Metrics.astro";
 import WhyOdeaWorks from "../components/home/WhyOdeaWorks.astro";
 import TechStack from "../components/home/TechStack.astro";
 import ContactCTA from "../components/home/ContactCTA.astro";
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Odea Works",
+  "url": "https://odeaworks.com",
+  "description": "AI consulting, software engineering, and technical strategy for companies building with technology."
+};
 ---
 
 <BaseLayout title="Odea Works — Premium Software Development & AI Consulting">
+  <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
   <Hero />
   <ServicesGrid />
   <FeaturedWork />

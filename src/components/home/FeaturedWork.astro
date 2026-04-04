@@ -1,8 +1,10 @@
 ---
 import AnimateOnScroll from '../shared/AnimateOnScroll.astro';
+import ProjectPlaceholder from '../shared/ProjectPlaceholder.astro';
 
 interface Project {
   title: string;
+  category: string;
   tags: string[];
   description: string;
   href: string;
@@ -12,6 +14,7 @@ interface Project {
 const projects: Project[] = [
   {
     title: "Vidmation",
+    category: "AI / Video Automation",
     tags: ["Python", "FastAPI", "Claude API", "FFmpeg"],
     description:
       "End-to-end AI video automation platform. Generates faceless YouTube content with AI narration, captions, and automated publishing.",
@@ -19,6 +22,7 @@ const projects: Project[] = [
   },
   {
     title: "ClawdHub",
+    category: "AI / Developer Tools",
     tags: ["Python", "Textual", "Claude SDK"],
     description:
       "Terminal IDE for spawning and orchestrating multiple Claude Code agents in real time. 13,000 lines, 26 files.",
@@ -26,6 +30,7 @@ const projects: Project[] = [
   },
   {
     title: "QuickLotz WMS",
+    category: "Enterprise / SaaS",
     tags: ["TypeScript", "React", "PostgreSQL"],
     description:
       "Enterprise warehouse management system powering inventory, 3PL logistics, and real-time analytics for circular economy operations.",
@@ -34,6 +39,7 @@ const projects: Project[] = [
   },
   {
     title: "QuickVisionz",
+    category: "AI / Computer Vision",
     tags: ["Python", "YOLO", "OpenCV"],
     description:
       "Computer vision sorting pipeline with YOLO object detection, automated barcode classification, and thermal label printing.",
@@ -90,7 +96,7 @@ const projects: Project[] = [
                 </div>
               </div>
               <div>
-                <div class="aspect-video w-full rounded-lg bg-[#141414]"></div>
+                <ProjectPlaceholder title={project.title} category={project.category} rounded="lg" />
               </div>
             </div>
           </div>

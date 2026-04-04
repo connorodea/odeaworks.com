@@ -1,9 +1,21 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AnimateOnScroll from '../components/shared/AnimateOnScroll.astro';
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Connor O'Dea",
+  "jobTitle": "Founder & Engineer",
+  "worksFor": {"@type": "Organization", "name": "Odea Works"},
+  "email": "connor@odeaworks.com",
+  "url": "https://odeaworks.com/about",
+  "sameAs": ["https://github.com/connorodea"]
+};
 ---
 
 <BaseLayout title="About | Odea Works" description="Learn about Odea Works — founded by Connor O'Dea. AI consulting, software engineering, and technical strategy.">
+  <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
 
   <!-- Hero -->
   <section class="py-32 lg:py-40">

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AnimateOnScroll from '../components/shared/AnimateOnScroll.astro';
+import ProjectPlaceholder from '../components/shared/ProjectPlaceholder.astro';
 
 interface Project {
   title: string;
@@ -297,7 +298,7 @@ const sections = [
           <AnimateOnScroll animation="stagger" class="grid gap-8 md:grid-cols-2">
             {section.projects.map((project) => (
               <article class="group overflow-hidden rounded-xl bg-[#0a0a0a] transition-colors duration-300 hover:bg-[#111]">
-                <div class="aspect-video w-full rounded-t-xl bg-[#141414]"></div>
+                <ProjectPlaceholder title={project.title} category={project.category} rounded="t-xl" />
                 <div class="p-6">
                   <span class="text-xs text-[#666] uppercase tracking-wider">
                     {project.category}

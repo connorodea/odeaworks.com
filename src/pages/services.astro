@@ -56,9 +56,41 @@ const services = [
     ],
   },
 ];
+
+const servicesSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "Service",
+      "name": "AI Engineering",
+      "provider": {"@type": "Organization", "name": "Odea Works"},
+      "description": "LLM agent systems, computer vision, RAG architectures, ML pipelines."
+    },
+    {
+      "@type": "Service",
+      "name": "Technical Strategy",
+      "provider": {"@type": "Organization", "name": "Odea Works"},
+      "description": "Architecture reviews, infrastructure planning, technology selection."
+    },
+    {
+      "@type": "Service",
+      "name": "Software Engineering",
+      "provider": {"@type": "Organization", "name": "Odea Works"},
+      "description": "Full-stack web applications, APIs, databases, automation systems."
+    },
+    {
+      "@type": "Service",
+      "name": "Infrastructure & DevOps",
+      "provider": {"@type": "Organization", "name": "Odea Works"},
+      "description": "CI/CD pipelines, cloud deployment, monitoring, container orchestration."
+    }
+  ]
+};
 ---
 
 <BaseLayout title="Services | Odea Works" description="AI engineering, technical strategy, software development, and infrastructure services from Odea Works.">
+  <script type="application/ld+json" set:html={JSON.stringify(servicesSchema)} />
 
   <!-- Hero -->
   <section class="py-32 lg:py-40">

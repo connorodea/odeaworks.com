@@ -1,0 +1,16 @@
+[Unit]
+Description=Odea Works Contact API
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/var/www/odeaworks-api
+ExecStart=/usr/bin/node server.mjs
+Restart=on-failure
+RestartSec=5
+Environment=RESEND_API_KEY=YOUR_KEY_HERE
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target

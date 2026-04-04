@@ -1,9 +1,27 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AnimateOnScroll from '../components/shared/AnimateOnScroll.astro';
+
+const contactSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact Odea Works",
+  "url": "https://odeaworks.com/contact",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "Odea Works",
+    "email": "connor@odeaworks.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Michigan",
+      "addressCountry": "US"
+    }
+  }
+};
 ---
 
 <BaseLayout title="Contact | Odea Works" description="Get in touch with Odea Works. Tell us about your project and we'll get back to you within 24 hours.">
+  <script type="application/ld+json" set:html={JSON.stringify(contactSchema)} />
 
   <!-- Hero -->
   <section class="py-32 lg:py-40">
@@ -58,7 +76,10 @@ import AnimateOnScroll from '../components/shared/AnimateOnScroll.astro';
 
         <!-- Right column: Form -->
         <div class="mt-0">
-          <form action="#" method="POST" class="space-y-0">
+          <form id="contact-form" method="POST" class="space-y-0">
+
+            <!-- Honeypot -->
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
 
             <!-- Name -->
             <div class="border-b border-white/10 focus-within:border-white/30 transition-colors">
@@ -126,16 +147,94 @@ import AnimateOnScroll from '../components/shared/AnimateOnScroll.astro';
             <!-- Submit -->
             <div class="pt-8">
               <button
+                id="submit-btn"
                 type="submit"
-                class="rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90"
+                class="rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Send message
               </button>
             </div>
           </form>
+
+          <!-- Success message (hidden by default) -->
+          <div id="form-success" class="hidden py-12">
+            <p class="text-lg font-medium text-white">Thank you!</p>
+            <p class="mt-2 text-text-secondary">We'll be in touch within 24 hours.</p>
+          </div>
+
+          <!-- Error message (hidden by default) -->
+          <div id="form-error" class="hidden mt-6 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3">
+            <p class="text-sm text-red-400" id="form-error-text">Something went wrong. Please try again.</p>
+          </div>
         </div>
       </AnimateOnScroll>
     </div>
   </section>
+
+  <script>
+    const form = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const successDiv = document.getElementById('form-success');
+    const errorDiv = document.getElementById('form-error');
+    const errorText = document.getElementById('form-error-text');
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Hide previous messages
+      errorDiv?.classList.add('hidden');
+
+      // Loading state
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+      }
+
+      // Collect form data
+      const formData = new FormData(form);
+      const data = {
+        _honey: formData.get('_honey') || '',
+        name: formData.get('name') || '',
+        email: formData.get('email') || '',
+        company: formData.get('company') || '',
+        budget: formData.get('budget') || '',
+        message: formData.get('message') || '',
+      };
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+
+        const result = await res.json();
+
+        if (res.ok && result.success) {
+          // Success — hide form, show thank-you
+          form.classList.add('hidden');
+          successDiv?.classList.remove('hidden');
+        } else {
+          // Server returned an error
+          if (errorText) {
+            errorText.textContent = result.error || 'Something went wrong. Please try again.';
+          }
+          errorDiv?.classList.remove('hidden');
+        }
+      } catch {
+        // Network error
+        if (errorText) {
+          errorText.textContent = 'Network error. Please check your connection and try again.';
+        }
+        errorDiv?.classList.remove('hidden');
+      } finally {
+        // Reset button
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send message';
+        }
+      }
+    });
+  </script>
 
 </BaseLayout>

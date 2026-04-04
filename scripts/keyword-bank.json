@@ -5,8 +5,10 @@
       "category": "ai-consulting",
       "postType": "strategy-guide",
       "difficulty": "low",
-      "used": false,
-      "priority": 1
+      "used": true,
+      "priority": 1,
+      "usedDate": "2026-04-04",
+      "outputFile": "2026-04-04-ai-consultant-for-small-business.md"
     },
     {
       "keyword": "how much does ai consulting cost",

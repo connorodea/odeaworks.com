@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import AnimateOnScroll from '../components/shared/AnimateOnScroll.astro';
 ---
 
 <BaseLayout title="About | Odea Works" description="Learn about Odea Works — founded by Connor O'Dea. AI consulting, software engineering, and technical strategy.">
@@ -7,9 +8,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <!-- Hero -->
   <section class="py-32 lg:py-40">
     <div class="mx-auto max-w-5xl px-6">
-      <h1 class="text-5xl font-semibold tracking-tight text-white lg:text-6xl">
-        About
-      </h1>
+      <AnimateOnScroll animation="fade-up">
+        <h1 class="text-5xl font-semibold tracking-tight text-white lg:text-6xl">
+          About
+        </h1>
+      </AnimateOnScroll>
     </div>
   </section>
 
@@ -17,37 +20,47 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="pb-32 lg:pb-40">
     <div class="mx-auto max-w-3xl px-6">
       <div class="space-y-8 text-lg text-text-secondary leading-relaxed">
-        <p>
-          Odea Works is a software engineering and AI consulting practice founded by Connor O'Dea.
-        </p>
-        <p>
-          We build production systems — AI agents, web platforms, infrastructure, and automation — for companies that need things to actually work. Not decks. Not demos. Working software.
-        </p>
-        <p>
-          Connor has built 10+ ventures from the ground up, from first line of code to production serving real users. Background spans full-stack engineering, AI systems, DevOps, and technical architecture.
-        </p>
-        <p>
-          Based in Michigan. Working with clients everywhere.
-        </p>
+        <AnimateOnScroll animation="fade-up">
+          <p>
+            Odea Works is a software engineering and AI consulting practice founded by Connor O'Dea.
+          </p>
+        </AnimateOnScroll>
+        <AnimateOnScroll animation="fade-up">
+          <p>
+            We build production systems — AI agents, web platforms, infrastructure, and automation — for companies that need things to actually work. Not decks. Not demos. Working software.
+          </p>
+        </AnimateOnScroll>
+        <AnimateOnScroll animation="fade-up">
+          <p>
+            Connor has built 10+ ventures from the ground up, from first line of code to production serving real users. Background spans full-stack engineering, AI systems, DevOps, and technical architecture.
+          </p>
+        </AnimateOnScroll>
+        <AnimateOnScroll animation="fade-up">
+          <p>
+            Based in Michigan. Working with clients everywhere.
+          </p>
+        </AnimateOnScroll>
       </div>
 
       <!-- Connect -->
-      <div class="mt-16 space-y-4">
-        <a
-          href="mailto:connor@odeaworks.com"
-          class="block text-white transition-colors hover:text-accent"
-        >
-          connor@odeaworks.com
-        </a>
-        <a
-          href="https://github.com/connorodea"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="block text-text-muted transition-colors hover:text-white"
-        >
-          github.com/connorodea
-        </a>
-      </div>
+      <AnimateOnScroll animation="fade-up">
+        <div class="mt-16 space-y-4">
+          <a
+            href="mailto:connor@odeaworks.com"
+            class="block text-white transition-colors hover:text-accent"
+          >
+            connor@odeaworks.com
+          </a>
+          <a
+            href="https://github.com/connorodea"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block text-text-muted transition-colors hover:text-white"
+          >
+            github.com/connorodea
+          </a>
+        </div>
+      </AnimateOnScroll>
     </div>
   </section>
 

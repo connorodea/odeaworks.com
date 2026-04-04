@@ -1,26 +1,29 @@
 ---
+import AnimateOnScroll from '../shared/AnimateOnScroll.astro';
 ---
 
-<section class="bg-black py-32 lg:py-40">
+<section id="contact" class="bg-black py-32 lg:py-40">
   <div class="mx-auto max-w-3xl px-6 text-center">
-    <h2 class="text-4xl font-semibold tracking-tight text-white lg:text-5xl">
-      Let's work together.
-    </h2>
-    <p class="mt-6 text-lg text-text-secondary">
-      <a
-        href="mailto:connor@odeaworks.com"
-        class="transition-colors duration-200 hover:text-white"
-      >
-        connor@odeaworks.com
-      </a>
-    </p>
-    <div class="mt-10">
-      <a
-        href="/contact"
-        class="inline-block rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-opacity duration-200 hover:opacity-85"
-      >
-        Get in touch
-      </a>
-    </div>
+    <AnimateOnScroll animation="stagger">
+      <h2 class="text-4xl font-semibold tracking-tight text-white lg:text-5xl">
+        Let's work together.
+      </h2>
+      <p class="mt-6 text-lg text-text-secondary">
+        <a
+          href="mailto:connor@odeaworks.com"
+          class="transition-colors duration-200 hover:text-white"
+        >
+          connor@odeaworks.com
+        </a>
+      </p>
+      <div class="mt-10">
+        <a
+          href="/contact"
+          class="inline-block rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-opacity duration-200 hover:opacity-85"
+        >
+          Get in touch
+        </a>
+      </div>
+    </AnimateOnScroll>
   </div>
 </section>

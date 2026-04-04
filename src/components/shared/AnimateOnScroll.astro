@@ -1,0 +1,42 @@
+---
+interface Props {
+  animation?: 'fade-up' | 'fade-in' | 'stagger';
+  delay?: number;
+  class?: string;
+}
+
+const { animation = 'fade-up', delay, class: className } = Astro.props;
+const style = delay ? `transition-delay: ${delay}ms` : undefined;
+---
+
+<div data-animate={animation} style={style} class={className}>
+  <slot />
+</div>
+
+<script>
+  function initAnimations() {
+    const elements = document.querySelectorAll('[data-animate]');
+
+    if (!elements.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+  }
+
+  // Run on initial load
+  initAnimations();
+
+  // Re-run after Astro page transitions (View Transitions)
+  document.addEventListener('astro:page-load', initAnimations);
+</script>

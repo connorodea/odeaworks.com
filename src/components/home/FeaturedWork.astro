@@ -1,4 +1,6 @@
 ---
+import AnimateOnScroll from '../shared/AnimateOnScroll.astro';
+
 interface Project {
   title: string;
   tags: string[];
@@ -8,67 +10,89 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "ClawdHub",
-    tags: ["Python", "AI Agents", "Textual"],
+    title: "Vidmation",
+    tags: ["Python", "FastAPI", "Claude API", "FFmpeg"],
     description:
-      "Terminal IDE for spawning and orchestrating Claude Code agents in real time. 13,000 lines of Python.",
+      "End-to-end AI video automation platform. Generates faceless YouTube content with AI narration, captions, and automated publishing.",
+    href: "https://github.com/connorodea/vidmation",
+  },
+  {
+    title: "ClawdHub",
+    tags: ["Python", "Textual", "Claude SDK"],
+    description:
+      "Terminal IDE for spawning and orchestrating multiple Claude Code agents in real time. 13,000 lines, 26 files.",
     href: "https://github.com/connorodea/clawd-hub",
   },
   {
     title: "QuickLotz WMS",
     tags: ["TypeScript", "React", "PostgreSQL"],
     description:
-      "Warehouse management system powering inventory, logistics, and analytics for circular economy operations.",
+      "Enterprise warehouse management system powering inventory, 3PL logistics, and real-time analytics for circular economy operations.",
     href: "#",
   },
   {
-    title: "QuickVisionz",
-    tags: ["Python", "YOLO", "OpenCV"],
+    title: "FastMCP",
+    tags: ["Python", "MCP", "Open Source"],
     description:
-      "Computer vision pipeline with YOLO detection for automated product sorting and thermal label printing.",
-    href: "#",
+      "Pythonic framework for building Model Context Protocol servers. Merged into the official Anthropic MCP SDK.",
+    href: "https://github.com/jlowin/fastmcp",
   },
 ];
 ---
 
 <section class="bg-black py-32 lg:py-40">
   <div class="mx-auto max-w-5xl px-6">
-    <h2 class="text-4xl font-semibold tracking-tight text-white lg:text-5xl">
-      Work
-    </h2>
-    <p class="mt-4 text-lg text-text-secondary">Selected projects.</p>
+    <AnimateOnScroll animation="fade-up">
+      <h2 class="text-4xl font-semibold tracking-tight text-white lg:text-5xl">
+        Work
+      </h2>
+      <p class="mt-4 text-lg text-[#ababab]">Selected projects.</p>
+    </AnimateOnScroll>
 
     <div class="mt-16">
       {projects.map((project) => (
-        <div class="border-t border-white/10 py-12">
-          <div class="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
-            <div>
-              <h3 class="text-2xl font-medium text-white">{project.title}</h3>
-              <p class="mt-3 leading-relaxed text-text-secondary">
-                {project.description}
-              </p>
-              <div class="mt-5 flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span class="rounded-full border border-white/8 px-3 py-1 text-xs text-text-muted">
-                    {tag}
-                  </span>
-                ))}
+        <AnimateOnScroll animation="fade-up">
+          <div class="border-t border-white/10 py-12">
+            <div class="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
+              <div>
+                <h3 class="text-2xl font-medium text-white">{project.title}</h3>
+                <p class="mt-3 leading-relaxed text-[#ababab]">
+                  {project.description}
+                </p>
+                <div class="mt-5 flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span class="rounded-full border border-white/10 px-3 py-1 text-xs text-[#666]">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <a
+                  href={project.href}
+                  target={project.href.startsWith("http") ? "_blank" : undefined}
+                  rel={project.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  class="mt-6 inline-block text-sm text-[#666] transition-colors duration-200 hover:text-white"
+                >
+                  View project &rarr;
+                </a>
               </div>
-              <a
-                href={project.href}
-                target={project.href.startsWith("http") ? "_blank" : undefined}
-                rel={project.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                class="mt-6 inline-block text-sm text-text-muted transition-colors duration-200 hover:text-white"
-              >
-                View project &rarr;
-              </a>
-            </div>
-            <div>
-              <div class="aspect-video w-full rounded-lg bg-surface-2"></div>
+              <div>
+                <div class="aspect-video w-full rounded-lg bg-[#141414]"></div>
+              </div>
             </div>
           </div>
-        </div>
+        </AnimateOnScroll>
       ))}
     </div>
+
+    <AnimateOnScroll animation="fade-up">
+      <div class="mt-8 border-t border-white/10 pt-12">
+        <a
+          href="/work"
+          class="text-sm text-[#666] transition-colors duration-200 hover:text-white"
+        >
+          See all projects &rarr;
+        </a>
+      </div>
+    </AnimateOnScroll>
   </div>
 </section>

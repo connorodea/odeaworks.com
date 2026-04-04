@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import AnimateOnScroll from '../components/shared/AnimateOnScroll.astro';
 
 const services = [
   {
@@ -62,12 +63,14 @@ const services = [
   <!-- Hero -->
   <section class="py-32 lg:py-40">
     <div class="mx-auto max-w-5xl px-6">
-      <h1 class="text-5xl font-semibold tracking-tight text-white lg:text-6xl">
-        Services
-      </h1>
-      <p class="mt-6 text-xl text-text-secondary">
-        What we offer.
-      </p>
+      <AnimateOnScroll animation="fade-up">
+        <h1 class="text-5xl font-semibold tracking-tight text-white lg:text-6xl">
+          Services
+        </h1>
+        <p class="mt-6 text-xl text-text-secondary">
+          What we offer.
+        </p>
+      </AnimateOnScroll>
     </div>
   </section>
 
@@ -75,17 +78,19 @@ const services = [
   {services.map((service) => (
     <section class="border-t border-white/10 py-20">
       <div class="mx-auto max-w-5xl px-6">
-        <h2 class="text-3xl font-semibold text-white">
-          {service.title}
-        </h2>
-        <p class="mt-6 max-w-2xl text-lg text-text-secondary leading-relaxed">
-          {service.description}
-        </p>
-        <div class="mt-8 grid grid-cols-2 gap-x-12 gap-y-3">
-          {service.offerings.map((item) => (
-            <p class="text-text-secondary">{item}</p>
-          ))}
-        </div>
+        <AnimateOnScroll animation="fade-up">
+          <h2 class="text-3xl font-semibold text-white">
+            {service.title}
+          </h2>
+          <p class="mt-6 max-w-2xl text-lg text-text-secondary leading-relaxed">
+            {service.description}
+          </p>
+          <div class="mt-8 grid grid-cols-2 gap-x-12 gap-y-3">
+            {service.offerings.map((item) => (
+              <p class="text-text-secondary">{item}</p>
+            ))}
+          </div>
+        </AnimateOnScroll>
       </div>
     </section>
   ))}
@@ -93,17 +98,19 @@ const services = [
   <!-- Bottom CTA -->
   <section class="border-t border-white/10 py-32 lg:py-40">
     <div class="mx-auto max-w-5xl px-6 text-center">
-      <h2 class="text-2xl font-semibold text-white">
-        Ready to start?
-      </h2>
-      <div class="mt-8">
-        <a
-          href="/contact"
-          class="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90"
-        >
-          Get in touch
-        </a>
-      </div>
+      <AnimateOnScroll animation="fade-up">
+        <h2 class="text-2xl font-semibold text-white">
+          Ready to start?
+        </h2>
+        <div class="mt-8">
+          <a
+            href="/contact"
+            class="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90"
+          >
+            Get in touch
+          </a>
+        </div>
+      </AnimateOnScroll>
     </div>
   </section>
 

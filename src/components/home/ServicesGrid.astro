@@ -1,4 +1,6 @@
 ---
+import AnimateOnScroll from '../shared/AnimateOnScroll.astro';
+
 interface Service {
   title: string;
   description: string;
@@ -33,20 +35,22 @@ const services: Service[] = [
 ];
 ---
 
-<section class="py-32 lg:py-40" style="background-color: #000;">
+<section id="services" class="py-32 lg:py-40" style="background-color: #000;">
   <div class="mx-auto max-w-5xl px-6">
     <!-- Section heading -->
-    <div>
-      <h2 class="text-4xl font-semibold tracking-tight text-white lg:text-5xl">
-        Services
-      </h2>
-      <p class="mt-4 text-lg" style="color: #ababab;">
-        What we do.
-      </p>
-    </div>
+    <AnimateOnScroll animation="fade-up">
+      <div>
+        <h2 class="text-4xl font-semibold tracking-tight text-white lg:text-5xl">
+          Services
+        </h2>
+        <p class="mt-4 text-lg" style="color: #ababab;">
+          What we do.
+        </p>
+      </div>
+    </AnimateOnScroll>
 
     <!-- Services grid -->
-    <div class="mt-20 grid grid-cols-1 gap-8 md:grid-cols-2">
+    <AnimateOnScroll animation="stagger" class="mt-20 grid grid-cols-1 gap-8 md:grid-cols-2">
       {services.map((service) => (
         <div class="border-t pt-8" style="border-color: rgba(255, 255, 255, 0.1);">
           <h3 class="text-xl font-medium text-white">
@@ -64,6 +68,6 @@ const services: Service[] = [
           </a>
         </div>
       ))}
-    </div>
+    </AnimateOnScroll>
   </div>
 </section>

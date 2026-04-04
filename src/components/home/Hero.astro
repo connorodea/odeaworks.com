@@ -4,51 +4,57 @@
 <section class="hero-section min-h-[90vh] flex items-center justify-center" style="background-color: #000;">
   <div class="hero-content mx-auto max-w-4xl px-6 text-center">
     <!-- Eyebrow -->
-    <p class="mb-6 text-sm uppercase tracking-widest" style="color: #666;">
-      AI Consulting & Software Engineering
-    </p>
+    <div data-animate="fade-up" class="hero-animate" style="transition-delay: 0ms;">
+      <p class="mb-6 text-sm uppercase tracking-widest" style="color: #666;">
+        AI Consulting & Software Engineering
+      </p>
+    </div>
 
     <!-- Main headline -->
-    <h1 class="mx-auto max-w-4xl text-6xl font-semibold leading-[1.05] tracking-tight text-white md:text-7xl lg:text-8xl">
-      We build software that thinks.
-    </h1>
+    <div data-animate="fade-up" class="hero-animate" style="transition-delay: 150ms;">
+      <h1 class="mx-auto max-w-4xl text-6xl font-semibold leading-[1.05] tracking-tight text-white md:text-7xl lg:text-8xl">
+        We build software that thinks.
+      </h1>
+    </div>
 
     <!-- Subheadline -->
-    <p class="mx-auto mt-8 max-w-2xl text-xl leading-relaxed" style="color: #ababab;">
-      Strategy, architecture, and engineering for companies using AI to build real products.
-    </p>
+    <div data-animate="fade-up" class="hero-animate" style="transition-delay: 300ms;">
+      <p class="mx-auto mt-8 max-w-2xl text-xl leading-relaxed" style="color: #ababab;">
+        Strategy, architecture, and engineering for companies using AI to build real products.
+      </p>
+    </div>
 
     <!-- CTA buttons -->
-    <div class="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-      <a
-        href="/contact"
-        class="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-opacity duration-200 hover:opacity-90"
-      >
-        Get in touch
-      </a>
-      <a
-        href="/work"
-        class="inline-flex items-center justify-center rounded-full border px-8 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-white/5"
-        style="border-color: rgba(255, 255, 255, 0.2);"
-      >
-        See our work
-      </a>
+    <div data-animate="fade-up" class="hero-animate" style="transition-delay: 450ms;">
+      <div class="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a
+          href="/contact"
+          class="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-opacity duration-200 hover:opacity-90"
+        >
+          Get in touch
+        </a>
+        <a
+          href="/work"
+          class="inline-flex items-center justify-center rounded-full border px-8 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-white/5"
+          style="border-color: rgba(255, 255, 255, 0.2);"
+        >
+          See our work
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
-<style>
-  .hero-content {
-    opacity: 0;
-    animation: heroFadeIn 0.6s ease-out forwards;
+<script>
+  // Hero animates on page load, not on scroll
+  function initHeroAnimations() {
+    requestAnimationFrame(() => {
+      document.querySelectorAll('.hero-animate').forEach((el) => {
+        el.classList.add('is-visible');
+      });
+    });
   }
 
-  @keyframes heroFadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-</style>
+  initHeroAnimations();
+  document.addEventListener('astro:page-load', initHeroAnimations);
+</script>

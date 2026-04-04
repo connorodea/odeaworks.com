@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import AnimateOnScroll from '../components/shared/AnimateOnScroll.astro';
 ---
 
 <BaseLayout title="Contact | Odea Works" description="Get in touch with Odea Works. Tell us about your project and we'll get back to you within 24 hours.">
@@ -7,19 +8,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <!-- Hero -->
   <section class="py-32 lg:py-40">
     <div class="mx-auto max-w-5xl px-6">
-      <h1 class="text-5xl font-semibold tracking-tight text-white lg:text-6xl">
-        Contact
-      </h1>
-      <p class="mt-6 text-xl text-text-secondary">
-        Tell us about your project.
-      </p>
+      <AnimateOnScroll animation="fade-up">
+        <h1 class="text-5xl font-semibold tracking-tight text-white lg:text-6xl">
+          Contact
+        </h1>
+        <p class="mt-6 text-xl text-text-secondary">
+          Tell us about your project.
+        </p>
+      </AnimateOnScroll>
     </div>
   </section>
 
   <!-- Two-column layout -->
   <section class="pb-32 lg:pb-40">
     <div class="mx-auto max-w-5xl px-6">
-      <div class="grid gap-16 lg:grid-cols-2">
+      <AnimateOnScroll animation="stagger" class="grid gap-16 lg:grid-cols-2">
 
         <!-- Left column: Info -->
         <div class="mt-0">
@@ -131,7 +134,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </div>
           </form>
         </div>
-      </div>
+      </AnimateOnScroll>
     </div>
   </section>
 

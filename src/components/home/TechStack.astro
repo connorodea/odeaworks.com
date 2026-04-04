@@ -1,11 +1,14 @@
 ---
+import AnimateOnScroll from '../shared/AnimateOnScroll.astro';
 ---
 
 <section class="bg-black py-24 lg:py-32">
   <div class="mx-auto max-w-5xl px-6">
-    <h2 class="text-2xl font-medium text-white">Stack</h2>
-    <p class="mt-6 text-sm text-text-muted">
-      Python · TypeScript · React · Next.js · FastAPI · Astro · Claude · Docker · PostgreSQL · Redis · Linux · GitHub Actions
-    </p>
+    <AnimateOnScroll animation="fade-in">
+      <h2 class="text-2xl font-medium text-white">Stack</h2>
+      <p class="mt-6 text-sm text-text-muted">
+        Python · TypeScript · React · Next.js · FastAPI · Astro · Claude · Docker · PostgreSQL · Redis · Linux · GitHub Actions
+      </p>
+    </AnimateOnScroll>
   </div>
 </section>

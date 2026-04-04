@@ -7,56 +7,87 @@ interface Project {
   category: string;
   description: string;
   tags: string[];
+  github?: string;
+  live?: string;
 }
 
 const aiProjects: Project[] = [
   {
     title: "Vidmation",
-    category: "AI / Video",
-    description: "AI-powered faceless YouTube video automation with narration, captions, and publishing.",
+    category: "AI / Video Automation",
+    description: "End-to-end AI video automation platform. Generates faceless YouTube content with AI narration, captions, and automated publishing.",
     tags: ["Python", "FastAPI", "Claude API", "FFmpeg"],
+    github: "https://github.com/connorodea/vidmation",
   },
   {
     title: "ClawdHub",
     category: "AI / Developer Tools",
-    description: "Interactive terminal IDE for real-time Claude Code agent orchestration. 13K lines.",
+    description: "Interactive terminal IDE for spawning and orchestrating multiple Claude Code agents in real time. 13,000 lines across 26 files.",
     tags: ["Python", "Textual", "Claude SDK"],
+    github: "https://github.com/connorodea/clawd-hub",
   },
   {
     title: "QuickVisionz",
     category: "AI / Computer Vision",
-    description: "YOLO-based computer vision pipeline for automated product sorting and barcode classification.",
+    description: "YOLO-based computer vision sorting pipeline with barcode scanning, automated product classification, and thermal label printing.",
     tags: ["Python", "YOLO", "OpenCV"],
+    github: "https://github.com/connorodea/QuickVisionz",
   },
   {
     title: "AI Schematic Generator",
-    category: "AI / Hardware",
-    description: "Generate electronic circuit schematics from natural language descriptions using Claude 3.5.",
+    category: "AI / Hardware Design",
+    description: "Generate electronic circuit schematics from natural language descriptions using Anthropic's Claude 3.5 Sonnet.",
     tags: ["Python", "Claude API", "Electronics"],
+    github: "https://github.com/connorodea/ai-schematic-generator",
   },
   {
     title: "GRIDIRON",
-    category: "AI / Sports",
-    description: "Custom YOLO8 model trained on football footage for real-time player and formation detection.",
+    category: "AI / Sports Analytics",
+    description: "Custom YOLO8 ML model trained on football footage and synthetic datasets for real-time player and formation detection.",
     tags: ["JavaScript", "YOLO8", "ML"],
+    github: "https://github.com/connorodea/GRIDIRON",
   },
   {
     title: "AI Call Spread Trader",
     category: "AI / Fintech",
-    description: "AI-assisted options trading platform combining quantitative analysis with intelligent execution.",
+    description: "AI-assisted options trading platform combining quantitative analysis, ML pattern recognition, and LLM reasoning for execution.",
     tags: ["Python", "Finance", "ML"],
+    github: "https://github.com/connorodea/ai-call-debit-spread-trader",
   },
   {
     title: "AI Real Estate Assistant",
     category: "AI / SaaS",
-    description: "AI-powered property search and real estate advisory platform with intelligent recommendations.",
+    description: "AI-powered property search and real estate advisory SaaS — find your perfect property with natural language queries.",
     tags: ["Python", "AI", "SaaS"],
+    github: "https://github.com/connorodea/AIrealestateassistant",
   },
   {
     title: "AI YouTube Analyzer",
     category: "AI / Media",
-    description: "Conversational interface for analyzing YouTube videos — talk with any video and extract insights.",
+    description: "Conversational interface for analyzing YouTube videos — talk with any video and extract insights, summaries, and key moments.",
     tags: ["TypeScript", "AI", "YouTube API"],
+    github: "https://github.com/connorodea/AIYoutubeAnalyzer",
+  },
+  {
+    title: "AI YouTube Pipeline",
+    category: "AI / Content",
+    description: "Full-stack AI video generation pipeline with DeepInfra integration for automated content creation at scale.",
+    tags: ["Python", "TypeScript", "DeepInfra"],
+    github: "https://github.com/connorodea/ai-youtube-pipeline-deepinfra",
+  },
+  {
+    title: "ClipsMachine",
+    category: "AI / Video",
+    description: "Automated video clip extraction and compilation tool for creating highlight reels from long-form content.",
+    tags: ["Python", "FFmpeg", "AI"],
+    github: "https://github.com/connorodea/ClipsMachine",
+  },
+  {
+    title: "AI Amazon Seller Central",
+    category: "AI / E-commerce",
+    description: "AI-powered Amazon marketplace management — automated listing optimization, pricing, and inventory intelligence.",
+    tags: ["Python", "Amazon API", "AI"],
+    github: "https://github.com/connorodea/AI_AmazonSellerCentral",
   },
 ];
 
@@ -64,44 +95,78 @@ const softwareProjects: Project[] = [
   {
     title: "QuickLotz WMS",
     category: "Enterprise / SaaS",
-    description: "Enterprise warehouse management for inventory, logistics, and real-time analytics.",
+    description: "Enterprise warehouse management system powering inventory tracking, 3PL logistics, and real-time analytics for circular economy operations.",
     tags: ["TypeScript", "React", "PostgreSQL"],
-  },
-  {
-    title: "LiqOS",
-    category: "Enterprise / TUI",
-    description: "Bloomberg Terminal-style inventory management system for liquidation operations.",
-    tags: ["TypeScript", "Terminal", "PostgreSQL"],
-  },
-  {
-    title: "Inquizit",
-    category: "SaaS / Education",
-    description: "AI-powered assessment and quiz generation platform with instant grading.",
-    tags: ["TypeScript", "Next.js", "AI"],
+    github: "https://github.com/connorodea/upscaled-quicklotz-dashboard",
+    live: "https://v0-sourcing-platform-ui.vercel.app",
   },
   {
     title: "MedScribd",
     category: "Healthcare / SaaS",
-    description: "Medical documentation platform with AI agent-powered note generation and management.",
+    description: "Medical documentation platform with AI agent-powered clinical note generation, patient management, and workflow automation.",
     tags: ["TypeScript", "Next.js", "AI"],
+    github: "https://github.com/connorodea/medscribd",
+    live: "https://v0-medscribd-agent-ui.vercel.app",
   },
   {
-    title: "Upscaled Dashboard",
-    category: "Enterprise / Analytics",
-    description: "Real-time business intelligence dashboard for distribution and logistics operations.",
-    tags: ["TypeScript", "React", "Charts"],
+    title: "Inquizit",
+    category: "SaaS / Education",
+    description: "AI-powered assessment and quiz generation platform — mint fresh assessments with AI and instant grading.",
+    tags: ["TypeScript", "Next.js", "AI"],
+    github: "https://github.com/connorodea/inquizit",
+    live: "https://v0-inquizitai-frontend.vercel.app",
+  },
+  {
+    title: "QuickLotz Logistics",
+    category: "Enterprise / Logistics",
+    description: "End-to-end logistics and freight management platform for liquidation distribution operations.",
+    tags: ["TypeScript", "React", "PostgreSQL"],
+    github: "https://github.com/connorodea/quicklotzlogistics",
+    live: "https://www.quicklotzlogistics.com",
+  },
+  {
+    title: "VideoCallSync",
+    category: "SaaS / Communication",
+    description: "Video conferencing synchronization platform for seamless multi-party calls and recording.",
+    tags: ["TypeScript", "WebRTC", "Real-time"],
+    github: "https://github.com/connorodea/videocallsync",
+    live: "https://v0-videocallsync.vercel.app",
+  },
+  {
+    title: "LiqOS",
+    category: "Enterprise / TUI",
+    description: "Bloomberg Terminal-style inventory management system for liquidation operations with real-time data.",
+    tags: ["TypeScript", "Terminal", "PostgreSQL"],
+    github: "https://github.com/connorodea/LiqOS",
+  },
+  {
+    title: "Upscaled Distribution",
+    category: "Enterprise / B2B",
+    description: "B2B wholesale distribution platform connecting suppliers with buyers in the circular economy.",
+    tags: ["TypeScript", "Next.js", "React"],
+    github: "https://github.com/connorodea/upscaledist.com",
+    live: "https://v0-upscaledist-com.vercel.app",
   },
   {
     title: "QuickReturnz",
     category: "Enterprise / WMS",
     description: "Returns and RMA management system for the QuickSuite warehouse platform.",
     tags: ["TypeScript", "React", "PostgreSQL"],
+    github: "https://github.com/connorodea/quickreturnz",
+  },
+  {
+    title: "RateMyPsych",
+    category: "SaaS / Healthcare",
+    description: "Provider rating and review platform for mental health professionals with search and matching.",
+    tags: ["TypeScript", "Next.js", "React"],
+    github: "https://github.com/connorodea/ratemypsych.com",
   },
   {
     title: "EbayAutolister",
     category: "E-commerce / Automation",
-    description: "Production-ready eBay listing automation CLI with GitHub-style navigation and bulk operations.",
+    description: "Production-ready eBay listing automation CLI with GitHub-style navigation and bulk inventory operations.",
     tags: ["Python", "eBay API", "CLI"],
+    github: "https://github.com/connorodea/EbayAutolister",
   },
 ];
 
@@ -109,32 +174,51 @@ const infraProjects: Project[] = [
   {
     title: "AgentAgent",
     category: "Infrastructure / AI",
-    description: "Multi-agent orchestration system for Claude Code using tmux for parallel execution.",
+    description: "Multi-agent orchestration system for Claude Code — run a master agent that controls worker agents in parallel via tmux.",
     tags: ["Shell", "tmux", "Python"],
+    github: "https://github.com/connorodea/AgentAgent",
   },
   {
-    title: "Upscaled Outreach",
-    category: "Automation / B2B",
-    description: "Automated supplier discovery and outreach pipeline with campaign management.",
-    tags: ["Python", "FastAPI", "Next.js"],
+    title: "Pinintel",
+    category: "Data / Analytics",
+    description: "Pinterest intelligence and analytics platform for content strategy and trend analysis.",
+    tags: ["TypeScript", "Analytics", "API"],
+    github: "https://github.com/connorodea/Pinintel",
   },
   {
-    title: "QuickLotz Logistics",
-    category: "Infrastructure / Ops",
-    description: "End-to-end logistics and freight management for liquidation distribution operations.",
-    tags: ["TypeScript", "React", "PostgreSQL"],
+    title: "Meta Prompt Maker",
+    category: "Developer Tools",
+    description: "Build brief generator for crafting optimized LLM prompts — clean finance-friendly UI for prompt engineering.",
+    tags: ["Next.js", "TypeScript", "AI"],
+    github: "https://github.com/connorodea/metapromptmaker",
   },
   {
     title: "GoDaddy CLI",
     category: "Developer Tools",
-    description: "Beautiful command-line interface for managing domains and DNS via the GoDaddy API.",
+    description: "Beautiful command-line interface for managing domains and DNS records via the GoDaddy API.",
     tags: ["Shell", "GoDaddy API", "CLI"],
+    github: "https://github.com/connorodea/godaddypy-cli",
   },
   {
     title: "UPC Database Scrapers",
     category: "Data Engineering",
     description: "Scalable product data collection pipeline for barcode and UPC database aggregation.",
     tags: ["TypeScript", "Web Scraping", "Data"],
+    github: "https://github.com/connorodea/upc-database-scrapers",
+  },
+  {
+    title: "Facebook Marketplace Scraper",
+    category: "Automation / Data",
+    description: "Marketplace scraper with flexible search, real-time alerts, anti-detection, and reliable data extraction.",
+    tags: ["Python", "Scraping", "Automation"],
+    github: "https://github.com/connorodea/facebook-scraper",
+  },
+  {
+    title: "Shopify Store Builder",
+    category: "E-commerce / Automation",
+    description: "Automated Shopify store creation and product listing tool with AI-generated content.",
+    tags: ["Python", "Shopify API", "AI"],
+    github: "https://github.com/connorodea/ObsidiaanShopifyStoreBuilder",
   },
 ];
 
@@ -177,7 +261,7 @@ const sections = [
 
           <AnimateOnScroll animation="stagger" class="grid gap-8 md:grid-cols-2">
             {section.projects.map((project) => (
-              <article class="overflow-hidden rounded-xl bg-[#0a0a0a]">
+              <article class="group overflow-hidden rounded-xl bg-[#0a0a0a] transition-colors duration-300 hover:bg-[#111]">
                 <div class="aspect-video w-full rounded-t-xl bg-[#141414]"></div>
                 <div class="p-6">
                   <span class="text-xs text-[#666] uppercase tracking-wider">
@@ -195,6 +279,28 @@ const sections = [
                         {tag}
                       </span>
                     ))}
+                  </div>
+                  <div class="mt-5 flex items-center gap-4">
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-sm text-[#666] transition-colors duration-200 hover:text-white"
+                      >
+                        GitHub &rarr;
+                      </a>
+                    )}
+                    {project.live && (
+                      <a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-sm text-[#10a37f] transition-colors duration-200 hover:text-white"
+                      >
+                        Live Demo &rarr;
+                      </a>
+                    )}
                   </div>
                 </div>
               </article>

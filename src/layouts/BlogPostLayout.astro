@@ -1,6 +1,8 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import PostCTA from '../components/blog/PostCTA.astro';
+import LeadCapture from '../components/shared/LeadCapture.astro';
 
 interface Props {
   title: string;
@@ -123,32 +125,16 @@ const articleSchema = {
       <Fragment set:html={html} />
     </div>
 
+    <!-- Category-specific CTA -->
+    <PostCTA category={category} variant="service" />
+
+    <!-- Lead Capture -->
+    <div class="mt-12">
+      <LeadCapture source={`blog-${category}`} />
+    </div>
+
     <!-- Divider -->
     <hr class="my-16 border-t border-border" />
-
-    <!-- Related Services CTA -->
-    <section class="mb-16">
-      <h2 class="text-xl font-semibold text-text-primary mb-4">Related Services</h2>
-      <p class="text-text-secondary mb-6 leading-relaxed">
-        If this post resonated with your challenges, Odea Works can help.
-        We offer hands-on AI engineering, technical strategy, and full-stack development
-        for teams building serious software.
-      </p>
-      <div class="flex flex-wrap gap-4">
-        <a
-          href="/services"
-          class="inline-flex items-center rounded-lg border border-border px-5 py-2.5 text-sm font-medium text-text-primary transition-colors hover:border-border-hover hover:bg-surface-2"
-        >
-          View Services
-        </a>
-        <a
-          href="/contact"
-          class="inline-flex items-center rounded-lg bg-accent px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent-hover"
-        >
-          Get in Touch
-        </a>
-      </div>
-    </section>
 
     <!-- Previous/Next Navigation -->
     <nav class="grid grid-cols-1 gap-4 sm:grid-cols-2">

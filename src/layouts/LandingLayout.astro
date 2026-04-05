@@ -1,0 +1,151 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  pageName: string;
+}
+
+const {
+  title,
+  description = "Odea Works — Software development and AI consulting.",
+  ogImage = "/og-image.png",
+  pageName,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const landingSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": title,
+  "url": canonicalURL.toString(),
+  "description": description,
+  "provider": {
+    "@type": "Organization",
+    "name": "Odea Works",
+    "url": "https://odeaworks.com",
+    "logo": "https://odeaworks.com/favicon.svg",
+    "founder": {
+      "@type": "Person",
+      "name": "Connor O'Dea",
+      "email": "connor@odeaworks.com"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "connor@odeaworks.com",
+      "contactType": "sales"
+    }
+  }
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(landingSchema)} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- Analytics (Plausible — privacy-friendly, no cookies) -->
+    <script defer data-domain="odeaworks.com" src="https://plausible.io/js/script.js"></script>
+    <script is:inline define:vars={{ pageName }}>
+      window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) };
+      plausible('Landing Page View', {props: {page: pageName}});
+    </script>
+
+    <!-- Preload Inter fonts -->
+    <link
+      rel="preload"
+      href="/fonts/inter-latin-400-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/inter-latin-600-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/inter-latin-700-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+  </head>
+  <body class="bg-background text-text-primary font-sans antialiased">
+    <!-- Minimal Landing Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
+      <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 h-16">
+        <a href="/" class="text-[15px] font-medium tracking-tight text-text-primary">
+          Odea Works
+        </a>
+        <div class="flex items-center gap-6">
+          <a
+            href="mailto:connor@odeaworks.com"
+            class="hidden sm:inline-flex text-[13px] text-text-secondary transition-colors duration-200 hover:text-text-primary"
+          >
+            connor@odeaworks.com
+          </a>
+          <a
+            href="mailto:connor@odeaworks.com"
+            class="inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-1.5 text-[13px] font-medium text-white transition-colors duration-200 hover:bg-white/5"
+          >
+            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+            </svg>
+            Contact
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Spacer for fixed header -->
+    <div class="h-16"></div>
+
+    <main>
+      <slot />
+    </main>
+
+    <!-- Minimal Footer -->
+    <footer class="border-t border-border">
+      <div class="mx-auto max-w-6xl px-6 py-6 text-center">
+        <p class="text-sm text-text-muted">
+          &copy; 2026 Odea Works. All rights reserved.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

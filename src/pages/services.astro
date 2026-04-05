@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AnimateOnScroll from '../components/shared/AnimateOnScroll.astro';
+import LeadCapture from '../components/shared/LeadCapture.astro';
 
 const services = [
   {
@@ -126,6 +127,9 @@ const servicesSchema = {
       </div>
     </section>
   ))}
+
+  <!-- Lead Capture -->
+  <LeadCapture source="services" />
 
   <!-- Bottom CTA -->
   <section class="border-t border-white/10 py-32 lg:py-40">

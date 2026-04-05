@@ -1,0 +1,115 @@
+---
+// Floating consultation CTA — appears after 50% scroll, dismissible
+---
+
+<div
+  id="floating-cta"
+  class="fixed z-50 transition-all duration-300 opacity-0 pointer-events-none
+         bottom-6 right-6 sm:bottom-8 sm:right-8
+         max-sm:bottom-0 max-sm:right-0 max-sm:left-0"
+  aria-hidden="true"
+>
+  <!-- Desktop: pill button -->
+  <div class="hidden sm:flex items-center gap-3 rounded-full bg-white pl-5 pr-2 py-2 shadow-lg shadow-black/30">
+    <a
+      href="/contact"
+      class="text-sm font-medium text-black whitespace-nowrap"
+    >
+      Book a free consultation
+      <span class="ml-0.5">&rarr;</span>
+    </a>
+    <button
+      id="floating-cta-close"
+      class="flex h-7 w-7 items-center justify-center rounded-full text-black/40 transition-colors hover:bg-black/5 hover:text-black/70"
+      aria-label="Dismiss"
+    >
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <line x1="1" y1="1" x2="11" y2="11" />
+        <line x1="11" y1="1" x2="1" y2="11" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile: full-width bottom bar -->
+  <div class="sm:hidden flex items-center justify-between bg-white px-5 py-3.5 shadow-lg shadow-black/30">
+    <a
+      href="/contact"
+      class="text-sm font-medium text-black"
+    >
+      Book a free consultation &rarr;
+    </a>
+    <button
+      id="floating-cta-close-mobile"
+      class="flex h-7 w-7 items-center justify-center rounded-full text-black/40 transition-colors hover:bg-black/5 hover:text-black/70 -mr-1"
+      aria-label="Dismiss"
+    >
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <line x1="1" y1="1" x2="11" y2="11" />
+        <line x1="11" y1="1" x2="1" y2="11" />
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  function initFloatingCTA() {
+    const cta = document.getElementById('floating-cta');
+    const closeBtn = document.getElementById('floating-cta-close');
+    const closeBtnMobile = document.getElementById('floating-cta-close-mobile');
+
+    if (!cta) return;
+
+    // Check if already dismissed
+    if (localStorage.getItem('floating-cta-dismissed') === 'true') {
+      cta.remove();
+      return;
+    }
+
+    // Skip on contact page
+    if (window.location.pathname === '/contact') {
+      cta.remove();
+      return;
+    }
+
+    let isVisible = false;
+
+    function showCTA() {
+      if (isVisible) return;
+      isVisible = true;
+      cta.classList.remove('opacity-0', 'pointer-events-none');
+      cta.classList.add('opacity-100', 'pointer-events-auto');
+      cta.setAttribute('aria-hidden', 'false');
+    }
+
+    function hideCTA() {
+      isVisible = false;
+      cta.classList.add('opacity-0', 'pointer-events-none');
+      cta.classList.remove('opacity-100', 'pointer-events-auto');
+      cta.setAttribute('aria-hidden', 'true');
+    }
+
+    function dismissCTA() {
+      hideCTA();
+      localStorage.setItem('floating-cta-dismissed', 'true');
+      setTimeout(() => cta.remove(), 300);
+    }
+
+    closeBtn?.addEventListener('click', dismissCTA);
+    closeBtnMobile?.addEventListener('click', dismissCTA);
+
+    // Show after scrolling 50% of the page
+    function checkScroll() {
+      const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+      if (scrollPercent > 0.5) {
+        showCTA();
+      }
+    }
+
+    window.addEventListener('scroll', checkScroll, { passive: true });
+    // Check initial position (in case page is already scrolled)
+    checkScroll();
+  }
+
+  initFloatingCTA();
+  document.addEventListener('astro:page-load', initFloatingCTA);
+</script>

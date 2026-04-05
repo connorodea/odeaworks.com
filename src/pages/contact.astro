@@ -211,6 +211,8 @@ const contactSchema = {
         const result = await res.json();
 
         if (res.ok && result.success) {
+          // Track conversion
+          if (window.plausible) plausible('Contact Form Submitted');
           // Success — hide form, show thank-you
           form.classList.add('hidden');
           successDiv?.classList.remove('hidden');

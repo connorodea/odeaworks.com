@@ -1,5 +1,10 @@
 import http from 'node:http';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { Resend } from 'resend';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // ---------------------------------------------------------------------------
 // Config
@@ -21,20 +26,46 @@ if (!RESEND_API_KEY) {
 const resend = new Resend(RESEND_API_KEY);
 
 // ---------------------------------------------------------------------------
+// Subscribers file path
+// ---------------------------------------------------------------------------
+const SUBSCRIBERS_FILE = path.join(__dirname, 'subscribers.json');
+
+// Ensure subscribers file exists
+if (!fs.existsSync(SUBSCRIBERS_FILE)) {
+  fs.writeFileSync(SUBSCRIBERS_FILE, JSON.stringify([], null, 2));
+}
+
+// ---------------------------------------------------------------------------
 // Rate limiting — simple in-memory store (IP -> [timestamps])
 // ---------------------------------------------------------------------------
 const RATE_LIMIT_MAX = 3;
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
 const rateLimitMap = new Map();
 
+// Separate rate limiter for subscribe endpoint (more generous)
+const SUBSCRIBE_RATE_LIMIT_MAX = 5;
+const subscribeRateLimitMap = new Map();
+
 function isRateLimited(ip) {
   const now = Date.now();
   let timestamps = rateLimitMap.get(ip) || [];
-  // Remove expired entries
   timestamps = timestamps.filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
   rateLimitMap.set(ip, timestamps);
 
   if (timestamps.length >= RATE_LIMIT_MAX) {
+    return true;
+  }
+  timestamps.push(now);
+  return false;
+}
+
+function isSubscribeRateLimited(ip) {
+  const now = Date.now();
+  let timestamps = subscribeRateLimitMap.get(ip) || [];
+  timestamps = timestamps.filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+  subscribeRateLimitMap.set(ip, timestamps);
+
+  if (timestamps.length >= SUBSCRIBE_RATE_LIMIT_MAX) {
     return true;
   }
   timestamps.push(now);
@@ -50,6 +81,14 @@ setInterval(() => {
       rateLimitMap.delete(ip);
     } else {
       rateLimitMap.set(ip, valid);
+    }
+  }
+  for (const [ip, timestamps] of subscribeRateLimitMap) {
+    const valid = timestamps.filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+    if (valid.length === 0) {
+      subscribeRateLimitMap.delete(ip);
+    } else {
+      subscribeRateLimitMap.set(ip, valid);
     }
   }
 }, 10 * 60 * 1000);
@@ -178,6 +217,179 @@ function buildEmailHtml({ name, email, company, budget, projectType, message }) 
 </html>`.trim();
 }
 
+function buildWelcomeEmailHtml() {
+  return `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="margin:0; padding:0; background-color:#0a0a0a; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#0a0a0a; padding:40px 20px;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="background-color:#111111; border-radius:8px; overflow:hidden;">
+          <tr>
+            <td style="padding:32px 40px 24px; border-bottom:1px solid #222;">
+              <h1 style="margin:0; color:#ffffff; font-size:20px; font-weight:600;">Your AI Implementation Playbook</h1>
+              <p style="margin:8px 0 0; color:#888; font-size:14px;">Odea Works</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:32px 40px;">
+              <p style="margin:0 0 16px; color:#ababab; font-size:16px; line-height:1.7;">Thanks for downloading the AI Implementation Playbook.</p>
+              <p style="margin:0 0 16px; color:#ababab; font-size:16px; line-height:1.7;">This guide covers how to evaluate AI opportunities in your business, plan an implementation roadmap, and avoid the most common pitfalls we see with our consulting clients.</p>
+              <p style="margin:0 0 24px; color:#ababab; font-size:16px; line-height:1.7;">Here are the key sections:</p>
+              <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
+                <tr><td style="padding:8px 0; color:#ffffff; font-size:15px;">1. Identifying high-value AI use cases</td></tr>
+                <tr><td style="padding:8px 0; color:#ffffff; font-size:15px;">2. Build vs. buy decision framework</td></tr>
+                <tr><td style="padding:8px 0; color:#ffffff; font-size:15px;">3. Data readiness assessment</td></tr>
+                <tr><td style="padding:8px 0; color:#ffffff; font-size:15px;">4. Implementation timeline and milestones</td></tr>
+                <tr><td style="padding:8px 0; color:#ffffff; font-size:15px;">5. Measuring ROI on AI investments</td></tr>
+              </table>
+              <p style="margin:0 0 24px; color:#ababab; font-size:16px; line-height:1.7;">Read through it and if you have questions or want to discuss how AI could work for your specific situation, we are happy to chat.</p>
+              <table cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="border-radius:50px; background-color:#ffffff;">
+                    <a href="https://odeaworks.com/contact" style="display:inline-block; padding:12px 28px; color:#000000; font-size:14px; font-weight:600; text-decoration:none;">Book a free consultation</a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:24px 40px; border-top:1px solid #222;">
+              <p style="margin:0 0 8px; color:#ababab; font-size:14px;">Connor O'Dea</p>
+              <p style="margin:0; color:#555; font-size:12px;">Odea Works &mdash; <a href="https://odeaworks.com" style="color:#10a37f; text-decoration:none;">odeaworks.com</a></p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`.trim();
+}
+
+// ---------------------------------------------------------------------------
+// Subscribe handler
+// ---------------------------------------------------------------------------
+async function handleSubscribe(req, res) {
+  const clientIP = getClientIP(req);
+
+  // Rate limit check (5 per hour)
+  if (isSubscribeRateLimited(clientIP)) {
+    return jsonResponse(res, 429, { error: 'Too many requests. Please try again later.' });
+  }
+
+  // Parse JSON body
+  let body = '';
+  try {
+    await new Promise((resolve, reject) => {
+      req.on('data', (chunk) => {
+        body += chunk;
+        if (body.length > 10_000) {
+          reject(new Error('Payload too large'));
+        }
+      });
+      req.on('end', resolve);
+      req.on('error', reject);
+    });
+  } catch {
+    return jsonResponse(res, 413, { error: 'Payload too large' });
+  }
+
+  let data;
+  try {
+    data = JSON.parse(body);
+  } catch {
+    return jsonResponse(res, 400, { error: 'Invalid JSON' });
+  }
+
+  // Honeypot check
+  if (data._honey) {
+    return jsonResponse(res, 200, { success: true });
+  }
+
+  const { email, source } = data;
+
+  // Validate email
+  if (!email || !email.trim()) {
+    return jsonResponse(res, 400, { error: 'Email is required' });
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email.trim())) {
+    return jsonResponse(res, 400, { error: 'Invalid email address' });
+  }
+
+  const cleanEmail = email.trim().toLowerCase();
+  const cleanSource = (source || 'unknown').trim();
+
+  // Check for duplicate
+  try {
+    const existing = JSON.parse(fs.readFileSync(SUBSCRIBERS_FILE, 'utf-8'));
+    if (existing.some((s) => s.email === cleanEmail)) {
+      // Already subscribed — return success silently (don't leak info)
+      return jsonResponse(res, 200, { success: true });
+    }
+  } catch {
+    // File read error — continue anyway
+  }
+
+  // Append to subscribers.json
+  try {
+    let subscribers = [];
+    try {
+      subscribers = JSON.parse(fs.readFileSync(SUBSCRIBERS_FILE, 'utf-8'));
+    } catch {
+      subscribers = [];
+    }
+
+    subscribers.push({
+      email: cleanEmail,
+      source: cleanSource,
+      ip: clientIP,
+      subscribedAt: new Date().toISOString(),
+    });
+
+    fs.writeFileSync(SUBSCRIBERS_FILE, JSON.stringify(subscribers, null, 2));
+  } catch (err) {
+    console.error(`[${new Date().toISOString()}] Failed to save subscriber:`, err);
+    return jsonResponse(res, 500, { error: 'Failed to subscribe. Please try again later.' });
+  }
+
+  // Send welcome email via Resend
+  try {
+    await resend.emails.send({
+      from: FROM_EMAIL,
+      to: [cleanEmail],
+      subject: 'Your AI Implementation Playbook — Odea Works',
+      html: buildWelcomeEmailHtml(),
+    });
+
+    console.log(`[${new Date().toISOString()}] Subscriber added + welcome email sent — email: ${cleanEmail}, source: ${cleanSource}, ip: ${clientIP}`);
+  } catch (err) {
+    // Log the error but don't fail — the subscription was saved
+    console.error(`[${new Date().toISOString()}] Welcome email failed for ${cleanEmail}:`, err);
+  }
+
+  // Notify ourselves about new subscriber
+  try {
+    await resend.emails.send({
+      from: FROM_EMAIL,
+      to: [TO_EMAIL],
+      subject: `New subscriber: ${cleanEmail}`,
+      html: `<p style="font-family:sans-serif;color:#fff;background:#111;padding:20px;border-radius:8px;">New email subscriber: <strong>${escapeHtml(cleanEmail)}</strong><br>Source: ${escapeHtml(cleanSource)}<br>Time: ${new Date().toISOString()}</p>`,
+    });
+  } catch {
+    // Non-critical — ignore
+  }
+
+  return jsonResponse(res, 200, { success: true });
+}
+
 // ---------------------------------------------------------------------------
 // Server
 // ---------------------------------------------------------------------------
@@ -192,7 +404,12 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // Only handle POST /api/contact
+  // Route: POST /api/subscribe
+  if (req.method === 'POST' && req.url === '/api/subscribe') {
+    return handleSubscribe(req, res);
+  }
+
+  // Route: POST /api/contact
   if (req.method !== 'POST' || req.url !== '/api/contact') {
     return jsonResponse(res, 404, { error: 'Not found' });
   }

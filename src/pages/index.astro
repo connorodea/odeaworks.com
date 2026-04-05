@@ -1,10 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/home/Hero.astro";
+import SocialProof from "../components/home/SocialProof.astro";
 import ServicesGrid from "../components/home/ServicesGrid.astro";
 import FeaturedWork from "../components/home/FeaturedWork.astro";
 import Metrics from "../components/home/Metrics.astro";
 import WhyOdeaWorks from "../components/home/WhyOdeaWorks.astro";
+import LeadCapture from "../components/shared/LeadCapture.astro";
 import TechStack from "../components/home/TechStack.astro";
 import ContactCTA from "../components/home/ContactCTA.astro";
 
@@ -20,10 +22,12 @@ const websiteSchema = {
 <BaseLayout title="Odea Works — Premium Software Development & AI Consulting">
   <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
   <Hero />
+  <SocialProof />
   <ServicesGrid />
   <FeaturedWork />
   <Metrics />
   <WhyOdeaWorks />
+  <LeadCapture source="home" />
   <TechStack />
   <ContactCTA />
 </BaseLayout>

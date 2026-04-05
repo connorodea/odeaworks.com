@@ -1,0 +1,56 @@
+---
+import LeadCapture from '../shared/LeadCapture.astro';
+
+interface Props {
+  category: string;
+  variant?: 'service' | 'lead-magnet';
+}
+
+const { category, variant = 'service' } = Astro.props;
+
+// Category-specific messaging
+const serviceCTAs: Record<string, { headline: string; description: string }> = {
+  'ai-consulting': {
+    headline: 'Need help with AI?',
+    description: 'We build production AI systems — from strategy and architecture to deployment and evaluation.',
+  },
+  'ai-engineering': {
+    headline: 'Need help with AI?',
+    description: 'We build production AI systems — from strategy and architecture to deployment and evaluation.',
+  },
+  'software-engineering': {
+    headline: 'Looking for engineering support?',
+    description: 'We ship production software — web applications, APIs, automation systems, and developer tools.',
+  },
+  'technical-strategy': {
+    headline: 'Need a technology partner?',
+    description: 'We help companies make the right technical decisions — architecture reviews, scaling roadmaps, and technology selection.',
+  },
+  'devops-infrastructure': {
+    headline: 'Need reliable infrastructure?',
+    description: 'We build CI/CD pipelines, monitoring systems, and deployment infrastructure engineered for reliability.',
+  },
+};
+
+const cta = serviceCTAs[category] || serviceCTAs['ai-engineering'];
+---
+
+{variant === 'service' ? (
+  <section class="mt-12 rounded-lg border border-white/10 bg-surface p-8">
+    <h3 class="text-xl font-semibold text-white">{cta.headline}</h3>
+    <p class="mt-3 text-text-secondary leading-relaxed">{cta.description}</p>
+    <div class="mt-6">
+      <a
+        href="/contact"
+        class="inline-flex items-center text-sm font-medium text-white transition-colors hover:text-accent"
+      >
+        Start a conversation
+        <span class="ml-1">&rarr;</span>
+      </a>
+    </div>
+  </section>
+) : (
+  <div class="mt-12">
+    <LeadCapture source={`blog-${category}`} />
+  </div>
+)}

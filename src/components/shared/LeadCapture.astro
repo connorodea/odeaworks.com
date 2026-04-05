@@ -1,0 +1,113 @@
+---
+interface Props {
+  source?: string;
+}
+
+const { source = 'unknown' } = Astro.props;
+---
+
+<section class="border-t border-white/10 bg-black py-20">
+  <div class="mx-auto max-w-2xl px-6 text-center">
+    <h2 class="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+      Get our AI implementation playbook
+    </h2>
+    <p class="mt-4 text-text-secondary leading-relaxed">
+      A practical guide to evaluating, planning, and deploying AI in your business. Free, no spam.
+    </p>
+
+    <form id="lead-capture-form" class="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center" data-source={source}>
+      <!-- Honeypot -->
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
+      <div class="w-full sm:w-auto sm:flex-1 sm:max-w-xs border-b border-white/10 focus-within:border-white/30 transition-colors">
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder="Your email"
+          class="w-full bg-transparent py-3 text-white placeholder-text-muted outline-none text-center sm:text-left"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+      >
+        Get the guide
+      </button>
+    </form>
+
+    <!-- Success message -->
+    <div id="lead-capture-success" class="hidden mt-8">
+      <p class="text-white font-medium">Check your inbox.</p>
+    </div>
+
+    <!-- Error message -->
+    <div id="lead-capture-error" class="hidden mt-4">
+      <p class="text-sm text-red-400" id="lead-capture-error-text">Something went wrong. Please try again.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initLeadCapture() {
+    const form = document.getElementById('lead-capture-form') as HTMLFormElement | null;
+    if (!form || form.dataset.initialized) return;
+    form.dataset.initialized = 'true';
+
+    const successDiv = document.getElementById('lead-capture-success');
+    const errorDiv = document.getElementById('lead-capture-error');
+    const errorText = document.getElementById('lead-capture-error-text');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorDiv?.classList.add('hidden');
+
+      const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+      }
+
+      const formData = new FormData(form);
+      const data = {
+        _honey: formData.get('_honey') || '',
+        email: formData.get('email') || '',
+        source: form.dataset.source || 'unknown',
+      };
+
+      try {
+        const res = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+
+        const result = await res.json();
+
+        if (res.ok && result.success) {
+          form.classList.add('hidden');
+          successDiv?.classList.remove('hidden');
+        } else {
+          if (errorText) {
+            errorText.textContent = result.error || 'Something went wrong. Please try again.';
+          }
+          errorDiv?.classList.remove('hidden');
+        }
+      } catch {
+        if (errorText) {
+          errorText.textContent = 'Network error. Please check your connection and try again.';
+        }
+        errorDiv?.classList.remove('hidden');
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = 'Get the guide';
+        }
+      }
+    });
+  }
+
+  initLeadCapture();
+  document.addEventListener('astro:page-load', initLeadCapture);
+</script>

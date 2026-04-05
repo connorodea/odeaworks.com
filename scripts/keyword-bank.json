@@ -129,32 +129,40 @@
       "category": "ai-engineering",
       "postType": "technical-deep-dive",
       "difficulty": "low",
-      "used": false,
-      "priority": 1
+      "used": true,
+      "priority": 1,
+      "usedDate": "2026-04-05",
+      "outputFile": "2026-04-05-llm-agent-orchestration-patterns.md"
     },
     {
       "keyword": "computer vision pipeline for inventory management",
       "category": "ai-engineering",
       "postType": "case-study",
       "difficulty": "low",
-      "used": false,
-      "priority": 1
+      "used": true,
+      "priority": 1,
+      "usedDate": "2026-04-05",
+      "outputFile": "2026-04-05-computer-vision-pipeline-for-inventory-management.md"
     },
     {
       "keyword": "prompt engineering for production applications",
       "category": "ai-engineering",
       "postType": "technical-deep-dive",
       "difficulty": "low",
-      "used": false,
-      "priority": 1
+      "used": true,
+      "priority": 1,
+      "usedDate": "2026-04-05",
+      "outputFile": "2026-04-05-prompt-engineering-for-production-applications.md"
     },
     {
       "keyword": "ai agent error handling best practices",
       "category": "ai-engineering",
       "postType": "technical-deep-dive",
       "difficulty": "low",
-      "used": false,
-      "priority": 1
+      "used": true,
+      "priority": 1,
+      "usedDate": "2026-04-05",
+      "outputFile": "2026-04-05-ai-agent-error-handling-best-practices.md"
     },
     {
       "keyword": "building terminal ui with python textual",
@@ -345,24 +353,30 @@
       "category": "technical-strategy",
       "postType": "strategy-guide",
       "difficulty": "low",
-      "used": false,
-      "priority": 1
+      "used": true,
+      "priority": 1,
+      "usedDate": "2026-04-05",
+      "outputFile": "2026-04-05-technical-due-diligence-checklist-startup.md"
     },
     {
       "keyword": "build vs buy ai capabilities",
       "category": "technical-strategy",
       "postType": "strategy-guide",
       "difficulty": "low",
-      "used": false,
-      "priority": 1
+      "used": true,
+      "priority": 1,
+      "usedDate": "2026-04-05",
+      "outputFile": "2026-04-05-build-vs-buy-ai-capabilities.md"
     },
     {
       "keyword": "how to evaluate ai vendors",
       "category": "technical-strategy",
       "postType": "strategy-guide",
       "difficulty": "low",
-      "used": false,
-      "priority": 1
+      "used": true,
+      "priority": 1,
+      "usedDate": "2026-04-05",
+      "outputFile": "2026-04-05-how-to-evaluate-ai-vendors.md"
     },
     {
       "keyword": "software architecture review process",
@@ -441,24 +455,30 @@
       "category": "devops-infrastructure",
       "postType": "technical-deep-dive",
       "difficulty": "low",
-      "used": false,
-      "priority": 1
+      "used": true,
+      "priority": 1,
+      "usedDate": "2026-04-05",
+      "outputFile": "2026-04-05-github-actions-ci-cd-tutorial-astro.md"
     },
     {
       "keyword": "nginx reverse proxy node.js setup",
       "category": "devops-infrastructure",
       "postType": "technical-deep-dive",
       "difficulty": "low",
-      "used": false,
-      "priority": 1
+      "used": true,
+      "priority": 1,
+      "usedDate": "2026-04-05",
+      "outputFile": "2026-04-05-nginx-reverse-proxy-node-js-setup.md"
     },
     {
       "keyword": "vps vs aws for small business",
       "category": "devops-infrastructure",
       "postType": "industry-analysis",
       "difficulty": "low",
-      "used": false,
-      "priority": 1
+      "used": true,
+      "priority": 1,
+      "usedDate": "2026-04-05",
+      "outputFile": "2026-04-05-vps-vs-aws-for-small-business.md"
     },
     {
       "keyword": "zero downtime deployment guide",

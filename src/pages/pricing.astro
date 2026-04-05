@@ -1,0 +1,250 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AnimateOnScroll from '../components/shared/AnimateOnScroll.astro';
+
+const tiers = [
+  {
+    name: 'Advisory',
+    price: 'From $5,000',
+    subtitle: 'For companies evaluating AI or planning technical strategy.',
+    featured: false,
+    items: [
+      'AI readiness assessment',
+      'Architecture review',
+      'Technology selection guidance',
+      'Build vs buy analysis',
+      'Written recommendation report',
+      '2-4 week engagement',
+    ],
+    cta: { label: 'Book a call', href: '/contact' },
+  },
+  {
+    name: 'Build',
+    price: 'From $15,000',
+    subtitle: 'For companies ready to build. MVP to production.',
+    featured: true,
+    items: [
+      'Everything in Advisory',
+      'Custom development (full-stack)',
+      'AI system implementation',
+      'CI/CD pipeline setup',
+      'Testing & deployment',
+      'Documentation & handoff',
+      '4-12 week engagement',
+    ],
+    cta: { label: 'Start a project', href: '/start' },
+  },
+  {
+    name: 'Partnership',
+    price: 'Custom',
+    subtitle: 'For companies that need an ongoing technical partner.',
+    featured: false,
+    items: [
+      'Everything in Build',
+      'Dedicated engineering hours (monthly retainer)',
+      'Ongoing maintenance & support',
+      'Priority response (< 4 hours)',
+      'Architecture evolution & scaling',
+      'Quarterly technology review',
+      '3-12 month engagement',
+    ],
+    cta: { label: "Let's talk", href: '/contact' },
+  },
+];
+
+const faqs = [
+  {
+    question: 'How do engagements typically start?',
+    answer:
+      'Every project begins with a free 30-minute discovery call. We\u2019ll discuss your goals, evaluate fit, and outline a potential approach. No obligation.',
+  },
+  {
+    question: 'Can you work with our existing team?',
+    answer:
+      'Absolutely. We frequently embed with client engineering teams, whether that\u2019s pair programming, code reviews, or leading specific workstreams.',
+  },
+  {
+    question: "What's your tech stack?",
+    answer:
+      'We\u2019re stack-agnostic but most experienced with Python, TypeScript, React, Next.js, PostgreSQL, and AWS/Hetzner infrastructure. For AI, we work primarily with Claude, OpenAI, and open-source models.',
+  },
+  {
+    question: 'Do you offer fixed-price or hourly?',
+    answer:
+      'Both. Advisory and Build engagements are typically fixed-price with defined deliverables. Partnership retainers are monthly with flexible scope.',
+  },
+  {
+    question: 'What if the project scope changes?',
+    answer:
+      'It happens. We handle scope changes transparently \u2014 we\u2019ll flag the impact on timeline and budget, and adjust the SOW together.',
+  },
+  {
+    question: 'Do you sign NDAs?',
+    answer:
+      'Yes, we\u2019re happy to sign NDAs before any engagement begins.',
+  },
+];
+
+const pricingSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Odea Works — Software & AI Consulting",
+  "url": "https://odeaworks.com/pricing",
+  "provider": {
+    "@type": "Organization",
+    "name": "Odea Works",
+    "url": "https://odeaworks.com"
+  },
+  "description": "AI consulting, custom software development, and ongoing technical partnership. Transparent pricing starting from $5,000.",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Consulting Tiers",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "name": "Advisory",
+        "description": "AI readiness assessment, architecture review, technology selection guidance, build vs buy analysis.",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": "5000",
+          "priceCurrency": "USD",
+          "minPrice": "5000"
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "Build",
+        "description": "Custom full-stack development, AI system implementation, CI/CD pipeline setup, testing and deployment.",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": "15000",
+          "priceCurrency": "USD",
+          "minPrice": "15000"
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "Partnership",
+        "description": "Dedicated engineering hours, ongoing maintenance, priority response, architecture evolution and scaling."
+      }
+    ]
+  }
+};
+---
+
+<BaseLayout title="Pricing | Odea Works" description="Transparent pricing for AI consulting, custom development, and ongoing technical partnership. Starting from $5,000.">
+  <script type="application/ld+json" set:html={JSON.stringify(pricingSchema)} />
+
+  <!-- Hero -->
+  <section class="py-32 lg:py-40">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <h1 class="text-5xl font-semibold tracking-tight text-white lg:text-6xl">
+          Pricing
+        </h1>
+        <p class="mt-6 text-xl text-[#ababab]">
+          Transparent pricing for every stage.
+        </p>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- Pricing Tiers -->
+  <section class="pb-32 lg:pb-40">
+    <div class="mx-auto max-w-5xl px-6">
+      <div class="grid gap-12 md:grid-cols-3 md:gap-8">
+        {tiers.map((tier, i) => (
+          <AnimateOnScroll animation="fade-up" delay={i * 100}>
+            <div class={`border-t pt-8 ${tier.featured ? 'border-white/20' : 'border-white/10'}`}>
+              <p class="text-sm text-[#666] uppercase tracking-wider">
+                {tier.name}
+              </p>
+              <p class="mt-4 text-4xl font-semibold text-white">
+                {tier.price}
+              </p>
+              <p class="mt-2 text-sm text-[#ababab]">
+                {tier.subtitle}
+              </p>
+
+              <ul class="mt-8 space-y-3">
+                {tier.items.map((item) => (
+                  <li class="flex items-start gap-3 text-[15px] text-[#ababab]">
+                    <span class="mt-0.5 text-[#10a37f] shrink-0">&#10003;</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div class="mt-10">
+                {tier.featured ? (
+                  <a
+                    href={tier.cta.href}
+                    class="inline-flex items-center justify-center rounded-full bg-white px-6 py-2.5 text-sm font-medium text-black transition-opacity hover:opacity-90"
+                  >
+                    {tier.cta.label} &rarr;
+                  </a>
+                ) : (
+                  <a
+                    href={tier.cta.href}
+                    class="text-sm text-[#666] transition-colors duration-200 hover:text-white"
+                  >
+                    {tier.cta.label} &rarr;
+                  </a>
+                )}
+              </div>
+            </div>
+          </AnimateOnScroll>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="border-t border-white/10 py-32 lg:py-40">
+    <div class="mx-auto max-w-3xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <h2 class="text-3xl font-semibold text-white">
+          Common questions
+        </h2>
+      </AnimateOnScroll>
+
+      <div class="mt-16 space-y-0">
+        {faqs.map((faq, i) => (
+          <AnimateOnScroll animation="fade-up" delay={i * 60}>
+            <div class="border-b border-white/10 py-8">
+              <p class="text-[15px] font-medium text-white">
+                {faq.question}
+              </p>
+              <p class="mt-3 text-[15px] text-[#ababab] leading-relaxed">
+                {faq.answer}
+              </p>
+            </div>
+          </AnimateOnScroll>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="border-t border-white/10 py-32 lg:py-40">
+    <div class="mx-auto max-w-5xl px-6 text-center">
+      <AnimateOnScroll animation="fade-up">
+        <h2 class="text-2xl font-semibold text-white">
+          Not sure which tier is right?
+        </h2>
+        <p class="mt-4 text-[#ababab]">
+          Book a free discovery call and we'll help you figure it out.
+        </p>
+        <div class="mt-8">
+          <a
+            href="/contact"
+            class="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90"
+          >
+            Get in touch &rarr;
+          </a>
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+</BaseLayout>

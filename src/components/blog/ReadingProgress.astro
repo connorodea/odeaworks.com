@@ -1,0 +1,37 @@
+---
+// Reading progress bar — thin green line at the top of the viewport
+---
+
+<div class="reading-progress" id="reading-progress"></div>
+
+<style>
+  .reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: #10a37f;
+    z-index: 9999;
+    transition: width 0.1s linear;
+    width: 0%;
+    pointer-events: none;
+  }
+</style>
+
+<script>
+  const bar = document.getElementById('reading-progress');
+  if (bar) {
+    function updateProgress() {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight;
+      const winHeight = window.innerHeight;
+      const scrollable = docHeight - winHeight;
+      if (scrollable > 0) {
+        const pct = Math.min((scrollTop / scrollable) * 100, 100);
+        bar.style.width = pct + '%';
+      }
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+  }
+</script>

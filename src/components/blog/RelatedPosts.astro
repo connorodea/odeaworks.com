@@ -1,0 +1,69 @@
+---
+interface Props {
+  currentSlug: string;
+  currentCategory: string;
+  allPosts: any[];
+}
+
+const { currentSlug, currentCategory, allPosts } = Astro.props;
+
+// Category display mapping
+const categoryLabels: Record<string, string> = {
+  'ai-consulting': 'AI Consulting',
+  'software-engineering': 'Software Engineering',
+  'technical-strategy': 'Technical Strategy',
+  'devops-infrastructure': 'DevOps & Infrastructure',
+  'ai-engineering': 'AI Engineering',
+};
+
+// Filter out current post
+const otherPosts = allPosts.filter((p) => p.id !== currentSlug);
+
+// Find posts in the same category
+const sameCategoryPosts = otherPosts.filter((p) => p.data.category === currentCategory);
+
+// Fill with recent posts from other categories if needed
+const otherCategoryPosts = otherPosts.filter((p) => p.data.category !== currentCategory);
+
+// Build the final list: same category first, then fill with others, max 3
+const related = [
+  ...sameCategoryPosts.slice(0, 3),
+  ...otherCategoryPosts.slice(0, Math.max(0, 3 - sameCategoryPosts.length)),
+].slice(0, 3);
+
+// Format date helper
+function formatDate(date: Date): string {
+  return new Date(date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+{related.length > 0 && (
+  <section class="mt-12 pt-12 border-t border-white/10">
+    <h2 class="text-xl font-medium text-white mb-8">More from the blog</h2>
+    <div class="grid grid-cols-1 gap-10 sm:grid-cols-3">
+      {related.map((post) => (
+        <div>
+          <span class="text-xs uppercase tracking-wider text-[#666]">
+            {categoryLabels[post.data.category] || post.data.category}
+          </span>
+          <a
+            href={`/blog/${post.id}`}
+            class="mt-2 block text-lg font-medium text-white transition-colors hover:text-[#ababab]"
+          >
+            {post.data.title}
+          </a>
+          <time
+            datetime={new Date(post.data.pubDate).toISOString()}
+            class="mt-2 block text-sm text-[#666]"
+          >
+            {formatDate(post.data.pubDate)}
+          </time>
+        </div>
+      ))}
+    </div>
+  </section>
+)}

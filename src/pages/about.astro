@@ -6,15 +6,52 @@ const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Connor O'Dea",
-  "jobTitle": "Founder & Engineer",
+  "jobTitle": "Founder & Software Engineer",
   "worksFor": {"@type": "Organization", "name": "Odea Works"},
   "email": "connor@odeaworks.com",
   "url": "https://odeaworks.com/about",
+  "description": "Software engineer and entrepreneur. Founded 10+ ventures from first line of code to production.",
+  "knowsAbout": ["Software Engineering", "AI Systems", "Full-Stack Development", "DevOps", "Technical Architecture"],
   "sameAs": ["https://github.com/connorodea"]
 };
+
+const stats = [
+  { number: "10+", label: "Ventures Built" },
+  { number: "30+", label: "Projects Shipped" },
+  { number: "50K+", label: "Lines of Production Code" },
+  { number: "24hr", label: "Typical Response Time" },
+];
+
+const steps = [
+  {
+    num: "01",
+    title: "Discover",
+    desc: "We listen. What are you building? What's blocking you? What does success look like?",
+  },
+  {
+    num: "02",
+    title: "Assess",
+    desc: "We evaluate your technical landscape. What exists, what's needed, what's possible.",
+  },
+  {
+    num: "03",
+    title: "Architect",
+    desc: "We design the solution. Stack, infrastructure, timeline, milestones.",
+  },
+  {
+    num: "04",
+    title: "Build",
+    desc: "We write the code. Real engineering, real tests, real deployments.",
+  },
+  {
+    num: "05",
+    title: "Ship",
+    desc: "We deliver working software. Documentation, handoff, ongoing support if needed.",
+  },
+];
 ---
 
-<BaseLayout title="About | Odea Works" description="Learn about Odea Works — founded by Connor O'Dea. AI consulting, software engineering, and technical strategy.">
+<BaseLayout title="About | Odea Works" description="Meet Connor O'Dea — software engineer and founder of Odea Works. 10+ ventures built from first line of code to production.">
   <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
 
   <!-- Hero -->
@@ -28,38 +65,139 @@ const personSchema = {
     </div>
   </section>
 
-  <!-- Content -->
-  <section class="pb-32 lg:pb-40">
+  <!-- Founder Story -->
+  <section class="pb-24 lg:pb-32">
     <div class="mx-auto max-w-3xl px-6">
       <div class="space-y-8 text-lg text-text-secondary leading-relaxed">
         <AnimateOnScroll animation="fade-up">
-          <p>
-            Odea Works is a software engineering and AI consulting practice founded by Connor O'Dea.
+          <p class="text-xl text-white leading-relaxed lg:text-2xl">
+            Connor O'Dea is a software engineer who builds things that work.
           </p>
         </AnimateOnScroll>
+
         <AnimateOnScroll animation="fade-up">
           <p>
-            We build production systems — AI agents, web platforms, infrastructure, and automation — for companies that need things to actually work. Not decks. Not demos. Working software.
+            He started the way most engineers do — writing bad code, breaking things, fixing them, and doing it again until the code stopped breaking. What didn't start normally was the pace. While most developers spend years inside someone else's codebase, Connor was building his own products from scratch, end to end, and putting them in front of real users.
           </p>
         </AnimateOnScroll>
+
         <AnimateOnScroll animation="fade-up">
           <p>
-            Connor has built 10+ ventures from the ground up, from first line of code to production serving real users. Background spans full-stack engineering, AI systems, DevOps, and technical architecture.
+            Over the past several years, that compounding paid off. He founded more than ten ventures — not side projects with landing pages, but real systems handling real operations. QuickLotz WMS manages warehouse inventory and fulfillment at enterprise scale. QuickVisionz uses computer vision to sort and classify products from camera feeds. Vidmation automates video production with AI, from script to final render. ClawdHub — 13,000 lines of TypeScript — is a full IDE for orchestrating AI agents. Each one was built the same way: Connor wrote the code, designed the architecture, set up the infrastructure, and deployed it to production.
           </p>
         </AnimateOnScroll>
+
         <AnimateOnScroll animation="fade-up">
           <p>
-            Based in Michigan. Working with clients everywhere.
+            The technical range is the point. Python and TypeScript. React and Next.js on the frontend. FastAPI and PostgreSQL on the backend. Claude and OpenAI APIs for the AI layer. Hetzner VPS, Docker, nginx, and CI/CD pipelines for infrastructure. The stack changes depending on what the problem needs — the discipline of shipping doesn't.
+          </p>
+        </AnimateOnScroll>
+
+        <AnimateOnScroll animation="fade-up">
+          <div class="border-t border-border pt-8 mt-12">
+            <h2 class="text-2xl font-semibold text-white tracking-tight mb-6">
+              Philosophy
+            </h2>
+            <p>
+              Connor builds. He doesn't advise from the sidelines, produce slide decks, or hand off wireframes for someone else to figure out. Every Odea Works engagement is hands-on. He writes the code, reviews the architecture, configures the servers, and pushes to production. Clients get a working system, not a recommendation to build one.
+            </p>
+          </div>
+        </AnimateOnScroll>
+
+        <AnimateOnScroll animation="fade-up">
+          <p>
+            The belief behind it is simple: technology should make people more effective, not more confused. That means choosing the right tool instead of the trendy one. It means writing code that another engineer can read six months from now. It means shipping fast, getting feedback, and iterating — not spending twelve weeks on a plan that won't survive first contact with users. Currently pursuing an MBA, Connor pairs deep technical ability with a clear understanding of what the business actually needs built.
+          </p>
+        </AnimateOnScroll>
+
+        <AnimateOnScroll animation="fade-up">
+          <p class="text-text-muted">
+            Based in Michigan. Working with clients globally.
           </p>
         </AnimateOnScroll>
       </div>
+    </div>
+  </section>
 
-      <!-- Connect -->
+  <!-- By the Numbers -->
+  <section class="py-24 lg:py-32 border-t border-border">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="stagger">
+        <div class="grid grid-cols-2 gap-12 lg:grid-cols-4 lg:gap-8">
+          {stats.map((stat) => (
+            <div class="text-center">
+              <p class="text-4xl font-semibold text-white tracking-tight">
+                {stat.number}
+              </p>
+              <p class="mt-2 text-sm uppercase tracking-wider text-text-muted">
+                {stat.label}
+              </p>
+            </div>
+          ))}
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="py-24 lg:py-32 border-t border-border">
+    <div class="mx-auto max-w-5xl px-6">
       <AnimateOnScroll animation="fade-up">
-        <div class="mt-16 space-y-4">
+        <h2 class="text-3xl font-semibold tracking-tight text-white lg:text-4xl mb-16">
+          How we work
+        </h2>
+      </AnimateOnScroll>
+
+      <!-- Desktop: horizontal timeline -->
+      <div class="hidden lg:block">
+        <AnimateOnScroll animation="stagger">
+          <div class="grid grid-cols-5 gap-8">
+            {steps.map((step) => (
+              <div>
+                <p class="text-sm font-mono text-text-muted mb-3">
+                  {step.num}
+                </p>
+                <h3 class="text-lg font-medium text-white mb-2">
+                  {step.title}
+                </h3>
+                <p class="text-sm text-text-secondary leading-relaxed">
+                  {step.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </AnimateOnScroll>
+      </div>
+
+      <!-- Mobile: stacked -->
+      <div class="lg:hidden space-y-10">
+        {steps.map((step) => (
+          <AnimateOnScroll animation="fade-up">
+            <div>
+              <p class="text-sm font-mono text-text-muted mb-2">
+                {step.num}
+              </p>
+              <h3 class="text-lg font-medium text-white mb-2">
+                {step.title}
+              </h3>
+              <p class="text-sm text-text-secondary leading-relaxed">
+                {step.desc}
+              </p>
+            </div>
+          </AnimateOnScroll>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Connect -->
+  <section class="py-24 lg:py-32 border-t border-border">
+    <div class="mx-auto max-w-3xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <div class="space-y-4">
           <a
             href="mailto:connor@odeaworks.com"
-            class="block text-white transition-colors hover:text-accent"
+            class="block text-lg text-white transition-colors hover:text-accent"
           >
             connor@odeaworks.com
           </a>

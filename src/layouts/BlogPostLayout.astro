@@ -3,6 +3,8 @@ import BaseLayout from './BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import PostCTA from '../components/blog/PostCTA.astro';
 import LeadCapture from '../components/shared/LeadCapture.astro';
+import ReadingProgress from '../components/blog/ReadingProgress.astro';
+import RelatedPosts from '../components/blog/RelatedPosts.astro';
 
 interface Props {
   title: string;
@@ -81,6 +83,9 @@ const articleSchema = {
   <!-- Article JSON-LD -->
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} slot="head" />
 
+  <!-- Reading Progress Bar -->
+  <ReadingProgress />
+
   <article class="mx-auto max-w-3xl px-6 py-16 sm:py-24">
     <!-- Header -->
     <header class="mb-12">
@@ -124,6 +129,9 @@ const articleSchema = {
     <div class="prose">
       <Fragment set:html={html} />
     </div>
+
+    <!-- Related Posts -->
+    <RelatedPosts currentSlug={slug} currentCategory={category} allPosts={allPosts} />
 
     <!-- Category-specific CTA -->
     <PostCTA category={category} variant="service" />

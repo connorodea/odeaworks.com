@@ -1,0 +1,428 @@
+---
+import LandingLayout from '../layouts/LandingLayout.astro';
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "AI Strategy Consulting",
+  "provider": {
+    "@type": "Organization",
+    "name": "Odea Works",
+    "url": "https://odeaworks.com"
+  },
+  "description": "AI strategy sessions for CTOs and engineering leaders. Readiness assessments, architecture planning, build vs buy analysis, and proof of concept development.",
+  "areaServed": "US",
+  "serviceType": "AI Strategy Consulting"
+};
+---
+
+<LandingLayout
+  title="AI Strategy for Engineering Leaders | Odea Works"
+  description="Free 30-minute AI strategy session with an engineer who's built 10+ AI systems. Readiness assessments, architecture planning, and build vs buy analysis."
+  pageName="ai-strategy"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- HERO — Above the Fold -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none"></div>
+    <div class="absolute top-0 left-1/4 w-[700px] h-[600px] bg-purple-500/[0.02] rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="relative mx-auto max-w-6xl px-6 pt-16 pb-24 lg:pt-24 lg:pb-32">
+      <div class="grid gap-12 lg:grid-cols-2 lg:gap-16 items-start">
+
+        <!-- Left: Copy -->
+        <div class="max-w-xl">
+          <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 mb-8">
+            <div class="h-1.5 w-1.5 rounded-full bg-accent animate-pulse"></div>
+            <span class="text-xs font-medium tracking-wide text-text-secondary uppercase">AI Strategy</span>
+          </div>
+
+          <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-[3.5rem] lg:leading-[1.08]">
+            Is AI Right for Your Business?
+          </h1>
+
+          <p class="mt-6 text-lg leading-relaxed text-text-secondary lg:text-xl">
+            Get a free 30-minute strategy session with an engineer who's built 10+ AI systems from scratch.
+          </p>
+
+          <!-- Trust signals -->
+          <div class="mt-8 text-sm text-text-muted leading-relaxed">
+            <p class="flex items-start gap-2">
+              <svg class="h-4 w-4 mt-0.5 shrink-0 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+              Worked with e-commerce, healthcare, fintech, logistics, and education companies
+            </p>
+          </div>
+
+          <!-- Social proof stats -->
+          <div class="mt-10 grid grid-cols-3 gap-6">
+            <div>
+              <p class="text-2xl font-semibold text-white">10+</p>
+              <p class="mt-1 text-xs text-text-muted">AI systems built</p>
+            </div>
+            <div>
+              <p class="text-2xl font-semibold text-white">50+</p>
+              <p class="mt-1 text-xs text-text-muted">Projects shipped</p>
+            </div>
+            <div>
+              <p class="text-2xl font-semibold text-white">24hr</p>
+              <p class="mt-1 text-xs text-text-muted">Response time</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="rounded-2xl border border-white/[0.08] bg-surface-2/50 backdrop-blur-sm p-8 lg:p-10">
+          <p class="text-lg font-semibold text-white mb-1">Book Your Free Strategy Call</p>
+          <p class="text-sm text-text-muted mb-6">30 minutes. No pitch. Just practical AI guidance for your business.</p>
+
+          <form id="landing-form" method="POST" class="space-y-4">
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+            <input type="hidden" name="source" value="landing-ai-strategy" />
+
+            <div>
+              <input
+                type="text"
+                name="name"
+                required
+                placeholder="Name"
+                class="w-full rounded-lg border border-white/[0.08] bg-surface-3 px-4 py-3 text-sm text-white placeholder-text-muted outline-none transition-colors focus:border-white/20 focus:bg-surface-3"
+              />
+            </div>
+            <div>
+              <input
+                type="email"
+                name="email"
+                required
+                placeholder="Work email"
+                class="w-full rounded-lg border border-white/[0.08] bg-surface-3 px-4 py-3 text-sm text-white placeholder-text-muted outline-none transition-colors focus:border-white/20 focus:bg-surface-3"
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                name="company"
+                placeholder="Company"
+                class="w-full rounded-lg border border-white/[0.08] bg-surface-3 px-4 py-3 text-sm text-white placeholder-text-muted outline-none transition-colors focus:border-white/20 focus:bg-surface-3"
+              />
+            </div>
+            <div>
+              <select
+                name="projectType"
+                class="w-full appearance-none rounded-lg border border-white/[0.08] bg-surface-3 px-4 py-3 text-sm text-text-muted outline-none transition-colors focus:border-white/20 [&:has(option:checked:not([value='']))]:text-white"
+              >
+                <option value="" disabled selected>Your role</option>
+                <option value="CTO">CTO</option>
+                <option value="VP Engineering">VP of Engineering</option>
+                <option value="CEO">CEO</option>
+                <option value="Head of Product">Head of Product</option>
+                <option value="Director of Engineering">Director of Engineering</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div>
+              <textarea
+                name="message"
+                required
+                rows="3"
+                placeholder="What are you trying to solve?"
+                class="w-full resize-none rounded-lg border border-white/[0.08] bg-surface-3 px-4 py-3 text-sm text-white placeholder-text-muted outline-none transition-colors focus:border-white/20"
+              ></textarea>
+            </div>
+            <button
+              id="submit-btn"
+              type="submit"
+              class="w-full rounded-full bg-white px-8 py-3.5 text-sm font-semibold text-black transition-all duration-200 hover:opacity-90 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Book Your Free Strategy Call &rarr;
+            </button>
+          </form>
+
+          <!-- Success -->
+          <div id="form-success" class="hidden py-8 text-center">
+            <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-accent/10">
+              <svg class="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+            </div>
+            <p class="text-lg font-semibold text-white">You're booked!</p>
+            <p class="mt-2 text-sm text-text-secondary">We'll reach out within 24 hours to schedule your strategy call.</p>
+          </div>
+
+          <!-- Error -->
+          <div id="form-error" class="hidden mt-4 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3">
+            <p class="text-sm text-red-400" id="form-error-text">Something went wrong. Please try again.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- WHAT WE HELP WITH -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="border-t border-border py-24 lg:py-32">
+    <div class="mx-auto max-w-6xl px-6">
+      <p class="text-sm uppercase tracking-widest text-text-muted mb-4">Advisory</p>
+      <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">What We Help With</h2>
+
+      <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="rounded-2xl border border-white/[0.06] bg-surface/50 p-6 transition-colors hover:border-white/[0.12]">
+          <div class="mb-3 flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10">
+            <svg class="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          </div>
+          <h3 class="text-base font-semibold text-white">AI Readiness Assessment</h3>
+          <p class="mt-2 text-sm text-text-secondary">Evaluate your data, infrastructure, and team to determine where AI can deliver the highest ROI.</p>
+        </div>
+
+        <div class="rounded-2xl border border-white/[0.06] bg-surface/50 p-6 transition-colors hover:border-white/[0.12]">
+          <div class="mb-3 flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10">
+            <svg class="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" /></svg>
+          </div>
+          <h3 class="text-base font-semibold text-white">Vendor Evaluation</h3>
+          <p class="mt-2 text-sm text-text-secondary">Cut through the noise. We evaluate AI vendors and tools objectively so you don't waste budget on hype.</p>
+        </div>
+
+        <div class="rounded-2xl border border-white/[0.06] bg-surface/50 p-6 transition-colors hover:border-white/[0.12]">
+          <div class="mb-3 flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10">
+            <svg class="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-2.25z" /></svg>
+          </div>
+          <h3 class="text-base font-semibold text-white">Architecture Planning</h3>
+          <p class="mt-2 text-sm text-text-secondary">Design AI system architecture that scales. From data pipelines to model serving to monitoring.</p>
+        </div>
+
+        <div class="rounded-2xl border border-white/[0.06] bg-surface/50 p-6 transition-colors hover:border-white/[0.12]">
+          <div class="mb-3 flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10">
+            <svg class="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971z" /></svg>
+          </div>
+          <h3 class="text-base font-semibold text-white">Build vs Buy Analysis</h3>
+          <p class="mt-2 text-sm text-text-secondary">When to use off-the-shelf AI and when to build custom. We help you make the right call for your business.</p>
+        </div>
+
+        <div class="rounded-2xl border border-white/[0.06] bg-surface/50 p-6 transition-colors hover:border-white/[0.12]">
+          <div class="mb-3 flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10">
+            <svg class="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.58-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" /></svg>
+          </div>
+          <h3 class="text-base font-semibold text-white">Proof of Concept Development</h3>
+          <p class="mt-2 text-sm text-text-secondary">Validate AI ideas fast. We build working prototypes in 2-4 weeks so you can test before you invest.</p>
+        </div>
+
+        <div class="rounded-2xl border border-white/[0.06] bg-surface/50 p-6 transition-colors hover:border-white/[0.12]">
+          <div class="mb-3 flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10">
+            <svg class="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" /></svg>
+          </div>
+          <h3 class="text-base font-semibold text-white">Team Augmentation</h3>
+          <p class="mt-2 text-sm text-text-secondary">Embed AI engineering expertise into your existing team. Knowledge transfer included.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- THE APPROACH -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="border-t border-border py-24 lg:py-32">
+    <div class="mx-auto max-w-6xl px-6">
+      <p class="text-sm uppercase tracking-widest text-text-muted mb-4">Methodology</p>
+      <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">The Odea Works Approach</h2>
+
+      <div class="mt-16 grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="relative">
+          <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-full border border-white/[0.08] bg-surface-2">
+            <span class="text-sm font-semibold text-accent">01</span>
+          </div>
+          <h3 class="text-lg font-semibold text-white">Assess</h3>
+          <p class="mt-2 text-sm leading-relaxed text-text-secondary">
+            Understand your data landscape, existing systems, team capabilities, and business objectives. Identify quick wins and long-term opportunities.
+          </p>
+        </div>
+        <div class="relative">
+          <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-full border border-white/[0.08] bg-surface-2">
+            <span class="text-sm font-semibold text-accent">02</span>
+          </div>
+          <h3 class="text-lg font-semibold text-white">Plan</h3>
+          <p class="mt-2 text-sm leading-relaxed text-text-secondary">
+            Create a concrete roadmap with clear milestones, technical specifications, and resource requirements. No fluff, just actionable steps.
+          </p>
+        </div>
+        <div class="relative">
+          <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-full border border-white/[0.08] bg-surface-2">
+            <span class="text-sm font-semibold text-accent">03</span>
+          </div>
+          <h3 class="text-lg font-semibold text-white">Build</h3>
+          <p class="mt-2 text-sm leading-relaxed text-text-secondary">
+            Execute the plan with rapid iteration cycles. Weekly demos, continuous feedback, production-quality code from day one.
+          </p>
+        </div>
+        <div class="relative">
+          <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-full border border-white/[0.08] bg-surface-2">
+            <span class="text-sm font-semibold text-accent">04</span>
+          </div>
+          <h3 class="text-lg font-semibold text-white">Measure</h3>
+          <p class="mt-2 text-sm leading-relaxed text-text-secondary">
+            Track real metrics. Cost savings, efficiency gains, accuracy improvements. We prove the ROI or adjust the approach.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- FOUNDER -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="border-t border-border py-24 lg:py-32">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="mx-auto max-w-2xl text-center">
+        <!-- Avatar placeholder -->
+        <div class="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-surface-2 border border-white/[0.08]">
+          <span class="text-2xl font-semibold text-white">CO</span>
+        </div>
+        <h3 class="text-xl font-semibold text-white">Connor O'Dea</h3>
+        <p class="mt-1 text-sm text-accent">Founder, Odea Works</p>
+        <p class="mt-4 text-sm leading-relaxed text-text-secondary max-w-lg mx-auto">
+          Full-stack engineer and AI specialist with experience building production systems across e-commerce, healthcare, fintech, and logistics. Founded and scaled multiple technology ventures. Focused on shipping AI that works in the real world, not just in demos.
+        </p>
+        <a
+          href="https://github.com/connorodea"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-4 inline-flex items-center gap-2 text-sm text-text-muted transition-colors hover:text-white"
+        >
+          <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          github.com/connorodea
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- FINAL CTA -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="border-t border-border py-24 lg:py-32">
+    <div class="mx-auto max-w-3xl px-6 text-center">
+      <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+        Ready to explore AI for your business?
+      </h2>
+      <p class="mt-4 text-lg text-text-secondary">
+        Book a free strategy call. 30 minutes. No pitch. Just practical AI guidance.
+      </p>
+
+      <div class="mt-12 mx-auto max-w-md">
+        <div class="rounded-2xl border border-white/[0.08] bg-surface-2/50 p-8">
+          <form id="landing-form-bottom" method="POST" class="space-y-4">
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+            <input type="hidden" name="source" value="landing-ai-strategy" />
+
+            <input
+              type="text"
+              name="name"
+              required
+              placeholder="Name"
+              class="w-full rounded-lg border border-white/[0.08] bg-surface-3 px-4 py-3 text-sm text-white placeholder-text-muted outline-none transition-colors focus:border-white/20"
+            />
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="Work email"
+              class="w-full rounded-lg border border-white/[0.08] bg-surface-3 px-4 py-3 text-sm text-white placeholder-text-muted outline-none transition-colors focus:border-white/20"
+            />
+            <input
+              type="text"
+              name="company"
+              placeholder="Company"
+              class="w-full rounded-lg border border-white/[0.08] bg-surface-3 px-4 py-3 text-sm text-white placeholder-text-muted outline-none transition-colors focus:border-white/20"
+            />
+            <textarea
+              name="message"
+              required
+              rows="3"
+              placeholder="What are you trying to solve?"
+              class="w-full resize-none rounded-lg border border-white/[0.08] bg-surface-3 px-4 py-3 text-sm text-white placeholder-text-muted outline-none transition-colors focus:border-white/20"
+            ></textarea>
+            <button
+              id="submit-btn-bottom"
+              type="submit"
+              class="w-full rounded-full bg-white px-8 py-3.5 text-sm font-semibold text-black transition-all duration-200 hover:opacity-90 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Book Your Free Strategy Call &rarr;
+            </button>
+          </form>
+
+          <div id="form-success-bottom" class="hidden py-8 text-center">
+            <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-accent/10">
+              <svg class="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+            </div>
+            <p class="text-lg font-semibold text-white">You're booked!</p>
+            <p class="mt-2 text-sm text-text-secondary">We'll reach out within 24 hours to schedule your call.</p>
+          </div>
+
+          <div id="form-error-bottom" class="hidden mt-4 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3">
+            <p class="text-sm text-red-400" id="form-error-text-bottom">Something went wrong. Please try again.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function initLandingForm(formId, submitBtnId, successId, errorId, errorTextId, source, buttonLabel) {
+      const form = document.getElementById(formId);
+      const submitBtn = document.getElementById(submitBtnId);
+      const successDiv = document.getElementById(successId);
+      const errorDiv = document.getElementById(errorId);
+      const errorText = document.getElementById(errorTextId);
+
+      form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        errorDiv?.classList.add('hidden');
+
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Sending...';
+        }
+
+        const formData = new FormData(form);
+        const data = {
+          _honey: formData.get('_honey') || '',
+          name: formData.get('name') || '',
+          email: formData.get('email') || '',
+          company: formData.get('company') || '',
+          projectType: formData.get('projectType') || '',
+          message: formData.get('message') || '',
+          source: formData.get('source') || source,
+        };
+
+        try {
+          const res = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+
+          const result = await res.json();
+
+          if (res.ok && result.success) {
+            if (window.plausible) plausible('Lead Captured', {props: {source: source}});
+            form.classList.add('hidden');
+            successDiv?.classList.remove('hidden');
+          } else {
+            if (errorText) errorText.textContent = result.error || 'Something went wrong. Please try again.';
+            errorDiv?.classList.remove('hidden');
+          }
+        } catch {
+          if (errorText) errorText.textContent = 'Network error. Please check your connection and try again.';
+          errorDiv?.classList.remove('hidden');
+        } finally {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = buttonLabel;
+          }
+        }
+      });
+    }
+
+    initLandingForm('landing-form', 'submit-btn', 'form-success', 'form-error', 'form-error-text', 'landing-ai-strategy', 'Book Your Free Strategy Call \u2192');
+    initLandingForm('landing-form-bottom', 'submit-btn-bottom', 'form-success-bottom', 'form-error-bottom', 'form-error-text-bottom', 'landing-ai-strategy', 'Book Your Free Strategy Call \u2192');
+  </script>
+</LandingLayout>

@@ -128,7 +128,7 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;');
 }
 
-function buildEmailHtml({ name, email, company, budget, projectType, message }) {
+function buildEmailHtml({ name, email, company, budget, projectType, message, source }) {
   const budgetLabels = {
     'under-10k': 'Under $10K',
     '10k-25k': '$10K - $25K',
@@ -137,9 +137,16 @@ function buildEmailHtml({ name, email, company, budget, projectType, message }) 
     '100k-plus': '$100K+',
   };
 
+  const sourceLabels = {
+    'landing-ai-consulting': 'Landing Page: AI Consulting',
+    'landing-software-development': 'Landing Page: Software Development',
+    'landing-ai-strategy': 'Landing Page: AI Strategy',
+  };
+
   const budgetDisplay = budgetLabels[budget] || budget || 'Not specified';
   const companyDisplay = company || 'Not specified';
   const projectTypeDisplay = projectType || 'Not specified';
+  const sourceDisplay = sourceLabels[source] || source || 'Contact page';
 
   return `
 <!DOCTYPE html>
@@ -157,7 +164,7 @@ function buildEmailHtml({ name, email, company, budget, projectType, message }) 
           <tr>
             <td style="padding:32px 40px 24px; border-bottom:1px solid #222;">
               <h1 style="margin:0; color:#ffffff; font-size:20px; font-weight:600;">New Contact Form Submission</h1>
-              <p style="margin:8px 0 0; color:#888; font-size:14px;">odeaworks.com</p>
+              <p style="margin:8px 0 0; color:#888; font-size:14px;">odeaworks.com &mdash; ${escapeHtml(sourceDisplay)}</p>
             </td>
           </tr>
           <!-- Body -->
@@ -192,6 +199,12 @@ function buildEmailHtml({ name, email, company, budget, projectType, message }) 
                   <td style="padding:12px 0; border-bottom:1px solid #1a1a1a;">
                     <p style="margin:0 0 4px; color:#666; font-size:12px; text-transform:uppercase; letter-spacing:1px;">Project Type</p>
                     <p style="margin:0; color:#ffffff; font-size:16px;">${escapeHtml(projectTypeDisplay)}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:12px 0; border-bottom:1px solid #1a1a1a;">
+                    <p style="margin:0 0 4px; color:#666; font-size:12px; text-transform:uppercase; letter-spacing:1px;">Source</p>
+                    <p style="margin:0; color:#10a37f; font-size:16px; font-weight:500;">${escapeHtml(sourceDisplay)}</p>
                   </td>
                 </tr>
                 <tr>
@@ -471,11 +484,13 @@ const server = http.createServer(async (req, res) => {
   // Send email via Resend
   try {
     const companyTag = data.company ? ` (${data.company.trim()})` : '';
+    const isLanding = data.source && data.source.startsWith('landing-');
+    const subjectPrefix = isLanding ? '[Ad Lead] ' : '';
     await resend.emails.send({
       from: FROM_EMAIL,
       to: [TO_EMAIL],
       replyTo: email.trim(),
-      subject: `New inquiry from ${name.trim()}${companyTag}`,
+      subject: `${subjectPrefix}New inquiry from ${name.trim()}${companyTag}`,
       html: buildEmailHtml({
         name: name.trim(),
         email: email.trim(),
@@ -483,10 +498,12 @@ const server = http.createServer(async (req, res) => {
         budget: (data.budget || '').trim(),
         projectType: (data.projectType || '').trim(),
         message: message.trim(),
+        source: (data.source || '').trim(),
       }),
     });
 
-    console.log(`[${new Date().toISOString()}] Email sent — from: ${email.trim()}, name: ${name.trim()}, ip: ${clientIP}`);
+    const sourceTag = data.source ? ` [${data.source}]` : '';
+    console.log(`[${new Date().toISOString()}] Email sent — from: ${email.trim()}, name: ${name.trim()}, ip: ${clientIP}${sourceTag}`);
     return jsonResponse(res, 200, { success: true });
   } catch (err) {
     console.error(`[${new Date().toISOString()}] Resend error:`, err);

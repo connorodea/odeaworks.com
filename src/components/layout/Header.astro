@@ -15,21 +15,23 @@ const navLinks = [
 >
   <nav
     id="header-nav"
-    class="flex items-center rounded-full border border-white/[0.06] bg-black/50 backdrop-blur-2xl transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
-    style="padding: 8px 8px; gap: 4px;"
+    class="flex items-center gap-1 rounded-full border border-white/[0.08] bg-black/60 backdrop-blur-2xl px-3 py-1.5"
   >
-    <!-- Logo (shrinks on scroll) -->
-    <a href="/" id="header-logo" class="flex items-center px-3 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" style="height: 44px; opacity: 1; width: auto; overflow: hidden;">
-      <img src="/logos/ODeaWorks-v4-white-cropped.png" alt="ODeaWorks" id="logo-img" class="transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" style="height: 28px; width: auto;" />
+    <!-- Logo -->
+    <a href="/" class="flex items-center px-2">
+      <img src="/logos/ODeaWorks-v4-white-cropped.png" alt="ODeaWorks" class="h-5 w-auto" />
     </a>
 
+    <!-- Separator -->
+    <div class="hidden md:block w-px h-4 bg-white/10 mx-1"></div>
+
     <!-- Desktop nav links -->
-    <div class="hidden items-center md:flex" id="nav-links">
+    <div class="hidden items-center md:flex">
       {
         navLinks.map((link) => (
           <a
             href={link.href}
-            class="nav-link rounded-full px-4 py-2 text-[13px] text-white/60 transition-all duration-300 hover:text-white hover:bg-white/[0.06]"
+            class="rounded-full px-3 py-1.5 text-[13px] text-white/50 transition-colors duration-200 hover:text-white hover:bg-white/[0.06]"
           >
             {link.label}
           </a>
@@ -37,8 +39,7 @@ const navLinks = [
       }
       <a
         href="/start"
-        id="cta-btn"
-        class="ml-1 rounded-full bg-white px-5 py-2 text-[13px] font-medium text-black transition-all duration-500 hover:bg-white/90"
+        class="ml-1 rounded-full bg-white px-4 py-1.5 text-[13px] font-medium text-black transition-opacity duration-200 hover:opacity-90"
       >
         Start a Project
       </a>
@@ -48,45 +49,31 @@ const navLinks = [
     <button
       id="mobile-menu-btn"
       type="button"
-      class="inline-flex items-center justify-center rounded-full p-2.5 text-white/60 transition-colors hover:text-white hover:bg-white/[0.06] md:hidden"
+      class="inline-flex items-center justify-center rounded-full p-2 text-white/50 transition-colors hover:text-white md:hidden"
       aria-label="Toggle navigation menu"
       aria-expanded="false"
     >
-      <svg
-        id="hamburger-icon"
-        class="h-5 w-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-      >
+      <svg id="hamburger-icon" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
       </svg>
-      <svg
-        id="close-icon"
-        class="hidden h-5 w-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-      >
+      <svg id="close-icon" class="hidden h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
       </svg>
     </button>
   </nav>
 </header>
 
-<!-- Mobile menu panel -->
+<!-- Mobile menu -->
 <div
   id="mobile-menu"
-  class="fixed top-20 left-4 right-4 z-40 hidden md:hidden rounded-2xl border border-white/[0.06] bg-black/90 backdrop-blur-2xl"
+  class="fixed top-16 left-4 right-4 z-40 hidden md:hidden rounded-2xl border border-white/[0.08] bg-black/90 backdrop-blur-2xl"
 >
-  <div class="px-6 py-4 space-y-1">
+  <div class="px-5 py-3 space-y-0.5">
     {
       navLinks.map((link) => (
         <a
           href={link.href}
-          class="block rounded-xl py-3 px-4 text-[15px] text-white/60 transition-colors hover:text-white hover:bg-white/[0.06]"
+          class="block rounded-lg py-2.5 px-3 text-[14px] text-white/50 transition-colors hover:text-white hover:bg-white/[0.06]"
         >
           {link.label}
         </a>
@@ -94,7 +81,7 @@ const navLinks = [
     }
     <a
       href="/start"
-      class="mt-3 block rounded-full bg-white px-4 py-3 text-center text-[15px] font-medium text-black"
+      class="mt-2 block rounded-full bg-white px-4 py-2.5 text-center text-[14px] font-medium text-black"
     >
       Start a Project
     </a>
@@ -102,7 +89,7 @@ const navLinks = [
 </div>
 
 <!-- Spacer -->
-<div class="h-20"></div>
+<div class="h-16"></div>
 
 <script>
   const btn = document.getElementById("mobile-menu-btn");
@@ -110,10 +97,6 @@ const navLinks = [
   const hamburgerIcon = document.getElementById("hamburger-icon");
   const closeIcon = document.getElementById("close-icon");
   const headerNav = document.getElementById("header-nav");
-  const headerLogo = document.getElementById("header-logo");
-  const logoImg = document.getElementById("logo-img");
-  const ctaBtn = document.getElementById("cta-btn");
-  const navLinks = document.querySelectorAll(".nav-link");
 
   // Mobile menu toggle
   btn?.addEventListener("click", () => {
@@ -132,58 +115,18 @@ const navLinks = [
     });
   });
 
-  // Polymorphic scroll animation
-  let lastState = "expanded";
-
-  const morphHeader = () => {
-    if (!headerNav || !headerLogo || !logoImg) return;
-    const scrollY = window.scrollY;
-    const threshold = 80;
-
-    // Calculate morph progress (0 = top, 1 = fully scrolled past threshold)
-    const progress = Math.min(scrollY / threshold, 1);
-
-    // Smooth cubic easing
-    const ease = progress < 0.5
-      ? 4 * progress * progress * progress
-      : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-
-    // Logo: shrink from 40px to 24px, then fade out
-    const logoHeight = 40 - (16 * ease);
-    const logoOpacity = Math.max(1 - (ease * 1.5), 0);
-    const logoWidth = logoOpacity > 0.1 ? "auto" : "0px";
-    const logoPadding = logoOpacity > 0.1 ? "12px" : "0px";
-
-    logoImg.style.height = `${logoHeight}px`;
-    headerLogo.style.opacity = `${logoOpacity}`;
-    headerLogo.style.width = logoWidth;
-    headerLogo.style.paddingLeft = logoPadding;
-    headerLogo.style.paddingRight = logoPadding;
-
-    // Nav bg: more opaque as you scroll
-    const bgOpacity = 0.5 + (0.35 * ease);
-    const borderOpacity = 0.06 + (0.06 * ease);
-    headerNav.style.backgroundColor = `rgba(0, 0, 0, ${bgOpacity})`;
-    headerNav.style.borderColor = `rgba(255, 255, 255, ${borderOpacity})`;
-
-    // Nav links: slightly brighter when compact
-    navLinks.forEach((link) => {
-      const linkOpacity = 0.6 + (0.15 * ease);
-      link.style.color = `rgba(255, 255, 255, ${linkOpacity})`;
-    });
-
-    // Padding: tighten when compact
-    const padding = 8 - (2 * ease);
-    headerNav.style.padding = `${padding}px ${padding + 2}px`;
-
-    // Shadow on scroll
-    if (ease > 0.5) {
-      headerNav.style.boxShadow = `0 8px 32px rgba(0, 0, 0, ${0.3 * ease})`;
+  // Simple, clean scroll behavior — just opacity shift, no morphing
+  const updateHeader = () => {
+    if (!headerNav) return;
+    if (window.scrollY > 20) {
+      headerNav.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+      headerNav.style.borderColor = "rgba(255, 255, 255, 0.1)";
     } else {
-      headerNav.style.boxShadow = "none";
+      headerNav.style.backgroundColor = "rgba(0, 0, 0, 0.6)";
+      headerNav.style.borderColor = "rgba(255, 255, 255, 0.08)";
     }
   };
 
-  morphHeader();
-  window.addEventListener("scroll", morphHeader, { passive: true });
+  updateHeader();
+  window.addEventListener("scroll", updateHeader, { passive: true });
 </script>

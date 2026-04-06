@@ -177,24 +177,30 @@
       "category": "ai-engineering",
       "postType": "technical-deep-dive",
       "difficulty": "low",
-      "used": false,
-      "priority": 2
+      "used": true,
+      "priority": 2,
+      "usedDate": "2026-04-06",
+      "outputFile": "2026-04-06-building-terminal-ui-with-python-textual.md"
     },
     {
       "keyword": "structured output from llm apis",
       "category": "ai-engineering",
       "postType": "technical-deep-dive",
       "difficulty": "low",
-      "used": false,
-      "priority": 2
+      "used": true,
+      "priority": 2,
+      "usedDate": "2026-04-06",
+      "outputFile": "2026-04-06-structured-output-from-llm-apis.md"
     },
     {
       "keyword": "llm caching strategies for production",
       "category": "ai-engineering",
       "postType": "technical-deep-dive",
       "difficulty": "low",
-      "used": false,
-      "priority": 2
+      "used": true,
+      "priority": 2,
+      "usedDate": "2026-04-06",
+      "outputFile": "2026-04-06-llm-caching-strategies-for-production.md"
     },
     {
       "keyword": "multi agent system architecture patterns",
@@ -217,8 +223,10 @@
       "category": "ai-engineering",
       "postType": "case-study",
       "difficulty": "low",
-      "used": false,
-      "priority": 2
+      "used": true,
+      "priority": 2,
+      "usedDate": "2026-04-06",
+      "outputFile": "2026-04-06-ai-video-automation-pipeline-python.md"
     },
     {
       "keyword": "yolo object detection custom training guide",

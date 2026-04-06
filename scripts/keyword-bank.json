@@ -45,32 +45,40 @@
       "category": "ai-consulting",
       "postType": "strategy-guide",
       "difficulty": "low",
-      "used": false,
-      "priority": 2
+      "used": true,
+      "priority": 2,
+      "usedDate": "2026-04-06",
+      "outputFile": "2026-04-06-ai-consulting-process-what-to-expect.md"
     },
     {
       "keyword": "ai proof of concept development services",
       "category": "ai-consulting",
       "postType": "case-study",
       "difficulty": "low",
-      "used": false,
-      "priority": 2
+      "used": true,
+      "priority": 2,
+      "usedDate": "2026-04-06",
+      "outputFile": "2026-04-06-ai-proof-of-concept-development-services.md"
     },
     {
       "keyword": "ai readiness assessment for business",
       "category": "ai-consulting",
       "postType": "strategy-guide",
       "difficulty": "low",
-      "used": false,
-      "priority": 2
+      "used": true,
+      "priority": 2,
+      "usedDate": "2026-04-06",
+      "outputFile": "2026-04-06-ai-readiness-assessment-for-business.md"
     },
     {
       "keyword": "when is ai not the right solution",
       "category": "ai-consulting",
       "postType": "industry-analysis",
       "difficulty": "low",
-      "used": false,
-      "priority": 2
+      "used": true,
+      "priority": 2,
+      "usedDate": "2026-04-06",
+      "outputFile": "2026-04-06-when-is-ai-not-the-right-solution.md"
     },
     {
       "keyword": "ai consulting for ecommerce businesses",
@@ -549,8 +557,10 @@
       "category": "devops-infrastructure",
       "postType": "technical-deep-dive",
       "difficulty": "low",
-      "used": false,
-      "priority": 1
+      "used": true,
+      "priority": 1,
+      "usedDate": "2026-04-06",
+      "outputFile": "2026-04-06-hetzner-vps-setup-web-application-hosting.md"
     },
     {
       "keyword": "kubernetes vs docker compose for small teams",
@@ -637,8 +647,10 @@
       "category": "ai-consulting",
       "postType": "case-study",
       "difficulty": "low",
-      "used": false,
-      "priority": 1
+      "used": true,
+      "priority": 1,
+      "usedDate": "2026-04-06",
+      "outputFile": "2026-04-06-ai-automation-for-warehouse-operations.md"
     },
     {
       "keyword": "continuous deployment pipeline small team guide",

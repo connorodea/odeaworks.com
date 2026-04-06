@@ -1,0 +1,359 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AnimateOnScroll from '../../components/shared/AnimateOnScroll.astro';
+import LeadCapture from '../../components/shared/LeadCapture.astro';
+import { industries, services, processSteps } from '../../data/programmatic-seo';
+
+export function getStaticPaths() {
+  const paths = [];
+  for (const service of services) {
+    for (const industry of industries) {
+      paths.push({
+        params: { service: service.slug, industry: industry.slug },
+        props: { service, industry },
+      });
+    }
+  }
+  return paths;
+}
+
+const { service, industry } = Astro.props;
+const title = `${service.name} for ${industry.name} | Odea Works`;
+const description = `Expert ${service.name.toLowerCase()} for ${industry.name.toLowerCase()} companies. ${industry.pain.split(',')[0]}. Built by engineers with real ${industry.name.toLowerCase()} experience.`;
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": `${service.name} for ${industry.name}`,
+  "provider": {
+    "@type": "Organization",
+    "name": "Odea Works",
+    "url": "https://odeaworks.com"
+  },
+  "description": description,
+  "areaServed": "US",
+  "serviceType": service.name,
+  "audience": {
+    "@type": "Audience",
+    "audienceType": `${industry.name} companies`
+  }
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://odeaworks.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://odeaworks.com/services"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": `${service.name} for ${industry.name}`,
+      "item": `https://odeaworks.com/services/${service.slug}-for-${industry.slug}`
+    }
+  ]
+};
+
+// Get other industries for cross-linking (exclude current)
+const otherIndustries = industries.filter(i => i.slug !== industry.slug).slice(0, 4);
+// Get other services for cross-linking (exclude current)
+const otherServices = services.filter(s => s.slug !== service.slug);
+---
+
+<BaseLayout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden py-32 lg:py-40">
+    <div class="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-accent/[0.03] rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="relative mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <!-- Breadcrumb -->
+        <nav class="mb-8 flex items-center gap-2 text-sm text-text-muted">
+          <a href="/" class="transition-colors hover:text-text-secondary">Home</a>
+          <span>/</span>
+          <a href="/services" class="transition-colors hover:text-text-secondary">Services</a>
+          <span>/</span>
+          <span class="text-text-secondary">{service.name} for {industry.name}</span>
+        </nav>
+
+        <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 mb-8">
+          <div class="h-1.5 w-1.5 rounded-full bg-accent animate-pulse"></div>
+          <span class="text-xs font-medium tracking-wide text-text-secondary uppercase">{service.name}</span>
+        </div>
+
+        <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+          {service.name}<br />for {industry.name}
+        </h1>
+        <p class="mt-6 max-w-2xl text-xl text-text-secondary leading-relaxed">
+          We help {industry.name.toLowerCase()} companies {service.verb}. {industry.pain}.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-text-muted">
+          <span class="flex items-center gap-2">
+            <svg class="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+            10+ ventures built
+          </span>
+          <span class="flex items-center gap-2">
+            <svg class="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+            Production systems
+          </span>
+          <span class="flex items-center gap-2">
+            <svg class="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+            {industry.name} experience
+          </span>
+        </div>
+
+        <div class="mt-10 flex flex-wrap gap-4">
+          <a
+            href="/start"
+            class="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90"
+          >
+            Start a {industry.name.toLowerCase()} project
+          </a>
+          <a
+            href="/work"
+            class="inline-flex items-center justify-center rounded-full border border-white/20 px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-white/5"
+          >
+            See our work
+          </a>
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- Industry Challenges -->
+  <section class="border-t border-white/10 py-24 lg:py-32">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <p class="text-sm uppercase tracking-widest text-text-muted mb-4">The Challenge</p>
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          Why {industry.name} companies need better {service.name.toLowerCase()}
+        </h2>
+        <p class="mt-6 max-w-3xl text-lg text-text-secondary leading-relaxed">
+          {industry.pain}. These aren't theoretical problems — they're the daily reality for {industry.name.toLowerCase()} teams trying to compete.
+        </p>
+      </AnimateOnScroll>
+
+      <AnimateOnScroll animation="stagger">
+        <div class="mt-16 grid gap-6 sm:grid-cols-2">
+          {industry.challenges.map((challenge) => (
+            <div class="rounded-2xl border border-white/[0.06] bg-surface/50 p-8 transition-colors hover:border-white/[0.12]">
+              <div class="mb-4 flex h-8 w-8 items-center justify-center rounded-lg bg-red-500/10">
+                <svg class="h-4 w-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                </svg>
+              </div>
+              <p class="text-text-secondary leading-relaxed">{challenge}</p>
+            </div>
+          ))}
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- Our Approach -->
+  <section class="border-t border-white/10 py-24 lg:py-32">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <p class="text-sm uppercase tracking-widest text-text-muted mb-4">Our Approach</p>
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          How we {service.verb} for {industry.name.toLowerCase()}
+        </h2>
+        <p class="mt-6 max-w-3xl text-lg text-text-secondary leading-relaxed">
+          {industry.approach}
+        </p>
+      </AnimateOnScroll>
+
+      <AnimateOnScroll animation="fade-up" delay={200}>
+        <div class="mt-16">
+          <h3 class="text-xl font-semibold text-white mb-6">What we deliver</h3>
+          <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {service.capabilities.map((capability) => (
+              <div class="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-surface/50 p-5">
+                <svg class="mt-0.5 h-5 w-5 shrink-0 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span class="text-sm text-text-secondary">{capability}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </AnimateOnScroll>
+
+      <AnimateOnScroll animation="fade-up" delay={400}>
+        <div class="mt-12">
+          <h3 class="text-xl font-semibold text-white mb-4">{industry.name}-specific expertise</h3>
+          <div class="flex flex-wrap gap-3">
+            {industry.keywords.map((keyword) => (
+              <span class="rounded-full border border-accent/20 bg-accent/5 px-4 py-2 text-sm text-accent">
+                {keyword}
+              </span>
+            ))}
+          </div>
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- Proof: Case Study -->
+  <section class="border-t border-white/10 py-24 lg:py-32">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <p class="text-sm uppercase tracking-widest text-text-muted mb-4">Proof</p>
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          We've done this before
+        </h2>
+      </AnimateOnScroll>
+
+      <AnimateOnScroll animation="fade-up" delay={200}>
+        <div class="mt-12 rounded-2xl border border-white/[0.08] bg-surface-2/50 p-8 lg:p-12">
+          <div class="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 mb-6">
+            <span class="text-xs font-medium text-accent">{industry.relatedWork}</span>
+          </div>
+          <p class="text-lg text-text-secondary leading-relaxed lg:text-xl">
+            {industry.example}
+          </p>
+          <div class="mt-8">
+            <a
+              href="/work"
+              class="inline-flex items-center gap-2 text-sm font-medium text-accent transition-colors hover:text-white"
+            >
+              See all our work
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- How We Work (5-step process) -->
+  <section class="border-t border-white/10 py-24 lg:py-32">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <p class="text-sm uppercase tracking-widest text-text-muted mb-4">Process</p>
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          How we work
+        </h2>
+        <p class="mt-6 max-w-2xl text-lg text-text-secondary leading-relaxed">
+          Every {industry.name.toLowerCase()} engagement follows a proven five-step process — from discovery to measurable impact.
+        </p>
+      </AnimateOnScroll>
+
+      <AnimateOnScroll animation="stagger">
+        <div class="mt-16 grid gap-8 sm:grid-cols-3 lg:grid-cols-5">
+          {processSteps.map((step) => (
+            <div class="relative">
+              <div class="mb-4 text-5xl font-bold text-white/[0.06]">{step.number}</div>
+              <h3 class="text-lg font-semibold text-white">{step.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-text-secondary">
+                {step.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- Lead Capture -->
+  <LeadCapture source={`seo-${service.slug}-${industry.slug}`} />
+
+  <!-- Cross-links: Other Industries -->
+  <section class="border-t border-white/10 py-20">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <h2 class="text-2xl font-semibold text-white">
+          {service.name} for other industries
+        </h2>
+        <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {otherIndustries.map((ind) => (
+            <a
+              href={`/services/${service.slug}-for-${ind.slug}`}
+              class="group rounded-xl border border-white/[0.06] bg-surface/50 p-5 transition-colors hover:border-white/[0.12]"
+            >
+              <p class="text-sm font-medium text-white group-hover:text-accent transition-colors">{service.name} for {ind.name}</p>
+              <p class="mt-1 text-xs text-text-muted line-clamp-2">{ind.pain.split(',')[0]}</p>
+            </a>
+          ))}
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- Cross-links: Other Services -->
+  <section class="border-t border-white/10 py-20">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <h2 class="text-2xl font-semibold text-white">
+          Other services for {industry.name}
+        </h2>
+        <div class="mt-8 grid gap-4 sm:grid-cols-2">
+          {otherServices.map((svc) => (
+            <a
+              href={`/services/${svc.slug}-for-${industry.slug}`}
+              class="group rounded-xl border border-white/[0.06] bg-surface/50 p-5 transition-colors hover:border-white/[0.12]"
+            >
+              <p class="text-sm font-medium text-white group-hover:text-accent transition-colors">{svc.name} for {industry.name}</p>
+              <p class="mt-1 text-xs text-text-muted">{svc.tagline}</p>
+            </a>
+          ))}
+        </div>
+
+        <div class="mt-8 flex flex-wrap gap-4 text-sm">
+          <a href="/services" class="text-text-muted transition-colors hover:text-accent">All services</a>
+          <span class="text-text-muted">/</span>
+          <a href="/work" class="text-text-muted transition-colors hover:text-accent">Our work</a>
+          <span class="text-text-muted">/</span>
+          <a href="/blog" class="text-text-muted transition-colors hover:text-accent">Blog</a>
+          <span class="text-text-muted">/</span>
+          <a href="/contact" class="text-text-muted transition-colors hover:text-accent">Contact</a>
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="border-t border-white/10 py-32 lg:py-40">
+    <div class="mx-auto max-w-5xl px-6 text-center">
+      <AnimateOnScroll animation="fade-up">
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          Ready to start your {industry.name.toLowerCase()} project?
+        </h2>
+        <p class="mt-4 text-lg text-text-secondary">
+          Tell us about your challenge. We'll respond within 24 hours with a plan.
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-4">
+          <a
+            href="/start"
+            class="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90"
+          >
+            Start a project
+          </a>
+          <a
+            href="/contact"
+            class="inline-flex items-center justify-center rounded-full border border-white/20 px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-white/5"
+          >
+            Get in touch
+          </a>
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+</BaseLayout>

@@ -2,10 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AnimateOnScroll from '../components/shared/AnimateOnScroll.astro';
 import LeadCapture from '../components/shared/LeadCapture.astro';
+import { industries, locations } from '../data/programmatic-seo';
 
 const services = [
   {
     title: 'AI Engineering',
+    slug: 'ai-consulting',
     description:
       'We design, build, and deploy production AI systems. From autonomous agents to retrieval-augmented generation, we bring intelligent capabilities from prototype to production with rigorous evaluation at every stage.',
     offerings: [
@@ -19,6 +21,7 @@ const services = [
   },
   {
     title: 'Technical Strategy',
+    slug: 'technical-strategy',
     description:
       'We help engineering teams make better decisions. Architecture reviews, technology selection, infrastructure audits, and scaling roadmaps — designed to reduce cost and increase velocity.',
     offerings: [
@@ -32,6 +35,7 @@ const services = [
   },
   {
     title: 'Software Engineering',
+    slug: 'software-development',
     description:
       'We build the software that businesses depend on. Full-stack web applications, APIs, databases, automation systems, and developer tools — shipped fast, built to last.',
     offerings: [
@@ -45,6 +49,7 @@ const services = [
   },
   {
     title: 'Infrastructure & DevOps',
+    slug: null,
     description:
       'We architect and maintain the infrastructure that keeps applications running. CI/CD pipelines, cloud deployments, monitoring, and security — engineered for reliability at scale.',
     offerings: [
@@ -123,6 +128,33 @@ const servicesSchema = {
               <p class="text-text-secondary">{item}</p>
             ))}
           </div>
+
+          {/* Industry links for services that have programmatic pages */}
+          {service.slug && (
+            <div class="mt-10">
+              <p class="text-sm font-medium text-text-muted mb-3">See how we help:</p>
+              <div class="flex flex-wrap gap-2">
+                {industries.map((ind) => (
+                  <a
+                    href={`/services/${service.slug}-for-${ind.slug}`}
+                    class="rounded-full border border-white/[0.08] px-3 py-1.5 text-xs text-text-secondary transition-colors hover:border-accent/30 hover:text-accent"
+                  >
+                    {ind.name}
+                  </a>
+                ))}
+              </div>
+              <div class="mt-3 flex flex-wrap gap-2">
+                {locations.map((loc) => (
+                  <a
+                    href={`/services/${service.slug}-${loc.slug}`}
+                    class="rounded-full border border-white/[0.08] px-3 py-1.5 text-xs text-text-secondary transition-colors hover:border-accent/30 hover:text-accent"
+                  >
+                    {loc.preposition === 'for' ? `${loc.name}` : loc.name}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
         </AnimateOnScroll>
       </div>
     </section>

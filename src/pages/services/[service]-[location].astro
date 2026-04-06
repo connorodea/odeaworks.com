@@ -1,0 +1,323 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AnimateOnScroll from '../../components/shared/AnimateOnScroll.astro';
+import LeadCapture from '../../components/shared/LeadCapture.astro';
+import { locations, services, industries, processSteps } from '../../data/programmatic-seo';
+
+export function getStaticPaths() {
+  const paths = [];
+  for (const service of services) {
+    for (const location of locations) {
+      paths.push({
+        params: { service: service.slug, location: location.slug },
+        props: { service, location },
+      });
+    }
+  }
+  return paths;
+}
+
+const { service, location } = Astro.props;
+const locationTitle = location.preposition === 'for'
+  ? `${service.name} for ${location.name}`
+  : `${service.name} in ${location.name}`;
+const title = `${locationTitle} | Odea Works`;
+const description = `Expert ${service.name.toLowerCase()} ${location.preposition} ${location.name.toLowerCase()}. ${service.tagline}. Built by engineers with 10+ production deployments.`;
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": locationTitle,
+  "provider": {
+    "@type": "Organization",
+    "name": "Odea Works",
+    "url": "https://odeaworks.com"
+  },
+  "description": description,
+  "areaServed": location.slug === 'remote' ? 'Worldwide' : location.name,
+  "serviceType": service.name,
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://odeaworks.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://odeaworks.com/services"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": locationTitle,
+      "item": `https://odeaworks.com/services/${service.slug}-${location.slug}`
+    }
+  ]
+};
+
+// Get other locations for cross-linking (exclude current)
+const otherLocations = locations.filter(l => l.slug !== location.slug).slice(0, 5);
+// Get other services for cross-linking (exclude current)
+const otherServices = services.filter(s => s.slug !== service.slug);
+// Get industries for cross-linking
+const topIndustries = industries.slice(0, 4);
+---
+
+<BaseLayout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden py-32 lg:py-40">
+    <div class="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-accent/[0.03] rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="relative mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <!-- Breadcrumb -->
+        <nav class="mb-8 flex items-center gap-2 text-sm text-text-muted">
+          <a href="/" class="transition-colors hover:text-text-secondary">Home</a>
+          <span>/</span>
+          <a href="/services" class="transition-colors hover:text-text-secondary">Services</a>
+          <span>/</span>
+          <span class="text-text-secondary">{locationTitle}</span>
+        </nav>
+
+        <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 mb-8">
+          <div class="h-1.5 w-1.5 rounded-full bg-accent animate-pulse"></div>
+          <span class="text-xs font-medium tracking-wide text-text-secondary uppercase">{service.name}</span>
+        </div>
+
+        <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+          {locationTitle}
+        </h1>
+        <p class="mt-6 max-w-2xl text-xl text-text-secondary leading-relaxed">
+          {service.tagline}. {location.preposition === 'for' ? `Available for ${location.name.toLowerCase()}.` : `Serving ${location.name} businesses.`}
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-text-muted">
+          <span class="flex items-center gap-2">
+            <svg class="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+            10+ ventures built
+          </span>
+          <span class="flex items-center gap-2">
+            <svg class="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+            Production systems
+          </span>
+          <span class="flex items-center gap-2">
+            <svg class="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+            24hr response
+          </span>
+        </div>
+
+        <div class="mt-10 flex flex-wrap gap-4">
+          <a
+            href="/start"
+            class="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90"
+          >
+            Start a project
+          </a>
+          <a
+            href="/work"
+            class="inline-flex items-center justify-center rounded-full border border-white/20 px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-white/5"
+          >
+            See our work
+          </a>
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- Location Context -->
+  <section class="border-t border-white/10 py-24 lg:py-32">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <p class="text-sm uppercase tracking-widest text-text-muted mb-4">{location.slug === 'remote' ? 'Remote-First' : `${location.name} Market`}</p>
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          {location.slug === 'remote' ? `Built for distributed teams` : `Why ${location.name} companies choose us`}
+        </h2>
+        <p class="mt-6 max-w-3xl text-lg text-text-secondary leading-relaxed">
+          {location.context}
+        </p>
+      </AnimateOnScroll>
+
+      <AnimateOnScroll animation="fade-up" delay={200}>
+        <div class="mt-12 rounded-2xl border border-white/[0.08] bg-surface-2/50 p-8">
+          <div class="flex items-start gap-4">
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent/10">
+              <svg class="h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm font-medium text-white mb-2">Local insight</p>
+              <p class="text-sm text-text-secondary leading-relaxed">{location.localFact}</p>
+            </div>
+          </div>
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- What We Deliver -->
+  <section class="border-t border-white/10 py-24 lg:py-32">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <p class="text-sm uppercase tracking-widest text-text-muted mb-4">Capabilities</p>
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          What we deliver
+        </h2>
+        <p class="mt-6 max-w-2xl text-lg text-text-secondary leading-relaxed">
+          {service.description}
+        </p>
+      </AnimateOnScroll>
+
+      <AnimateOnScroll animation="stagger">
+        <div class="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {service.capabilities.map((capability) => (
+            <div class="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-surface/50 p-5">
+              <svg class="mt-0.5 h-5 w-5 shrink-0 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              <span class="text-sm text-text-secondary">{capability}</span>
+            </div>
+          ))}
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- How We Work -->
+  <section class="border-t border-white/10 py-24 lg:py-32">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <p class="text-sm uppercase tracking-widest text-text-muted mb-4">Process</p>
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          How we work
+        </h2>
+      </AnimateOnScroll>
+
+      <AnimateOnScroll animation="stagger">
+        <div class="mt-16 grid gap-8 sm:grid-cols-3 lg:grid-cols-5">
+          {processSteps.map((step) => (
+            <div class="relative">
+              <div class="mb-4 text-5xl font-bold text-white/[0.06]">{step.number}</div>
+              <h3 class="text-lg font-semibold text-white">{step.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-text-secondary">
+                {step.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- Industry pages for this service -->
+  <section class="border-t border-white/10 py-20">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <h2 class="text-2xl font-semibold text-white">
+          {service.name} by industry
+        </h2>
+        <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {topIndustries.map((ind) => (
+            <a
+              href={`/services/${service.slug}-for-${ind.slug}`}
+              class="group rounded-xl border border-white/[0.06] bg-surface/50 p-5 transition-colors hover:border-white/[0.12]"
+            >
+              <p class="text-sm font-medium text-white group-hover:text-accent transition-colors">{service.name} for {ind.name}</p>
+              <p class="mt-1 text-xs text-text-muted line-clamp-2">{ind.pain.split(',')[0]}</p>
+            </a>
+          ))}
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- Lead Capture -->
+  <LeadCapture source={`seo-${service.slug}-${location.slug}`} />
+
+  <!-- Cross-links: Other Locations & Services -->
+  <section class="border-t border-white/10 py-20">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <div class="grid gap-12 sm:grid-cols-2">
+          <div>
+            <h3 class="text-xl font-semibold text-white mb-6">{service.name} in other locations</h3>
+            <div class="space-y-3">
+              {otherLocations.map((loc) => (
+                <a
+                  href={`/services/${service.slug}-${loc.slug}`}
+                  class="block text-sm text-text-secondary transition-colors hover:text-accent"
+                >
+                  {service.name} {loc.preposition} {loc.name}
+                </a>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold text-white mb-6">Other services {location.preposition} {location.name}</h3>
+            <div class="space-y-3">
+              {otherServices.map((svc) => (
+                <a
+                  href={`/services/${svc.slug}-${location.slug}`}
+                  class="block text-sm text-text-secondary transition-colors hover:text-accent"
+                >
+                  {svc.name} {location.preposition} {location.name}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 flex flex-wrap gap-4 text-sm">
+          <a href="/services" class="text-text-muted transition-colors hover:text-accent">All services</a>
+          <span class="text-text-muted">/</span>
+          <a href="/work" class="text-text-muted transition-colors hover:text-accent">Our work</a>
+          <span class="text-text-muted">/</span>
+          <a href="/blog" class="text-text-muted transition-colors hover:text-accent">Blog</a>
+          <span class="text-text-muted">/</span>
+          <a href="/contact" class="text-text-muted transition-colors hover:text-accent">Contact</a>
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="border-t border-white/10 py-32 lg:py-40">
+    <div class="mx-auto max-w-5xl px-6 text-center">
+      <AnimateOnScroll animation="fade-up">
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          Ready to start?
+        </h2>
+        <p class="mt-4 text-lg text-text-secondary">
+          {location.slug === 'remote' ? 'We work with distributed teams worldwide.' : `Serving ${location.name} businesses with expert ${service.name.toLowerCase()}.`} Get in touch today.
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-4">
+          <a
+            href="/start"
+            class="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90"
+          >
+            Start a project
+          </a>
+          <a
+            href="/contact"
+            class="inline-flex items-center justify-center rounded-full border border-white/20 px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-white/5"
+          >
+            Get in touch
+          </a>
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AnimateOnScroll from '../components/shared/AnimateOnScroll.astro';
+---
+
+<BaseLayout title="Thank You | Odea Works" description="Thanks for reaching out to Odea Works. We'll be in touch within 24 hours.">
+
+  <!-- Main content -->
+  <section class="py-32 lg:py-40">
+    <div class="mx-auto max-w-3xl px-6 text-center">
+      <AnimateOnScroll animation="fade-up">
+        <h1 id="thank-you-heading" class="text-5xl font-semibold tracking-tight text-white lg:text-6xl">
+          Thanks.
+        </h1>
+        <p class="mt-6 text-xl text-text-secondary">
+          We'll be in touch within 24 hours.
+        </p>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- While you wait -->
+  <section class="pb-32 lg:pb-40">
+    <div class="mx-auto max-w-3xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <p class="text-sm uppercase tracking-wider text-text-muted mb-8">While you wait</p>
+
+        <div class="space-y-0">
+          <a
+            href="/blog"
+            class="group flex items-center justify-between border-b border-white/10 py-5 transition-colors hover:border-white/20"
+          >
+            <span class="text-lg text-white group-hover:text-accent transition-colors">Read our blog</span>
+            <svg class="h-5 w-5 text-text-muted group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+
+          <a
+            href="/work"
+            class="group flex items-center justify-between border-b border-white/10 py-5 transition-colors hover:border-white/20"
+          >
+            <span class="text-lg text-white group-hover:text-accent transition-colors">See our work</span>
+            <svg class="h-5 w-5 text-text-muted group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+
+          <a
+            href="https://linkedin.com/in/connorodea"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex items-center justify-between border-b border-white/10 py-5 transition-colors hover:border-white/20"
+          >
+            <span class="text-lg text-white group-hover:text-accent transition-colors">Follow us on LinkedIn</span>
+            <svg class="h-5 w-5 text-text-muted group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="mt-16 text-center">
+          <p class="text-text-muted">
+            Need something urgent? Email
+            <a href="mailto:connor@odeaworks.com" class="text-white transition-colors hover:text-accent">connor@odeaworks.com</a>
+          </p>
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <script>
+    // Check URL params for name personalization
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get('name');
+    if (name) {
+      const heading = document.getElementById('thank-you-heading');
+      if (heading) {
+        const firstName = name.split(' ')[0];
+        heading.textContent = `Thanks, ${firstName}.`;
+      }
+    }
+  </script>
+
+</BaseLayout>

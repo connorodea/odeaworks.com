@@ -1,0 +1,279 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AnimateOnScroll from '../components/shared/AnimateOnScroll.astro';
+
+const bookingSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Discovery Call — Odea Works",
+  "url": "https://odeaworks.com/book",
+  "description": "Book a free 30-minute discovery call with Odea Works. No pitch, just an honest conversation about your project.",
+  "provider": {
+    "@type": "Organization",
+    "name": "Odea Works",
+    "url": "https://odeaworks.com",
+    "email": "connor@odeaworks.com"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "description": "Free 30-minute discovery call"
+  }
+};
+---
+
+<BaseLayout title="Book a Discovery Call | Odea Works" description="Book a free 30-minute discovery call with Odea Works. No pitch — just an honest conversation about your project.">
+  <script type="application/ld+json" set:html={JSON.stringify(bookingSchema)} />
+
+  <!-- Hero -->
+  <section class="py-32 lg:py-40">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <h1 class="text-5xl font-semibold tracking-tight text-white lg:text-6xl">
+          Book a Discovery Call
+        </h1>
+        <p class="mt-6 text-xl text-text-secondary">
+          30 minutes. No pitch. Just an honest conversation about your project.
+        </p>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- Booking Form -->
+  <section class="pb-32 lg:pb-40">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="stagger" class="grid gap-16 lg:grid-cols-2">
+
+        <!-- Left column: Info -->
+        <div class="mt-0">
+          <div>
+            <p class="text-sm uppercase tracking-wider text-text-muted">What to expect</p>
+            <p class="mt-4 text-text-secondary leading-relaxed">
+              A 30-minute video call where we discuss your project, goals, and challenges. No sales deck, no pressure — just a practical conversation about what's possible.
+            </p>
+          </div>
+
+          <div class="mt-10">
+            <p class="text-sm uppercase tracking-wider text-text-muted">How it works</p>
+            <div class="mt-4 space-y-4">
+              <div class="flex items-start gap-3">
+                <span class="mt-0.5 text-[#10a37f] shrink-0 font-semibold">1.</span>
+                <p class="text-text-secondary">Pick a date and time that works for you</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="mt-0.5 text-[#10a37f] shrink-0 font-semibold">2.</span>
+                <p class="text-text-secondary">You'll get a confirmation email right away</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="mt-0.5 text-[#10a37f] shrink-0 font-semibold">3.</span>
+                <p class="text-text-secondary">I'll send a Google Meet link before the call</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-10">
+            <p class="text-sm uppercase tracking-wider text-text-muted">Prefer email?</p>
+            <a href="mailto:connor@odeaworks.com" class="mt-2 block text-lg text-white transition-colors hover:text-accent">
+              connor@odeaworks.com
+            </a>
+          </div>
+        </div>
+
+        <!-- Right column: Form -->
+        <div class="mt-0">
+          <form id="booking-form" method="POST" class="space-y-0">
+
+            <!-- Honeypot -->
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
+            <!-- Name -->
+            <div class="border-b border-white/10 focus-within:border-white/30 transition-colors">
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                placeholder="Name"
+                class="w-full bg-transparent py-4 text-white placeholder-text-muted outline-none"
+              />
+            </div>
+
+            <!-- Email -->
+            <div class="border-b border-white/10 focus-within:border-white/30 transition-colors">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="Email"
+                class="w-full bg-transparent py-4 text-white placeholder-text-muted outline-none"
+              />
+            </div>
+
+            <!-- Company -->
+            <div class="border-b border-white/10 focus-within:border-white/30 transition-colors">
+              <input
+                type="text"
+                id="company"
+                name="company"
+                placeholder="Company (optional)"
+                class="w-full bg-transparent py-4 text-white placeholder-text-muted outline-none"
+              />
+            </div>
+
+            <!-- Project Description -->
+            <div class="border-b border-white/10 focus-within:border-white/30 transition-colors">
+              <textarea
+                id="project"
+                name="project"
+                required
+                rows="3"
+                placeholder="What's your project about?"
+                class="w-full resize-none bg-transparent py-4 text-white placeholder-text-muted outline-none"
+              ></textarea>
+            </div>
+
+            <!-- Preferred Date -->
+            <div class="border-b border-white/10 focus-within:border-white/30 transition-colors">
+              <label for="date" class="block pt-4 pb-1 text-xs uppercase tracking-wider text-text-muted">Preferred date</label>
+              <input
+                type="date"
+                id="date"
+                name="date"
+                required
+                class="w-full bg-transparent pb-4 text-white outline-none [color-scheme:dark]"
+              />
+            </div>
+
+            <!-- Preferred Time Slot -->
+            <div class="border-b border-white/10 focus-within:border-white/30 transition-colors">
+              <select
+                id="timeSlot"
+                name="timeSlot"
+                required
+                class="w-full appearance-none bg-transparent py-4 text-text-muted outline-none [&:has(option:checked:not([value='']))]:text-white"
+              >
+                <option value="" disabled selected>Preferred time</option>
+                <option value="9:00 AM EST">9:00 AM EST</option>
+                <option value="10:00 AM EST">10:00 AM EST</option>
+                <option value="11:00 AM EST">11:00 AM EST</option>
+                <option value="1:00 PM EST">1:00 PM EST</option>
+                <option value="2:00 PM EST">2:00 PM EST</option>
+                <option value="3:00 PM EST">3:00 PM EST</option>
+                <option value="4:00 PM EST">4:00 PM EST</option>
+              </select>
+            </div>
+
+            <!-- Timezone note -->
+            <p class="pt-3 text-xs text-text-muted">All times are Eastern (EST/EDT)</p>
+
+            <!-- Submit -->
+            <div class="pt-8">
+              <button
+                id="submit-btn"
+                type="submit"
+                class="rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Book My Call
+              </button>
+            </div>
+          </form>
+
+          <!-- Success message (hidden by default) -->
+          <div id="form-success" class="hidden py-12">
+            <p class="text-lg font-medium text-white">You're booked.</p>
+            <p class="mt-2 text-text-secondary">Check your email for confirmation and details about the call.</p>
+          </div>
+
+          <!-- Error message (hidden by default) -->
+          <div id="form-error" class="hidden mt-6 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3">
+            <p class="text-sm text-red-400" id="form-error-text">Something went wrong. Please try again.</p>
+          </div>
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <script>
+    // Set date constraints: min = tomorrow, max = 30 days from now
+    const dateInput = document.getElementById('date');
+    if (dateInput) {
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      const maxDate = new Date();
+      maxDate.setDate(maxDate.getDate() + 30);
+
+      dateInput.setAttribute('min', tomorrow.toISOString().split('T')[0]);
+      dateInput.setAttribute('max', maxDate.toISOString().split('T')[0]);
+    }
+
+    const form = document.getElementById('booking-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const successDiv = document.getElementById('form-success');
+    const errorDiv = document.getElementById('form-error');
+    const errorText = document.getElementById('form-error-text');
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Hide previous messages
+      errorDiv?.classList.add('hidden');
+
+      // Loading state
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Booking...';
+      }
+
+      // Collect form data
+      const formData = new FormData(form);
+      const data = {
+        _honey: formData.get('_honey') || '',
+        name: formData.get('name') || '',
+        email: formData.get('email') || '',
+        company: formData.get('company') || '',
+        project: formData.get('project') || '',
+        date: formData.get('date') || '',
+        timeSlot: formData.get('timeSlot') || '',
+      };
+
+      try {
+        const res = await fetch('/api/book', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+
+        const result = await res.json();
+
+        if (res.ok && result.success) {
+          // Track conversion
+          if (window.plausible) plausible('Discovery Call Booked');
+          // Success — hide form, show thank-you
+          form.classList.add('hidden');
+          successDiv?.classList.remove('hidden');
+        } else {
+          // Server returned an error
+          if (errorText) {
+            errorText.textContent = result.error || 'Something went wrong. Please try again.';
+          }
+          errorDiv?.classList.remove('hidden');
+        }
+      } catch {
+        // Network error
+        if (errorText) {
+          errorText.textContent = 'Network error. Please check your connection and try again.';
+        }
+        errorDiv?.classList.remove('hidden');
+      } finally {
+        // Reset button
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Book My Call';
+        }
+      }
+    });
+  </script>
+
+</BaseLayout>

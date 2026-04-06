@@ -36,6 +36,16 @@ if (!fs.existsSync(SUBSCRIBERS_FILE)) {
 }
 
 // ---------------------------------------------------------------------------
+// Bookings file path
+// ---------------------------------------------------------------------------
+const BOOKINGS_FILE = path.join(__dirname, 'bookings.json');
+
+// Ensure bookings file exists
+if (!fs.existsSync(BOOKINGS_FILE)) {
+  fs.writeFileSync(BOOKINGS_FILE, JSON.stringify([], null, 2));
+}
+
+// ---------------------------------------------------------------------------
 // Rate limiting — simple in-memory store (IP -> [timestamps])
 // ---------------------------------------------------------------------------
 const RATE_LIMIT_MAX = 3;
@@ -45,6 +55,10 @@ const rateLimitMap = new Map();
 // Separate rate limiter for subscribe endpoint (more generous)
 const SUBSCRIBE_RATE_LIMIT_MAX = 5;
 const subscribeRateLimitMap = new Map();
+
+// Separate rate limiter for booking endpoint (3 per hour)
+const BOOKING_RATE_LIMIT_MAX = 3;
+const bookingRateLimitMap = new Map();
 
 function isRateLimited(ip) {
   const now = Date.now();
@@ -72,6 +86,19 @@ function isSubscribeRateLimited(ip) {
   return false;
 }
 
+function isBookingRateLimited(ip) {
+  const now = Date.now();
+  let timestamps = bookingRateLimitMap.get(ip) || [];
+  timestamps = timestamps.filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+  bookingRateLimitMap.set(ip, timestamps);
+
+  if (timestamps.length >= BOOKING_RATE_LIMIT_MAX) {
+    return true;
+  }
+  timestamps.push(now);
+  return false;
+}
+
 // Periodic cleanup every 10 minutes
 setInterval(() => {
   const now = Date.now();
@@ -89,6 +116,14 @@ setInterval(() => {
       subscribeRateLimitMap.delete(ip);
     } else {
       subscribeRateLimitMap.set(ip, valid);
+    }
+  }
+  for (const [ip, timestamps] of bookingRateLimitMap) {
+    const valid = timestamps.filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+    if (valid.length === 0) {
+      bookingRateLimitMap.delete(ip);
+    } else {
+      bookingRateLimitMap.set(ip, valid);
     }
   }
 }, 10 * 60 * 1000);
@@ -722,6 +757,334 @@ async function handleSubscribe(req, res) {
 }
 
 // ---------------------------------------------------------------------------
+// Template: Booking Confirmation (to the booker)
+// ---------------------------------------------------------------------------
+function buildBookingConfirmationHtml({ name, date, timeSlot }) {
+  const firstName = escapeHtml((name || '').split(' ')[0]);
+
+  function linkRow(label, url) {
+    return `<tr>
+      <td style="padding:6px 0;">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td style="width:6px; font-size:15px; color:${BRAND.green}; font-family:${BRAND.fontStack}; vertical-align:top; padding-right:12px;">&rarr;</td>
+            <td>
+              <a href="${url}" style="color:${BRAND.green}; font-size:15px; text-decoration:none; font-family:${BRAND.fontStack};">${escapeHtml(label)}</a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>`;
+  }
+
+  const bodyContent = `
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+      <tr>
+        <td style="padding:40px 40px 0;">
+          <h1 style="margin:0 0 24px; font-size:24px; font-weight:600; color:${BRAND.white}; font-family:${BRAND.fontStack}; letter-spacing:-0.3px;">Your discovery call is confirmed.</h1>
+          <p style="margin:0 0 20px; font-size:15px; line-height:1.7; color:${BRAND.gray}; font-family:${BRAND.fontStack};">Hi ${firstName},</p>
+          <p style="margin:0 0 20px; font-size:15px; line-height:1.7; color:${BRAND.gray}; font-family:${BRAND.fontStack};">Your 30-minute discovery call is confirmed:</p>
+        </td>
+      </tr>
+      <!-- Call details card -->
+      <tr>
+        <td style="padding:0 40px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:${BRAND.bg}; border:1px solid ${BRAND.borderColor}; border-radius:8px;">
+            <tr>
+              <td style="padding:20px 24px;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td style="padding:0 0 12px;">
+                      <p style="margin:0 0 3px; color:${BRAND.mutedGray}; font-size:11px; text-transform:uppercase; letter-spacing:0.8px; font-family:${BRAND.fontStack};">Date</p>
+                      <span style="color:${BRAND.white}; font-size:16px; font-weight:600; font-family:${BRAND.fontStack};">${escapeHtml(date)}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding:0;">
+                      <p style="margin:0 0 3px; color:${BRAND.mutedGray}; font-size:11px; text-transform:uppercase; letter-spacing:0.8px; font-family:${BRAND.fontStack};">Time</p>
+                      <span style="color:${BRAND.white}; font-size:16px; font-weight:600; font-family:${BRAND.fontStack};">${escapeHtml(timeSlot)}</span>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:24px 40px 0;">
+          <p style="margin:0 0 20px; font-size:15px; line-height:1.7; color:${BRAND.gray}; font-family:${BRAND.fontStack};">I'll send a Google Meet link before the call. If you need to reschedule, just reply to this email.</p>
+          <p style="margin:0 0 12px; font-size:15px; line-height:1.7; color:${BRAND.gray}; font-family:${BRAND.fontStack};">In the meantime, you might find these useful:</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:0 40px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:8px 0 20px;">
+            ${linkRow('Our recent work', 'https://odeaworks.com/work')}
+            ${linkRow('Our approach', 'https://odeaworks.com/about')}
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:0 40px 40px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid ${BRAND.borderColor};">
+            <tr>
+              <td style="padding:24px 0 0;">
+                <p style="margin:0; font-size:15px; line-height:1.7; color:${BRAND.gray}; font-family:${BRAND.fontStack};">Looking forward to it.</p>
+                <p style="margin:8px 0 0; font-size:15px; font-weight:600; color:${BRAND.white}; font-family:${BRAND.fontStack};">Connor O'Dea</p>
+                <p style="margin:2px 0 0; font-size:13px; color:${BRAND.mutedGray}; font-family:${BRAND.fontStack};">Founder, Odea Works</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>`;
+
+  return emailLayout(bodyContent);
+}
+
+function buildBookingConfirmationText({ name, date, timeSlot }) {
+  const firstName = (name || '').split(' ')[0];
+  return `Hi ${firstName},
+
+Your 30-minute discovery call is confirmed:
+
+Date: ${date}
+Time: ${timeSlot}
+
+I'll send a Google Meet link before the call. If you need to reschedule, just reply to this email.
+
+In the meantime, you might find these useful:
+- Our recent work: https://odeaworks.com/work
+- Our approach: https://odeaworks.com/about
+
+Looking forward to it.
+
+Connor O'Dea
+Founder, Odea Works`;
+}
+
+// ---------------------------------------------------------------------------
+// Template: Booking Notification (to connor@odeaworks.com)
+// ---------------------------------------------------------------------------
+function buildBookingNotificationHtml({ name, email, company, date, timeSlot, project }) {
+  const companyDisplay = company || 'Not provided';
+
+  function fieldRow(label, value, opts = {}) {
+    const valueColor = opts.color || BRAND.white;
+    const isLink = opts.link;
+    const valueHtml = isLink
+      ? `<a href="mailto:${escapeHtml(value)}" style="color:${BRAND.green}; font-size:15px; text-decoration:none; font-family:${BRAND.fontStack};">${escapeHtml(value)}</a>`
+      : `<span style="color:${valueColor}; font-size:15px; font-family:${BRAND.fontStack};">${escapeHtml(value)}</span>`;
+
+    return `<tr>
+      <td style="padding:14px 0; border-bottom:1px solid ${BRAND.borderColor};">
+        <p style="margin:0 0 4px; color:${BRAND.mutedGray}; font-size:11px; text-transform:uppercase; letter-spacing:0.8px; font-family:${BRAND.fontStack};">${label}</p>
+        ${valueHtml}
+      </td>
+    </tr>`;
+  }
+
+  const bodyContent = `
+    <!-- Header -->
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+      <tr>
+        <td style="padding:36px 40px 28px;">
+          <h1 style="margin:0; font-size:22px; font-weight:600; color:${BRAND.white}; font-family:${BRAND.fontStack}; letter-spacing:-0.3px;">New Discovery Call Booked</h1>
+        </td>
+      </tr>
+    </table>
+    <!-- Fields -->
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+      <tr>
+        <td style="padding:0 40px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+            ${fieldRow('Name', name)}
+            ${fieldRow('Email', email, { link: true })}
+            ${fieldRow('Company', companyDisplay)}
+            ${fieldRow('Date', date)}
+            ${fieldRow('Time', timeSlot, { color: BRAND.green })}
+            <tr>
+              <td style="padding:14px 0 0;">
+                <p style="margin:0 0 4px; color:${BRAND.mutedGray}; font-size:11px; text-transform:uppercase; letter-spacing:0.8px; font-family:${BRAND.fontStack};">Project</p>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:4px 0 0;">
+                <p style="margin:0; color:${BRAND.white}; font-size:15px; line-height:1.7; white-space:pre-wrap; font-family:${BRAND.fontStack};">${escapeHtml(project)}</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <!-- CTA -->
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+      <tr>
+        <td style="padding:32px 40px 36px;">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td style="border-radius:8px; background-color:${BRAND.green};">
+                <a href="mailto:${escapeHtml(email)}" style="display:inline-block; padding:12px 24px; color:${BRAND.white}; font-size:14px; font-weight:600; text-decoration:none; font-family:${BRAND.fontStack};">Reply to ${escapeHtml(name.split(' ')[0])}</a>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>`;
+
+  return emailLayout(bodyContent);
+}
+
+function buildBookingNotificationText({ name, email, company, date, timeSlot, project }) {
+  return `NEW DISCOVERY CALL BOOKED
+=========================
+
+Name: ${name}
+Email: ${email}
+Company: ${company || 'Not provided'}
+Date: ${date}
+Time: ${timeSlot}
+
+Project:
+${project}
+
+---
+Reply: mailto:${email}
+Odea Works | odeaworks.com`;
+}
+
+// ---------------------------------------------------------------------------
+// Booking handler
+// ---------------------------------------------------------------------------
+async function handleBooking(req, res) {
+  const clientIP = getClientIP(req);
+
+  // Rate limit check (3 per hour)
+  if (isBookingRateLimited(clientIP)) {
+    return jsonResponse(res, 429, { error: 'Too many requests. Please try again later.' });
+  }
+
+  // Parse JSON body
+  let body = '';
+  try {
+    await new Promise((resolve, reject) => {
+      req.on('data', (chunk) => {
+        body += chunk;
+        if (body.length > 50_000) {
+          reject(new Error('Payload too large'));
+        }
+      });
+      req.on('end', resolve);
+      req.on('error', reject);
+    });
+  } catch {
+    return jsonResponse(res, 413, { error: 'Payload too large' });
+  }
+
+  let data;
+  try {
+    data = JSON.parse(body);
+  } catch {
+    return jsonResponse(res, 400, { error: 'Invalid JSON' });
+  }
+
+  // Honeypot check
+  if (data._honey) {
+    return jsonResponse(res, 200, { success: true });
+  }
+
+  // Validate required fields
+  const { name, email, project, date, timeSlot } = data;
+  if (!name || !name.trim()) {
+    return jsonResponse(res, 400, { error: 'Name is required' });
+  }
+  if (!email || !email.trim()) {
+    return jsonResponse(res, 400, { error: 'Email is required' });
+  }
+  if (!project || !project.trim()) {
+    return jsonResponse(res, 400, { error: 'Project description is required' });
+  }
+  if (!date || !date.trim()) {
+    return jsonResponse(res, 400, { error: 'Preferred date is required' });
+  }
+  if (!timeSlot || !timeSlot.trim()) {
+    return jsonResponse(res, 400, { error: 'Preferred time is required' });
+  }
+
+  // Basic email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email.trim())) {
+    return jsonResponse(res, 400, { error: 'Invalid email address' });
+  }
+
+  // Build clean data
+  const bookingData = {
+    name: name.trim(),
+    email: email.trim(),
+    company: (data.company || '').trim(),
+    project: project.trim(),
+    date: date.trim(),
+    timeSlot: timeSlot.trim(),
+    ip: clientIP,
+    bookedAt: new Date().toISOString(),
+  };
+
+  // Save booking to bookings.json
+  try {
+    let bookings = [];
+    try {
+      bookings = JSON.parse(fs.readFileSync(BOOKINGS_FILE, 'utf-8'));
+    } catch {
+      bookings = [];
+    }
+
+    bookings.push(bookingData);
+    fs.writeFileSync(BOOKINGS_FILE, JSON.stringify(bookings, null, 2));
+  } catch (err) {
+    console.error(`[${new Date().toISOString()}] Failed to save booking:`, err);
+    return jsonResponse(res, 500, { error: 'Failed to save booking. Please try again later.' });
+  }
+
+  // Send confirmation email to the booker
+  try {
+    await resend.emails.send({
+      from: FROM_EMAIL,
+      to: [email.trim()],
+      replyTo: TO_EMAIL,
+      subject: 'Your discovery call is confirmed \u2014 Odea Works',
+      html: buildBookingConfirmationHtml(bookingData),
+      text: buildBookingConfirmationText(bookingData),
+    });
+
+    console.log(`[${new Date().toISOString()}] Booking confirmation sent to ${email.trim()}`);
+  } catch (err) {
+    // Non-critical — log but don't fail
+    console.error(`[${new Date().toISOString()}] Booking confirmation email failed for ${email.trim()}:`, err);
+  }
+
+  // Send notification to Connor
+  try {
+    const companyTag = bookingData.company ? ` (${bookingData.company})` : '';
+    await resend.emails.send({
+      from: FROM_EMAIL,
+      to: [TO_EMAIL],
+      replyTo: email.trim(),
+      subject: `New discovery call booked \u2014 ${bookingData.name}${companyTag}`,
+      html: buildBookingNotificationHtml(bookingData),
+      text: buildBookingNotificationText(bookingData),
+    });
+
+    console.log(`[${new Date().toISOString()}] Booking notification sent \u2014 from: ${email.trim()}, name: ${name.trim()}, date: ${date.trim()}, time: ${timeSlot.trim()}, ip: ${clientIP}`);
+  } catch (err) {
+    console.error(`[${new Date().toISOString()}] Booking notification email failed:`, err);
+    // Still return success — the booking is saved even if notification fails
+  }
+
+  return jsonResponse(res, 200, { success: true });
+}
+
+// ---------------------------------------------------------------------------
 // Server
 // ---------------------------------------------------------------------------
 const server = http.createServer(async (req, res) => {
@@ -738,6 +1101,11 @@ const server = http.createServer(async (req, res) => {
   // Route: POST /api/subscribe
   if (req.method === 'POST' && req.url === '/api/subscribe') {
     return handleSubscribe(req, res);
+  }
+
+  // Route: POST /api/book
+  if (req.method === 'POST' && req.url === '/api/book') {
+    return handleBooking(req, res);
   }
 
   // Route: POST /api/contact

@@ -11,21 +11,25 @@ const navLinks = [
 
 <header
   id="site-header"
-  class="fixed top-0 left-0 right-0 z-50 transition-[border-color,background-color] duration-300 bg-background/80 backdrop-blur-xl border-b border-transparent"
+  class="fixed top-4 left-0 right-0 z-50 flex justify-center px-4"
 >
-  <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 h-16">
-    <!-- Logo -->
-    <a href="/" class="flex items-center">
-      <img src="/logos/ODeaWorks-official.png" alt="ODeaWorks" class="h-8 w-auto" />
+  <nav
+    id="header-nav"
+    class="flex items-center rounded-full border border-white/[0.06] bg-black/50 backdrop-blur-2xl transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+    style="padding: 8px 8px; gap: 4px;"
+  >
+    <!-- Logo (shrinks on scroll) -->
+    <a href="/" id="header-logo" class="flex items-center px-3 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" style="height: 44px; opacity: 1; width: auto; overflow: hidden;">
+      <img src="/logos/ODeaWorks-official.png" alt="ODeaWorks" id="logo-img" class="transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" style="height: 40px; width: auto;" />
     </a>
 
-    <!-- Desktop nav -->
-    <div class="hidden items-center gap-8 md:flex">
+    <!-- Desktop nav links -->
+    <div class="hidden items-center md:flex" id="nav-links">
       {
         navLinks.map((link) => (
           <a
             href={link.href}
-            class="text-[13px] text-text-secondary transition-colors duration-200 hover:text-text-primary"
+            class="nav-link rounded-full px-4 py-2 text-[13px] text-white/60 transition-all duration-300 hover:text-white hover:bg-white/[0.06]"
           >
             {link.label}
           </a>
@@ -33,7 +37,8 @@ const navLinks = [
       }
       <a
         href="/start"
-        class="ml-2 rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-white transition-colors duration-200 hover:bg-white/15"
+        id="cta-btn"
+        class="ml-1 rounded-full bg-white px-5 py-2 text-[13px] font-medium text-black transition-all duration-500 hover:bg-white/90"
       >
         Start a Project
       </a>
@@ -43,11 +48,10 @@ const navLinks = [
     <button
       id="mobile-menu-btn"
       type="button"
-      class="inline-flex items-center justify-center p-2 text-text-secondary transition-colors hover:text-text-primary md:hidden"
+      class="inline-flex items-center justify-center rounded-full p-2.5 text-white/60 transition-colors hover:text-white hover:bg-white/[0.06] md:hidden"
       aria-label="Toggle navigation menu"
       aria-expanded="false"
     >
-      <!-- Hamburger icon -->
       <svg
         id="hamburger-icon"
         class="h-5 w-5"
@@ -56,12 +60,8 @@ const navLinks = [
         stroke-width="1.5"
         stroke="currentColor"
       >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
       </svg>
-      <!-- Close icon -->
       <svg
         id="close-icon"
         class="hidden h-5 w-5"
@@ -70,51 +70,52 @@ const navLinks = [
         stroke-width="1.5"
         stroke="currentColor"
       >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M6 18L18 6M6 6l12 12"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
       </svg>
     </button>
   </nav>
-
-  <!-- Mobile menu panel -->
-  <div
-    id="mobile-menu"
-    class="hidden md:hidden bg-background/95 backdrop-blur-xl"
-  >
-    <div class="px-6 py-6 space-y-1">
-      {
-        navLinks.map((link) => (
-          <a
-            href={link.href}
-            class="block py-3 text-[15px] text-text-secondary transition-colors hover:text-text-primary"
-          >
-            {link.label}
-          </a>
-        ))
-      }
-      <a
-        href="/start"
-        class="mt-4 block rounded-full bg-white/10 px-4 py-2.5 text-center text-[15px] font-medium text-white transition-colors hover:bg-white/15"
-      >
-        Start a Project
-      </a>
-    </div>
-  </div>
 </header>
 
-<!-- Spacer to offset fixed header -->
-<div class="h-16"></div>
+<!-- Mobile menu panel -->
+<div
+  id="mobile-menu"
+  class="fixed top-20 left-4 right-4 z-40 hidden md:hidden rounded-2xl border border-white/[0.06] bg-black/90 backdrop-blur-2xl"
+>
+  <div class="px-6 py-4 space-y-1">
+    {
+      navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="block rounded-xl py-3 px-4 text-[15px] text-white/60 transition-colors hover:text-white hover:bg-white/[0.06]"
+        >
+          {link.label}
+        </a>
+      ))
+    }
+    <a
+      href="/start"
+      class="mt-3 block rounded-full bg-white px-4 py-3 text-center text-[15px] font-medium text-black"
+    >
+      Start a Project
+    </a>
+  </div>
+</div>
+
+<!-- Spacer -->
+<div class="h-20"></div>
 
 <script>
   const btn = document.getElementById("mobile-menu-btn");
   const menu = document.getElementById("mobile-menu");
   const hamburgerIcon = document.getElementById("hamburger-icon");
   const closeIcon = document.getElementById("close-icon");
-  const header = document.getElementById("site-header");
+  const headerNav = document.getElementById("header-nav");
+  const headerLogo = document.getElementById("header-logo");
+  const logoImg = document.getElementById("logo-img");
+  const ctaBtn = document.getElementById("cta-btn");
+  const navLinks = document.querySelectorAll(".nav-link");
 
-  // Toggle mobile menu
+  // Mobile menu toggle
   btn?.addEventListener("click", () => {
     const isOpen = menu?.classList.toggle("hidden") === false;
     hamburgerIcon?.classList.toggle("hidden", isOpen);
@@ -122,7 +123,6 @@ const navLinks = [
     btn.setAttribute("aria-expanded", String(isOpen));
   });
 
-  // Close mobile menu on link click
   menu?.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       menu.classList.add("hidden");
@@ -132,18 +132,58 @@ const navLinks = [
     });
   });
 
-  // Add border on scroll
-  const updateHeader = () => {
-    if (!header) return;
-    if (window.scrollY > 10) {
-      header.classList.remove("border-transparent");
-      header.classList.add("border-border");
+  // Polymorphic scroll animation
+  let lastState = "expanded";
+
+  const morphHeader = () => {
+    if (!headerNav || !headerLogo || !logoImg) return;
+    const scrollY = window.scrollY;
+    const threshold = 80;
+
+    // Calculate morph progress (0 = top, 1 = fully scrolled past threshold)
+    const progress = Math.min(scrollY / threshold, 1);
+
+    // Smooth cubic easing
+    const ease = progress < 0.5
+      ? 4 * progress * progress * progress
+      : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+    // Logo: shrink from 40px to 24px, then fade out
+    const logoHeight = 40 - (16 * ease);
+    const logoOpacity = Math.max(1 - (ease * 1.5), 0);
+    const logoWidth = logoOpacity > 0.1 ? "auto" : "0px";
+    const logoPadding = logoOpacity > 0.1 ? "12px" : "0px";
+
+    logoImg.style.height = `${logoHeight}px`;
+    headerLogo.style.opacity = `${logoOpacity}`;
+    headerLogo.style.width = logoWidth;
+    headerLogo.style.paddingLeft = logoPadding;
+    headerLogo.style.paddingRight = logoPadding;
+
+    // Nav bg: more opaque as you scroll
+    const bgOpacity = 0.5 + (0.35 * ease);
+    const borderOpacity = 0.06 + (0.06 * ease);
+    headerNav.style.backgroundColor = `rgba(0, 0, 0, ${bgOpacity})`;
+    headerNav.style.borderColor = `rgba(255, 255, 255, ${borderOpacity})`;
+
+    // Nav links: slightly brighter when compact
+    navLinks.forEach((link) => {
+      const linkOpacity = 0.6 + (0.15 * ease);
+      link.style.color = `rgba(255, 255, 255, ${linkOpacity})`;
+    });
+
+    // Padding: tighten when compact
+    const padding = 8 - (2 * ease);
+    headerNav.style.padding = `${padding}px ${padding + 2}px`;
+
+    // Shadow on scroll
+    if (ease > 0.5) {
+      headerNav.style.boxShadow = `0 8px 32px rgba(0, 0, 0, ${0.3 * ease})`;
     } else {
-      header.classList.remove("border-border");
-      header.classList.add("border-transparent");
+      headerNav.style.boxShadow = "none";
     }
   };
 
-  updateHeader();
-  window.addEventListener("scroll", updateHeader, { passive: true });
+  morphHeader();
+  window.addEventListener("scroll", morphHeader, { passive: true });
 </script>

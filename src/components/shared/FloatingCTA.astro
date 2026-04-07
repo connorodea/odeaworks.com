@@ -12,7 +12,7 @@
   <!-- Desktop: pill button -->
   <div class="hidden sm:flex items-center gap-3 rounded-full bg-white pl-5 pr-2 py-2 shadow-lg shadow-black/30">
     <a
-      href="/contact"
+      href="/book"
       class="text-sm font-medium text-black whitespace-nowrap"
     >
       Book a free consultation
@@ -33,7 +33,7 @@
   <!-- Mobile: full-width bottom bar -->
   <div class="sm:hidden flex items-center justify-between bg-white px-5 py-3.5 shadow-lg shadow-black/30">
     <a
-      href="/contact"
+      href="/book"
       class="text-sm font-medium text-black"
     >
       Book a free consultation &rarr;
@@ -65,8 +65,8 @@
       return;
     }
 
-    // Skip on contact page
-    if (window.location.pathname === '/contact') {
+    // Skip on contact and booking pages
+    if (window.location.pathname === '/contact' || window.location.pathname === '/book') {
       cta.remove();
       return;
     }

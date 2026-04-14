@@ -77,6 +77,15 @@ const organizationSchema = {
     <!-- Analytics (Umami — self-hosted, privacy-friendly, no cookies) -->
     <script defer src="https://analytics.odeaworks.com/script.js" data-website-id="f38ad26d-88a9-4eff-95f6-b59c8af82078"></script>
 
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WD93M6M8ZS"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-WD93M6M8ZS');
+    </script>
+
     <!-- Preload Inter fonts -->
     <link
       rel="preload"

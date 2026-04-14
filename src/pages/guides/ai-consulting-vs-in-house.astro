@@ -1,0 +1,344 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AnimateOnScroll from '../../components/shared/AnimateOnScroll.astro';
+
+const title = "AI Consulting vs Building an In-House AI Team: A Practical Comparison";
+const description = "Should you hire an AI consultant or build an in-house team? Compare costs, timelines, and outcomes to make the right decision.";
+const pubDate = "2026-04-14";
+const author = "Connor O'Dea";
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "author": {
+    "@type": "Person",
+    "name": author,
+    "url": "https://odeaworks.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Odea Works",
+    "url": "https://odeaworks.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://odeaworks.com/favicon.svg"
+    }
+  },
+  "datePublished": new Date(pubDate).toISOString(),
+  "dateModified": new Date(pubDate).toISOString(),
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://odeaworks.com/guides/ai-consulting-vs-in-house"
+  },
+  "keywords": "ai consulting vs in-house, hire ai team, ai consultant or employee, build vs buy ai team"
+};
+
+const comparisonRows = [
+  { factor: "Time to start", consultant: "1-2 weeks", inHouse: "3-6 months (hiring)" },
+  { factor: "Monthly cost", consultant: "$5-15K (project-based)", inHouse: "$15-25K (salary + benefits)" },
+  { factor: "Expertise depth", consultant: "Deep specialist", inHouse: "Generalist (usually)" },
+  { factor: "Ramp-up time", consultant: "Immediate", inHouse: "3-6 months onboarding" },
+  { factor: "Institutional knowledge", consultant: "Limited", inHouse: "Grows over time" },
+  { factor: "Flexibility", consultant: "Engage/disengage as needed", inHouse: "Fixed commitment" },
+  { factor: "Management overhead", consultant: "Minimal", inHouse: "Significant" },
+  { factor: "Long-term cost (3+ years)", consultant: "Higher per-hour", inHouse: "Lower per-hour" },
+  { factor: "Risk if it doesn't work", consultant: "End the engagement", inHouse: "Severance, rehiring" },
+  { factor: "Breadth of experience", consultant: "Cross-industry exposure", inHouse: "Single-company context" },
+];
+---
+
+<BaseLayout title={`${title} — Odea Works`} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+  <article class="mx-auto max-w-3xl px-6 py-16 sm:py-24">
+
+    <!-- Header -->
+    <header class="mb-16">
+      <AnimateOnScroll animation="fade-up">
+        <div class="mb-4">
+          <a
+            href="/resources"
+            class="text-sm text-[#666] transition-colors hover:text-[#ababab]"
+          >
+            &larr; Resources
+          </a>
+        </div>
+
+        <span class="inline-block text-xs font-medium uppercase tracking-wider text-[#666] mb-4">
+          Guide
+        </span>
+
+        <h1 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-[2.75rem] leading-[1.15]">
+          {title}
+        </h1>
+
+        <p class="mt-6 text-lg text-[#ababab] leading-relaxed">
+          {description}
+        </p>
+
+        <div class="mt-6 flex items-center gap-3 text-sm text-[#666]">
+          <span>{author}</span>
+          <span>&middot;</span>
+          <time datetime={new Date(pubDate).toISOString()}>
+            {new Date(pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </time>
+          <span>&middot;</span>
+          <span>10 min read</span>
+        </div>
+      </AnimateOnScroll>
+    </header>
+
+    <!-- Content -->
+    <AnimateOnScroll animation="fade-up">
+      <div class="prose">
+
+        <h2>The Decision</h2>
+
+        <p>
+          Every company building with AI faces this question eventually: should we hire an AI consultant or build our own team?
+        </p>
+        <p>
+          The answer isn't universal. It depends on your timeline, budget, how central AI is to your product, and what you need built. Companies that make this decision well save hundreds of thousands of dollars and months of time. Companies that get it wrong waste both.
+        </p>
+        <p>
+          This guide provides a practical framework for making the decision. We'll compare the real costs (not just salary vs. hourly rate), the realistic timelines, and the specific scenarios where each option makes the most sense. We'll also cover the hybrid approach that many successful companies use — and that we often recommend to clients at <a href="/services">Odea Works</a>.
+        </p>
+
+        <h2>Cost Comparison</h2>
+
+        <p>
+          The surface-level comparison is misleading. A consultant charging $200/hour looks expensive next to a $180K salary. But salary is only part of the in-house cost. Let's look at the real numbers.
+        </p>
+
+        <h3>The real cost of an in-house AI team</h3>
+
+        <p>
+          A senior AI/ML engineer in the US commands a total compensation of <strong>$150,000-$250,000 per year</strong>. But that's just base compensation. Add the full cost of employment:
+        </p>
+        <ul>
+          <li><strong>Benefits:</strong> Health insurance, 401k match, equity — typically 25-40% on top of salary</li>
+          <li><strong>Recruiting:</strong> Agency fees (20-25% of first-year salary), job board costs, interview time from your existing team — $30,000-$60,000 per hire</li>
+          <li><strong>Onboarding:</strong> 3-6 months before a new hire is fully productive, during which they're consuming senior team members' time</li>
+          <li><strong>Management:</strong> Someone needs to manage, mentor, and review their work</li>
+          <li><strong>Tools and infrastructure:</strong> GPU compute, ML platform licenses, development environments</li>
+        </ul>
+        <p>
+          The fully loaded cost of a single senior AI engineer is <strong>$250,000-$400,000 per year</strong>. And you almost certainly need more than one — AI work requires diverse skills (data engineering, ML engineering, MLOps) that rarely exist in a single person.
+        </p>
+        <p>
+          For a minimal viable AI team (2-3 people), expect a fully loaded annual cost of <strong>$500,000-$1,000,000+</strong>.
+        </p>
+
+        <h3>The real cost of an AI consultant</h3>
+
+        <p>
+          AI consulting engagements typically range from <strong>$5,000 to $100,000+</strong> per project, depending on scope and complexity. Our <a href="/pricing">pricing page</a> breaks this down in detail:
+        </p>
+        <ul>
+          <li><strong>Advisory (assessment + roadmap):</strong> $5,000-$15,000</li>
+          <li><strong>Build (implementation):</strong> $15,000-$50,000</li>
+          <li><strong>Partnership (ongoing retainer):</strong> $5,000-$25,000/month</li>
+        </ul>
+        <p>
+          Even a substantial consulting engagement — say, $50,000 for a complete AI system build — costs less than three months of a single in-house hire's fully loaded compensation. And the consultant delivers a finished, production-ready system, not someone who's still learning your codebase.
+        </p>
+
+        <h3>Break-even analysis</h3>
+
+        <p>
+          The break-even point depends on how much AI work you have. If you need continuous, full-time AI engineering — shipping new features, maintaining existing models, running experiments — an in-house team becomes cost-effective around <strong>18-24 months</strong>, assuming you can recruit and retain top talent.
+        </p>
+        <p>
+          If your AI needs are project-based — building a specific capability, then maintaining it with occasional updates — a consultant will almost always be cheaper. Most companies overestimate how much ongoing AI engineering they actually need.
+        </p>
+
+        <h2>Timeline Comparison</h2>
+
+        <h3>Consultant timeline</h3>
+
+        <p>
+          An experienced AI consultant can start productive work within <strong>1-2 weeks</strong> of engagement. The discovery and assessment phase happens immediately. By week 3-4, you're typically seeing architecture designs and initial implementation. By week 8-12, you have a deployed production system.
+        </p>
+        <p>
+          Total time from "we need AI" to "AI is in production": <strong>2-3 months</strong>.
+        </p>
+
+        <h3>In-house timeline</h3>
+
+        <p>
+          Building an in-house team starts with recruiting. For senior AI talent, expect:
+        </p>
+        <ul>
+          <li><strong>Job posting to first interview:</strong> 2-4 weeks</li>
+          <li><strong>Interview process:</strong> 4-8 weeks</li>
+          <li><strong>Offer acceptance to start date:</strong> 2-4 weeks (notice period)</li>
+          <li><strong>Onboarding and ramp-up:</strong> 2-4 months</li>
+          <li><strong>Initial build:</strong> 2-4 months</li>
+        </ul>
+        <p>
+          Total time from "we need AI" to "AI is in production": <strong>8-16 months</strong>. And that's assuming you find the right person on the first try. In the current market, senior AI engineers are among the hardest roles to fill.
+        </p>
+
+        <h2>When to Choose a Consultant</h2>
+
+        <p>
+          A consultant is the right choice in these five scenarios:
+        </p>
+
+        <p><strong>1. You need results fast.</strong> If competitive pressure, a board mandate, or a market opportunity requires you to ship AI capabilities within 2-3 months, a consultant is the only realistic path. You can't recruit, hire, and onboard fast enough.</p>
+
+        <p><strong>2. You have a defined, bounded project.</strong> "Build a document processing pipeline that extracts structured data from invoices" is a perfect consulting engagement. Clear scope, clear deliverables, clear endpoint. You don't need a permanent team for a project with a finish line.</p>
+
+        <p><strong>3. AI is a capability, not your core product.</strong> If you're a logistics company that needs AI-powered route optimization, or an e-commerce platform that needs better search — AI makes your product better, but it isn't your product. A consultant builds the capability; your team maintains it.</p>
+
+        <p><strong>4. You need to validate before committing.</strong> Before investing $500K+ in an in-house team, spend $10K-$30K with a consultant to validate that your AI strategy is sound. Build a proof of concept. Test it with real users. Then decide whether to scale with an internal team or continue with consulting support.</p>
+
+        <p><strong>5. You need specialized expertise your team lacks.</strong> Computer vision, natural language processing, and agent architectures are distinct specializations. Even if you have ML engineers, they may not have the specific expertise your project requires. A consultant brings that specialized depth without you hiring for a niche skillset you'll only need temporarily.</p>
+
+        <h2>When to Build In-House</h2>
+
+        <p>
+          An in-house team is the right choice in these five scenarios:
+        </p>
+
+        <p><strong>1. AI is your core product.</strong> If your company's primary value proposition depends on AI — you're building an AI-native product — you need people who live and breathe your domain every day. The institutional knowledge, iteration speed, and alignment that come from a dedicated team can't be replicated by an outside firm.</p>
+
+        <p><strong>2. You need continuous AI development.</strong> If you're shipping new AI features every sprint, running multiple experiments simultaneously, and constantly iterating on model performance, the volume of work justifies a permanent team. At some point, the per-hour cost of consulting exceeds the per-hour cost of in-house, and that point comes when utilization is consistently high.</p>
+
+        <p><strong>3. You have sensitive data that can't leave your organization.</strong> Some industries (healthcare, defense, financial services) have data handling requirements that make external consulting impractical. If your data can't be accessed by outside contractors under any circumstances, you need internal talent. Though note: many consultants (including us) work under strict NDAs and can operate within most compliance frameworks.</p>
+
+        <p><strong>4. You're building a competitive moat.</strong> If your AI capabilities are what differentiate you from competitors, keeping that knowledge in-house protects your advantage. Consultants work with multiple clients and can't be exclusive to you. For your most sensitive IP, internal teams provide better protection.</p>
+
+        <p><strong>5. You've already validated with a consultant and are ready to scale.</strong> This is the ideal scenario. A consultant helped you build the first version, proved the approach works, and documented the architecture. Now you hire an internal team to extend, optimize, and scale what was built.</p>
+
+        <h2>The Hybrid Approach</h2>
+
+        <p>
+          The smartest companies don't choose one or the other. They use consultants and in-house teams together, at different stages.
+        </p>
+
+        <h3>Phase 1: Consultant builds the foundation</h3>
+
+        <p>
+          Engage a consultant for the initial assessment, architecture, and first production build. This gets you to a working system in 2-3 months instead of 12+. The consultant makes the hard architectural decisions based on cross-industry experience, avoids common pitfalls, and delivers a system that's designed for long-term maintenance.
+        </p>
+
+        <h3>Phase 2: Hire while the consultant builds</h3>
+
+        <p>
+          Start recruiting your in-house team while the consultant is building. This parallelizes the timeline — instead of hiring first (6+ months) then building (3+ months), you do both simultaneously. When your new hires start, they inherit a working production system with documentation, not a blank slate.
+        </p>
+
+        <h3>Phase 3: Knowledge transfer</h3>
+
+        <p>
+          The consultant spends 2-4 weeks working alongside your new team, transferring knowledge, reviewing their code, and answering questions. This is worth budgeting explicitly — the difference between a successful handoff and a failed one is whether the consultant stays long enough for your team to truly understand the system.
+        </p>
+
+        <h3>Phase 4: In-house team takes over</h3>
+
+        <p>
+          Your team owns the system, extends it, and builds new capabilities. The consultant may stay available on a lightweight retainer for occasional architecture questions or code reviews, but the day-to-day work is fully internal.
+        </p>
+
+        <p>
+          This hybrid approach gives you the speed of consulting with the long-term advantages of an in-house team. It's the pattern we recommend most often at Odea Works, and it's how many of our <a href="/work">most successful engagements</a> have worked.
+        </p>
+
+      </div>
+    </AnimateOnScroll>
+
+    <!-- Comparison Table -->
+    <AnimateOnScroll animation="fade-up">
+      <div class="mt-16">
+        <h2 class="text-2xl font-semibold text-white mb-8">Side-by-Side Comparison</h2>
+        <div class="overflow-x-auto rounded-xl border border-white/10">
+          <table class="w-full text-left">
+            <thead>
+              <tr class="border-b border-white/10 bg-[#0a0a0a]">
+                <th class="px-6 py-4 text-sm font-semibold text-white">Factor</th>
+                <th class="px-6 py-4 text-sm font-semibold text-[#10a37f]">AI Consultant</th>
+                <th class="px-6 py-4 text-sm font-semibold text-white">In-House Team</th>
+              </tr>
+            </thead>
+            <tbody>
+              {comparisonRows.map((row, i) => (
+                <tr class={`border-b border-white/[0.06] ${i % 2 === 0 ? 'bg-[#050505]' : 'bg-[#0a0a0a]'}`}>
+                  <td class="px-6 py-4 text-sm font-medium text-white">{row.factor}</td>
+                  <td class="px-6 py-4 text-sm text-[#ababab]">{row.consultant}</td>
+                  <td class="px-6 py-4 text-sm text-[#ababab]">{row.inHouse}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </AnimateOnScroll>
+
+    <!-- Key Takeaways -->
+    <AnimateOnScroll animation="fade-up">
+      <div class="prose mt-16">
+
+        <h2>Key Takeaways</h2>
+
+        <ul>
+          <li><strong>For speed and defined projects, choose a consultant.</strong> You'll have a working system in months, not years, with no recruiting overhead.</li>
+          <li><strong>For continuous AI development at your core, build in-house.</strong> When AI is your product and you need constant iteration, a dedicated team pays for itself.</li>
+          <li><strong>For most companies, the hybrid approach wins.</strong> Let a consultant build the foundation, then hire a team to extend and maintain it.</li>
+          <li><strong>Don't compare hourly rates.</strong> Compare total cost of outcome — including recruiting, onboarding, management, and the time value of shipping faster.</li>
+          <li><strong>Validate before you commit.</strong> A $10K-$30K consulting engagement can validate (or invalidate) a $500K+ in-house hiring plan.</li>
+          <li><strong>Factor in risk.</strong> Ending a consulting engagement is easy. Unwinding a bad hire costs time, money, and team morale.</li>
+        </ul>
+
+        <hr />
+
+        <p>
+          Not sure which path is right for your company? We've helped dozens of organizations make this decision. Sometimes the answer is "hire us." Sometimes it's "build a team." Sometimes it's "do both." We'll give you an honest recommendation based on your specific situation.
+        </p>
+
+      </div>
+    </AnimateOnScroll>
+
+    <!-- CTA -->
+    <AnimateOnScroll animation="fade-up">
+      <div class="mt-16 rounded-2xl border border-white/[0.08] bg-[#0a0a0a] p-8 sm:p-10 text-center">
+        <h3 class="text-xl font-semibold text-white">
+          Let's figure out the right approach for you
+        </h3>
+        <p class="mt-3 text-[#ababab] max-w-lg mx-auto">
+          Book a free 30-minute call. We'll discuss your goals, your team, and whether consulting, in-house, or a hybrid approach makes the most sense.
+        </p>
+        <div class="mt-6">
+          <a
+            href="/book"
+            class="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90"
+          >
+            Book a free call &rarr;
+          </a>
+        </div>
+      </div>
+    </AnimateOnScroll>
+
+    <!-- Related -->
+    <div class="mt-16 border-t border-white/10 pt-12">
+      <h3 class="text-sm text-[#666] uppercase tracking-wider mb-6">Related resources</h3>
+      <div class="space-y-4">
+        <a href="/guides/hiring-ai-consultant" class="block text-white hover:text-[#10a37f] transition-colors">
+          The Complete Guide to Hiring an AI Consultant in 2026 &rarr;
+        </a>
+        <a href="/blog/2026-04-05-how-to-evaluate-ai-vendors" class="block text-white hover:text-[#10a37f] transition-colors">
+          How to Evaluate AI Vendors: A Technical Decision Framework &rarr;
+        </a>
+        <a href="/blog/2026-04-05-build-vs-buy-ai-capabilities" class="block text-white hover:text-[#10a37f] transition-colors">
+          Build vs Buy: Making the Right AI Decision &rarr;
+        </a>
+        <a href="/blog/2026-04-04-should-i-hire-an-ai-consultant-or-build-in-house" class="block text-white hover:text-[#10a37f] transition-colors">
+          Should I Hire an AI Consultant or Build In-House? &rarr;
+        </a>
+      </div>
+    </div>
+
+  </article>
+</BaseLayout>

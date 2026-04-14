@@ -1,0 +1,432 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AnimateOnScroll from '../../components/shared/AnimateOnScroll.astro';
+
+const title = "The Complete Guide to Hiring an AI Consultant in 2026";
+const description = "Everything you need to know about hiring an AI consultant — when to hire, what to look for, how much it costs, and how to evaluate proposals.";
+const pubDate = "2026-04-14";
+const author = "Connor O'Dea";
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "author": {
+    "@type": "Person",
+    "name": author,
+    "url": "https://odeaworks.com/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Odea Works",
+    "url": "https://odeaworks.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://odeaworks.com/favicon.svg"
+    }
+  },
+  "datePublished": new Date(pubDate).toISOString(),
+  "dateModified": new Date(pubDate).toISOString(),
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://odeaworks.com/guides/hiring-ai-consultant"
+  },
+  "keywords": "hire ai consultant, ai consulting, ai consultant cost, how to hire ai consultant, ai consulting firm"
+};
+---
+
+<BaseLayout title={`${title} — Odea Works`} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+  <article class="mx-auto max-w-3xl px-6 py-16 sm:py-24">
+
+    <!-- Header -->
+    <header class="mb-16">
+      <AnimateOnScroll animation="fade-up">
+        <div class="mb-4">
+          <a
+            href="/resources"
+            class="text-sm text-[#666] transition-colors hover:text-[#ababab]"
+          >
+            &larr; Resources
+          </a>
+        </div>
+
+        <span class="inline-block text-xs font-medium uppercase tracking-wider text-[#666] mb-4">
+          Guide
+        </span>
+
+        <h1 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-[2.75rem] leading-[1.15]">
+          {title}
+        </h1>
+
+        <p class="mt-6 text-lg text-[#ababab] leading-relaxed">
+          {description}
+        </p>
+
+        <div class="mt-6 flex items-center gap-3 text-sm text-[#666]">
+          <span>{author}</span>
+          <span>&middot;</span>
+          <time datetime={new Date(pubDate).toISOString()}>
+            {new Date(pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </time>
+          <span>&middot;</span>
+          <span>15 min read</span>
+        </div>
+      </AnimateOnScroll>
+    </header>
+
+    <!-- Content -->
+    <AnimateOnScroll animation="fade-up">
+      <div class="prose">
+
+        <p>
+          AI is no longer experimental. Companies across every industry are deploying machine learning models, building LLM-powered workflows, and automating processes that used to require entire teams. But most companies don't have the in-house expertise to do this well.
+        </p>
+        <p>
+          That's where AI consultants come in. The right consultant can save you months of trial and error, help you avoid expensive architectural mistakes, and get a working system into production faster than you could build it alone. The wrong one can drain your budget on prototypes that never ship.
+        </p>
+        <p>
+          This guide covers everything you need to make a smart hiring decision — from recognizing when you actually need outside help to evaluating proposals and avoiding the most common mistakes.
+        </p>
+
+        <h2>When Do You Need an AI Consultant?</h2>
+
+        <p>
+          Not every company needs an AI consultant. Some companies have the internal talent and infrastructure to build AI systems themselves. But for most, there are clear signals that outside expertise would save time, money, or both.
+        </p>
+
+        <h3>Five signals your company needs outside AI expertise</h3>
+
+        <p><strong>1. You have a clear business problem but no AI experience on your team.</strong> You know what you want to automate or optimize, but nobody on staff has built production ML systems. Reading documentation and watching tutorials won't close that gap fast enough — you need someone who's already shipped similar systems.</p>
+
+        <p><strong>2. Your proof of concept works, but it's stuck in the lab.</strong> This is the most common scenario we see at <a href="/services">Odea Works</a>. A data science team built a promising prototype in a Jupyter notebook, but nobody knows how to turn it into a reliable, scalable production system with proper error handling, monitoring, and deployment infrastructure.</p>
+
+        <p><strong>3. You've been "exploring AI" for more than six months without shipping anything.</strong> Exploration without execution is a warning sign. If your team has attended conferences, evaluated tools, and run internal workshops but hasn't put anything into production, an outside perspective can break the stalemate.</p>
+
+        <p><strong>4. You're about to make a major technology decision.</strong> Choosing between building a custom model vs. using an API, selecting an ML platform, or deciding on a vector database architecture — these decisions lock you in for years. Getting them wrong costs significantly more than the consulting engagement that would have prevented the mistake.</p>
+
+        <p><strong>5. Your existing AI system isn't performing.</strong> Models degrade. Pipelines break. Costs spiral. If your deployed system isn't meeting accuracy targets, running too slowly, or costing more than expected, a consultant can diagnose the root cause and implement fixes faster than your team can learn how.</p>
+
+        <h3>When to build in-house vs. hire</h3>
+
+        <p>
+          If AI is going to be a core differentiator for your product — the thing that makes your company uniquely valuable — you'll eventually need an in-house team. But even then, a consultant can help you build the foundation, establish best practices, and train your initial hires. We cover this in detail in our <a href="/guides/ai-consulting-vs-in-house">AI consulting vs. in-house comparison</a>.
+        </p>
+        <p>
+          If AI is a capability you need (better search, automated workflows, smarter analytics) but not your core product, a consultant is almost always the better path. You get production expertise without the overhead of a permanent team.
+        </p>
+
+        <h3>The cost of waiting</h3>
+
+        <p>
+          Every month you spend deliberating is a month your competitors spend deploying. The AI landscape moves fast — models improve, costs drop, new capabilities emerge. Companies that deployed RAG systems in early 2025 have a significant head start over those still evaluating vendors in 2026. The gap compounds.
+        </p>
+        <p>
+          We've seen companies lose six-figure contracts because a competitor automated their proposal process with AI first. The cost of waiting isn't just the missed opportunity — it's the market position you'll never get back.
+        </p>
+
+        <h2>What Does an AI Consultant Actually Do?</h2>
+
+        <p>
+          The term "AI consultant" covers a wide range of work. Some firms do nothing but strategy. Others only write code. The best ones do both — and everything in between. Here's what a comprehensive AI consulting engagement looks like.
+        </p>
+
+        <h3>Strategy and assessment</h3>
+
+        <p>
+          Before writing a single line of code, a good consultant maps your current state: what data you have, where your systems are, what your team can maintain, and what success looks like. This isn't a PowerPoint exercise. It's a technical audit that identifies the highest-impact AI opportunities and the fastest path to production.
+        </p>
+        <p>
+          At Odea Works, our <a href="/pricing">Advisory tier</a> covers this phase. We deliver a written assessment with specific, prioritized recommendations — not vague suggestions to "leverage AI." You walk away knowing exactly what to build, in what order, and what it will take.
+        </p>
+
+        <h3>Architecture and design</h3>
+
+        <p>
+          This is where most projects succeed or fail. The architecture decisions made in week two determine whether the system scales to production or collapses under real-world load. A good AI consultant designs systems that handle edge cases, degrade gracefully, and can be monitored and maintained by your team after handoff.
+        </p>
+        <p>
+          Key decisions at this stage include: model selection (commercial API vs. open-source vs. fine-tuned), data pipeline architecture, evaluation frameworks, latency and cost budgets, and integration patterns with your existing stack.
+        </p>
+
+        <h3>Implementation and deployment</h3>
+
+        <p>
+          This is the engineering work — building the actual system. For AI projects, implementation involves much more than writing model inference code. It includes data preprocessing pipelines, prompt engineering and testing, evaluation harnesses, error handling for non-deterministic outputs, deployment infrastructure, and CI/CD pipelines that include model performance testing.
+        </p>
+        <p>
+          A production AI system is fundamentally different from a prototype. Prototypes ignore edge cases, skip monitoring, and run on a developer's laptop. Production systems handle millions of requests, recover from failures automatically, and surface problems before they affect users. That gap is where experienced AI consultants earn their fee.
+        </p>
+
+        <h3>Ongoing optimization</h3>
+
+        <p>
+          AI systems aren't "set and forget." Models need retraining as data distributions shift. Prompts need updating as LLM providers release new versions. Costs need monitoring as usage scales. Some consulting engagements include an ongoing <a href="/pricing">Partnership</a> phase where the consultant monitors system performance, implements improvements, and gradually transfers knowledge to your team.
+        </p>
+
+        <h3>How it differs from a dev shop</h3>
+
+        <p>
+          A development agency builds software to spec. An AI consultant helps you figure out what to spec in the first place — and brings the specialized technical judgment to make it work. AI systems have unique challenges: non-deterministic outputs, evaluation complexity, data quality issues, model hallucination, and rapidly evolving best practices. A generalist dev shop will learn these lessons on your dime. An AI consultant has already learned them.
+        </p>
+
+        <h2>How Much Does AI Consulting Cost?</h2>
+
+        <p>
+          Pricing varies enormously based on the scope of work, the consultant's experience, and the complexity of the problem. Here's what you should expect at different levels.
+        </p>
+
+        <h3>Pricing models</h3>
+
+        <p><strong>Project-based pricing</strong> is the most common for defined engagements. You agree on scope, deliverables, and timeline upfront, and the price reflects the total effort. This works well when you know what you want to build. Most AI consulting projects range from <strong>$5,000 to $100,000+</strong> depending on complexity.</p>
+
+        <p><strong>Retainer pricing</strong> works best for ongoing partnerships. You purchase a block of hours per month (typically 20-80 hours) at a predictable rate. This gives you dedicated access to the consultant's expertise without committing to a specific project scope. Monthly retainers typically range from <strong>$5,000 to $25,000</strong>.</p>
+
+        <p><strong>Hourly pricing</strong> is less common for full engagements but sometimes used for advisory work, code reviews, or architecture consultations. Expect <strong>$150 to $400+ per hour</strong> for experienced AI consultants, depending on specialization.</p>
+
+        <h3>Typical ranges</h3>
+
+        <p><strong>$5,000 - $15,000:</strong> AI readiness assessment, architecture review, technology selection guidance. Typically 2-4 weeks. This is our <a href="/pricing">Advisory tier</a> — you get a thorough technical audit and a prioritized roadmap, not a sales pitch.</p>
+
+        <p><strong>$15,000 - $50,000:</strong> Full implementation of a defined AI feature or system. RAG pipeline, agent workflow, computer vision integration, or LLM-powered automation. 4-12 weeks including deployment and documentation.</p>
+
+        <p><strong>$50,000 - $100,000+:</strong> Complex, multi-system AI implementations. Enterprise integrations, custom model training, large-scale automation platforms. 3-6+ months with ongoing optimization.</p>
+
+        <h3>What affects cost</h3>
+
+        <p>The biggest cost driver is <strong>integration complexity</strong>. Building a standalone AI feature is straightforward. Integrating it with legacy systems, existing databases, compliance requirements, and enterprise authentication adds significant effort. The second biggest driver is <strong>data quality</strong> — if your data needs cleaning, structuring, or enrichment before models can use it, that work can double the timeline.</p>
+
+        <p>Other factors: <strong>performance requirements</strong> (real-time inference is harder than batch processing), <strong>accuracy targets</strong> (going from 90% to 99% accuracy can cost as much as the first 90%), and <strong>ongoing support needs</strong> (handoff-only vs. continued optimization).</p>
+
+        <p>
+          You can see our full pricing structure at <a href="/pricing">odeaworks.com/pricing</a>.
+        </p>
+
+        <h2>How to Evaluate AI Consulting Firms</h2>
+
+        <p>
+          The AI consulting market is flooded with firms that range from exceptional to fraudulent. Here's how to separate the two.
+        </p>
+
+        <h3>Seven questions to ask every AI consulting firm</h3>
+
+        <p><strong>1. "Can you show me a production system you've built, not a demo?"</strong> Demos are easy. Production systems are hard. Any serious AI consultant should have examples of systems handling real traffic, real edge cases, and real failure modes. At Odea Works, we point to projects like <a href="/work">QuickVisionz</a> — a YOLO-based computer vision pipeline processing real warehouse inventory, not a curated demo dataset.</p>
+
+        <p><strong>2. "How do you evaluate model performance?"</strong> If they can't articulate their evaluation methodology — precision/recall tradeoffs, offline vs. online evaluation, regression testing, human-in-the-loop review — they're not ready for production work. Ask for specifics, not buzzwords.</p>
+
+        <p><strong>3. "What happens when the model is wrong?"</strong> Every AI system produces incorrect outputs. The question is how the system handles it. Good consultants design for failure: fallback logic, confidence thresholds, human escalation paths, and monitoring that catches degradation before users do.</p>
+
+        <p><strong>4. "How will you hand off the system to our team?"</strong> Some consultants build systems that only they can maintain — creating permanent dependency. Ask about documentation, knowledge transfer sessions, code quality standards, and whether your team will be able to modify and extend the system independently.</p>
+
+        <p><strong>5. "What's your approach to cost management?"</strong> API costs, compute costs, and data storage costs can spiral quickly in AI systems. A good consultant designs cost-aware architectures from day one — caching strategies, batch processing where appropriate, and model selection that balances quality with cost.</p>
+
+        <p><strong>6. "Can I talk to a previous client?"</strong> References matter more in AI consulting than in general software development because the work is harder to evaluate visually. Talk to someone who worked with them on a comparable project and ask about communication, technical quality, and whether the system actually worked in production.</p>
+
+        <p><strong>7. "What would you recommend we don't do?"</strong> The best consultants will tell you when AI isn't the right solution. If a firm says yes to everything and suggests AI for problems that don't need it, they're selling hours, not results. We wrote about this principle in our post on <a href="/blog/2026-04-06-when-is-ai-not-the-right-solution">when AI is not the right solution</a>.</p>
+
+        <h3>Red flags to watch for</h3>
+
+        <ul>
+          <li><strong>No public code or technical content.</strong> If a firm claims deep AI expertise but has no GitHub presence, no technical blog, and no open-source contributions, proceed with caution.</li>
+          <li><strong>Promising specific accuracy numbers before seeing your data.</strong> Anyone guaranteeing "99% accuracy" before understanding your use case is either lying or doesn't understand how AI works.</li>
+          <li><strong>Exclusively using proprietary tools.</strong> If the consultant builds everything on their own platform, you're locked in. Good consultants use standard, well-supported tools and frameworks.</li>
+          <li><strong>No discussion of ongoing maintenance.</strong> AI systems require ongoing care. If the proposal only covers building the system and says nothing about monitoring, updating, or maintaining it, you'll be stuck with a system that degrades over time.</li>
+          <li><strong>Buzzword-heavy proposals with no technical specifics.</strong> "Leverage cutting-edge AI to transform your business" means nothing. Look for proposals that name specific models, architectures, evaluation approaches, and integration patterns.</li>
+        </ul>
+
+        <h3>Portfolio review checklist</h3>
+
+        <p>When reviewing a firm's past work, look for:</p>
+        <ul>
+          <li>Systems that are still running in production (not just launched and abandoned)</li>
+          <li>Evidence of handling scale (how many requests/day, how many users)</li>
+          <li>Architectural diagrams or technical write-ups, not just screenshots</li>
+          <li>Diversity of AI techniques (not just OpenAI API wrappers)</li>
+          <li>Examples relevant to your industry or problem domain</li>
+        </ul>
+
+        <h3>Technical depth indicators</h3>
+
+        <p>
+          During conversations, test their depth. Ask about specific technical tradeoffs: "Why would you choose RAG over fine-tuning for our use case?" or "How would you handle latency if we need sub-200ms responses?" The answers should be nuanced and specific to your situation, not generic talking points. A firm that truly builds AI systems can discuss the engineering tradeoffs in detail because they've lived through them.
+        </p>
+
+        <h2>The AI Consulting Engagement Process</h2>
+
+        <p>
+          A well-structured engagement follows a predictable flow. Here's what to expect at each stage and how long each phase typically takes.
+        </p>
+
+        <h3>Discovery (Week 1-2)</h3>
+
+        <p>
+          The consultant learns your business, your data, your team, and your goals. This involves stakeholder interviews, technical infrastructure review, data audit, and competitive analysis. You should expect the consultant to ask hard questions about what you've tried, what hasn't worked, and what "success" actually means for your organization.
+        </p>
+        <p>
+          Deliverable: a clear problem statement and scope document that both sides agree on.
+        </p>
+
+        <h3>Assessment (Week 2-3)</h3>
+
+        <p>
+          Based on discovery, the consultant evaluates feasibility, identifies risks, and proposes an approach. This includes data quality evaluation, technology stack assessment, and a realistic estimate of effort, timeline, and cost.
+        </p>
+        <p>
+          Deliverable: a written assessment report with prioritized recommendations. If you're working with us, this is what our <a href="/pricing">Advisory tier</a> covers. Some companies stop here and execute the recommendations internally.
+        </p>
+
+        <h3>Architecture (Week 3-4)</h3>
+
+        <p>
+          The consultant designs the system: data flows, model selection, integration points, evaluation strategy, deployment architecture, and monitoring plan. This is the most important phase because architectural mistakes are the most expensive to fix later.
+        </p>
+        <p>
+          Deliverable: architecture documentation, technology selection rationale, and a detailed implementation plan.
+        </p>
+
+        <h3>Build (Week 4-12+)</h3>
+
+        <p>
+          Engineering execution. The consultant builds the system in iterative sprints, with regular demos and checkpoints. You should see working software early and often — not a big reveal at the end.
+        </p>
+        <p>
+          Expect weekly progress updates, shared access to the codebase, and incremental deployments to staging environments. The best engagements involve your team in the build phase so knowledge transfer happens organically, not as a fire-drill at the end.
+        </p>
+
+        <h3>Ship (Final 1-2 weeks)</h3>
+
+        <p>
+          Production deployment, monitoring setup, documentation finalization, and knowledge transfer. The consultant should ensure your team can operate, monitor, and modify the system independently.
+        </p>
+        <p>
+          Deliverable: deployed production system, monitoring dashboards, runbooks, and a documented handoff checklist.
+        </p>
+
+        <h3>Timeline expectations</h3>
+
+        <p>
+          Most AI consulting engagements take 4-12 weeks for a defined feature or system. Complex, multi-system implementations can take 3-6 months. Be skeptical of consultants promising production AI systems in 1-2 weeks — either the scope is trivially simple, or they're cutting corners on testing, evaluation, and production readiness.
+        </p>
+        <p>
+          You can learn more about what to expect from the process in our post on the <a href="/blog/2026-04-06-ai-consulting-process-what-to-expect">AI consulting process</a>.
+        </p>
+
+        <h2>Common Mistakes When Hiring AI Consultants</h2>
+
+        <p>
+          We've seen companies make the same mistakes repeatedly. Here are the ones that cost the most.
+        </p>
+
+        <h3>Hiring for demos, not production</h3>
+
+        <p>
+          A flashy demo proves nothing about production readiness. The consultant who shows the most impressive demo in the sales process is often the one who cuts the most corners in production. Look for the consultant who shows you ugly but functional production systems over beautiful but fragile demos.
+        </p>
+        <p>
+          Ask specifically: "Is this demo running on production infrastructure, or is it a local prototype?" The answer reveals everything.
+        </p>
+
+        <h3>Ignoring integration complexity</h3>
+
+        <p>
+          The AI model is the easy part. Integrating it with your CRM, your authentication system, your data warehouse, and your compliance requirements — that's where 60-80% of the effort goes. Companies consistently underestimate this, and consultants who don't push back on unrealistic timelines are setting everyone up for failure.
+        </p>
+        <p>
+          During evaluation, share the details of your existing systems. The consultant's response to your integration requirements will tell you whether they've done this before.
+        </p>
+
+        <h3>Not defining success metrics</h3>
+
+        <p>
+          "We want AI" is not a project goal. Before engaging a consultant, define what success looks like in measurable terms. Reduce manual review time by 50%. Process 1,000 documents per hour with 95% accuracy. Cut customer response time from 4 hours to 15 minutes.
+        </p>
+        <p>
+          Without clear metrics, you can't evaluate whether the engagement was worth the investment — and neither can the consultant. Good metrics align the consultant's incentives with your business outcomes.
+        </p>
+
+        <h3>Choosing the cheapest option</h3>
+
+        <p>
+          AI consulting is one area where "you get what you pay for" is consistently true. The cheapest consultant often lacks the production experience to build systems that actually work at scale. They'll build something that works in testing but fails under real-world conditions — and you'll pay a second consultant to fix it.
+        </p>
+        <p>
+          Compare value, not just price. A consultant who charges 2x but delivers a system that works the first time is cheaper than one who charges less but takes three attempts to get it right.
+        </p>
+
+        <h3>Treating AI as a standalone project</h3>
+
+        <p>
+          AI systems don't exist in a vacuum. They're part of your product, your operations, your data infrastructure. Companies that treat AI implementation as a separate, siloed project almost always struggle with integration, adoption, and long-term maintenance. Involve your engineering team, your product team, and your operations team from day one.
+        </p>
+
+        <h3>Skipping the assessment phase</h3>
+
+        <p>
+          It's tempting to jump straight to building, especially when you feel behind. But the assessment phase is where you avoid the most expensive mistakes. Spending $5,000-$10,000 on a thorough <a href="/pricing">assessment</a> before committing to a $50,000+ build can save you the entire build budget if it turns out your approach needs to change.
+        </p>
+
+        <h2>Key Takeaways</h2>
+
+        <ul>
+          <li><strong>Know when you need help.</strong> If you've been "exploring AI" for months without shipping, or your prototype is stuck in a notebook, it's time to bring in outside expertise.</li>
+          <li><strong>Evaluate for production, not demos.</strong> Ask to see systems that are running in production today, not polished presentations.</li>
+          <li><strong>Budget realistically.</strong> Expect $5K-$15K for assessment, $15K-$50K for implementation, and $50K+ for complex multi-system builds.</li>
+          <li><strong>Ask the hard questions.</strong> How do they handle failure? How do they manage costs? What would they recommend you don't do?</li>
+          <li><strong>Start with assessment.</strong> A focused assessment phase is the highest-ROI investment in any AI initiative.</li>
+          <li><strong>Define success metrics before you start.</strong> Measurable goals align incentives and make evaluation possible.</li>
+          <li><strong>Don't choose on price alone.</strong> The cheapest consultant rarely delivers the best outcome.</li>
+          <li><strong>Plan for ongoing maintenance.</strong> AI systems require continuous monitoring and optimization. Budget for it.</li>
+        </ul>
+
+        <hr />
+
+        <p>
+          If you're evaluating AI consultants or considering whether your company is ready for AI, we're happy to have an honest conversation about whether we're the right fit. No pitch, no pressure — just a clear assessment of your situation.
+        </p>
+
+      </div>
+    </AnimateOnScroll>
+
+    <!-- CTA -->
+    <AnimateOnScroll animation="fade-up">
+      <div class="mt-16 rounded-2xl border border-white/[0.08] bg-[#0a0a0a] p-8 sm:p-10 text-center">
+        <h3 class="text-xl font-semibold text-white">
+          Ready to talk?
+        </h3>
+        <p class="mt-3 text-[#ababab] max-w-lg mx-auto">
+          Book a free 30-minute AI assessment call. We'll review your situation, identify opportunities, and tell you honestly whether you need a consultant at all.
+        </p>
+        <div class="mt-6">
+          <a
+            href="/book"
+            class="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90"
+          >
+            Book a free assessment &rarr;
+          </a>
+        </div>
+      </div>
+    </AnimateOnScroll>
+
+    <!-- Related -->
+    <div class="mt-16 border-t border-white/10 pt-12">
+      <h3 class="text-sm text-[#666] uppercase tracking-wider mb-6">Related resources</h3>
+      <div class="space-y-4">
+        <a href="/guides/ai-consulting-vs-in-house" class="block text-white hover:text-[#10a37f] transition-colors">
+          AI Consulting vs Building an In-House AI Team &rarr;
+        </a>
+        <a href="/blog/2026-04-05-how-to-evaluate-ai-vendors" class="block text-white hover:text-[#10a37f] transition-colors">
+          How to Evaluate AI Vendors: A Technical Decision Framework &rarr;
+        </a>
+        <a href="/blog/2026-04-04-how-much-does-ai-consulting-cost" class="block text-white hover:text-[#10a37f] transition-colors">
+          How Much Does AI Consulting Cost? &rarr;
+        </a>
+        <a href="/blog/2026-04-06-ai-consulting-process-what-to-expect" class="block text-white hover:text-[#10a37f] transition-colors">
+          The AI Consulting Process: What to Expect &rarr;
+        </a>
+      </div>
+    </div>
+
+  </article>
+</BaseLayout>

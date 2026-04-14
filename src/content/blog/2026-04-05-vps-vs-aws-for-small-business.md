@@ -230,7 +230,7 @@ When moving from VPS to AWS, follow this progression:
 2. **Optimize**: Replace self-managed services with AWS managed services
 3. **Modernize**: Implement auto-scaling and advanced AWS features
 
-For our nginx reverse proxy setup tutorial found in our [previous guide](/blog/nginx-reverse-proxy-node-js-setup), we showed how to configure load balancing that works on both VPS and AWS environments.
+For our nginx reverse proxy setup tutorial found in our [previous guide](/blog/2026-04-05-nginx-reverse-proxy-node-js-setup), we showed how to configure load balancing that works on both VPS and AWS environments.
 
 ## Cost Optimization Strategies
 

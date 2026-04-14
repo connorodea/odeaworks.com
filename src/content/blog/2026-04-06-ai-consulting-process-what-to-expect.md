@@ -251,7 +251,7 @@ We establish procedures for ongoing model maintenance, including when to retrain
 AI projects differ from traditional software development in several key ways:
 
 ### Data-Driven Iteration
-Unlike traditional development where requirements are fixed, AI projects evolve based on data insights. We've learned to build flexibility into our [AI consulting process](/blog/when-to-hire-ai-consultant) to accommodate these discoveries.
+Unlike traditional development where requirements are fixed, AI projects evolve based on data insights. We've learned to build flexibility into our [AI consulting process](/blog/2026-04-04-when-to-hire-ai-consultant) to accommodate these discoveries.
 
 ### Uncertainty Management
 AI models have inherent uncertainty. Part of our job is quantifying this uncertainty and building systems that handle edge cases gracefully. In our computer vision work, we always include confidence thresholds and fallback procedures.

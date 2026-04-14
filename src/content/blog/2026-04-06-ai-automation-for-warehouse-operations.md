@@ -269,7 +269,7 @@ class WarehouseIntegration:
         return inventory_record
 ```
 
-This integration pattern follows our [AI agent orchestration approach](/blog/llm-agent-orchestration-patterns) — each system operates independently while maintaining shared context through message passing.
+This integration pattern follows our [AI agent orchestration approach](/blog/2026-04-05-llm-agent-orchestration-patterns) — each system operates independently while maintaining shared context through message passing.
 
 ## Performance Results
 
@@ -347,7 +347,7 @@ CREATE TABLE inventory_analytics (
 ) PARTITION BY RANGE (updated_at);
 ```
 
-Our approach to [computer vision pipeline development](/blog/computer-vision-pipeline-for-inventory-management) emphasizes this balance between real-time performance and analytical capability.
+Our approach to [computer vision pipeline development](/blog/2026-04-05-computer-vision-pipeline-for-inventory-management) emphasizes this balance between real-time performance and analytical capability.
 
 ## Challenges and Solutions
 
@@ -395,7 +395,7 @@ The system is designed to scale both horizontally and vertically:
 
 **Vertical Scaling**: The YOLO models can be upgraded to handle additional product categories or improved accuracy without changing the integration architecture.
 
-We've documented our scaling patterns in our [technical due diligence framework](/blog/technical-due-diligence-checklist-startup), which applies to any production AI system.
+We've documented our scaling patterns in our [technical due diligence framework](/blog/2026-04-05-technical-due-diligence-checklist-startup), which applies to any production AI system.
 
 ## Key Takeaways
 

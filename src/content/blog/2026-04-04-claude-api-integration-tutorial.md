@@ -496,7 +496,7 @@ async def health_check():
     return {"status": "healthy", "service": "claude-api-integration"}
 ```
 
-This FastAPI integration provides a production-ready endpoint that we've successfully deployed in multiple client projects, including [AI consulting implementations](/blog/ai-consultant-for-small-business) where reliable API access is crucial.
+This FastAPI integration provides a production-ready endpoint that we've successfully deployed in multiple client projects, including [AI consulting implementations](/blog/2026-04-04-ai-consultant-for-small-business) where reliable API access is crucial.
 
 ## Key Takeaways
 

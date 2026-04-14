@@ -249,7 +249,7 @@ Use these specific questions during vendor evaluation:
 - "What's included in ongoing support and maintenance?"
 - "Can you provide references from similar projects?"
 
-Our [technical due diligence](/blog/technical-due-diligence-checklist-startup) process includes these questions and more comprehensive technical evaluation criteria.
+Our [technical due diligence](/blog/2026-04-05-technical-due-diligence-checklist-startup) process includes these questions and more comprehensive technical evaluation criteria.
 
 ## Red Flags and Warning Signs
 
@@ -280,7 +280,7 @@ After technical evaluation, compare vendors across these weighted criteria:
 
 Don't default to the lowest price. AI engineering quality varies dramatically, and the cost of switching vendors mid-project far exceeds initial savings.
 
-Consider hybrid approaches too. Sometimes the best solution combines multiple vendors or includes [building vs buying specific capabilities](/blog/build-vs-buy-ai-capabilities).
+Consider hybrid approaches too. Sometimes the best solution combines multiple vendors or includes [building vs buying specific capabilities](/blog/2026-04-05-build-vs-buy-ai-capabilities).
 
 ## Key Takeaways
 

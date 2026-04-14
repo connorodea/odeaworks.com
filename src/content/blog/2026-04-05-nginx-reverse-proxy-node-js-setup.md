@@ -412,7 +412,7 @@ iotop
 
 ## Integration with CI/CD Pipelines
 
-For automated deployments, integrate nginx configuration updates with your CI/CD pipeline. Here's how we handle this in our [GitHub Actions CI/CD setup](/blog/github-actions-ci-cd-tutorial-astro):
+For automated deployments, integrate nginx configuration updates with your CI/CD pipeline. Here's how we handle this in our [GitHub Actions CI/CD setup](/blog/2026-04-05-github-actions-ci-cd-tutorial-astro):
 
 ```yaml
 # .github/workflows/deploy.yml

@@ -1,0 +1,328 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AnimateOnScroll from '../../components/shared/AnimateOnScroll.astro';
+import LeadCapture from '../../components/shared/LeadCapture.astro';
+import { aiAutomationTopics } from '../../data/topic-clusters';
+
+export function getStaticPaths() {
+  return aiAutomationTopics.map((topic) => ({
+    params: { topic: topic.slug },
+    props: { topic },
+  }));
+}
+
+const { topic } = Astro.props;
+
+const title = `${topic.name} | AI Automation by Odea Works`;
+const description = `${topic.description} Expert AI automation for ${topic.useCase}. Built by engineers with 10+ production deployments.`;
+
+// Get related topics for cross-linking (exclude current)
+const relatedTopics = aiAutomationTopics
+  .filter((t) => t.slug !== topic.slug)
+  .slice(0, 6);
+
+// JSON-LD
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": topic.name,
+  "provider": {
+    "@type": "Organization",
+    "name": "Odea Works",
+    "url": "https://odeaworks.com"
+  },
+  "description": description,
+  "areaServed": "US",
+  "serviceType": "AI Automation",
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://odeaworks.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "AI Automation",
+      "item": "https://odeaworks.com/ai-consulting"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": topic.name,
+      "item": `https://odeaworks.com/ai-automation/${topic.slug}`
+    }
+  ]
+};
+---
+
+<BaseLayout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden py-32 lg:py-40">
+    <div class="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-accent/[0.03] rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="relative mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <!-- Breadcrumb -->
+        <nav class="mb-8 flex items-center gap-2 text-sm text-text-muted">
+          <a href="/" class="transition-colors hover:text-text-secondary">Home</a>
+          <span>/</span>
+          <a href="/ai-consulting" class="transition-colors hover:text-text-secondary">AI Consulting</a>
+          <span>/</span>
+          <span class="text-text-secondary">{topic.name}</span>
+        </nav>
+
+        <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 mb-8">
+          <div class="h-1.5 w-1.5 rounded-full bg-accent animate-pulse"></div>
+          <span class="text-xs font-medium tracking-wide text-text-secondary uppercase">AI Automation</span>
+        </div>
+
+        <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+          {topic.name}
+        </h1>
+        <p class="mt-6 max-w-2xl text-xl text-text-secondary leading-relaxed">
+          {topic.description}
+        </p>
+
+        <div class="mt-6 flex flex-wrap gap-3">
+          {topic.useCase.split(', ').map((uc) => (
+            <span class="rounded-full border border-accent/20 bg-accent/5 px-4 py-2 text-sm text-accent">
+              {uc}
+            </span>
+          ))}
+        </div>
+
+        <div class="mt-10 flex flex-wrap gap-4">
+          <a
+            href="/book"
+            class="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90"
+          >
+            Automate {topic.useCase.split(', ')[0]}
+          </a>
+          <a
+            href="/work"
+            class="inline-flex items-center justify-center rounded-full border border-white/20 px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-white/5"
+          >
+            See our work
+          </a>
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- How AI Transforms This Area -->
+  <section class="border-t border-white/10 py-24 lg:py-32">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <p class="text-sm uppercase tracking-widest text-text-muted mb-4">Impact</p>
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          How AI transforms {topic.name.toLowerCase().replace('ai ', '')}
+        </h2>
+        <p class="mt-6 max-w-3xl text-lg text-text-secondary leading-relaxed">
+          Manual processes are the bottleneck. AI eliminates repetitive work, reduces errors, and scales operations without proportional headcount growth. Here is the measurable impact.
+        </p>
+      </AnimateOnScroll>
+
+      <AnimateOnScroll animation="stagger">
+        <div class="mt-16 grid gap-6 sm:grid-cols-2">
+          {topic.benefits.map((benefit, i) => (
+            <div class="rounded-2xl border border-white/[0.06] bg-surface/50 p-8 transition-colors hover:border-white/[0.12]">
+              <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10">
+                <span class="text-sm font-bold text-accent">{String(i + 1).padStart(2, '0')}</span>
+              </div>
+              <p class="text-text-secondary leading-relaxed">{benefit}</p>
+            </div>
+          ))}
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="border-t border-white/10 py-24 lg:py-32">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <p class="text-sm uppercase tracking-widest text-text-muted mb-4">Use Cases</p>
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          Where to deploy {topic.name.toLowerCase()}
+        </h2>
+        <p class="mt-6 max-w-3xl text-lg text-text-secondary leading-relaxed">
+          These are the specific applications where AI automation delivers the highest ROI. Each use case represents a proven deployment pattern from our production experience.
+        </p>
+      </AnimateOnScroll>
+
+      <AnimateOnScroll animation="stagger">
+        <div class="mt-16 grid gap-4 sm:grid-cols-2">
+          {topic.applications.map((app) => (
+            <div class="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-surface/50 p-5 transition-colors hover:border-white/[0.12]">
+              <svg class="mt-0.5 h-5 w-5 shrink-0 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              <span class="text-sm text-text-secondary">{app}</span>
+            </div>
+          ))}
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- Our Approach -->
+  <section class="border-t border-white/10 py-24 lg:py-32">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <p class="text-sm uppercase tracking-widest text-text-muted mb-4">Our Approach</p>
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          How we build {topic.name.toLowerCase()} systems
+        </h2>
+        <p class="mt-6 max-w-3xl text-lg text-text-secondary leading-relaxed">
+          {topic.approach}
+        </p>
+      </AnimateOnScroll>
+
+      <AnimateOnScroll animation="fade-up" delay={200}>
+        <div class="mt-16 grid gap-8 sm:grid-cols-3 lg:grid-cols-5">
+          <div class="relative">
+            <div class="mb-4 text-5xl font-bold text-white/[0.06]">01</div>
+            <h3 class="text-lg font-semibold text-white">Discover</h3>
+            <p class="mt-2 text-sm leading-relaxed text-text-secondary">
+              Map your current workflows, identify bottlenecks, and define measurable automation targets.
+            </p>
+          </div>
+          <div class="relative">
+            <div class="mb-4 text-5xl font-bold text-white/[0.06]">02</div>
+            <h3 class="text-lg font-semibold text-white">Architect</h3>
+            <p class="mt-2 text-sm leading-relaxed text-text-secondary">
+              Design the AI pipeline, select models and tools, and plan integration with your existing systems.
+            </p>
+          </div>
+          <div class="relative">
+            <div class="mb-4 text-5xl font-bold text-white/[0.06]">03</div>
+            <h3 class="text-lg font-semibold text-white">Build</h3>
+            <p class="mt-2 text-sm leading-relaxed text-text-secondary">
+              Rapid prototyping followed by production engineering. Working automation in weeks.
+            </p>
+          </div>
+          <div class="relative">
+            <div class="mb-4 text-5xl font-bold text-white/[0.06]">04</div>
+            <h3 class="text-lg font-semibold text-white">Deploy</h3>
+            <p class="mt-2 text-sm leading-relaxed text-text-secondary">
+              Production deployment with monitoring, error handling, and human-in-the-loop validation.
+            </p>
+          </div>
+          <div class="relative">
+            <div class="mb-4 text-5xl font-bold text-white/[0.06]">05</div>
+            <h3 class="text-lg font-semibold text-white">Iterate</h3>
+            <p class="mt-2 text-sm leading-relaxed text-text-secondary">
+              Post-launch optimization, model retraining, and expanding automation coverage.
+            </p>
+          </div>
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- Technologies -->
+  <section class="border-t border-white/10 py-24 lg:py-32">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <p class="text-sm uppercase tracking-widest text-text-muted mb-4">Technology</p>
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          Technologies we use
+        </h2>
+        <p class="mt-6 max-w-2xl text-lg text-text-secondary leading-relaxed">
+          We choose the right tool for each problem — no vendor lock-in, no unnecessary complexity. Here is the technical stack behind our {topic.name.toLowerCase()} systems.
+        </p>
+      </AnimateOnScroll>
+
+      <AnimateOnScroll animation="stagger">
+        <div class="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {topic.technologies.map((tech) => (
+            <div class="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-surface/50 p-5">
+              <svg class="mt-0.5 h-5 w-5 shrink-0 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17l-5.1-3.12a.5.5 0 010-.86l5.1-3.12a.96.96 0 011.16 0l5.1 3.12a.5.5 0 010 .86l-5.1 3.12a.96.96 0 01-1.16 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 21.17l-5.1-3.12a.5.5 0 010-.86l5.1-3.12a.96.96 0 011.16 0l5.1 3.12a.5.5 0 010 .86l-5.1 3.12a.96.96 0 01-1.16 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 9.17l-5.1-3.12a.5.5 0 010-.86l5.1-3.12a.96.96 0 011.16 0l5.1 3.12a.5.5 0 010 .86l-5.1 3.12a.96.96 0 01-1.16 0z" />
+              </svg>
+              <span class="text-sm text-text-secondary">{tech}</span>
+            </div>
+          ))}
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- Lead Capture -->
+  <LeadCapture source={`ai-automation-${topic.slug}`} />
+
+  <!-- Cross-links: Related Topics -->
+  <section class="border-t border-white/10 py-20">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <h2 class="text-2xl font-semibold text-white">
+          Related AI automation services
+        </h2>
+        <div class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {relatedTopics.map((t) => (
+            <a
+              href={`/ai-automation/${t.slug}`}
+              class="group rounded-xl border border-white/[0.06] bg-surface/50 p-5 transition-colors hover:border-white/[0.12]"
+            >
+              <p class="text-sm font-medium text-white group-hover:text-accent transition-colors">{t.name}</p>
+              <p class="mt-1 text-xs text-text-muted line-clamp-2">{t.useCase}</p>
+            </a>
+          ))}
+        </div>
+
+        <div class="mt-8 flex flex-wrap gap-4 text-sm">
+          <a href="/ai-consulting" class="text-text-muted transition-colors hover:text-accent">AI consulting</a>
+          <span class="text-text-muted">/</span>
+          <a href="/services" class="text-text-muted transition-colors hover:text-accent">Services</a>
+          <span class="text-text-muted">/</span>
+          <a href="/work" class="text-text-muted transition-colors hover:text-accent">Our work</a>
+          <span class="text-text-muted">/</span>
+          <a href="/blog" class="text-text-muted transition-colors hover:text-accent">Blog</a>
+          <span class="text-text-muted">/</span>
+          <a href="/book" class="text-text-muted transition-colors hover:text-accent">Book a call</a>
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="border-t border-white/10 py-32 lg:py-40">
+    <div class="mx-auto max-w-5xl px-6 text-center">
+      <AnimateOnScroll animation="fade-up">
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          Automate {topic.useCase.split(', ')[0]} for your business
+        </h2>
+        <p class="mt-4 text-lg text-text-secondary">
+          Tell us about your automation challenge. We will respond within 24 hours with an honest assessment and a plan.
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-4">
+          <a
+            href="/book"
+            class="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90"
+          >
+            Book a free assessment
+          </a>
+          <a
+            href="/contact"
+            class="inline-flex items-center justify-center rounded-full border border-white/20 px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-white/5"
+          >
+            Get in touch
+          </a>
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+</BaseLayout>

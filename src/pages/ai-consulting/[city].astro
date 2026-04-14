@@ -1,0 +1,469 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AnimateOnScroll from '../../components/shared/AnimateOnScroll.astro';
+import LeadCapture from '../../components/shared/LeadCapture.astro';
+import { cities, industryAIUseCases, cityContexts } from '../../data/city-seo';
+
+export function getStaticPaths() {
+  return cities.map((city) => ({
+    params: { city: city.slug },
+    props: { city },
+  }));
+}
+
+const { city } = Astro.props;
+
+const isRemote = city.slug === 'remote';
+const locationLabel = isRemote ? 'Remote Teams' : `${city.name}, ${city.state}`;
+const title = isRemote
+  ? 'AI Consulting for Remote Teams | Odea Works'
+  : `AI Consulting in ${city.name}, ${city.state} | Odea Works`;
+const description = isRemote
+  ? 'Expert AI consulting for remote and distributed teams. LLM agents, computer vision, RAG pipelines. Production AI systems built for async, remote-first companies.'
+  : `Expert AI consulting services in ${city.name}, ${city.state}. LLM agents, computer vision, RAG pipelines. Production AI systems for ${city.name} businesses in ${city.industries[0]}, ${city.industries[1]}, and ${city.industries[2]}.`;
+
+// Get AI use cases for each city industry
+const industryUseCases = city.industries.map((industry) => ({
+  name: industry,
+  useCases: industryAIUseCases[industry] || [
+    'Custom AI solutions tailored to your industry',
+    'Process automation with intelligent workflows',
+    'Data analysis and predictive modeling',
+    'Computer vision and natural language processing',
+  ],
+}));
+
+// City context
+const cityContext = cityContexts[city.slug] || `${city.name} is a growing market with increasing demand for AI solutions across ${city.industries.join(', ')} and other sectors.`;
+
+// Nearby cities for cross-linking (same state or geographic proximity)
+const nearbyCities = cities
+  .filter((c) => c.slug !== city.slug && c.slug !== 'remote')
+  .slice(0, 8);
+
+// Portfolio items relevant to city industries
+const portfolioItems = [
+  { name: 'MedScribd', description: 'AI-powered clinical documentation platform', industries: ['Healthcare', 'Pharma', 'Biotech'] },
+  { name: 'QuickLotz WMS', description: 'Enterprise warehouse management with AI', industries: ['Logistics', 'Retail', 'E-Commerce', 'Manufacturing'] },
+  { name: 'QuickVisionz', description: 'Computer vision sorting pipeline for warehouses', industries: ['Logistics', 'Manufacturing', 'Retail', 'Quality Control'] },
+  { name: 'Inquizit', description: 'AI-powered assessment and evaluation platform', industries: ['Education', 'SaaS', 'Tech', 'Startups'] },
+  { name: 'QuickBidz', description: 'Real-time auction platform with ML pricing', industries: ['E-Commerce', 'Finance', 'Real Estate', 'Consumer Goods'] },
+  { name: 'GRIDIRON', description: 'Custom YOLO8 ML model for real-time detection', industries: ['Defense', 'Military', 'Manufacturing', 'Aerospace', 'Automotive'] },
+  { name: 'AI Mortgage Platform', description: 'Intelligent loan evaluation and risk scoring', industries: ['Finance', 'Banking', 'Fintech', 'Real Estate', 'Insurance'] },
+  { name: 'NexSerp', description: 'Search analytics with AI-powered insights', industries: ['Tech', 'SaaS', 'Media', 'Entertainment'] },
+];
+
+const relevantPortfolio = portfolioItems
+  .filter((item) => item.industries.some((ind) => city.industries.includes(ind)))
+  .slice(0, 3);
+
+// Fall back to generic portfolio if no industry match
+const displayPortfolio = relevantPortfolio.length >= 2 ? relevantPortfolio : portfolioItems.slice(0, 3);
+
+// JSON-LD schemas
+const localBusinessSchema = isRemote ? {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Odea Works — AI Consulting for Remote Teams",
+  "description": description,
+  "url": `https://odeaworks.com/ai-consulting/remote`,
+  "provider": {
+    "@type": "Organization",
+    "name": "Odea Works",
+    "url": "https://odeaworks.com"
+  },
+  "serviceType": "AI Consulting",
+  "areaServed": "Worldwide",
+} : {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": `Odea Works — AI Consulting in ${city.name}`,
+  "description": description,
+  "url": `https://odeaworks.com/ai-consulting/${city.slug}`,
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": city.name,
+    "addressRegion": city.state,
+    "addressCountry": "US"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Odea Works",
+    "url": "https://odeaworks.com"
+  },
+  "serviceType": "AI Consulting",
+  "areaServed": {
+    "@type": "City",
+    "name": city.name
+  },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://odeaworks.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "AI Consulting",
+      "item": "https://odeaworks.com/ai-consulting"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": isRemote ? 'Remote Teams' : city.name,
+      "item": `https://odeaworks.com/ai-consulting/${city.slug}`
+    }
+  ]
+};
+---
+
+<BaseLayout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden py-32 lg:py-40">
+    <div class="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-accent/[0.03] rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="relative mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <!-- Breadcrumb -->
+        <nav class="mb-8 flex items-center gap-2 text-sm text-text-muted">
+          <a href="/" class="transition-colors hover:text-text-secondary">Home</a>
+          <span>/</span>
+          <a href="/ai-consulting" class="transition-colors hover:text-text-secondary">AI Consulting</a>
+          <span>/</span>
+          <span class="text-text-secondary">{isRemote ? 'Remote Teams' : city.name}</span>
+        </nav>
+
+        <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 mb-8">
+          <div class="h-1.5 w-1.5 rounded-full bg-accent animate-pulse"></div>
+          <span class="text-xs font-medium tracking-wide text-text-secondary uppercase">AI Consulting</span>
+        </div>
+
+        <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+          {isRemote ? 'AI Consulting for Remote Teams' : `AI Consulting in ${city.name}`}
+        </h1>
+        <p class="mt-6 max-w-2xl text-xl text-text-secondary leading-relaxed">
+          Production AI systems for {isRemote ? 'distributed' : `${city.name}'s`} {city.industries[0].toLowerCase()}, {city.industries[1].toLowerCase()}, and {city.industries[2].toLowerCase()} companies. Built by engineers who ship, not consultants who present.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-text-muted">
+          <span class="flex items-center gap-2">
+            <svg class="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+            10+ ventures built
+          </span>
+          <span class="flex items-center gap-2">
+            <svg class="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+            Production AI systems
+          </span>
+          <span class="flex items-center gap-2">
+            <svg class="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+            {isRemote ? 'Remote-first' : `${city.metro} coverage`}
+          </span>
+        </div>
+
+        <div class="mt-10 flex flex-wrap gap-4">
+          <a
+            href="/book"
+            class="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90"
+          >
+            Book a free AI assessment
+          </a>
+          <a
+            href="/work"
+            class="inline-flex items-center justify-center rounded-full border border-white/20 px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-white/5"
+          >
+            See our work
+          </a>
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- AI Services Section -->
+  <section class="border-t border-white/10 py-24 lg:py-32">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <p class="text-sm uppercase tracking-widest text-text-muted mb-4">Services</p>
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          AI services for {isRemote ? 'remote' : city.name} businesses
+        </h2>
+        <p class="mt-6 max-w-3xl text-lg text-text-secondary leading-relaxed">
+          We design, build, and deploy production AI systems. From autonomous agents to retrieval-augmented generation, we bring intelligent capabilities from prototype to production.
+        </p>
+      </AnimateOnScroll>
+
+      <AnimateOnScroll animation="stagger">
+        <div class="mt-16 grid gap-6 sm:grid-cols-2">
+          <div class="rounded-2xl border border-white/[0.06] bg-surface/50 p-8 transition-colors hover:border-white/[0.12]">
+            <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10">
+              <svg class="h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-white">LLM Agent Systems</h3>
+            <p class="mt-3 text-sm text-text-secondary leading-relaxed">
+              Custom AI agents that automate complex business workflows. Multi-step reasoning, tool use, and autonomous decision-making — built with production-grade reliability and observability.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-white/[0.06] bg-surface/50 p-8 transition-colors hover:border-white/[0.12]">
+            <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10">
+              <svg class="h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-white">Computer Vision</h3>
+            <p class="mt-3 text-sm text-text-secondary leading-relaxed">
+              Image and video analysis for quality control, object detection, document processing, and visual automation. Custom models trained on your data, optimized for real-time performance.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-white/[0.06] bg-surface/50 p-8 transition-colors hover:border-white/[0.12]">
+            <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10">
+              <svg class="h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-white">RAG Pipelines</h3>
+            <p class="mt-3 text-sm text-text-secondary leading-relaxed">
+              Retrieval-augmented generation systems that ground AI responses in your actual data. Knowledge bases, document search, and intelligent Q&A — with zero hallucination tolerance.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-white/[0.06] bg-surface/50 p-8 transition-colors hover:border-white/[0.12]">
+            <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10">
+              <svg class="h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-white">ML Model Development</h3>
+            <p class="mt-3 text-sm text-text-secondary leading-relaxed">
+              Custom machine learning models for prediction, classification, and optimization. From data pipeline to deployed model — with continuous monitoring and retraining infrastructure.
+            </p>
+          </div>
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- Industries Section -->
+  <section class="border-t border-white/10 py-24 lg:py-32">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <p class="text-sm uppercase tracking-widest text-text-muted mb-4">Industries</p>
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          Industries we serve in {isRemote ? 'the remote ecosystem' : city.metro}
+        </h2>
+        <p class="mt-6 max-w-3xl text-lg text-text-secondary leading-relaxed">
+          {cityContext}
+        </p>
+      </AnimateOnScroll>
+
+      <AnimateOnScroll animation="stagger">
+        <div class="mt-16 space-y-8">
+          {industryUseCases.map((industry) => (
+            <div class="rounded-2xl border border-white/[0.06] bg-surface/50 p-8 transition-colors hover:border-white/[0.12]">
+              <h3 class="text-xl font-semibold text-white mb-4">
+                AI for {industry.name} in {isRemote ? 'remote companies' : city.name}
+              </h3>
+              <ul class="space-y-3">
+                {industry.useCases.map((useCase) => (
+                  <li class="flex items-start gap-3">
+                    <svg class="mt-1 h-4 w-4 shrink-0 text-accent" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
+                    <span class="text-sm text-text-secondary leading-relaxed">{useCase}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="border-t border-white/10 py-24 lg:py-32">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <p class="text-sm uppercase tracking-widest text-text-muted mb-4">Why Us</p>
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          Why {isRemote ? 'remote' : city.name} companies choose Odea Works
+        </h2>
+      </AnimateOnScroll>
+
+      <AnimateOnScroll animation="stagger">
+        <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="rounded-2xl border border-white/[0.06] bg-surface/50 p-8">
+            <div class="mb-4 text-3xl font-bold text-white/[0.08]">01</div>
+            <h3 class="text-lg font-semibold text-white">Founder-Led Engineering</h3>
+            <p class="mt-3 text-sm text-text-secondary leading-relaxed">
+              Every project is led by engineers who have founded 10+ ventures. You work directly with senior technical talent, not junior consultants learning on your dime.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-white/[0.06] bg-surface/50 p-8">
+            <div class="mb-4 text-3xl font-bold text-white/[0.08]">02</div>
+            <h3 class="text-lg font-semibold text-white">Production Track Record</h3>
+            <p class="mt-3 text-sm text-text-secondary leading-relaxed">
+              We ship AI systems that run in production — not prototypes that collect dust. Our portfolio includes deployed systems handling real data, real users, and real business outcomes.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-white/[0.06] bg-surface/50 p-8">
+            <div class="mb-4 text-3xl font-bold text-white/[0.08]">03</div>
+            <h3 class="text-lg font-semibold text-white">Speed Without Shortcuts</h3>
+            <p class="mt-3 text-sm text-text-secondary leading-relaxed">
+              Working software in weeks, not quarters. We move fast because we have built these systems before — not because we skip testing, documentation, or production hardening.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-white/[0.06] bg-surface/50 p-8">
+            <div class="mb-4 text-3xl font-bold text-white/[0.08]">04</div>
+            <h3 class="text-lg font-semibold text-white">Full-Stack AI Capability</h3>
+            <p class="mt-3 text-sm text-text-secondary leading-relaxed">
+              LLM agents, computer vision, NLP, RAG, and custom ML — we handle the full AI stack. No need to coordinate between an AI consultant and a separate engineering team.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-white/[0.06] bg-surface/50 p-8">
+            <div class="mb-4 text-3xl font-bold text-white/[0.08]">05</div>
+            <h3 class="text-lg font-semibold text-white">Transparent Process</h3>
+            <p class="mt-3 text-sm text-text-secondary leading-relaxed">
+              Shared repositories, weekly demos, async standups, and real-time access to development environments. You always know where your project stands.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-white/[0.06] bg-surface/50 p-8">
+            <div class="mb-4 text-3xl font-bold text-white/[0.08]">06</div>
+            <h3 class="text-lg font-semibold text-white">{isRemote ? 'Built for Async' : `${city.metro} Understanding`}</h3>
+            <p class="mt-3 text-sm text-text-secondary leading-relaxed">
+              {isRemote
+                ? 'Our entire process is designed for remote collaboration — structured communication, clear documentation, and timezone-aware workflows that keep distributed teams aligned.'
+                : `We understand the ${city.metro} business landscape, the industries that drive it, and the specific challenges ${city.name} companies face when adopting AI.`
+              }
+            </p>
+          </div>
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- Recent AI Projects -->
+  <section class="border-t border-white/10 py-24 lg:py-32">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <p class="text-sm uppercase tracking-widest text-text-muted mb-4">Portfolio</p>
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          Recent AI projects
+        </h2>
+        <p class="mt-6 max-w-2xl text-lg text-text-secondary leading-relaxed">
+          Production AI systems we have built and deployed. These are not mockups — they are running systems handling real data and real users.
+        </p>
+      </AnimateOnScroll>
+
+      <AnimateOnScroll animation="stagger">
+        <div class="mt-16 grid gap-6 sm:grid-cols-3">
+          {displayPortfolio.map((item) => (
+            <div class="rounded-2xl border border-white/[0.08] bg-surface-2/50 p-8">
+              <div class="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 mb-4">
+                <span class="text-xs font-medium text-accent">{item.name}</span>
+              </div>
+              <p class="text-sm text-text-secondary leading-relaxed">{item.description}</p>
+            </div>
+          ))}
+        </div>
+        <div class="mt-8">
+          <a
+            href="/work"
+            class="inline-flex items-center gap-2 text-sm font-medium text-accent transition-colors hover:text-white"
+          >
+            See all our work
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- Lead Capture -->
+  <LeadCapture source={`ai-consulting-${city.slug}`} />
+
+  <!-- Cross-links: Other Cities -->
+  <section class="border-t border-white/10 py-20">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <h2 class="text-2xl font-semibold text-white">
+          AI consulting in other cities
+        </h2>
+        <div class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {nearbyCities.map((c) => (
+            <a
+              href={`/ai-consulting/${c.slug}`}
+              class="group rounded-xl border border-white/[0.06] bg-surface/50 p-4 transition-colors hover:border-white/[0.12]"
+            >
+              <p class="text-sm font-medium text-white group-hover:text-accent transition-colors">
+                AI Consulting in {c.name}
+              </p>
+              <p class="mt-1 text-xs text-text-muted">{c.state ? `${c.state} — ` : ''}{c.industries[0]}, {c.industries[1]}</p>
+            </a>
+          ))}
+        </div>
+
+        <div class="mt-8 flex flex-wrap gap-4 text-sm">
+          <a href="/ai-consulting" class="text-text-muted transition-colors hover:text-accent">All AI consulting</a>
+          <span class="text-text-muted">/</span>
+          <a href="/services" class="text-text-muted transition-colors hover:text-accent">Services</a>
+          <span class="text-text-muted">/</span>
+          <a href="/work" class="text-text-muted transition-colors hover:text-accent">Our work</a>
+          <span class="text-text-muted">/</span>
+          <a href="/blog" class="text-text-muted transition-colors hover:text-accent">Blog</a>
+          <span class="text-text-muted">/</span>
+          <a href="/book" class="text-text-muted transition-colors hover:text-accent">Book a call</a>
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="border-t border-white/10 py-32 lg:py-40">
+    <div class="mx-auto max-w-5xl px-6 text-center">
+      <AnimateOnScroll animation="fade-up">
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          Book a free AI assessment for your {isRemote ? 'remote' : city.name} business
+        </h2>
+        <p class="mt-4 text-lg text-text-secondary">
+          Tell us about your AI challenge. We will respond within 24 hours with an honest assessment of what is possible and a plan to get there.
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-4">
+          <a
+            href="/book"
+            class="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90"
+          >
+            Book a free assessment
+          </a>
+          <a
+            href="/contact"
+            class="inline-flex items-center justify-center rounded-full border border-white/20 px-8 py-3 text-sm font-medium text-white transition-colors hover:bg-white/5"
+          >
+            Get in touch
+          </a>
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+</BaseLayout>

@@ -74,20 +74,8 @@ const organizationSchema = {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
 
-    <!-- Analytics (Plausible — privacy-friendly, no cookies) -->
-    <script defer data-domain="odeaworks.com" src="https://plausible.io/js/script.js"></script>
-    <script>
-      window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) };
-    </script>
-
-    <!-- Google Analytics 4 — Replace G-XXXXXXXXXX with your GA4 Measurement ID from analytics.google.com -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
-    </script>
+    <!-- Analytics (Umami — self-hosted, privacy-friendly, no cookies) -->
+    <script defer src="https://analytics.odeaworks.com/script.js" data-website-id="f38ad26d-88a9-4eff-95f6-b59c8af82078"></script>
 
     <!-- Preload Inter fonts -->
     <link

@@ -75,20 +75,15 @@ const landingSchema = {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
 
-    <!-- Analytics (Plausible — privacy-friendly, no cookies) -->
-    <script defer data-domain="odeaworks.com" src="https://plausible.io/js/script.js"></script>
+    <!-- Analytics (Umami — self-hosted, privacy-friendly, no cookies) -->
+    <script defer src="https://analytics.odeaworks.com/script.js" data-website-id="f38ad26d-88a9-4eff-95f6-b59c8af82078"></script>
     <script is:inline define:vars={{ pageName }}>
-      window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) };
-      plausible('Landing Page View', {props: {page: pageName}});
-    </script>
-
-    <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
+      // Track landing page views as custom events once Umami is ready
+      document.addEventListener('DOMContentLoaded', function() {
+        if (typeof umami !== 'undefined') {
+          umami.track('Landing Page View', { page: pageName });
+        }
+      });
     </script>
 
     <!-- Preload Inter fonts -->

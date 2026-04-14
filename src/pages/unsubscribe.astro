@@ -1,0 +1,122 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AnimateOnScroll from '../components/shared/AnimateOnScroll.astro';
+---
+
+<BaseLayout title="Unsubscribe | Odea Works" description="Unsubscribe from the Odea Works newsletter.">
+
+  <!-- Main content -->
+  <section class="py-32 lg:py-40">
+    <div class="mx-auto max-w-xl px-6 text-center">
+      <AnimateOnScroll animation="fade-up">
+        <h1 class="text-4xl font-semibold tracking-tight text-white lg:text-5xl">
+          Unsubscribe
+        </h1>
+        <p class="mt-6 text-lg text-text-secondary">
+          We're sorry to see you go. Enter your email below to unsubscribe from our newsletter.
+        </p>
+      </AnimateOnScroll>
+
+      <!-- Unsubscribe Form -->
+      <AnimateOnScroll animation="fade-up">
+        <form id="unsubscribe-form" class="mt-12">
+          <div class="flex flex-col gap-4 sm:flex-row">
+            <input
+              type="email"
+              id="email-input"
+              name="email"
+              placeholder="your@email.com"
+              required
+              class="flex-1 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent transition-colors"
+            />
+            <button
+              type="submit"
+              class="rounded-lg bg-white/10 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-accent"
+            >
+              Unsubscribe
+            </button>
+          </div>
+        </form>
+
+        <!-- Status messages -->
+        <div id="status-message" class="mt-8 hidden">
+          <p id="status-text" class="text-lg"></p>
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- Back to site -->
+  <section class="pb-32 lg:pb-40">
+    <div class="mx-auto max-w-xl px-6 text-center">
+      <p class="text-text-muted">
+        Changed your mind?
+        <a href="/blog" class="text-white transition-colors hover:text-accent">Read our latest posts</a>
+      </p>
+    </div>
+  </section>
+
+  <script>
+    // Pre-fill email from URL param
+    const params = new URLSearchParams(window.location.search);
+    const emailParam = params.get('email');
+    const emailInput = document.getElementById('email-input') as HTMLInputElement;
+
+    if (emailParam && emailInput) {
+      emailInput.value = decodeURIComponent(emailParam);
+    }
+
+    // Handle form submission
+    const form = document.getElementById('unsubscribe-form') as HTMLFormElement;
+    const statusDiv = document.getElementById('status-message') as HTMLDivElement;
+    const statusText = document.getElementById('status-text') as HTMLParagraphElement;
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = emailInput?.value?.trim();
+      if (!email) return;
+
+      // Disable form while processing
+      const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Processing...';
+      }
+
+      try {
+        const response = await fetch('/api/unsubscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+
+        const data = await response.json();
+
+        statusDiv.classList.remove('hidden');
+
+        if (response.ok) {
+          statusText.textContent = 'You have been unsubscribed. You will no longer receive newsletters from us.';
+          statusText.className = 'text-lg text-green-400';
+          form.classList.add('hidden');
+        } else {
+          statusText.textContent = data.message || 'Something went wrong. Please try again or email connor@odeaworks.com.';
+          statusText.className = 'text-lg text-red-400';
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Unsubscribe';
+          }
+        }
+      } catch (err) {
+        statusDiv.classList.remove('hidden');
+        statusText.textContent = 'Network error. Please try again or email connor@odeaworks.com to unsubscribe.';
+        statusText.className = 'text-lg text-red-400';
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Unsubscribe';
+        }
+      }
+    });
+  </script>
+
+</BaseLayout>

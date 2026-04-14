@@ -797,6 +797,95 @@ async function handleSubscribe(req, res) {
 }
 
 // ---------------------------------------------------------------------------
+// Unsubscribe Handler
+// ---------------------------------------------------------------------------
+async function handleUnsubscribe(req, res) {
+  const clientIP = getClientIP(req);
+
+  // Rate limit check (use subscribe rate limiter — same generosity)
+  if (isSubscribeRateLimited(clientIP)) {
+    return jsonResponse(res, 429, { error: 'Too many requests. Please try again later.' });
+  }
+
+  // Parse JSON body
+  let body = '';
+  try {
+    await new Promise((resolve, reject) => {
+      req.on('data', (chunk) => {
+        body += chunk;
+        if (body.length > 10_000) {
+          reject(new Error('Payload too large'));
+        }
+      });
+      req.on('end', resolve);
+      req.on('error', reject);
+    });
+  } catch {
+    return jsonResponse(res, 413, { error: 'Payload too large' });
+  }
+
+  let data;
+  try {
+    data = JSON.parse(body);
+  } catch {
+    return jsonResponse(res, 400, { error: 'Invalid JSON' });
+  }
+
+  const { email } = data;
+
+  // Validate email
+  if (!email || !email.trim()) {
+    return jsonResponse(res, 400, { error: 'Email is required', message: 'Please provide your email address.' });
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email.trim())) {
+    return jsonResponse(res, 400, { error: 'Invalid email address', message: 'Please provide a valid email address.' });
+  }
+
+  const cleanEmail = email.trim().toLowerCase();
+
+  // Remove from subscribers.json
+  try {
+    let subscribers = [];
+    try {
+      subscribers = JSON.parse(fs.readFileSync(SUBSCRIBERS_FILE, 'utf-8'));
+    } catch {
+      subscribers = [];
+    }
+
+    const originalCount = subscribers.length;
+    subscribers = subscribers.filter((s) => s.email !== cleanEmail);
+
+    if (subscribers.length === originalCount) {
+      // Email not found — return success anyway (don't leak info)
+      console.log(`[${new Date().toISOString()}] Unsubscribe request for unknown email: ${cleanEmail}, ip: ${clientIP}`);
+      return jsonResponse(res, 200, { success: true, message: 'You have been unsubscribed.' });
+    }
+
+    fs.writeFileSync(SUBSCRIBERS_FILE, JSON.stringify(subscribers, null, 2));
+    console.log(`[${new Date().toISOString()}] Unsubscribed: ${cleanEmail}, ip: ${clientIP}, remaining: ${subscribers.length}`);
+  } catch (err) {
+    console.error(`[${new Date().toISOString()}] Failed to process unsubscribe:`, err);
+    return jsonResponse(res, 500, { error: 'Failed to unsubscribe. Please try again later.', message: 'Something went wrong. Please try again or email connor@odeaworks.com.' });
+  }
+
+  // Notify ourselves
+  try {
+    await resend.emails.send({
+      from: FROM_EMAIL,
+      to: [TO_EMAIL],
+      subject: `Unsubscribed: ${cleanEmail}`,
+      text: `${cleanEmail} has unsubscribed from the newsletter.\n\nTimestamp: ${new Date().toISOString()}\nIP: ${clientIP}`,
+    });
+  } catch {
+    // Non-critical
+  }
+
+  return jsonResponse(res, 200, { success: true, message: 'You have been unsubscribed.' });
+}
+
+// ---------------------------------------------------------------------------
 // Template: Booking Confirmation (to the booker)
 // ---------------------------------------------------------------------------
 function buildBookingConfirmationHtml({ name, date, timeSlot }) {
@@ -1153,6 +1242,11 @@ const server = http.createServer(async (req, res) => {
   // Route: POST /api/subscribe
   if (req.method === 'POST' && req.url === '/api/subscribe') {
     return handleSubscribe(req, res);
+  }
+
+  // Route: POST /api/unsubscribe
+  if (req.method === 'POST' && req.url === '/api/unsubscribe') {
+    return handleUnsubscribe(req, res);
   }
 
   // Route: POST /api/book

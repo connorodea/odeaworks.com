@@ -1,0 +1,240 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AnimateOnScroll from '../components/shared/AnimateOnScroll.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = (await getCollection('blog'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
+  .slice(0, 6);
+
+const categoryLabels: Record<string, string> = {
+  'ai-consulting': 'AI Consulting',
+  'software-engineering': 'Software Engineering',
+  'technical-strategy': 'Technical Strategy',
+  'devops-infrastructure': 'DevOps & Infrastructure',
+  'ai-engineering': 'AI Engineering',
+};
+
+const tools = [
+  {
+    title: 'AI Readiness Quiz',
+    description: 'Find out if your business is ready for AI implementation with a 2-minute assessment.',
+    href: '/tools/ai-readiness',
+  },
+  {
+    title: 'AI ROI Calculator',
+    description: 'Estimate the return on investment of implementing AI in your operations.',
+    href: '/tools/roi-calculator',
+  },
+  {
+    title: 'Tech Stack Analyzer',
+    description: 'See how AI-ready your current tech stack is and get integration recommendations.',
+    href: '/tools/stack-analyzer',
+  },
+  {
+    title: 'SaaS Calculator',
+    description: 'Model your SaaS pricing, churn, and growth with interactive financial projections.',
+    href: 'https://saascalculator.odeaworks.com',
+    external: true,
+  },
+];
+
+const guides = [
+  {
+    title: 'The Complete Guide to Hiring an AI Consultant',
+    description: 'Everything you need to know about when to hire, what to look for, and how to evaluate proposals.',
+    href: '/guides/hiring-ai-consultant',
+  },
+  {
+    title: 'AI Consulting vs In-House AI Team',
+    description: 'A practical comparison of costs, timelines, and outcomes to help you make the right decision.',
+    href: '/guides/ai-consulting-vs-in-house',
+  },
+  {
+    title: 'How to Evaluate AI Vendors',
+    description: 'A technical decision framework for assessing capabilities, architecture, and long-term viability.',
+    href: '/blog/2026-04-05-how-to-evaluate-ai-vendors',
+  },
+];
+---
+
+<BaseLayout
+  title="Resources — Odea Works"
+  description="Guides, tools, and insights for companies building with AI. Free calculators, in-depth guides, and technical blog posts from Odea Works."
+>
+
+  <!-- Hero -->
+  <section class="py-32 lg:py-40">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <h1 class="text-5xl font-semibold tracking-tight text-white lg:text-6xl">
+          Resources
+        </h1>
+        <p class="mt-6 text-xl text-[#ababab] max-w-2xl">
+          Guides, tools, and insights for companies building with AI.
+        </p>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- Free Tools -->
+  <section class="border-t border-white/10 py-20">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <span class="text-sm text-[#666] uppercase tracking-wider">
+          Free Tools
+        </span>
+        <h2 class="mt-4 text-3xl font-semibold text-white">
+          Interactive assessments
+        </h2>
+        <p class="mt-4 text-lg text-[#ababab] max-w-2xl">
+          Get instant, actionable insight into your AI readiness, potential ROI, and technology stack.
+        </p>
+      </AnimateOnScroll>
+
+      <AnimateOnScroll animation="stagger" class="mt-12 grid gap-6 md:grid-cols-2">
+        {tools.map((tool) => (
+          <a
+            href={tool.href}
+            class="group block rounded-xl border border-white/[0.08] bg-[#0a0a0a] p-6 transition-all duration-300 hover:border-white/[0.16] hover:bg-[#111]"
+            {...(tool.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          >
+            <h3 class="text-lg font-medium text-white group-hover:text-[#10a37f] transition-colors duration-200">
+              {tool.title}
+              {tool.external && <span class="ml-1 text-[#666] text-sm">&nearr;</span>}
+            </h3>
+            <p class="mt-2 text-[15px] text-[#ababab] leading-relaxed">
+              {tool.description}
+            </p>
+          </a>
+        ))}
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- Guides -->
+  <section class="border-t border-white/10 py-20">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <span class="text-sm text-[#666] uppercase tracking-wider">
+          Guides
+        </span>
+        <h2 class="mt-4 text-3xl font-semibold text-white">
+          In-depth resources
+        </h2>
+        <p class="mt-4 text-lg text-[#ababab] max-w-2xl">
+          Comprehensive guides on hiring, evaluating, and working with AI consultants and engineering teams.
+        </p>
+      </AnimateOnScroll>
+
+      <div class="mt-12 space-y-0">
+        {guides.map((guide, i) => (
+          <AnimateOnScroll animation="fade-up" delay={i * 80}>
+            <a
+              href={guide.href}
+              class="group block border-t border-white/10 py-8 first:border-t-0 transition-colors duration-200"
+            >
+              <h3 class="text-xl font-medium text-white group-hover:text-[#10a37f] transition-colors duration-200">
+                {guide.title} <span class="text-[#666]">&rarr;</span>
+              </h3>
+              <p class="mt-2 text-[#ababab] leading-relaxed">
+                {guide.description}
+              </p>
+            </a>
+          </AnimateOnScroll>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest from the Blog -->
+  <section class="border-t border-white/10 py-20">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <div class="flex items-end justify-between">
+          <div>
+            <span class="text-sm text-[#666] uppercase tracking-wider">
+              Blog
+            </span>
+            <h2 class="mt-4 text-3xl font-semibold text-white">
+              Latest from the blog
+            </h2>
+          </div>
+          <a
+            href="/blog"
+            class="hidden sm:inline-block text-sm text-[#666] transition-colors duration-200 hover:text-white"
+          >
+            View all posts &rarr;
+          </a>
+        </div>
+      </AnimateOnScroll>
+
+      <div class="mt-12">
+        {allPosts.map((post, i) => {
+          const date = new Date(post.data.pubDate).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          });
+
+          return (
+            <AnimateOnScroll animation="fade-up" delay={i * 60}>
+              <article class="border-t border-white/10 py-6">
+                <span class="text-xs uppercase tracking-wider text-[#666]">
+                  {categoryLabels[post.data.category] || post.data.category}
+                </span>
+                <h3 class="mt-2">
+                  <a
+                    href={`/blog/${post.id}`}
+                    class="text-lg font-medium text-white transition-colors hover:text-[#10a37f]"
+                  >
+                    {post.data.title}
+                  </a>
+                </h3>
+                <p class="mt-1 text-sm text-[#ababab] leading-relaxed line-clamp-1">
+                  {post.data.description}
+                </p>
+                <time class="mt-2 block text-xs text-[#666]" datetime={new Date(post.data.pubDate).toISOString()}>
+                  {date}
+                </time>
+              </article>
+            </AnimateOnScroll>
+          );
+        })}
+      </div>
+
+      <div class="mt-6 sm:hidden">
+        <a
+          href="/blog"
+          class="text-sm text-[#666] transition-colors duration-200 hover:text-white"
+        >
+          View all posts &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="border-t border-white/10 py-32 lg:py-40">
+    <div class="mx-auto max-w-5xl px-6 text-center">
+      <AnimateOnScroll animation="fade-up">
+        <h2 class="text-2xl font-semibold text-white">
+          Need help with a specific challenge?
+        </h2>
+        <p class="mt-4 text-[#ababab]">
+          These resources are a starting point. A conversation gets you the full picture.
+        </p>
+        <div class="mt-8">
+          <a
+            href="/book"
+            class="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90"
+          >
+            Book a free call &rarr;
+          </a>
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+</BaseLayout>

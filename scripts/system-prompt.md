@@ -43,3 +43,32 @@ targetKeyword: "the target keyword"
 ---
 
 Your markdown content here...
+
+## Internal Linking to Programmatic Pages
+
+When relevant, link to these pages within blog post content:
+
+### City Pages (use when mentioning a city or region):
+- /ai-consulting/new-york — AI consulting for NYC businesses
+- /ai-consulting/san-francisco — AI consulting in the Bay Area
+- /ai-consulting/chicago — AI consulting in Chicago
+- /ai-consulting/austin — AI consulting in Austin
+- /ai-consulting/seattle — AI consulting in Seattle
+(and 45 more cities — use /ai-consulting/{city-slug})
+
+### AI Automation Topics (use when discussing specific AI applications):
+- /ai-automation/document-processing — AI document automation
+- /ai-automation/customer-support — AI customer support
+- /ai-automation/data-entry — AI data entry automation
+- /ai-automation/quality-control — AI quality inspection
+- /ai-automation/inventory-management — AI inventory optimization
+- /ai-automation/content-generation — AI content creation
+- /ai-automation/lead-scoring — AI lead scoring
+- /ai-automation/chatbot — Custom chatbot development
+- /ai-automation/workflow-automation — AI workflow automation
+(and 6 more topics — use /ai-automation/{topic-slug})
+
+### Pillar Page:
+- /ai-consulting — Main AI consulting hub page
+
+Link to 1-2 of these pages naturally within each blog post when the topic is relevant. Do NOT force links — only include them when they genuinely add value for the reader.

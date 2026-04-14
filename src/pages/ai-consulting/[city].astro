@@ -60,6 +60,40 @@ const relevantPortfolio = portfolioItems
 // Fall back to generic portfolio if no industry match
 const displayPortfolio = relevantPortfolio.length >= 2 ? relevantPortfolio : portfolioItems.slice(0, 3);
 
+// FAQ data
+const faqs = [
+  {
+    question: `How much does AI consulting cost in ${city.name}?`,
+    answer: `AI consulting in ${city.name} typically ranges from $5,000 for an initial assessment to $50,000+ for full implementation. At Odea Works, our Advisory tier starts at $5,000, Build engagements start at $15,000, and Partnership retainers are custom. Every engagement is scoped to your specific needs.`
+  },
+  {
+    question: `What industries in ${city.name} benefit most from AI consulting?`,
+    answer: `In ${city.name}, the ${city.industries.join(', ')} industries see the highest ROI from AI implementation. Common use cases include automated data processing, predictive analytics, computer vision for quality control, and LLM-powered customer interactions.`
+  },
+  {
+    question: `How long does an AI consulting engagement take in ${city.name}?`,
+    answer: `Most AI consulting projects run 4-12 weeks from discovery to deployment. An initial AI readiness assessment takes 2-4 weeks. A full AI build — from architecture to production — typically takes 8-12 weeks. We work remotely with ${city.name} companies, so there's no geographic delay.`
+  },
+  {
+    question: `Do you work with ${city.name} companies remotely?`,
+    answer: `Yes. Odea Works is based in Michigan and works with companies across the US, including ${city.name}. All our engagements are remote-first — we use video calls, shared repositories, and async communication. This means you get the same quality of work regardless of location.`
+  }
+];
+
+// FAQ schema
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((faq) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+
 // JSON-LD schemas
 const localBusinessSchema = isRemote ? {
   "@context": "https://schema.org",
@@ -127,6 +161,7 @@ const breadcrumbSchema = {
 <BaseLayout title={title} description={description}>
   <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
   <!-- Hero -->
   <section class="relative overflow-hidden py-32 lg:py-40">
@@ -400,6 +435,41 @@ const breadcrumbSchema = {
     </div>
   </section>
 
+  <!-- FAQ Section -->
+  <section class="border-t border-white/10 py-24 lg:py-32">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <p class="text-sm uppercase tracking-widest text-text-muted mb-4">FAQ</p>
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          Frequently asked questions
+        </h2>
+        <p class="mt-6 max-w-3xl text-lg text-text-secondary leading-relaxed">
+          Common questions about AI consulting for {isRemote ? 'remote' : city.name} businesses.
+        </p>
+      </AnimateOnScroll>
+
+      <div class="mt-16 space-y-0" id="faq-accordion">
+        {faqs.map((faq, i) => (
+          <div class="border-b border-white/10">
+            <button
+              class="faq-toggle flex w-full items-center justify-between py-6 text-left"
+              aria-expanded="false"
+              data-faq-index={i}
+            >
+              <span class="text-lg font-medium text-white pr-8">{faq.question}</span>
+              <svg class="faq-icon h-5 w-5 shrink-0 text-text-muted transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+              </svg>
+            </button>
+            <div class="faq-content overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0;">
+              <p class="pb-6 text-[#ababab] leading-relaxed">{faq.answer}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- Lead Capture -->
   <LeadCapture source={`ai-consulting-${city.slug}`} />
 
@@ -466,4 +536,38 @@ const breadcrumbSchema = {
       </AnimateOnScroll>
     </div>
   </section>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggles = document.querySelectorAll('.faq-toggle');
+      toggles.forEach((toggle) => {
+        toggle.addEventListener('click', () => {
+          const content = toggle.nextElementSibling as HTMLElement;
+          const icon = toggle.querySelector('.faq-icon') as SVGElement;
+          const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+
+          // Close all others
+          toggles.forEach((other) => {
+            if (other !== toggle) {
+              other.setAttribute('aria-expanded', 'false');
+              const otherContent = other.nextElementSibling as HTMLElement;
+              const otherIcon = other.querySelector('.faq-icon') as SVGElement;
+              if (otherContent) otherContent.style.maxHeight = '0';
+              if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+            }
+          });
+
+          // Toggle current
+          if (isOpen) {
+            toggle.setAttribute('aria-expanded', 'false');
+            content.style.maxHeight = '0';
+            icon.style.transform = 'rotate(0deg)';
+          } else {
+            toggle.setAttribute('aria-expanded', 'true');
+            content.style.maxHeight = content.scrollHeight + 'px';
+            icon.style.transform = 'rotate(45deg)';
+          }
+        });
+      });
+    });
+  </script>
 </BaseLayout>

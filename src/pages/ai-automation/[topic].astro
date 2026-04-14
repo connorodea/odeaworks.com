@@ -21,6 +21,36 @@ const relatedTopics = aiAutomationTopics
   .filter((t) => t.slug !== topic.slug)
   .slice(0, 6);
 
+// FAQ data
+const faqs = [
+  {
+    question: `What is AI ${topic.name.toLowerCase()}?`,
+    answer: `AI ${topic.name.toLowerCase()} uses artificial intelligence to ${topic.description.toLowerCase()}. Common applications include ${topic.useCase}. This eliminates manual work, reduces errors, and scales operations without adding headcount.`
+  },
+  {
+    question: `How much does AI ${topic.name.toLowerCase()} cost?`,
+    answer: `Implementation costs vary based on complexity. A basic proof-of-concept starts at $5,000-10,000. A production-ready system typically costs $15,000-50,000. At Odea Works, we scope every project individually — book a free assessment to get an accurate estimate for your use case.`
+  },
+  {
+    question: `How long does it take to implement AI ${topic.name.toLowerCase()}?`,
+    answer: `A proof-of-concept can be built in 2-4 weeks. Production deployment typically takes 6-12 weeks including integration, testing, and monitoring. We follow a 5-step process: Discover, Assess, Architect, Build, Ship.`
+  }
+];
+
+// FAQ schema
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((faq) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+
 // JSON-LD
 const serviceSchema = {
   "@context": "https://schema.org",
@@ -65,6 +95,7 @@ const breadcrumbSchema = {
 <BaseLayout title={title} description={description}>
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
   <!-- Hero -->
   <section class="relative overflow-hidden py-32 lg:py-40">
@@ -261,6 +292,41 @@ const breadcrumbSchema = {
     </div>
   </section>
 
+  <!-- FAQ Section -->
+  <section class="border-t border-white/10 py-24 lg:py-32">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <p class="text-sm uppercase tracking-widest text-text-muted mb-4">FAQ</p>
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          Frequently asked questions
+        </h2>
+        <p class="mt-6 max-w-3xl text-lg text-text-secondary leading-relaxed">
+          Common questions about {topic.name.toLowerCase()} and how it works.
+        </p>
+      </AnimateOnScroll>
+
+      <div class="mt-16 space-y-0" id="faq-accordion">
+        {faqs.map((faq, i) => (
+          <div class="border-b border-white/10">
+            <button
+              class="faq-toggle flex w-full items-center justify-between py-6 text-left"
+              aria-expanded="false"
+              data-faq-index={i}
+            >
+              <span class="text-lg font-medium text-white pr-8">{faq.question}</span>
+              <svg class="faq-icon h-5 w-5 shrink-0 text-text-muted transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+              </svg>
+            </button>
+            <div class="faq-content overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0;">
+              <p class="pb-6 text-[#ababab] leading-relaxed">{faq.answer}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- Lead Capture -->
   <LeadCapture source={`ai-automation-${topic.slug}`} />
 
@@ -325,4 +391,38 @@ const breadcrumbSchema = {
       </AnimateOnScroll>
     </div>
   </section>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggles = document.querySelectorAll('.faq-toggle');
+      toggles.forEach((toggle) => {
+        toggle.addEventListener('click', () => {
+          const content = toggle.nextElementSibling as HTMLElement;
+          const icon = toggle.querySelector('.faq-icon') as SVGElement;
+          const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+
+          // Close all others
+          toggles.forEach((other) => {
+            if (other !== toggle) {
+              other.setAttribute('aria-expanded', 'false');
+              const otherContent = other.nextElementSibling as HTMLElement;
+              const otherIcon = other.querySelector('.faq-icon') as SVGElement;
+              if (otherContent) otherContent.style.maxHeight = '0';
+              if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+            }
+          });
+
+          // Toggle current
+          if (isOpen) {
+            toggle.setAttribute('aria-expanded', 'false');
+            content.style.maxHeight = '0';
+            icon.style.transform = 'rotate(0deg)';
+          } else {
+            toggle.setAttribute('aria-expanded', 'true');
+            content.style.maxHeight = content.scrollHeight + 'px';
+            icon.style.transform = 'rotate(45deg)';
+          }
+        });
+      });
+    });
+  </script>
 </BaseLayout>

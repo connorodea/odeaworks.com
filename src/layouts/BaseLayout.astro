@@ -80,6 +80,15 @@ const organizationSchema = {
       window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) };
     </script>
 
+    <!-- Google Analytics 4 — Replace G-XXXXXXXXXX with your GA4 Measurement ID from analytics.google.com -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
     <!-- Preload Inter fonts -->
     <link
       rel="preload"

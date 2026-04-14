@@ -9,6 +9,7 @@ interface Project {
   description: string;
   href: string;
   live?: string;
+  image?: string;
 }
 
 const projects: Project[] = [
@@ -19,6 +20,7 @@ const projects: Project[] = [
     description:
       "End-to-end AI video automation platform. Generates faceless YouTube content with AI narration, captions, and automated publishing.",
     href: "https://github.com/connorodea/vidmation",
+    image: "/projects/vidmation.png",
   },
   {
     title: "ClawdHub",
@@ -27,6 +29,7 @@ const projects: Project[] = [
     description:
       "Terminal IDE for spawning and orchestrating multiple Claude Code agents in real time. 13,000 lines, 26 files.",
     href: "https://github.com/connorodea/clawd-hub",
+    image: "/projects/clawdhub.png",
   },
   {
     title: "QuickLotz WMS",
@@ -36,6 +39,7 @@ const projects: Project[] = [
       "Enterprise warehouse management system powering inventory, 3PL logistics, and real-time analytics for circular economy operations.",
     href: "https://github.com/connorodea/upscaled-quicklotz-dashboard",
     live: "https://v0-sourcing-platform-ui.vercel.app",
+    image: "/projects/quicklotz-wms.png",
   },
   {
     title: "QuickVisionz",
@@ -44,11 +48,12 @@ const projects: Project[] = [
     description:
       "Computer vision sorting pipeline with YOLO object detection, automated barcode classification, and thermal label printing.",
     href: "https://github.com/connorodea/QuickVisionz",
+    image: "/projects/quickvisionz.png",
   },
 ];
 ---
 
-<section class="bg-black py-32 lg:py-40">
+<section id="work" class="bg-black py-32 lg:py-40">
   <div class="mx-auto max-w-5xl px-6">
     <AnimateOnScroll animation="fade-up">
       <h2 class="text-4xl font-semibold tracking-tight text-white lg:text-5xl">
@@ -96,7 +101,11 @@ const projects: Project[] = [
                 </div>
               </div>
               <div>
-                <ProjectPlaceholder title={project.title} category={project.category} rounded="lg" />
+                {project.image ? (
+                  <img src={project.image} alt={project.title} class="aspect-video w-full rounded-lg object-cover" loading="lazy" />
+                ) : (
+                  <ProjectPlaceholder title={project.title} category={project.category} rounded="lg" />
+                )}
               </div>
             </div>
           </div>

@@ -8,6 +8,7 @@ const services = [
   {
     title: 'AI Engineering',
     slug: 'ai-consulting',
+    anchorId: 'ai-engineering',
     description:
       'We design, build, and deploy production AI systems. From autonomous agents to retrieval-augmented generation, we bring intelligent capabilities from prototype to production with rigorous evaluation at every stage.',
     offerings: [
@@ -22,6 +23,7 @@ const services = [
   {
     title: 'Technical Strategy',
     slug: 'technical-strategy',
+    anchorId: 'technical-strategy',
     description:
       'We help engineering teams make better decisions. Architecture reviews, technology selection, infrastructure audits, and scaling roadmaps — designed to reduce cost and increase velocity.',
     offerings: [
@@ -36,6 +38,7 @@ const services = [
   {
     title: 'Software Engineering',
     slug: 'software-development',
+    anchorId: 'software-engineering',
     description:
       'We build the software that businesses depend on. Full-stack web applications, APIs, databases, automation systems, and developer tools — shipped fast, built to last.',
     offerings: [
@@ -50,6 +53,7 @@ const services = [
   {
     title: 'Infrastructure & DevOps',
     slug: null,
+    anchorId: 'devops-infrastructure',
     description:
       'We architect and maintain the infrastructure that keeps applications running. CI/CD pipelines, cloud deployments, monitoring, and security — engineered for reliability at scale.',
     offerings: [
@@ -114,7 +118,7 @@ const servicesSchema = {
 
   <!-- Service sections -->
   {services.map((service) => (
-    <section class="border-t border-white/10 py-20">
+    <section id={service.anchorId} class="border-t border-white/10 py-20">
       <div class="mx-auto max-w-5xl px-6">
         <AnimateOnScroll animation="fade-up">
           <h2 class="text-3xl font-semibold text-white">

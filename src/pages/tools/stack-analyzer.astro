@@ -1,0 +1,404 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AnimateOnScroll from '../../components/shared/AnimateOnScroll.astro';
+
+const categories = [
+  {
+    name: "Languages",
+    id: "languages",
+    options: ["Python", "JavaScript/TypeScript", "Java", "Go", "Ruby", "PHP", "Other"],
+  },
+  {
+    name: "Frameworks",
+    id: "frameworks",
+    options: ["React", "Next.js", "Django", "FastAPI", "Express", "Rails", "Other"],
+  },
+  {
+    name: "Databases",
+    id: "databases",
+    options: ["PostgreSQL", "MySQL", "MongoDB", "Redis", "SQLite", "Other"],
+  },
+  {
+    name: "Cloud / Hosting",
+    id: "cloud",
+    options: ["AWS", "GCP", "Azure", "Hetzner/VPS", "Vercel", "Other"],
+  },
+  {
+    name: "AI / ML",
+    id: "aiml",
+    options: ["None", "ChatGPT API", "Claude API", "Custom models", "Computer vision", "Other"],
+  },
+];
+---
+
+<BaseLayout title="Tech Stack Analyzer | Odea Works" description="Analyze your tech stack's AI readiness and get specific integration recommendations. Free tool from Odea Works.">
+
+  <section class="py-24 lg:py-32">
+    <div class="mx-auto max-w-3xl px-6">
+
+      <!-- Header -->
+      <AnimateOnScroll animation="fade-up">
+        <h1 class="text-4xl font-semibold tracking-tight text-white lg:text-5xl">
+          Tech Stack Analyzer
+        </h1>
+        <p class="mt-4 text-[#ababab] text-lg">
+          Select your current technologies and get AI integration recommendations.
+        </p>
+      </AnimateOnScroll>
+
+      <!-- Stack Selection -->
+      <div class="mt-12 space-y-10" id="stack-form">
+        {categories.map((cat, i) => (
+          <AnimateOnScroll animation="fade-up" delay={i * 80}>
+            <div>
+              <p class="text-sm font-medium text-white mb-4">{cat.name}</p>
+              <div class="flex flex-wrap gap-2" data-category={cat.id}>
+                {cat.options.map((opt) => (
+                  <button
+                    type="button"
+                    data-value={opt}
+                    data-category={cat.id}
+                    class="stack-chip rounded-full border border-white/[0.08] bg-[#0a0a0a] px-4 py-2 text-sm text-[#ababab] transition-all duration-200 hover:border-white/[0.2] hover:text-white cursor-pointer"
+                  >
+                    {opt}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </AnimateOnScroll>
+        ))}
+
+        <!-- Analyze Button -->
+        <AnimateOnScroll animation="fade-up" delay={400}>
+          <button
+            id="analyze-btn"
+            class="w-full rounded-full bg-white py-4 text-sm font-medium text-black transition-opacity hover:opacity-90 cursor-pointer"
+          >
+            Analyze my stack
+          </button>
+        </AnimateOnScroll>
+      </div>
+
+      <!-- Results -->
+      <div id="stack-results" class="hidden mt-12">
+        <!-- Rendered by JS -->
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    function initStackAnalyzer() {
+      const selected: Record<string, Set<string>> = {
+        languages: new Set(),
+        frameworks: new Set(),
+        databases: new Set(),
+        cloud: new Set(),
+        aiml: new Set(),
+      };
+
+      // Chip toggle
+      document.querySelectorAll('.stack-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          const cat = (chip as HTMLElement).dataset.category!;
+          const val = (chip as HTMLElement).dataset.value!;
+
+          if (selected[cat].has(val)) {
+            selected[cat].delete(val);
+            chip.classList.remove('border-[#10a37f]/50', 'bg-[#10a37f]/10', 'text-white');
+            chip.classList.add('border-white/[0.08]', 'bg-[#0a0a0a]', 'text-[#ababab]');
+          } else {
+            selected[cat].add(val);
+            chip.classList.add('border-[#10a37f]/50', 'bg-[#10a37f]/10', 'text-white');
+            chip.classList.remove('border-white/[0.08]', 'bg-[#0a0a0a]', 'text-[#ababab]');
+          }
+        });
+      });
+
+      const analyzeBtn = document.getElementById('analyze-btn');
+      const resultsDiv = document.getElementById('stack-results');
+
+      if (!analyzeBtn || !resultsDiv) return;
+
+      analyzeBtn.addEventListener('click', () => {
+        const langs = selected.languages;
+        const frameworks = selected.frameworks;
+        const dbs = selected.databases;
+        const cloud = selected.cloud;
+        const aiml = selected.aiml;
+
+        // Score calculation
+        let score = 0;
+        let maxScore = 100;
+
+        // Language scoring
+        if (langs.has('Python')) score += 20;
+        else if (langs.has('JavaScript/TypeScript')) score += 16;
+        else if (langs.has('Go')) score += 14;
+        else if (langs.has('Java')) score += 12;
+        else if (langs.size > 0) score += 8;
+
+        // Framework scoring
+        if (frameworks.has('FastAPI')) score += 15;
+        else if (frameworks.has('Next.js')) score += 14;
+        else if (frameworks.has('Django')) score += 13;
+        else if (frameworks.has('React')) score += 12;
+        else if (frameworks.has('Express')) score += 11;
+        else if (frameworks.size > 0) score += 7;
+
+        // Database scoring
+        if (dbs.has('PostgreSQL')) score += 15;
+        else if (dbs.has('MongoDB')) score += 12;
+        else if (dbs.has('MySQL')) score += 11;
+        else if (dbs.size > 0) score += 8;
+
+        // Vector DB / Redis bonus
+        if (dbs.has('Redis')) score += 5;
+
+        // Cloud scoring
+        if (cloud.has('AWS')) score += 15;
+        else if (cloud.has('GCP')) score += 15;
+        else if (cloud.has('Azure')) score += 14;
+        else if (cloud.has('Vercel')) score += 10;
+        else if (cloud.has('Hetzner/VPS')) score += 10;
+        else if (cloud.size > 0) score += 6;
+
+        // AI/ML scoring
+        if (aiml.has('Custom models')) score += 20;
+        else if (aiml.has('Claude API') || aiml.has('ChatGPT API')) score += 15;
+        else if (aiml.has('Computer vision')) score += 15;
+        else if (aiml.has('None')) score += 0;
+
+        // Cap at 100
+        score = Math.min(score, maxScore);
+
+        // Generate recommendations
+        const recommendations: string[] = [];
+        const projectMatches: { title: string; desc: string }[] = [];
+
+        // Python-specific
+        if (langs.has('Python') && dbs.has('PostgreSQL')) {
+          recommendations.push("Your Python + PostgreSQL stack is ideal for RAG (Retrieval-Augmented Generation) pipelines. You can build semantic search and AI-powered knowledge bases with pgvector.");
+          projectMatches.push({ title: "QuickLotz WMS", desc: "Python + PostgreSQL powering AI-driven warehouse management with intelligent inventory classification." });
+        }
+
+        if (langs.has('Python') && (frameworks.has('FastAPI') || frameworks.has('Django'))) {
+          recommendations.push("FastAPI or Django combined with Python makes adding AI API endpoints straightforward. You can integrate LLM calls, embeddings, and ML inference with minimal changes.");
+        }
+
+        // JS/TS specific
+        if (langs.has('JavaScript/TypeScript') && (frameworks.has('React') || frameworks.has('Next.js'))) {
+          recommendations.push("Your React/Next.js frontend can integrate AI features with minimal changes — streaming chat interfaces, AI-powered search, and intelligent form completion are all plug-and-play.");
+          projectMatches.push({ title: "ClawdHub", desc: "13,000+ lines of TypeScript — a full IDE for orchestrating AI agents, built on React." });
+        }
+
+        if (langs.has('JavaScript/TypeScript') && frameworks.has('Express')) {
+          recommendations.push("Express.js backends can be extended with AI middleware for request classification, auto-responses, and intelligent routing.");
+        }
+
+        // No AI currently
+        if (aiml.has('None') || aiml.size === 0) {
+          recommendations.push("Start with Claude API integration — it's the fastest path from zero to production AI. We've done this 10+ times and can have you running in days, not months.");
+        }
+
+        // Already using AI
+        if (aiml.has('ChatGPT API') || aiml.has('Claude API')) {
+          recommendations.push("You're already using AI APIs. The next step is building agent workflows — multi-step AI systems that handle complex tasks autonomously with human oversight.");
+        }
+
+        if (aiml.has('Custom models')) {
+          recommendations.push("With custom model experience, consider combining fine-tuned models with LLM orchestration for best-of-both-worlds: domain-specific accuracy with general reasoning capability.");
+        }
+
+        if (aiml.has('Computer vision')) {
+          recommendations.push("Computer vision pairs powerfully with LLMs. Consider multi-modal pipelines that combine image analysis with natural language understanding for richer automation.");
+          projectMatches.push({ title: "QuickVisionz", desc: "Computer vision system for automated product classification from camera feeds." });
+        }
+
+        // Cloud-specific
+        if (cloud.has('AWS')) {
+          recommendations.push("AWS Bedrock gives you managed access to Claude and other models. Combined with Lambda, you can build serverless AI pipelines that scale automatically.");
+        }
+
+        if (cloud.has('Hetzner/VPS')) {
+          recommendations.push("Self-hosted infrastructure is ideal for data-sensitive AI workloads. You maintain full control over data residency while running AI inference locally or via API.");
+        }
+
+        // Fallback recommendations
+        if (recommendations.length < 3) {
+          recommendations.push("Consider adding a vector database (like pgvector or Pinecone) for semantic search capabilities across your data.");
+        }
+        if (recommendations.length < 3) {
+          recommendations.push("Implement AI-powered monitoring and anomaly detection to catch issues before they become problems.");
+        }
+        if (recommendations.length < 3) {
+          recommendations.push("Add an AI layer for customer interactions — automated support, intelligent routing, and personalized responses.");
+        }
+
+        // Fallback project matches
+        if (projectMatches.length === 0) {
+          projectMatches.push({ title: "Vidmation", desc: "AI-powered video production automation — from script generation to final render, fully automated." });
+        }
+
+        // Score level
+        let scoreLevel = '';
+        let scoreColor = '';
+        if (score < 30) { scoreLevel = 'Foundational'; scoreColor = '#666'; }
+        else if (score < 55) { scoreLevel = 'Moderate'; scoreColor = '#ababab'; }
+        else if (score < 80) { scoreLevel = 'Strong'; scoreColor = '#10a37f'; }
+        else { scoreLevel = 'Advanced'; scoreColor = '#10a37f'; }
+
+        resultsDiv.classList.remove('hidden');
+        resultsDiv.style.opacity = '0';
+        resultsDiv.style.transform = 'translateY(12px)';
+
+        resultsDiv.innerHTML = `
+          <div class="space-y-8">
+            <!-- Score -->
+            <div>
+              <p class="text-sm text-[#666] uppercase tracking-wider mb-4">AI Integration Score</p>
+              <div class="flex items-baseline gap-3 mb-2">
+                <span class="text-6xl font-semibold text-white">${score}</span>
+                <span class="text-2xl text-[#666]">/ 100</span>
+              </div>
+              <p class="text-sm font-medium mb-4" style="color: ${scoreColor}">${scoreLevel}</p>
+              <div class="h-2 w-full bg-white/[0.08] rounded-full overflow-hidden">
+                <div class="h-full bg-[#10a37f] rounded-full transition-all duration-1000 ease-out" style="width: 0%" id="stack-score-bar"></div>
+              </div>
+            </div>
+
+            <!-- Recommendations -->
+            <div class="border-t border-white/[0.08] pt-8">
+              <p class="text-lg font-semibold text-white mb-6">AI integration opportunities</p>
+              <div class="space-y-4">
+                ${recommendations.slice(0, 5).map((rec, i) => `
+                  <div class="flex items-start gap-4 py-3 ${i < recommendations.length - 1 ? 'border-b border-white/[0.06]' : ''}">
+                    <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#10a37f]/10 text-xs text-[#10a37f] mt-0.5">${i + 1}</span>
+                    <p class="text-[15px] text-[#ababab] leading-relaxed">${rec}</p>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- Matching Projects -->
+            <div class="border-t border-white/[0.08] pt-8">
+              <p class="text-lg font-semibold text-white mb-6">Relevant projects from our portfolio</p>
+              <div class="space-y-4">
+                ${projectMatches.map(p => `
+                  <div class="rounded-xl border border-white/[0.08] bg-[#0a0a0a] p-5">
+                    <p class="text-sm font-medium text-white">${p.title}</p>
+                    <p class="mt-1 text-sm text-[#ababab]">${p.desc}</p>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- Email Capture -->
+            <div class="border-t border-white/[0.08] pt-8">
+              <form id="stack-email-form" class="space-y-4">
+                <p class="text-lg font-semibold text-white">Get a custom integration plan</p>
+                <p class="text-sm text-[#ababab]">We'll review your stack in detail and send specific architecture recommendations.</p>
+                <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+                <div class="flex flex-col sm:flex-row gap-3 mt-4">
+                  <div class="flex-1 border-b border-white/10 focus-within:border-white/30 transition-colors">
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      placeholder="Your email"
+                      class="w-full bg-transparent py-3 text-white placeholder-[#666] outline-none"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    class="rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+                  >
+                    Send plan
+                  </button>
+                </div>
+                <div id="stack-email-success" class="hidden">
+                  <p class="text-[#10a37f] text-sm font-medium">Check your inbox — your integration plan is on the way.</p>
+                </div>
+                <div id="stack-email-error" class="hidden">
+                  <p class="text-red-400 text-sm">Something went wrong. Please try again.</p>
+                </div>
+              </form>
+            </div>
+
+            <!-- CTA -->
+            <div class="border-t border-white/[0.08] pt-8 text-center">
+              <p class="text-[#ababab] mb-6">Ready to build AI into your stack?</p>
+              <a
+                href="/book"
+                class="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90"
+              >
+                Let's build it &rarr;
+              </a>
+            </div>
+          </div>
+        `;
+
+        resultsDiv.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        resultsDiv.style.opacity = '1';
+        resultsDiv.style.transform = 'translateY(0)';
+
+        // Animate score bar
+        setTimeout(() => {
+          const scoreBar = document.getElementById('stack-score-bar');
+          if (scoreBar) scoreBar.style.width = score + '%';
+        }, 300);
+
+        // Scroll to results
+        resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        // Track event
+        if (typeof umami !== 'undefined') {
+          (umami as any).track('Tool Used', { tool: 'stack-analyzer', score, level: scoreLevel });
+        }
+
+        // Email form handler
+        const emailForm = document.getElementById('stack-email-form') as HTMLFormElement;
+        const emailSuccess = document.getElementById('stack-email-success');
+        const emailError = document.getElementById('stack-email-error');
+
+        emailForm?.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          emailError?.classList.add('hidden');
+
+          const btn = emailForm.querySelector('button[type="submit"]') as HTMLButtonElement;
+          if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+
+          const formData = new FormData(emailForm);
+          const data = {
+            _honey: formData.get('_honey') || '',
+            email: formData.get('email') || '',
+            source: 'stack-analyzer',
+          };
+
+          try {
+            const res = await fetch('/api/subscribe', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(data),
+            });
+            const result = await res.json();
+            if (res.ok && result.success) {
+              emailForm.classList.add('hidden');
+              emailSuccess?.classList.remove('hidden');
+            } else {
+              emailError?.classList.remove('hidden');
+            }
+          } catch {
+            emailError?.classList.remove('hidden');
+          } finally {
+            if (btn) { btn.disabled = false; btn.textContent = 'Send plan'; }
+          }
+        });
+      });
+    }
+
+    initStackAnalyzer();
+    document.addEventListener('astro:page-load', initStackAnalyzer);
+  </script>
+
+</BaseLayout>

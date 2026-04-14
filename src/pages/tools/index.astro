@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AnimateOnScroll from '../../components/shared/AnimateOnScroll.astro';
+
+const tools = [
+  {
+    title: 'AI Readiness Quiz',
+    description: 'Find out if your business is ready for AI implementation with a 2-minute assessment.',
+    href: '/tools/ai-readiness',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>`,
+  },
+  {
+    title: 'AI ROI Calculator',
+    description: 'Estimate the return on investment of implementing AI in your operations.',
+    href: '/tools/roi-calculator',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>`,
+  },
+  {
+    title: 'Tech Stack Analyzer',
+    description: 'See how AI-ready your current tech stack is and get integration recommendations.',
+    href: '/tools/stack-analyzer',
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>`,
+  },
+];
+---
+
+<BaseLayout title="Free AI Tools | Odea Works" description="Evaluate your AI readiness, calculate ROI, and analyze your tech stack with free interactive tools from Odea Works.">
+
+  <!-- Hero -->
+  <section class="py-32 lg:py-40">
+    <div class="mx-auto max-w-5xl px-6">
+      <AnimateOnScroll animation="fade-up">
+        <h1 class="text-5xl font-semibold tracking-tight text-white lg:text-6xl">
+          Free Tools
+        </h1>
+        <p class="mt-6 text-xl text-[#ababab] max-w-2xl">
+          Evaluate your AI readiness, calculate ROI, and analyze your stack.
+        </p>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+  <!-- Tool Cards -->
+  <section class="pb-32 lg:pb-40">
+    <div class="mx-auto max-w-5xl px-6">
+      <div class="grid gap-8 md:grid-cols-3">
+        {tools.map((tool, i) => (
+          <AnimateOnScroll animation="fade-up" delay={i * 100}>
+            <a
+              href={tool.href}
+              class="group block rounded-2xl border border-white/[0.08] bg-[#0a0a0a] p-8 transition-all duration-300 hover:border-white/[0.16] hover:bg-[#111]"
+            >
+              <div class="mb-6 text-[#10a37f]" set:html={tool.icon} />
+              <h2 class="text-lg font-semibold text-white mb-2">
+                {tool.title}
+              </h2>
+              <p class="text-[15px] text-[#ababab] leading-relaxed mb-6">
+                {tool.description}
+              </p>
+              <span class="text-sm text-[#666] transition-colors duration-200 group-hover:text-white">
+                Try it &rarr;
+              </span>
+            </a>
+          </AnimateOnScroll>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="border-t border-white/10 py-32 lg:py-40">
+    <div class="mx-auto max-w-5xl px-6 text-center">
+      <AnimateOnScroll animation="fade-up">
+        <h2 class="text-2xl font-semibold text-white">
+          Want a personalized assessment?
+        </h2>
+        <p class="mt-4 text-[#ababab]">
+          These tools give you a starting point. A discovery call gives you the full picture.
+        </p>
+        <div class="mt-8">
+          <a
+            href="/book"
+            class="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90"
+          >
+            Book a free call &rarr;
+          </a>
+        </div>
+      </AnimateOnScroll>
+    </div>
+  </section>
+
+</BaseLayout>

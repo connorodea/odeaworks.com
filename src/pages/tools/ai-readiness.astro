@@ -1,0 +1,419 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="AI Readiness Quiz | Odea Works" description="Take the free 2-minute AI Readiness Quiz to find out if your business is ready for AI implementation.">
+
+  <section class="py-24 lg:py-32">
+    <div class="mx-auto max-w-2xl px-6">
+
+      <!-- Quiz Header -->
+      <div id="quiz-header" data-animate="fade-up" class="mb-12">
+        <h1 class="text-4xl font-semibold tracking-tight text-white lg:text-5xl">
+          AI Readiness Quiz
+        </h1>
+        <p class="mt-4 text-[#ababab] text-lg">
+          10 questions. 2 minutes. Find out where you stand.
+        </p>
+      </div>
+
+      <!-- Progress Bar -->
+      <div id="progress-container" class="mb-10">
+        <div class="flex items-center justify-between mb-2">
+          <span id="progress-label" class="text-xs text-[#666]">Question 1 of 10</span>
+          <span id="progress-percent" class="text-xs text-[#666]">0%</span>
+        </div>
+        <div class="h-0.5 w-full bg-white/[0.08] rounded-full overflow-hidden">
+          <div id="progress-bar" class="h-full bg-[#10a37f] rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- Question Container -->
+      <div id="question-container" class="min-h-[360px]">
+        <!-- Questions rendered by JS -->
+      </div>
+
+      <!-- Results Container (hidden initially) -->
+      <div id="results-container" class="hidden">
+        <!-- Results rendered by JS -->
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    function initQuiz() {
+      const questions = [
+        {
+          question: "How much of your data is digitized?",
+          options: [
+            { label: "None — mostly paper or spreadsheets", points: 1 },
+            { label: "Some — key data is in systems", points: 2 },
+            { label: "Most — we have a central database", points: 4 },
+            { label: "All — fully digital, structured data", points: 5 },
+          ],
+        },
+        {
+          question: "Do you have a dedicated engineering team?",
+          options: [
+            { label: "No — we outsource everything", points: 1 },
+            { label: "Small — 1-3 developers", points: 2 },
+            { label: "Medium — 4-10 developers", points: 4 },
+            { label: "Large — 10+ developers", points: 5 },
+          ],
+        },
+        {
+          question: "What's your monthly technology budget?",
+          options: [
+            { label: "Less than $5K", points: 1 },
+            { label: "$5K - $20K", points: 2 },
+            { label: "$20K - $50K", points: 4 },
+            { label: "$50K+", points: 5 },
+          ],
+        },
+        {
+          question: "Have you experimented with AI tools?",
+          options: [
+            { label: "Never", points: 1 },
+            { label: "ChatGPT only", points: 2 },
+            { label: "Some integration into workflows", points: 4 },
+            { label: "Production AI systems", points: 5 },
+          ],
+        },
+        {
+          question: "How repetitive are your core business processes?",
+          options: [
+            { label: "Very manual — lots of repetitive work", points: 5 },
+            { label: "Some automation in place", points: 3 },
+            { label: "Mostly automated", points: 2 },
+            { label: "Fully automated", points: 1 },
+          ],
+        },
+        {
+          question: "What's your biggest operational bottleneck?",
+          options: [
+            { label: "Data entry and processing", points: 5 },
+            { label: "Decision making speed", points: 4 },
+            { label: "Customer support volume", points: 4 },
+            { label: "Quality control", points: 3 },
+          ],
+        },
+        {
+          question: "How many employees does your company have?",
+          options: [
+            { label: "1-10", points: 2 },
+            { label: "11-50", points: 3 },
+            { label: "51-200", points: 4 },
+            { label: "200+", points: 5 },
+          ],
+        },
+        {
+          question: "What industry are you in?",
+          options: [
+            { label: "E-commerce", points: 5 },
+            { label: "Healthcare", points: 4 },
+            { label: "Finance", points: 4 },
+            { label: "Logistics", points: 5 },
+            { label: "SaaS", points: 5 },
+            { label: "Other", points: 3 },
+          ],
+        },
+        {
+          question: "What's your timeline for AI implementation?",
+          options: [
+            { label: "Just exploring", points: 1 },
+            { label: "Within 6 months", points: 3 },
+            { label: "Within 3 months", points: 4 },
+            { label: "ASAP — we need this now", points: 5 },
+          ],
+        },
+        {
+          question: "What's your primary goal with AI?",
+          options: [
+            { label: "Cost reduction", points: 4 },
+            { label: "Revenue growth", points: 5 },
+            { label: "Quality improvement", points: 3 },
+            { label: "Speed and efficiency", points: 4 },
+          ],
+        },
+      ];
+
+      const levels = [
+        {
+          name: "Early Stage",
+          range: "0-15",
+          description: "You're in the exploration phase. The good news: you're thinking about it. The next step is understanding where AI fits in your specific operations.",
+          steps: [
+            "Start digitizing your core data — AI needs structured data to work with",
+            "Experiment with ChatGPT or Claude for day-to-day tasks to build intuition",
+            "Book an AI audit to identify your highest-impact opportunities",
+          ],
+        },
+        {
+          name: "Getting Ready",
+          range: "16-25",
+          description: "You have the foundation in place. Your data and team can support AI — now it's about identifying the right use case to start with.",
+          steps: [
+            "Map your most repetitive, time-consuming workflows",
+            "Identify one process where AI could save 10+ hours per week",
+            "Talk to an AI consultant to scope a pilot project",
+          ],
+        },
+        {
+          name: "AI Ready",
+          range: "26-35",
+          description: "You're well-positioned for AI implementation. You have the data, the team, and the budget. A focused AI build could transform your operations.",
+          steps: [
+            "Define your AI project scope and success metrics",
+            "Evaluate build vs. buy for your specific use case",
+            "Engage an experienced AI engineering team to start building",
+          ],
+        },
+        {
+          name: "Advanced",
+          range: "36-50",
+          description: "You're ready for sophisticated AI systems. Multi-agent orchestration, custom models, and deep integration are all on the table.",
+          steps: [
+            "Explore agent orchestration for complex multi-step workflows",
+            "Consider fine-tuning or training custom models on your data",
+            "Build an AI roadmap that compounds your competitive advantage",
+          ],
+        },
+      ];
+
+      let currentQuestion = 0;
+      let answers: number[] = [];
+
+      const container = document.getElementById('question-container');
+      const resultsContainer = document.getElementById('results-container');
+      const progressBar = document.getElementById('progress-bar');
+      const progressLabel = document.getElementById('progress-label');
+      const progressPercent = document.getElementById('progress-percent');
+      const progressContainerEl = document.getElementById('progress-container');
+
+      if (!container || !resultsContainer) return;
+
+      function renderQuestion(index: number) {
+        const q = questions[index];
+        const pct = Math.round((index / questions.length) * 100);
+
+        if (progressBar) progressBar.style.width = pct + '%';
+        if (progressLabel) progressLabel.textContent = `Question ${index + 1} of ${questions.length}`;
+        if (progressPercent) progressPercent.textContent = pct + '%';
+
+        container.style.opacity = '0';
+        container.style.transform = 'translateY(12px)';
+
+        setTimeout(() => {
+          container.innerHTML = `
+            <h2 class="text-2xl font-semibold text-white mb-8 leading-tight">${q.question}</h2>
+            <div class="space-y-3" id="options-list">
+              ${q.options.map((opt, i) => `
+                <button
+                  data-points="${opt.points}"
+                  data-index="${i}"
+                  class="quiz-option w-full text-left rounded-xl border border-white/[0.08] bg-[#0a0a0a] px-6 py-4 text-[15px] text-[#ababab] transition-all duration-200 hover:border-white/[0.2] hover:bg-[#111] hover:text-white cursor-pointer"
+                >
+                  ${opt.label}
+                </button>
+              `).join('')}
+            </div>
+          `;
+
+          container.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+          container.style.opacity = '1';
+          container.style.transform = 'translateY(0)';
+
+          container.querySelectorAll('.quiz-option').forEach(btn => {
+            btn.addEventListener('click', () => {
+              const points = parseInt((btn as HTMLElement).dataset.points || '0');
+              // Visual feedback
+              (btn as HTMLElement).style.borderColor = 'rgba(16, 163, 127, 0.5)';
+              (btn as HTMLElement).style.backgroundColor = 'rgba(16, 163, 127, 0.08)';
+              (btn as HTMLElement).style.color = '#ffffff';
+
+              setTimeout(() => {
+                answers.push(points);
+                currentQuestion++;
+                if (currentQuestion < questions.length) {
+                  renderQuestion(currentQuestion);
+                } else {
+                  showResults();
+                }
+              }, 250);
+            });
+          });
+        }, 200);
+      }
+
+      function showResults() {
+        const totalScore = answers.reduce((sum, val) => sum + val, 0);
+        let level;
+        if (totalScore <= 15) level = levels[0];
+        else if (totalScore <= 25) level = levels[1];
+        else if (totalScore <= 35) level = levels[2];
+        else level = levels[3];
+
+        const scorePct = Math.min(Math.round((totalScore / 50) * 100), 100);
+
+        if (progressBar) progressBar.style.width = '100%';
+        if (progressLabel) progressLabel.textContent = 'Complete';
+        if (progressPercent) progressPercent.textContent = '100%';
+
+        container.style.opacity = '0';
+        setTimeout(() => {
+          container.classList.add('hidden');
+          if (progressContainerEl) progressContainerEl.classList.add('hidden');
+
+          resultsContainer!.classList.remove('hidden');
+          resultsContainer!.style.opacity = '0';
+          resultsContainer!.style.transform = 'translateY(12px)';
+
+          resultsContainer!.innerHTML = `
+            <div class="space-y-10">
+              <!-- Score -->
+              <div>
+                <p class="text-sm text-[#666] uppercase tracking-wider mb-4">Your Score</p>
+                <div class="flex items-baseline gap-3 mb-4">
+                  <span class="text-6xl font-semibold text-white">${totalScore}</span>
+                  <span class="text-2xl text-[#666]">/ 50</span>
+                </div>
+                <div class="h-2 w-full bg-white/[0.08] rounded-full overflow-hidden mb-2">
+                  <div class="h-full bg-[#10a37f] rounded-full transition-all duration-1000 ease-out" style="width: 0%" id="score-bar"></div>
+                </div>
+              </div>
+
+              <!-- Level -->
+              <div class="border-t border-white/[0.08] pt-8">
+                <p class="text-sm text-[#10a37f] uppercase tracking-wider mb-2">${level.name}</p>
+                <p class="text-[#ababab] leading-relaxed">${level.description}</p>
+              </div>
+
+              <!-- Next Steps -->
+              <div class="border-t border-white/[0.08] pt-8">
+                <p class="text-lg font-semibold text-white mb-6">Recommended next steps</p>
+                <ol class="space-y-4">
+                  ${level.steps.map((step, i) => `
+                    <li class="flex items-start gap-4">
+                      <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white/[0.06] text-xs text-[#666]">${i + 1}</span>
+                      <span class="text-[15px] text-[#ababab] leading-relaxed">${step}</span>
+                    </li>
+                  `).join('')}
+                </ol>
+              </div>
+
+              <!-- Email Capture -->
+              <div class="border-t border-white/[0.08] pt-8">
+                <form id="quiz-email-form" class="space-y-4">
+                  <p class="text-lg font-semibold text-white">Get your personalized AI readiness report</p>
+                  <p class="text-sm text-[#ababab]">We'll send a detailed breakdown based on your answers — including specific tools and strategies for your situation.</p>
+                  <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+                  <div class="flex flex-col sm:flex-row gap-3 mt-4">
+                    <div class="flex-1 border-b border-white/10 focus-within:border-white/30 transition-colors">
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        placeholder="Your email"
+                        class="w-full bg-transparent py-3 text-white placeholder-[#666] outline-none"
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      class="rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+                    >
+                      Send my report
+                    </button>
+                  </div>
+                  <div id="quiz-email-success" class="hidden">
+                    <p class="text-[#10a37f] text-sm font-medium">Check your inbox — your report is on the way.</p>
+                  </div>
+                  <div id="quiz-email-error" class="hidden">
+                    <p class="text-red-400 text-sm">Something went wrong. Please try again.</p>
+                  </div>
+                </form>
+              </div>
+
+              <!-- CTA -->
+              <div class="border-t border-white/[0.08] pt-8 text-center">
+                <p class="text-[#ababab] mb-6">Want expert guidance on your next move?</p>
+                <a
+                  href="/book"
+                  class="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90"
+                >
+                  Book a free AI assessment &rarr;
+                </a>
+              </div>
+            </div>
+          `;
+
+          resultsContainer!.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          resultsContainer!.style.opacity = '1';
+          resultsContainer!.style.transform = 'translateY(0)';
+
+          // Animate score bar
+          setTimeout(() => {
+            const scoreBar = document.getElementById('score-bar');
+            if (scoreBar) scoreBar.style.width = scorePct + '%';
+          }, 300);
+
+          // Track event
+          if (typeof umami !== 'undefined') {
+            (umami as any).track('Tool Used', { tool: 'ai-readiness-quiz', score: totalScore, level: level.name });
+          }
+
+          // Email form handler
+          const emailForm = document.getElementById('quiz-email-form') as HTMLFormElement;
+          const emailSuccess = document.getElementById('quiz-email-success');
+          const emailError = document.getElementById('quiz-email-error');
+
+          emailForm?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            emailError?.classList.add('hidden');
+
+            const btn = emailForm.querySelector('button[type="submit"]') as HTMLButtonElement;
+            if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+
+            const formData = new FormData(emailForm);
+            const data = {
+              _honey: formData.get('_honey') || '',
+              email: formData.get('email') || '',
+              source: 'ai-readiness-quiz',
+            };
+
+            try {
+              const res = await fetch('/api/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+              });
+              const result = await res.json();
+              if (res.ok && result.success) {
+                emailForm.classList.add('hidden');
+                emailSuccess?.classList.remove('hidden');
+              } else {
+                emailError?.classList.remove('hidden');
+              }
+            } catch {
+              emailError?.classList.remove('hidden');
+            } finally {
+              if (btn) { btn.disabled = false; btn.textContent = 'Send my report'; }
+            }
+          });
+        }, 300);
+      }
+
+      // Init animations
+      const header = document.getElementById('quiz-header');
+      if (header) {
+        setTimeout(() => header.classList.add('is-visible'), 100);
+      }
+
+      renderQuestion(0);
+    }
+
+    initQuiz();
+    document.addEventListener('astro:page-load', initQuiz);
+  </script>
+
+</BaseLayout>

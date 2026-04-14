@@ -1,0 +1,327 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AnimateOnScroll from '../../components/shared/AnimateOnScroll.astro';
+---
+
+<BaseLayout title="AI ROI Calculator | Odea Works" description="Estimate the return on investment of implementing AI in your business operations. Free interactive calculator.">
+
+  <section class="py-24 lg:py-32">
+    <div class="mx-auto max-w-3xl px-6">
+
+      <!-- Header -->
+      <AnimateOnScroll animation="fade-up">
+        <h1 class="text-4xl font-semibold tracking-tight text-white lg:text-5xl">
+          AI ROI Calculator
+        </h1>
+        <p class="mt-4 text-[#ababab] text-lg">
+          Estimate the financial impact of AI on your operations.
+        </p>
+      </AnimateOnScroll>
+
+      <!-- Calculator Form -->
+      <AnimateOnScroll animation="fade-up" delay={100}>
+        <div class="mt-12 space-y-8" id="calc-form">
+
+          <!-- Monthly Revenue -->
+          <div>
+            <label for="monthly-revenue" class="block text-sm font-medium text-white mb-2">
+              Monthly revenue
+            </label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-[#666]">$</span>
+              <input
+                type="number"
+                id="monthly-revenue"
+                placeholder="100,000"
+                min="0"
+                class="w-full rounded-xl border border-white/[0.08] bg-[#0a0a0a] py-4 pl-8 pr-4 text-white placeholder-[#666] outline-none transition-colors focus:border-white/[0.2] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              />
+            </div>
+          </div>
+
+          <!-- Number of Employees -->
+          <div>
+            <label for="employees" class="block text-sm font-medium text-white mb-2">
+              Number of employees
+            </label>
+            <input
+              type="number"
+              id="employees"
+              placeholder="25"
+              min="1"
+              class="w-full rounded-xl border border-white/[0.08] bg-[#0a0a0a] py-4 px-4 text-white placeholder-[#666] outline-none transition-colors focus:border-white/[0.2] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            />
+          </div>
+
+          <!-- Hours on Manual Tasks -->
+          <div>
+            <label for="manual-hours" class="block text-sm font-medium text-white mb-2">
+              Hours spent on manual/repetitive tasks per week
+            </label>
+            <div class="flex items-center gap-4">
+              <input
+                type="range"
+                id="manual-hours"
+                min="0"
+                max="100"
+                value="40"
+                class="flex-1 h-1 bg-white/[0.08] rounded-full appearance-none cursor-pointer accent-[#10a37f] [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#10a37f] [&::-webkit-slider-thumb]:cursor-pointer"
+              />
+              <span id="manual-hours-display" class="text-white text-sm font-medium w-16 text-right">40 hrs</span>
+            </div>
+          </div>
+
+          <!-- Hourly Cost -->
+          <div>
+            <label for="hourly-cost" class="block text-sm font-medium text-white mb-2">
+              Average employee hourly cost
+            </label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-[#666]">$</span>
+              <input
+                type="number"
+                id="hourly-cost"
+                placeholder="35"
+                value="35"
+                min="1"
+                class="w-full rounded-xl border border-white/[0.08] bg-[#0a0a0a] py-4 pl-8 pr-4 text-white placeholder-[#666] outline-none transition-colors focus:border-white/[0.2] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              />
+            </div>
+          </div>
+
+          <!-- Industry -->
+          <div>
+            <label for="industry" class="block text-sm font-medium text-white mb-2">
+              Industry
+            </label>
+            <select
+              id="industry"
+              class="w-full rounded-xl border border-white/[0.08] bg-[#0a0a0a] py-4 px-4 text-white outline-none transition-colors focus:border-white/[0.2] appearance-none cursor-pointer"
+            >
+              <option value="ecommerce">E-commerce</option>
+              <option value="healthcare">Healthcare</option>
+              <option value="finance">Finance</option>
+              <option value="logistics">Logistics</option>
+              <option value="saas">SaaS</option>
+              <option value="manufacturing">Manufacturing</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <!-- Calculate Button -->
+          <button
+            id="calculate-btn"
+            class="w-full rounded-full bg-white py-4 text-sm font-medium text-black transition-opacity hover:opacity-90 cursor-pointer"
+          >
+            Calculate ROI
+          </button>
+
+        </div>
+      </AnimateOnScroll>
+
+      <!-- Results -->
+      <div id="roi-results" class="hidden mt-12">
+        <!-- Rendered by JS -->
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    function initCalculator() {
+      const slider = document.getElementById('manual-hours') as HTMLInputElement;
+      const sliderDisplay = document.getElementById('manual-hours-display');
+      const calcBtn = document.getElementById('calculate-btn');
+      const resultsDiv = document.getElementById('roi-results');
+
+      if (!slider || !calcBtn || !resultsDiv) return;
+
+      // Update slider display
+      slider.addEventListener('input', () => {
+        if (sliderDisplay) sliderDisplay.textContent = slider.value + ' hrs';
+      });
+
+      function formatCurrency(num: number): string {
+        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(num);
+      }
+
+      calcBtn.addEventListener('click', () => {
+        const monthlyRevenue = parseFloat((document.getElementById('monthly-revenue') as HTMLInputElement).value) || 100000;
+        const employees = parseInt((document.getElementById('employees') as HTMLInputElement).value) || 25;
+        const manualHours = parseInt((document.getElementById('manual-hours') as HTMLInputElement).value) || 40;
+        const hourlyCost = parseFloat((document.getElementById('hourly-cost') as HTMLInputElement).value) || 35;
+        const industry = (document.getElementById('industry') as HTMLSelectElement).value;
+
+        // Industry multipliers
+        const industryMultipliers: Record<string, number> = {
+          ecommerce: 0.18,
+          healthcare: 0.12,
+          finance: 0.16,
+          logistics: 0.20,
+          saas: 0.15,
+          manufacturing: 0.14,
+          other: 0.15,
+        };
+
+        const revenueMultiplier = industryMultipliers[industry] || 0.15;
+
+        // Calculate
+        const timeSavingsHours = manualHours * 0.6;
+        const monthlyCostSavings = timeSavingsHours * hourlyCost * 4.33;
+        const monthlyRevenueImpact = monthlyRevenue * revenueMultiplier;
+        const totalMonthlyROI = monthlyCostSavings + monthlyRevenueImpact;
+        const annualROI = totalMonthlyROI * 12;
+
+        // Estimate project cost based on company size
+        let estimatedProjectCost = 15000;
+        if (employees > 50) estimatedProjectCost = 35000;
+        if (employees > 200) estimatedProjectCost = 75000;
+
+        const paybackMonths = Math.max(1, Math.round(estimatedProjectCost / totalMonthlyROI * 10) / 10);
+
+        resultsDiv.classList.remove('hidden');
+        resultsDiv.style.opacity = '0';
+        resultsDiv.style.transform = 'translateY(12px)';
+
+        resultsDiv.innerHTML = `
+          <div class="space-y-8">
+            <!-- Main Numbers -->
+            <div class="grid gap-6 sm:grid-cols-2">
+              <div class="rounded-2xl border border-white/[0.08] bg-[#0a0a0a] p-6">
+                <p class="text-sm text-[#666] uppercase tracking-wider mb-2">Monthly Savings</p>
+                <p class="text-3xl font-semibold text-[#10a37f]">${formatCurrency(totalMonthlyROI)}</p>
+              </div>
+              <div class="rounded-2xl border border-white/[0.08] bg-[#0a0a0a] p-6">
+                <p class="text-sm text-[#666] uppercase tracking-wider mb-2">Annual Impact</p>
+                <p class="text-3xl font-semibold text-[#10a37f]">${formatCurrency(annualROI)}</p>
+              </div>
+            </div>
+
+            <!-- Breakdown -->
+            <div class="rounded-2xl border border-white/[0.08] bg-[#0a0a0a] p-6 space-y-4">
+              <div class="flex items-center justify-between py-2 border-b border-white/[0.06]">
+                <span class="text-[#ababab] text-sm">Time saved per week</span>
+                <span class="text-white text-sm font-medium">${Math.round(timeSavingsHours)} hours</span>
+              </div>
+              <div class="flex items-center justify-between py-2 border-b border-white/[0.06]">
+                <span class="text-[#ababab] text-sm">Monthly labor cost savings</span>
+                <span class="text-white text-sm font-medium">${formatCurrency(monthlyCostSavings)}</span>
+              </div>
+              <div class="flex items-center justify-between py-2 border-b border-white/[0.06]">
+                <span class="text-[#ababab] text-sm">Monthly revenue impact</span>
+                <span class="text-white text-sm font-medium">${formatCurrency(monthlyRevenueImpact)}</span>
+              </div>
+              <div class="flex items-center justify-between py-2">
+                <span class="text-[#ababab] text-sm">Typical payback period</span>
+                <span class="text-[#10a37f] text-sm font-medium">${paybackMonths} month${paybackMonths !== 1 ? 's' : ''}</span>
+              </div>
+            </div>
+
+            <!-- Disclaimer -->
+            <p class="text-xs text-[#666] leading-relaxed">
+              Estimates based on industry averages. Actual results vary based on implementation scope, data quality, and organizational factors. Revenue impact assumes ${Math.round(revenueMultiplier * 100)}% improvement based on industry benchmarks.
+            </p>
+
+            <!-- Email Capture -->
+            <div class="border-t border-white/[0.08] pt-8">
+              <form id="roi-email-form" class="space-y-4">
+                <p class="text-lg font-semibold text-white">Get a detailed ROI analysis</p>
+                <p class="text-sm text-[#ababab]">We'll send a comprehensive breakdown tailored to your industry and company size.</p>
+                <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+                <div class="flex flex-col sm:flex-row gap-3 mt-4">
+                  <div class="flex-1 border-b border-white/10 focus-within:border-white/30 transition-colors">
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      placeholder="Your email"
+                      class="w-full bg-transparent py-3 text-white placeholder-[#666] outline-none"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    class="rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+                  >
+                    Send analysis
+                  </button>
+                </div>
+                <div id="roi-email-success" class="hidden">
+                  <p class="text-[#10a37f] text-sm font-medium">Check your inbox — your analysis is on the way.</p>
+                </div>
+                <div id="roi-email-error" class="hidden">
+                  <p class="text-red-400 text-sm">Something went wrong. Please try again.</p>
+                </div>
+              </form>
+            </div>
+
+            <!-- CTA -->
+            <div class="border-t border-white/[0.08] pt-8 text-center">
+              <p class="text-[#ababab] mb-6">Want to discuss your specific case?</p>
+              <a
+                href="/book"
+                class="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-black transition-opacity hover:opacity-90"
+              >
+                Discuss your specific case &rarr;
+              </a>
+            </div>
+          </div>
+        `;
+
+        resultsDiv.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        resultsDiv.style.opacity = '1';
+        resultsDiv.style.transform = 'translateY(0)';
+
+        // Scroll to results
+        resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        // Track event
+        if (typeof umami !== 'undefined') {
+          (umami as any).track('Tool Used', { tool: 'roi-calculator', annualROI: Math.round(annualROI), industry });
+        }
+
+        // Email form handler
+        const emailForm = document.getElementById('roi-email-form') as HTMLFormElement;
+        const emailSuccess = document.getElementById('roi-email-success');
+        const emailError = document.getElementById('roi-email-error');
+
+        emailForm?.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          emailError?.classList.add('hidden');
+
+          const btn = emailForm.querySelector('button[type="submit"]') as HTMLButtonElement;
+          if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+
+          const formData = new FormData(emailForm);
+          const data = {
+            _honey: formData.get('_honey') || '',
+            email: formData.get('email') || '',
+            source: 'roi-calculator',
+          };
+
+          try {
+            const res = await fetch('/api/subscribe', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(data),
+            });
+            const result = await res.json();
+            if (res.ok && result.success) {
+              emailForm.classList.add('hidden');
+              emailSuccess?.classList.remove('hidden');
+            } else {
+              emailError?.classList.remove('hidden');
+            }
+          } catch {
+            emailError?.classList.remove('hidden');
+          } finally {
+            if (btn) { btn.disabled = false; btn.textContent = 'Send analysis'; }
+          }
+        });
+      });
+    }
+
+    initCalculator();
+    document.addEventListener('astro:page-load', initCalculator);
+  </script>
+
+</BaseLayout>

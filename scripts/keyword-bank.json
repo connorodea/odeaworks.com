@@ -299,8 +299,10 @@
       "category": "software-engineering",
       "postType": "strategy-guide",
       "difficulty": "low",
-      "used": false,
-      "priority": 2
+      "used": true,
+      "priority": 2,
+      "usedDate": "2026-04-14",
+      "outputFile": "2026-04-14-automating-business-workflows-with-python.md"
     },
     {
       "keyword": "building real time dashboards with react",

@@ -241,8 +241,10 @@
       "category": "ai-engineering",
       "postType": "technical-deep-dive",
       "difficulty": "low",
-      "used": false,
-      "priority": 2
+      "used": true,
+      "priority": 2,
+      "usedDate": "2026-04-14",
+      "outputFile": "2026-04-14-llm-token-cost-optimization-techniques.md"
     },
     {
       "keyword": "building ai features into existing saas",

@@ -1,0 +1,17 @@
+{
+  "name": "odeaworks-crm",
+  "version": "1.0.0",
+  "description": "Lightweight CRM for Odea Works — lead tracking from contact/booking/subscribe forms",
+  "type": "module",
+  "main": "server.mjs",
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "node --watch server.mjs"
+  },
+  "dependencies": {
+    "better-sqlite3": "^9.6.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

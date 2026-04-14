@@ -1,0 +1,18 @@
+[Unit]
+Description=Odea Works CRM
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/odeaworks-crm
+ExecStart=/usr/bin/node server.mjs
+Restart=on-failure
+RestartSec=5
+Environment=NODE_ENV=production
+Environment=CRM_DB_PATH=/opt/odeaworks-crm/data/crm.db
+# CRM_WEBHOOK_SECRET is set here — contact-api must send this in X-Crm-Secret header
+Environment=CRM_WEBHOOK_SECRET=odeaworks-crm-secret-2024
+
+[Install]
+WantedBy=multi-user.target

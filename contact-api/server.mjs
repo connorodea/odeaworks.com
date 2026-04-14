@@ -18,6 +18,43 @@ const ALLOWED_ORIGINS = [
   'https://www.odeaworks.com',
 ];
 
+// ---------------------------------------------------------------------------
+// CRM webhook — forwards leads to odeaworks-crm running on :3120
+// Fire-and-forget: never fails the main request if CRM is unavailable
+// ---------------------------------------------------------------------------
+const CRM_WEBHOOK_URL = 'http://127.0.0.1:3120/api/leads';
+const CRM_WEBHOOK_SECRET = 'odeaworks-crm-secret-2024';
+
+async function forwardToCRM(payload) {
+  try {
+    const body = JSON.stringify(payload);
+    await new Promise((resolve, reject) => {
+      const req = http.request(
+        CRM_WEBHOOK_URL,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Content-Length': Buffer.byteLength(body),
+            'X-Crm-Secret': CRM_WEBHOOK_SECRET,
+          },
+        },
+        (res) => {
+          res.resume(); // drain body
+          resolve();
+        },
+      );
+      req.on('error', reject);
+      req.setTimeout(5000, () => { req.destroy(); reject(new Error('CRM webhook timeout')); });
+      req.write(body);
+      req.end();
+    });
+  } catch (err) {
+    // Non-critical — log and continue
+    console.error(`[${new Date().toISOString()}] CRM webhook error:`, err.message);
+  }
+}
+
 if (!RESEND_API_KEY) {
   console.error('FATAL: RESEND_API_KEY environment variable is not set');
   process.exit(1);
@@ -713,6 +750,9 @@ async function handleSubscribe(req, res) {
     return jsonResponse(res, 500, { error: 'Failed to subscribe. Please try again later.' });
   }
 
+  // Forward to CRM (fire-and-forget)
+  forwardToCRM({ type: 'subscribe', name: cleanEmail.split('@')[0], email: cleanEmail, source: cleanSource });
+
   // Send welcome email via Resend
   try {
     await resend.emails.send({
@@ -1046,6 +1086,18 @@ async function handleBooking(req, res) {
     return jsonResponse(res, 500, { error: 'Failed to save booking. Please try again later.' });
   }
 
+  // Forward to CRM (fire-and-forget)
+  forwardToCRM({
+    type: 'booking',
+    name: bookingData.name,
+    email: bookingData.email,
+    company: bookingData.company || '',
+    source: 'booking-form',
+    message: bookingData.project,
+    date: bookingData.date,
+    timeSlot: bookingData.timeSlot,
+  });
+
   // Send confirmation email to the booker
   try {
     await resend.emails.send({
@@ -1177,6 +1229,18 @@ const server = http.createServer(async (req, res) => {
     message: message.trim(),
     source: (data.source || '').trim(),
   };
+
+  // Forward to CRM (fire-and-forget)
+  forwardToCRM({
+    type: 'contact',
+    name: templateData.name,
+    email: templateData.email,
+    company: templateData.company,
+    source: templateData.source,
+    budget: templateData.budget,
+    projectType: templateData.projectType,
+    message: templateData.message,
+  });
 
   // Send notification email to connor@odeaworks.com
   try {

@@ -8,12 +8,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="text-center">
       <p class="text-8xl font-semibold text-white">404</p>
       <p class="mt-4 text-text-secondary">This page doesn't exist.</p>
-      <a
-        href="/"
-        class="mt-8 inline-block text-sm text-text-muted underline transition-colors hover:text-white"
-      >
-        Back to home
-      </a>
+      <nav class="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm">
+        <a href="/" class="text-text-muted transition-colors hover:text-white">Home</a>
+        <a href="/blog" class="text-text-muted transition-colors hover:text-white">Blog</a>
+        <a href="/work" class="text-text-muted transition-colors hover:text-white">Work</a>
+        <a href="/contact" class="text-text-muted transition-colors hover:text-white">Contact</a>
+      </nav>
     </div>
   </section>
 

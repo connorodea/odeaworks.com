@@ -327,8 +327,10 @@
       "category": "software-engineering",
       "postType": "case-study",
       "difficulty": "low",
-      "used": false,
-      "priority": 2
+      "used": true,
+      "priority": 2,
+      "usedDate": "2026-04-16",
+      "outputFile": "2026-04-16-warehouse-management-system-custom-development.md"
     },
     {
       "keyword": "postgresql advanced query optimization",

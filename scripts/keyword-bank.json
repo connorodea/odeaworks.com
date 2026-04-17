@@ -353,8 +353,10 @@
       "category": "software-engineering",
       "postType": "technical-deep-dive",
       "difficulty": "low",
-      "used": false,
-      "priority": 2
+      "used": true,
+      "priority": 2,
+      "usedDate": "2026-04-17",
+      "outputFile": "2026-04-17-full-stack-typescript-project-structure.md"
     },
     {
       "keyword": "building inventory management software from scratch",

@@ -363,8 +363,10 @@
       "category": "software-engineering",
       "postType": "case-study",
       "difficulty": "low",
-      "used": false,
-      "priority": 2
+      "used": true,
+      "priority": 2,
+      "usedDate": "2026-04-18",
+      "outputFile": "2026-04-18-building-inventory-management-software-from-scratch.md"
     },
     {
       "keyword": "api rate limiting strategies node.js",

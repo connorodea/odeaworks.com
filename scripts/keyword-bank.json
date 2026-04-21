@@ -439,8 +439,10 @@
       "category": "technical-strategy",
       "postType": "strategy-guide",
       "difficulty": "low",
-      "used": false,
-      "priority": 2
+      "used": true,
+      "priority": 2,
+      "usedDate": "2026-04-21",
+      "outputFile": "2026-04-21-when-to-rewrite-vs-refactor-legacy-code.md"
     },
     {
       "keyword": "startup cto fractional vs full time",

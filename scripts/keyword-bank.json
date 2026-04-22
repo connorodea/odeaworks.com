@@ -449,8 +449,10 @@
       "category": "technical-strategy",
       "postType": "industry-analysis",
       "difficulty": "low",
-      "used": false,
-      "priority": 2
+      "used": true,
+      "priority": 2,
+      "usedDate": "2026-04-22",
+      "outputFile": "2026-04-22-startup-cto-fractional-vs-full-time.md"
     },
     {
       "keyword": "technical debt prioritization framework",

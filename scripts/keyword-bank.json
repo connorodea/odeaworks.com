@@ -521,8 +521,10 @@
       "category": "devops-infrastructure",
       "postType": "technical-deep-dive",
       "difficulty": "low",
-      "used": false,
-      "priority": 2
+      "used": true,
+      "priority": 2,
+      "usedDate": "2026-04-23",
+      "outputFile": "2026-04-23-zero-downtime-deployment-guide.md"
     },
     {
       "keyword": "monitoring node.js applications production",

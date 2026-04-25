@@ -541,8 +541,10 @@
       "category": "devops-infrastructure",
       "postType": "technical-deep-dive",
       "difficulty": "low",
-      "used": false,
-      "priority": 2
+      "used": true,
+      "priority": 2,
+      "usedDate": "2026-04-25",
+      "outputFile": "2026-04-25-ssl-certificate-automation-lets-encrypt.md"
     },
     {
       "keyword": "docker compose production deployment guide",

@@ -559,8 +559,10 @@
       "category": "devops-infrastructure",
       "postType": "technical-deep-dive",
       "difficulty": "low",
-      "used": false,
-      "priority": 2
+      "used": true,
+      "priority": 2,
+      "usedDate": "2026-04-26",
+      "outputFile": "2026-04-26-systemd-service-management-for-web-apps.md"
     },
     {
       "keyword": "automated backup strategy for vps",

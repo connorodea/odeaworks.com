@@ -569,8 +569,10 @@
       "category": "devops-infrastructure",
       "postType": "technical-deep-dive",
       "difficulty": "low",
-      "used": false,
-      "priority": 2
+      "used": true,
+      "priority": 2,
+      "usedDate": "2026-04-27",
+      "outputFile": "2026-04-27-automated-backup-strategy-for-vps.md"
     },
     {
       "keyword": "cloudflare dns and cdn setup guide",

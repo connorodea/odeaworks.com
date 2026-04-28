@@ -579,8 +579,10 @@
       "category": "devops-infrastructure",
       "postType": "technical-deep-dive",
       "difficulty": "low",
-      "used": false,
-      "priority": 2
+      "used": true,
+      "priority": 2,
+      "usedDate": "2026-04-28",
+      "outputFile": "2026-04-28-cloudflare-dns-and-cdn-setup-guide.md"
     },
     {
       "keyword": "rsync deployment scripts for static sites",

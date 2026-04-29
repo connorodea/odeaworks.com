@@ -589,8 +589,10 @@
       "category": "devops-infrastructure",
       "postType": "technical-deep-dive",
       "difficulty": "low",
-      "used": false,
-      "priority": 2
+      "used": true,
+      "priority": 2,
+      "usedDate": "2026-04-29",
+      "outputFile": "2026-04-29-rsync-deployment-scripts-for-static-sites.md"
     },
     {
       "keyword": "hetzner vps setup web application hosting",

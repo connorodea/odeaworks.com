@@ -657,8 +657,10 @@
       "category": "devops-infrastructure",
       "postType": "strategy-guide",
       "difficulty": "low",
-      "used": false,
-      "priority": 2
+      "used": true,
+      "priority": 2,
+      "usedDate": "2026-04-30",
+      "outputFile": "2026-04-30-cost-effective-ai-infrastructure-setup.md"
     },
     {
       "keyword": "building production grade api with fastapi",

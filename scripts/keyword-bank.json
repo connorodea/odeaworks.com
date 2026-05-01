@@ -675,8 +675,10 @@
       "category": "software-engineering",
       "postType": "technical-deep-dive",
       "difficulty": "low",
-      "used": false,
-      "priority": 2
+      "used": true,
+      "priority": 2,
+      "usedDate": "2026-05-01",
+      "outputFile": "2026-05-01-data-pipeline-architecture-for-small-teams.md"
     },
     {
       "keyword": "choosing between python and typescript for backend",

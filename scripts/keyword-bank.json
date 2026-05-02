@@ -703,8 +703,10 @@
       "category": "devops-infrastructure",
       "postType": "strategy-guide",
       "difficulty": "low",
-      "used": false,
-      "priority": 2
+      "used": true,
+      "priority": 2,
+      "usedDate": "2026-05-02",
+      "outputFile": "2026-05-02-continuous-deployment-pipeline-small-team-guide.md"
     },
     {
       "keyword": "website performance optimization checklist 2026",

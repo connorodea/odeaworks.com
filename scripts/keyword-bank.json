@@ -721,8 +721,10 @@
       "category": "ai-engineering",
       "postType": "technical-deep-dive",
       "difficulty": "low",
-      "used": false,
-      "priority": 2
+      "used": true,
+      "priority": 2,
+      "usedDate": "2026-05-03",
+      "outputFile": "2026-05-03-ai-integration-testing-strategies.md"
     },
     {
       "keyword": "real world ai use cases for small business",

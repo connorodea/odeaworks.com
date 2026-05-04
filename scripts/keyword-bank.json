@@ -85,8 +85,10 @@
       "category": "ai-consulting",
       "postType": "strategy-guide",
       "difficulty": "medium",
-      "used": false,
-      "priority": 3
+      "used": true,
+      "priority": 3,
+      "usedDate": "2026-05-04",
+      "outputFile": "2026-05-04-ai-consulting-for-ecommerce-businesses.md"
     },
     {
       "keyword": "roi of ai implementation small business",

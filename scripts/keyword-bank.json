@@ -95,8 +95,10 @@
       "category": "ai-consulting",
       "postType": "industry-analysis",
       "difficulty": "medium",
-      "used": false,
-      "priority": 3
+      "used": true,
+      "priority": 3,
+      "usedDate": "2026-05-05",
+      "outputFile": "2026-05-05-roi-of-ai-implementation-small-business.md"
     },
     {
       "keyword": "ai strategy consulting services",

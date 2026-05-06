@@ -211,8 +211,10 @@
       "category": "ai-engineering",
       "postType": "technical-deep-dive",
       "difficulty": "medium",
-      "used": false,
-      "priority": 3
+      "used": true,
+      "priority": 3,
+      "usedDate": "2026-05-06",
+      "outputFile": "2026-05-06-multi-agent-system-architecture-patterns.md"
     },
     {
       "keyword": "fine tuning vs rag when to use which",

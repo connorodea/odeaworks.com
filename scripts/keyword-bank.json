@@ -221,8 +221,10 @@
       "category": "ai-engineering",
       "postType": "strategy-guide",
       "difficulty": "medium",
-      "used": false,
-      "priority": 3
+      "used": true,
+      "priority": 3,
+      "usedDate": "2026-05-07",
+      "outputFile": "2026-05-07-fine-tuning-vs-rag-when-to-use-which.md"
     },
     {
       "keyword": "ai video automation pipeline python",

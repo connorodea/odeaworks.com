@@ -241,8 +241,10 @@
       "category": "ai-engineering",
       "postType": "technical-deep-dive",
       "difficulty": "medium",
-      "used": false,
-      "priority": 3
+      "used": true,
+      "priority": 3,
+      "usedDate": "2026-05-08",
+      "outputFile": "2026-05-08-yolo-object-detection-custom-training-guide.md"
     },
     {
       "keyword": "llm token cost optimization techniques",

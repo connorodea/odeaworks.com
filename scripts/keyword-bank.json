@@ -261,8 +261,10 @@
       "category": "ai-engineering",
       "postType": "strategy-guide",
       "difficulty": "medium",
-      "used": false,
-      "priority": 3
+      "used": true,
+      "priority": 3,
+      "usedDate": "2026-05-09",
+      "outputFile": "2026-05-09-building-ai-features-into-existing-saas.md"
     },
     {
       "keyword": "ai agent memory and context management",

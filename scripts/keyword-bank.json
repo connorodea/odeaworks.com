@@ -271,8 +271,10 @@
       "category": "ai-engineering",
       "postType": "technical-deep-dive",
       "difficulty": "medium",
-      "used": false,
-      "priority": 3
+      "used": true,
+      "priority": 3,
+      "usedDate": "2026-05-10",
+      "outputFile": "2026-05-10-ai-agent-memory-and-context-management.md"
     },
     {
       "keyword": "production ai system monitoring and observability",

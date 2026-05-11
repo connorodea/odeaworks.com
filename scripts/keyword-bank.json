@@ -281,8 +281,10 @@
       "category": "ai-engineering",
       "postType": "technical-deep-dive",
       "difficulty": "medium",
-      "used": false,
-      "priority": 3
+      "used": true,
+      "priority": 3,
+      "usedDate": "2026-05-11",
+      "outputFile": "2026-05-11-production-ai-system-monitoring-and-observability.md"
     },
     {
       "keyword": "typescript api design patterns 2026",

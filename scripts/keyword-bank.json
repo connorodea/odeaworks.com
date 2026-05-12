@@ -291,8 +291,10 @@
       "category": "software-engineering",
       "postType": "technical-deep-dive",
       "difficulty": "medium",
-      "used": false,
-      "priority": 3
+      "used": true,
+      "priority": 3,
+      "usedDate": "2026-05-12",
+      "outputFile": "2026-05-12-typescript-api-design-patterns-2026.md"
     },
     {
       "keyword": "next.js vs astro for business websites",

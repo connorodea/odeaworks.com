@@ -301,8 +301,10 @@
       "category": "software-engineering",
       "postType": "industry-analysis",
       "difficulty": "medium",
-      "used": false,
-      "priority": 3
+      "used": true,
+      "priority": 3,
+      "usedDate": "2026-05-13",
+      "outputFile": "2026-05-13-next-js-vs-astro-for-business-websites.md"
     },
     {
       "keyword": "database design for saas applications",

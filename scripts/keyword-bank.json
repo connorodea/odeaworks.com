@@ -331,8 +331,10 @@
       "category": "software-engineering",
       "postType": "technical-deep-dive",
       "difficulty": "medium",
-      "used": false,
-      "priority": 3
+      "used": true,
+      "priority": 3,
+      "usedDate": "2026-05-15",
+      "outputFile": "2026-05-15-building-real-time-dashboards-with-react.md"
     },
     {
       "keyword": "terminal ui applications python textual",

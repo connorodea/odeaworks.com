@@ -361,8 +361,10 @@
       "category": "software-engineering",
       "postType": "technical-deep-dive",
       "difficulty": "medium",
-      "used": false,
-      "priority": 3
+      "used": true,
+      "priority": 3,
+      "usedDate": "2026-05-16",
+      "outputFile": "2026-05-16-postgresql-advanced-query-optimization.md"
     },
     {
       "keyword": "react server components practical guide",

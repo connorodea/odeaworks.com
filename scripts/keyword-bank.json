@@ -489,8 +489,10 @@
       "category": "technical-strategy",
       "postType": "strategy-guide",
       "difficulty": "medium",
-      "used": false,
-      "priority": 3
+      "used": true,
+      "priority": 3,
+      "usedDate": "2026-05-19",
+      "outputFile": "2026-05-19-technical-debt-prioritization-framework.md"
     },
     {
       "keyword": "mvp development timeline and cost estimation",

@@ -499,8 +499,10 @@
       "category": "technical-strategy",
       "postType": "strategy-guide",
       "difficulty": "medium",
-      "used": false,
-      "priority": 3
+      "used": true,
+      "priority": 3,
+      "usedDate": "2026-05-20",
+      "outputFile": "2026-05-20-mvp-development-timeline-and-cost-estimation.md"
     },
     {
       "keyword": "scaling engineering team from 1 to 10",

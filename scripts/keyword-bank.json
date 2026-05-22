@@ -587,8 +587,10 @@
       "category": "devops-infrastructure",
       "postType": "technical-deep-dive",
       "difficulty": "medium",
-      "used": false,
-      "priority": 3
+      "used": true,
+      "priority": 3,
+      "usedDate": "2026-05-22",
+      "outputFile": "2026-05-22-docker-compose-production-deployment-guide.md"
     },
     {
       "keyword": "systemd service management for web apps",

@@ -663,8 +663,10 @@
       "category": "ai-engineering",
       "postType": "technical-deep-dive",
       "difficulty": "medium",
-      "used": false,
-      "priority": 3
+      "used": true,
+      "priority": 3,
+      "usedDate": "2026-05-23",
+      "outputFile": "2026-05-23-ai-powered-code-review-automation.md"
     },
     {
       "keyword": "building ai chatbot for customer support",

@@ -709,8 +709,10 @@
       "category": "software-engineering",
       "postType": "technical-deep-dive",
       "difficulty": "medium",
-      "used": false,
-      "priority": 3
+      "used": true,
+      "priority": 3,
+      "usedDate": "2026-05-25",
+      "outputFile": "2026-05-25-building-production-grade-api-with-fastapi.md"
     },
     {
       "keyword": "data pipeline architecture for small teams",

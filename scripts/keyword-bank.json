@@ -729,8 +729,10 @@
       "category": "technical-strategy",
       "postType": "industry-analysis",
       "difficulty": "medium",
-      "used": false,
-      "priority": 3
+      "used": true,
+      "priority": 3,
+      "usedDate": "2026-05-27",
+      "outputFile": "2026-05-27-choosing-between-python-and-typescript-for-backend.md"
     },
     {
       "keyword": "ai automation for warehouse operations",

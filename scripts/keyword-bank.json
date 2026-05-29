@@ -371,8 +371,10 @@
       "category": "software-engineering",
       "postType": "technical-deep-dive",
       "difficulty": "medium",
-      "used": false,
-      "priority": 4
+      "used": true,
+      "priority": 4,
+      "usedDate": "2026-05-29",
+      "outputFile": "2026-05-29-react-server-components-practical-guide.md"
     },
     {
       "keyword": "full stack typescript project structure",

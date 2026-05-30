@@ -511,8 +511,10 @@
       "category": "technical-strategy",
       "postType": "strategy-guide",
       "difficulty": "medium",
-      "used": false,
-      "priority": 4
+      "used": true,
+      "priority": 4,
+      "usedDate": "2026-05-30",
+      "outputFile": "2026-05-30-scaling-engineering-team-from-1-to-10.md"
     },
     {
       "keyword": "how to write a technical requirements document",

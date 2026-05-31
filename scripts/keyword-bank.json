@@ -651,8 +651,10 @@
       "category": "devops-infrastructure",
       "postType": "industry-analysis",
       "difficulty": "medium",
-      "used": false,
-      "priority": 4
+      "used": true,
+      "priority": 4,
+      "usedDate": "2026-05-31",
+      "outputFile": "2026-05-31-kubernetes-vs-docker-compose-for-small-teams.md"
     },
     {
       "keyword": "infrastructure as code for startups terraform",

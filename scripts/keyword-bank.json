@@ -661,8 +661,10 @@
       "category": "devops-infrastructure",
       "postType": "strategy-guide",
       "difficulty": "medium",
-      "used": false,
-      "priority": 4
+      "used": true,
+      "priority": 4,
+      "usedDate": "2026-06-01",
+      "outputFile": "2026-06-01-infrastructure-as-code-for-startups-terraform.md"
     },
     {
       "keyword": "ai powered code review automation",

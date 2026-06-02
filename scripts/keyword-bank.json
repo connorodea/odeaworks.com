@@ -105,8 +105,10 @@
       "category": "ai-consulting",
       "postType": "strategy-guide",
       "difficulty": "high",
-      "used": false,
-      "priority": 5
+      "used": true,
+      "priority": 5,
+      "usedDate": "2026-06-02",
+      "outputFile": "2026-06-02-ai-strategy-consulting-services.md"
     },
     {
       "keyword": "ai consulting firms for startups",

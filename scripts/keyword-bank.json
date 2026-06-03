@@ -115,8 +115,10 @@
       "category": "ai-consulting",
       "postType": "industry-analysis",
       "difficulty": "high",
-      "used": false,
-      "priority": 5
+      "used": true,
+      "priority": 5,
+      "usedDate": "2026-06-03",
+      "outputFile": "2026-06-03-ai-consulting-firms-for-startups.md"
     },
     {
       "keyword": "how to build rag pipeline python",

@@ -685,8 +685,10 @@
       "category": "ai-engineering",
       "postType": "strategy-guide",
       "difficulty": "high",
-      "used": false,
-      "priority": 5
+      "used": true,
+      "priority": 5,
+      "usedDate": "2026-06-04",
+      "outputFile": "2026-06-04-building-ai-chatbot-for-customer-support.md"
     },
     {
       "keyword": "enterprise ai adoption challenges and solutions",

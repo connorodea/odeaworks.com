@@ -695,8 +695,10 @@
       "category": "ai-consulting",
       "postType": "industry-analysis",
       "difficulty": "high",
-      "used": false,
-      "priority": 5
+      "used": true,
+      "priority": 5,
+      "usedDate": "2026-06-05",
+      "outputFile": "2026-06-05-enterprise-ai-adoption-challenges-and-solutions.md"
     },
     {
       "keyword": "ai model evaluation and testing framework",

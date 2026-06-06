@@ -775,8 +775,10 @@
       "category": "software-engineering",
       "postType": "strategy-guide",
       "difficulty": "high",
-      "used": false,
-      "priority": 5
+      "used": true,
+      "priority": 5,
+      "usedDate": "2026-06-06",
+      "outputFile": "2026-06-06-website-performance-optimization-checklist-2026.md"
     },
     {
       "keyword": "ai integration testing strategies",

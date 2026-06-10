@@ -246,7 +246,7 @@ class CostAwareMonitoring:
             self.send_alert(f"Error rate high: {metrics.error_rate:.2%}")
 ```
 
-We use this monitoring approach across our projects like QuickLotz WMS, where we track both business metrics and infrastructure costs in real-time dashboards.
+We use this monitoring approach across our projects like QuickWMS, where we track both business metrics and infrastructure costs in real-time dashboards.
 
 ## Deployment Automation for Cost Control
 

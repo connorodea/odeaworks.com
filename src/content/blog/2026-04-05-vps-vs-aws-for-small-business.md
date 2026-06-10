@@ -7,7 +7,7 @@ tags: [VPS, AWS, Small Business, Infrastructure, DevOps]
 targetKeyword: "vps vs aws for small business"
 ---
 
-When building infrastructure for small businesses, the choice between VPS and AWS can make or break your budget and operational efficiency. We've deployed both solutions across dozens of projects at Odea Works, from simple web applications to complex AI-powered systems like our QuickLotz WMS enterprise warehouse management platform.
+When building infrastructure for small businesses, the choice between VPS and AWS can make or break your budget and operational efficiency. We've deployed both solutions across dozens of projects at Odea Works, from simple web applications to complex AI-powered systems like our QuickWMS enterprise warehouse management platform.
 
 The decision isn't just about cost—it's about matching your technical complexity, growth trajectory, and team capabilities to the right infrastructure approach. Let's break down when each solution makes sense and what you need to know before making the jump.
 

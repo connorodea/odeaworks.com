@@ -48,7 +48,7 @@ data_sources = {
 }
 ```
 
-The richest AI opportunities often exist where you have both high data volume and clear user pain points. In our QuickLotz WMS project, we had extensive inventory movement data that perfectly supported AI-driven demand forecasting and automated reorder suggestions.
+The richest AI opportunities often exist where you have both high data volume and clear user pain points. In our QuickWMS project, we had extensive inventory movement data that perfectly supported AI-driven demand forecasting and automated reorder suggestions.
 
 ### Technical Architecture Review
 

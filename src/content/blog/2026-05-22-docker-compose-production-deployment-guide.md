@@ -7,7 +7,7 @@ tags: [Docker, DevOps, Production Deployment, Infrastructure]
 targetKeyword: "docker compose production deployment guide"
 ---
 
-Docker Compose makes multi-container application development straightforward, but deploying it to production requires careful consideration of security, performance, and operational concerns. We've deployed dozens of containerized applications across various production environments, from simple web apps to complex AI systems like our QuickLotz WMS platform that handles enterprise warehouse operations with real-time dashboards and high availability requirements.
+Docker Compose makes multi-container application development straightforward, but deploying it to production requires careful consideration of security, performance, and operational concerns. We've deployed dozens of containerized applications across various production environments, from simple web apps to complex AI systems like our QuickWMS platform that handles enterprise warehouse operations with real-time dashboards and high availability requirements.
 
 This docker compose production deployment guide covers everything you need to know to safely and reliably deploy your applications from development to production scale.
 

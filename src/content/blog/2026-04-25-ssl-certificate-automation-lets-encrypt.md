@@ -7,7 +7,7 @@ tags: [SSL, Let's Encrypt, DevOps, Security, Automation]
 targetKeyword: "ssl certificate automation lets encrypt"
 ---
 
-SSL certificate automation lets encrypt has become the gold standard for securing web applications without the overhead of manual certificate management. After implementing SSL automation across dozens of production systems at Odea Works — from our QuickLotz WMS enterprise platform to ClawdHub's AI agent orchestration service — we've learned what actually works in production.
+SSL certificate automation lets encrypt has become the gold standard for securing web applications without the overhead of manual certificate management. After implementing SSL automation across dozens of production systems at Odea Works — from our QuickWMS enterprise platform to ClawdHub's AI agent orchestration service — we've learned what actually works in production.
 
 Manual certificate renewal is a liability. Certificates expire every 90 days, and forgotten renewals cause outages. This guide covers everything you need to automate SSL certificates with Let's Encrypt: from basic certbot setup to advanced orchestration patterns that scale.
 

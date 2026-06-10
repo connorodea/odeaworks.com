@@ -7,7 +7,7 @@ tags: [TypeScript, API Design, Software Architecture]
 targetKeyword: "typescript api design patterns 2026"
 ---
 
-Building robust TypeScript APIs requires more than just knowing the syntax. After shipping enterprise systems like QuickLotz WMS—a full-stack warehouse management platform handling thousands of transactions daily—we've learned that TypeScript API design patterns 2026 demands a systematic approach to architecture, error handling, and maintainability.
+Building robust TypeScript APIs requires more than just knowing the syntax. After shipping enterprise systems like QuickWMS—a full-stack warehouse management platform handling thousands of transactions daily—we've learned that TypeScript API design patterns 2026 demands a systematic approach to architecture, error handling, and maintainability.
 
 Modern TypeScript APIs need to handle complex business logic, maintain type safety across layers, and scale gracefully. The patterns we'll cover have been battle-tested in production environments where downtime costs thousands per minute.
 
@@ -268,7 +268,7 @@ async createUser(@Body() data: CreateUserDto) {
 
 ### Type-Safe Event System
 
-For complex applications like our QuickLotz WMS, we implement an event-driven architecture with full type safety:
+For complex applications like our QuickWMS, we implement an event-driven architecture with full type safety:
 
 ```typescript
 // Event definitions

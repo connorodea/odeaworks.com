@@ -13,7 +13,7 @@ Technical debt accumulates in every codebase — it's inevitable. The question i
 
 Technical debt isn't just "bad code." It's the accumulated cost of quick fixes, shortcuts, and compromises that slow down future development. The challenge lies in making it visible to stakeholders and creating objective criteria for addressing it.
 
-In our work on QuickLotz WMS, we inherited a codebase with significant technical debt — inconsistent data models, no automated testing, and tightly coupled components. Without a clear framework, we would have spent months refactoring everything or ignored the debt entirely. Instead, we developed a systematic approach that let us ship features while strategically addressing the most impactful issues.
+In our work on QuickWMS, we inherited a codebase with significant technical debt — inconsistent data models, no automated testing, and tightly coupled components. Without a clear framework, we would have spent months refactoring everything or ignored the debt entirely. Instead, we developed a systematic approach that let us ship features while strategically addressing the most impactful issues.
 
 ## The Four-Quadrant Technical Debt Prioritization Framework
 

@@ -27,7 +27,7 @@ The fastest way to reduce engineering costs without cutting quality is making sm
 
 ### Choose Battle-Tested Technologies
 
-When we built QuickLotz WMS, we chose PostgreSQL over a NoSQL solution despite the "modern" appeal. PostgreSQL's mature ecosystem, excellent performance characteristics, and strong consistency guarantees meant we could build faster and with fewer bugs. The result: a production-ready system in 8 weeks instead of the projected 16.
+When we built QuickWMS, we chose PostgreSQL over a NoSQL solution despite the "modern" appeal. PostgreSQL's mature ecosystem, excellent performance characteristics, and strong consistency guarantees meant we could build faster and with fewer bugs. The result: a production-ready system in 8 weeks instead of the projected 16.
 
 For our AI Schematic Generator project, we standardized on Claude API instead of managing our own models. While the per-request cost is higher, we eliminated the infrastructure management overhead, model training complexity, and ongoing maintenance costs. The total cost of ownership was 70% lower than a self-hosted solution.
 

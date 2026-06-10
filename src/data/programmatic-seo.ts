@@ -25,9 +25,9 @@ export const industries = [
       'Returns processing and quality assessment still rely heavily on manual inspection',
     ],
     approach: 'We engineer e-commerce AI systems that operate at warehouse speed — processing thousands of products per hour with computer vision classification, automated pricing, and intelligent inventory allocation. Our systems are built to handle the messiness of real product data: inconsistent descriptions, missing attributes, and variable image quality.',
-    example: 'We built QuickLotz WMS — an enterprise warehouse management system powering circular economy operations, with AI-driven product identification, automated grading, and real-time inventory optimization across multiple fulfillment channels.',
+    example: 'We built QuickWMS — an enterprise warehouse management system powering circular economy operations, with AI-driven product identification, automated grading, and real-time inventory optimization across multiple fulfillment channels.',
     keywords: ['product matching', 'demand forecasting', 'inventory AI'],
-    relatedWork: 'QuickLotz WMS',
+    relatedWork: 'QuickWMS',
   },
   {
     slug: 'fintech',

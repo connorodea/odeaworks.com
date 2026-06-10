@@ -7,7 +7,7 @@ tags: [React, Next.js, Server Components, Full-Stack Development]
 targetKeyword: "react server components practical guide"
 ---
 
-React Server Components (RSC) represent a fundamental shift in how we build React applications. After implementing RSC in production at Odea Works — including our QuickLotz WMS dashboard rewrite and several client projects — we've learned what actually works beyond the theoretical tutorials.
+React Server Components (RSC) represent a fundamental shift in how we build React applications. After implementing RSC in production at Odea Works — including our QuickWMS dashboard rewrite and several client projects — we've learned what actually works beyond the theoretical tutorials.
 
 This React Server Components practical guide covers real implementation patterns, performance optimizations, and the architectural decisions that matter for production applications. We'll walk through concrete examples, common pitfalls, and the patterns we've found most effective.
 
@@ -86,7 +86,7 @@ async function RecentOrders() {
 }
 ```
 
-In our QuickLotz WMS dashboard, this pattern eliminated the waterfall requests we had with traditional useEffect-based components. Page load times dropped from 1.2s to 400ms for typical dashboard views.
+In our QuickWMS dashboard, this pattern eliminated the waterfall requests we had with traditional useEffect-based components. Page load times dropped from 1.2s to 400ms for typical dashboard views.
 
 ### Error Boundaries and Suspense
 

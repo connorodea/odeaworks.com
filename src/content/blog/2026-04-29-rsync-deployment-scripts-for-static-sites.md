@@ -9,7 +9,7 @@ targetKeyword: "rsync deployment scripts for static sites"
 
 Static site deployment seems straightforward until you hit production. We've built dozens of rsync deployment scripts for static sites across our projects at Odea Works, from simple marketing sites to complex documentation portals. The difference between a basic rsync command and a production-ready deployment script is error handling, rollback capabilities, and proper monitoring.
 
-Most developers start with a simple `rsync -av build/ server:/var/www/site/` and call it done. That works until something breaks at 2 AM, you need to roll back a deployment, or you're managing multiple environments. After deploying everything from our QuickLotz WMS documentation site to various client marketing portals, we've learned what separates reliable deployments from deployment disasters.
+Most developers start with a simple `rsync -av build/ server:/var/www/site/` and call it done. That works until something breaks at 2 AM, you need to roll back a deployment, or you're managing multiple environments. After deploying everything from our QuickWMS documentation site to various client marketing portals, we've learned what separates reliable deployments from deployment disasters.
 
 ## The Foundation: A Basic rsync Deployment Script
 

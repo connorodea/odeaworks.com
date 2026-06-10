@@ -7,7 +7,7 @@ tags: [Python, TypeScript, Backend Development, Technical Architecture, Software
 targetKeyword: "choosing between python and typescript for backend"
 ---
 
-When choosing between Python and TypeScript for backend development, the decision often comes down to more than just personal preference. At Odea Works, we've built production systems in both languages — from ClawdHub's 13K+ lines of Python orchestrating AI agents to QuickLotz WMS's full-stack TypeScript warehouse management system. Each language excels in specific scenarios, and understanding these strengths is crucial for making the right architectural decision.
+When choosing between Python and TypeScript for backend development, the decision often comes down to more than just personal preference. At Odea Works, we've built production systems in both languages — from ClawdHub's 13K+ lines of Python orchestrating AI agents to QuickWMS's full-stack TypeScript warehouse management system. Each language excels in specific scenarios, and understanding these strengths is crucial for making the right architectural decision.
 
 The landscape has shifted significantly in recent years. TypeScript's backend ecosystem has matured with frameworks like Fastify, NestJS, and Bun, while Python continues to dominate in AI/ML applications and data processing. This isn't a simple "which is better" comparison — it's about matching language capabilities to your specific technical requirements and organizational context.
 
@@ -41,7 +41,7 @@ async def generate_video(request: VideoRequest):
 
 ### TypeScript Performance Advantages
 
-TypeScript compiles to JavaScript, benefiting from V8's exceptional optimization. Node.js excels at handling concurrent connections and real-time operations. In QuickLotz WMS, TypeScript handles hundreds of concurrent warehouse operations with sub-100ms response times:
+TypeScript compiles to JavaScript, benefiting from V8's exceptional optimization. Node.js excels at handling concurrent connections and real-time operations. In QuickWMS, TypeScript handles hundreds of concurrent warehouse operations with sub-100ms response times:
 
 ```typescript
 import { FastifyInstance } from 'fastify';
@@ -107,7 +107,7 @@ This level of functionality would require significantly more code and external d
 
 TypeScript shines when building full-stack applications or when team members work across frontend and backend. Shared type definitions, consistent tooling, and unified development workflows reduce context switching and improve productivity.
 
-For QuickLotz WMS, having shared types across the entire stack eliminated entire classes of integration bugs:
+For QuickWMS, having shared types across the entire stack eliminated entire classes of integration bugs:
 
 ```typescript
 // Shared types across frontend and backend
@@ -280,7 +280,7 @@ def analyze_customer_segments(data_path: str) -> pd.DataFrame:
 
 ### Choose TypeScript When:
 
-**Full-Stack Consistency**: When building applications where the same developers work on frontend and backend, TypeScript provides consistency and shared tooling. QuickLotz WMS demonstrates this advantage with seamless data flow between React frontend and Node.js backend.
+**Full-Stack Consistency**: When building applications where the same developers work on frontend and backend, TypeScript provides consistency and shared tooling. QuickWMS demonstrates this advantage with seamless data flow between React frontend and Node.js backend.
 
 **Real-Time Requirements**: Applications requiring WebSocket connections, real-time updates, or high-concurrency scenarios benefit from Node.js's event-driven architecture.
 

@@ -7,7 +7,7 @@ tags: [AI Strategy, Technical Decision Making, Business Analysis]
 targetKeyword: "when is ai not the right solution"
 ---
 
-The AI hype cycle has reached peak fervor. Every startup pitch deck mentions "AI-powered" something, and executives feel pressure to integrate machine learning into everything. But here's the uncomfortable truth we've learned after building systems like QuickLotz WMS and QuickVisionz: **when is AI not the right solution** is often a more valuable question than "how can we use AI?"
+The AI hype cycle has reached peak fervor. Every startup pitch deck mentions "AI-powered" something, and executives feel pressure to integrate machine learning into everything. But here's the uncomfortable truth we've learned after building systems like QuickWMS and QuickVisionz: **when is AI not the right solution** is often a more valuable question than "how can we use AI?"
 
 After engineering 10+ ventures from concept to production and working with dozens of businesses on their AI strategies, we've seen the same pattern repeatedly. Companies rush toward AI solutions when simpler, more reliable approaches would serve them better. The result? Overengineered systems, blown budgets, and solutions that underperform basic alternatives.
 
@@ -317,4 +317,4 @@ This process has saved our clients millions in avoided overengineering while ide
 
 The most successful AI implementations we've built solve genuinely complex pattern recognition problems with abundant, high-quality data and sufficient resources for long-term maintenance. Everything else usually works better with simpler approaches.
 
-If you're evaluating whether AI fits your specific use case, we'd love to help you work through the technical and business considerations. Our experience across projects like QuickLotz WMS and Vidmation has taught us when to recommend AI and when to suggest alternatives that better serve your goals. [Reach out](/contact) to discuss your project requirements.
+If you're evaluating whether AI fits your specific use case, we'd love to help you work through the technical and business considerations. Our experience across projects like QuickWMS and Vidmation has taught us when to recommend AI and when to suggest alternatives that better serve your goals. [Reach out](/contact) to discuss your project requirements.

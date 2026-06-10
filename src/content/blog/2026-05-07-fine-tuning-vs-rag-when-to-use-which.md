@@ -9,7 +9,7 @@ targetKeyword: "fine tuning vs rag when to use which"
 
 When building AI applications, one of the most critical architectural decisions you'll face is choosing between fine-tuning and Retrieval-Augmented Generation (RAG). Both approaches can dramatically improve your model's performance, but they solve different problems and come with distinct trade-offs.
 
-We've implemented both approaches across dozens of projects at Odea Works — from our ClawdHub terminal IDE that orchestrates multiple AI agents to enterprise systems like QuickLotz WMS. The choice between fine tuning vs RAG when to use which isn't always obvious, and making the wrong decision can cost you months of development time and thousands in compute costs.
+We've implemented both approaches across dozens of projects at Odea Works — from our ClawdHub terminal IDE that orchestrates multiple AI agents to enterprise systems like QuickWMS. The choice between fine tuning vs RAG when to use which isn't always obvious, and making the wrong decision can cost you months of development time and thousands in compute costs.
 
 ## Understanding Fine-Tuning vs RAG
 

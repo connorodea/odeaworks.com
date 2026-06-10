@@ -53,7 +53,7 @@ CREATE POLICY tenant_isolation ON users
     USING (tenant_id = current_setting('app.current_tenant')::UUID);
 ```
 
-We use this pattern in our QuickLotz WMS where different warehouse clients share the same database but are completely isolated at the data level. The application sets the tenant context on each connection, and PostgreSQL enforces isolation automatically.
+We use this pattern in our QuickWMS where different warehouse clients share the same database but are completely isolated at the data level. The application sets the tenant context on each connection, and PostgreSQL enforces isolation automatically.
 
 ### Single Database, Schema Per Tenant
 

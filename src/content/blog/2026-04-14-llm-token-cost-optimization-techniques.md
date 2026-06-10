@@ -134,7 +134,7 @@ cache_strategies = {
 }
 ```
 
-This strategy is crucial for applications like our QuickLotz WMS system, where inventory data changes frequently but system documentation remains static.
+This strategy is crucial for applications like our QuickWMS system, where inventory data changes frequently but system documentation remains static.
 
 ## Advanced Prompt Engineering for Cost Reduction
 

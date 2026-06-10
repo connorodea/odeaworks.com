@@ -43,7 +43,7 @@ Notice how each statement includes the user, the problem, and the business impac
 
 ### Validate Business Impact
 
-Calculate the potential ROI before writing any code. For QuickLotz WMS, we measured:
+Calculate the potential ROI before writing any code. For QuickWMS, we measured:
 - Current manual processing: 2 minutes per item
 - Expected AI processing: 15 seconds per item
 - Daily volume: 500 items
@@ -298,7 +298,7 @@ In ClawdHub, we show real-time agent status and confidence scores in the termina
 
 ### Progressive Enhancement
 
-Start with basic functionality and add AI features incrementally. For QuickLotz WMS, we began with manual inventory management, then added AI-powered categorization as an optional feature. Users could verify AI suggestions before fully trusting the system.
+Start with basic functionality and add AI features incrementally. For QuickWMS, we began with manual inventory management, then added AI-powered categorization as an optional feature. Users could verify AI suggestions before fully trusting the system.
 
 ## Phase 5: Production Deployment & Monitoring (Weeks 13-16)
 

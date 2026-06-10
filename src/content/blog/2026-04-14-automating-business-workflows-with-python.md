@@ -17,7 +17,7 @@ Business workflow automation means replacing manual, repetitive tasks with code 
 
 The key difference between ad-hoc scripts and production workflow automation is reliability. When automating business workflows with Python, you're not just writing code that works once — you're building systems that businesses depend on daily.
 
-Consider our QuickLotz WMS project — a warehouse management system that automates receiving, put-away, picking, and shipping workflows. The system processes thousands of items daily, coordinating between barcode scanners, inventory databases, and shipping APIs. Each workflow step must execute reliably, with proper error handling and audit trails.
+Consider our QuickWMS project — a warehouse management system that automates receiving, put-away, picking, and shipping workflows. The system processes thousands of items daily, coordinating between barcode scanners, inventory databases, and shipping APIs. Each workflow step must execute reliably, with proper error handling and audit trails.
 
 ## Core Components of Python Workflow Automation
 

@@ -17,7 +17,7 @@ Small teams face unique constraints that shape architectural decisions. You typi
 
 The most successful pipelines we've implemented start with three core principles: **simplicity over sophistication**, **observability over optimization**, and **incremental complexity** as data volumes grow.
 
-For our QuickLotz WMS project, we initially processed warehouse events through a simple Python script that ran every 15 minutes. As the business scaled to handle thousands of inventory transactions daily, we gradually evolved to real-time processing without rewriting the entire system. This incremental approach saved months of development time and prevented over-engineering.
+For our QuickWMS project, we initially processed warehouse events through a simple Python script that ran every 15 minutes. As the business scaled to handle thousands of inventory transactions daily, we gradually evolved to real-time processing without rewriting the entire system. This incremental approach saved months of development time and prevented over-engineering.
 
 ### Key Constraints to Consider
 
@@ -142,7 +142,7 @@ We typically use a three-tier storage approach:
 2. **Analytical Storage**: PostgreSQL with separate schemas for reporting workloads
 3. **Archive Storage**: S3-compatible storage for long-term retention
 
-This pattern scales surprisingly well. Our QuickLotz WMS handles millions of transactions using this architecture, with query performance remaining excellent through proper indexing and partitioning.
+This pattern scales surprisingly well. Our QuickWMS handles millions of transactions using this architecture, with query performance remaining excellent through proper indexing and partitioning.
 
 ### Orchestration Without Complexity
 

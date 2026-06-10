@@ -157,13 +157,13 @@ class EcommerceAIOrchestrator {
 
 **WooCommerce**: More flexible for custom AI integrations but requires careful performance optimization. We've found success with background job processing for AI operations.
 
-**Custom Platforms**: Greatest flexibility for AI integration. Our QuickLotz WMS project demonstrates how custom systems can deeply integrate AI throughout the entire operation.
+**Custom Platforms**: Greatest flexibility for AI integration. Our QuickWMS project demonstrates how custom systems can deeply integrate AI throughout the entire operation.
 
 ## Real-World Implementation Examples
 
 ### Case Study: Intelligent Inventory Management
 
-For a liquidation business, we built an AI-powered warehouse management system (QuickLotz WMS) that combines computer vision with predictive analytics:
+For a liquidation business, we built an AI-powered warehouse management system (QuickWMS) that combines computer vision with predictive analytics:
 
 - **Computer Vision**: Automatically categorizes incoming inventory using YOLO models
 - **Demand Prediction**: Forecasts optimal pricing and timing for liquidation sales

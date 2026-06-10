@@ -129,7 +129,7 @@ data_sources = {
 }
 ```
 
-During QuickLotz WMS development, we discovered the client's inventory data had 23% missing fields and inconsistent naming conventions across locations. This finding led to a data cleanup phase that improved AI model accuracy by 31%.
+During QuickWMS development, we discovered the client's inventory data had 23% missing fields and inconsistent naming conventions across locations. This finding led to a data cleanup phase that improved AI model accuracy by 31%.
 
 ### Data Governance and Lineage
 

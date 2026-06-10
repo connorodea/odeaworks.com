@@ -100,7 +100,7 @@ We've noticed distinct ROI patterns across different small business sectors:
 **Primary benefits**: Quality control automation, inventory optimization, predictive maintenance
 **Best use cases**: Visual inspection, demand forecasting, equipment monitoring
 
-Our QuickLotz WMS project demonstrates this well — warehouse operations became 35% more efficient through AI-powered routing and inventory predictions.
+Our QuickWMS project demonstrates this well — warehouse operations became 35% more efficient through AI-powered routing and inventory predictions.
 
 ### Professional Services
 **Typical ROI**: 15-25% in year one  
@@ -198,7 +198,7 @@ Once your AI system is deployed, tracking ROI becomes crucial for optimization a
 - API response times
 - Infrastructure costs
 
-We built custom dashboards for our QuickLotz WMS project that track all these metrics in real-time. The visibility helps identify optimization opportunities and justify additional AI investments.
+We built custom dashboards for our QuickWMS project that track all these metrics in real-time. The visibility helps identify optimization opportunities and justify additional AI investments.
 
 ### Optimization Strategies
 

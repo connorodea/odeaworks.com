@@ -9,7 +9,7 @@ targetKeyword: "automated backup strategy for vps"
 
 A proper automated backup strategy for VPS infrastructure isn't optional — it's the difference between a minor inconvenience and a business-ending disaster. We've seen too many startups lose critical data because they treated backups as an afterthought rather than a core system requirement.
 
-At Odea Works, we implement robust backup strategies across all our client deployments, from warehouse management systems to AI automation platforms. Our QuickLotz WMS deployment, for instance, handles millions of dollars in inventory transactions daily — losing that data would shut down operations entirely. Here's how we build automated backup systems that actually work when you need them.
+At Odea Works, we implement robust backup strategies across all our client deployments, from warehouse management systems to AI automation platforms. Our QuickWMS deployment, for instance, handles millions of dollars in inventory transactions daily — losing that data would shut down operations entirely. Here's how we build automated backup systems that actually work when you need them.
 
 ## Why Manual Backups Always Fail
 

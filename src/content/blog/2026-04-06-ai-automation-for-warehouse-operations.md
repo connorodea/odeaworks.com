@@ -1,5 +1,5 @@
 ---
-title: "How We Built AI Automation for Warehouse Operations: QuickLotz Case Study"
+title: "How We Built AI Automation for Warehouse Operations: Enterprise Warehouse Case Study"
 description: "Complete case study of implementing AI automation for warehouse operations — from computer vision sorting to full WMS integration with 95%+ accuracy."
 pubDate: 2026-04-06
 category: ai-consulting
@@ -7,13 +7,13 @@ tags: [warehouse-automation, computer-vision, case-study]
 targetKeyword: "ai automation for warehouse operations"
 ---
 
-When QuickLotz approached us with their warehouse automation challenge, they were processing thousands of liquidation items daily through manual sorting and inventory management. Their existing workflow required human operators to inspect, categorize, and route items — a bottleneck that limited their throughput and introduced costly errors.
+When the client approached us with their warehouse automation challenge, they were processing thousands of liquidation items daily through manual sorting and inventory management. Their existing workflow required human operators to inspect, categorize, and route items — a bottleneck that limited their throughput and introduced costly errors.
 
-We delivered comprehensive AI automation for warehouse operations that transformed their entire fulfillment pipeline. This case study breaks down exactly how we built two integrated systems: QuickVisionz for computer vision sorting and QuickLotz WMS for enterprise warehouse management.
+We delivered comprehensive AI automation for warehouse operations that transformed their entire fulfillment pipeline. This case study breaks down exactly how we built two integrated systems: QuickVisionz for computer vision sorting and QuickWMS for enterprise warehouse management.
 
 ## The Warehouse Automation Challenge
 
-QuickLotz operates a high-volume liquidation business where speed and accuracy determine profitability. Their manual processes created several problems:
+The client operates a high-volume liquidation business where speed and accuracy determine profitability. Their manual processes created several problems:
 
 - **Throughput bottleneck**: Human sorters could only process 200-300 items per hour
 - **Classification errors**: 8-12% misclassification rate led to shipping delays and returns
@@ -27,7 +27,7 @@ Traditional warehouse management systems weren't designed for their use case —
 We architected a two-part solution that handles both physical sorting and digital warehouse management:
 
 **QuickVisionz**: Computer vision pipeline for real-time item classification and routing
-**QuickLotz WMS**: Full-stack warehouse management system with AI-powered insights
+**QuickWMS**: Full-stack warehouse management system with AI-powered insights
 
 The systems integrate through a shared PostgreSQL database and real-time message queue, ensuring every physical action triggers corresponding digital updates.
 
@@ -36,7 +36,7 @@ The systems integrate through a shared PostgreSQL database and real-time message
 class WarehouseAutomation:
     def __init__(self):
         self.vision_pipeline = QuickVisionz()
-        self.wms = QuickLotzWMS()
+        self.wms = QuickWMS()
         self.message_queue = Redis()
         self.database = PostgreSQL()
     
@@ -59,7 +59,7 @@ The computer vision component handles real-time item classification as items mov
 
 ### YOLO Model Training and Deployment
 
-We trained a custom YOLO model on QuickLotz's specific inventory categories. The training dataset included 50,000+ labeled images across 200+ product categories common in liquidation inventory.
+We trained a custom YOLO model on the client's specific inventory categories. The training dataset included 50,000+ labeled images across 200+ product categories common in liquidation inventory.
 
 ```python
 import cv2
@@ -67,7 +67,7 @@ from ultralytics import YOLO
 import numpy as np
 
 class QuickVisionzClassifier:
-    def __init__(self, model_path="models/quicklotz_yolo.pt"):
+    def __init__(self, model_path="models/qwms_yolo.pt"):
         self.model = YOLO(model_path)
         self.confidence_threshold = 0.85
         
@@ -141,9 +141,9 @@ The system achieves 95%+ accuracy by combining multiple validation steps:
 3. **Size validation**: Physical dimensions are checked against expected category ranges
 4. **Human review queue**: Edge cases are flagged for manual review
 
-## QuickLotz WMS: Enterprise Warehouse Management
+## QuickWMS: Enterprise Warehouse Management
 
-While QuickVisionz handles the physical sorting, QuickLotz WMS manages the digital warehouse operations — receiving, put-away, picking, and shipping workflows.
+While QuickVisionz handles the physical sorting, QuickWMS manages the digital warehouse operations — receiving, put-away, picking, and shipping workflows.
 
 ### Full-Stack TypeScript Implementation
 
@@ -261,7 +261,7 @@ class WarehouseIntegration:
         await self.db.integration_logs.create({
             'event_type': 'VISION_CLASSIFICATION',
             'source_system': 'QuickVisionz',
-            'target_system': 'QuickLotz_WMS',
+            'target_system': 'QuickWMS',
             'data': classification_data,
             'timestamp': datetime.utcnow()
         })
@@ -304,7 +304,7 @@ class EdgeVisionDeployment:
     def __init__(self):
         # Local GPU inference
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-        self.model = YOLO('models/quicklotz_optimized.pt').to(self.device)
+        self.model = YOLO('models/qwms_optimized.pt').to(self.device)
         
         # Local message queue for reliability
         self.local_queue = Queue(maxsize=1000)
@@ -414,6 +414,6 @@ AI automation for warehouse operations will continue evolving. We're already wor
 - Integration with robotic picking systems
 - Advanced anomaly detection for quality control
 
-The QuickLotz implementation demonstrates how properly architected AI systems can transform warehouse operations while maintaining the reliability that enterprise operations require.
+The client implementation demonstrates how properly architected AI systems can transform warehouse operations while maintaining the reliability that enterprise operations require.
 
 If you're building AI automation for warehouse operations, we'd love to help. [Reach out](/contact) to discuss your project.

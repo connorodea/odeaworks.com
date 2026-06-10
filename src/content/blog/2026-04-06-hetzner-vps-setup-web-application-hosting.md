@@ -7,7 +7,7 @@ tags: [VPS, Hetzner, Web Hosting, DevOps, Linux]
 targetKeyword: "hetzner vps setup web application hosting"
 ---
 
-When we need reliable, cost-effective hosting for client projects at Odea Works, Hetzner consistently delivers. Their VPS offerings provide excellent price-to-performance ratios — crucial when deploying everything from our QuickLotz WMS enterprise system to lightweight AI applications like our Vidmation pipeline.
+When we need reliable, cost-effective hosting for client projects at Odea Works, Hetzner consistently delivers. Their VPS offerings provide excellent price-to-performance ratios — crucial when deploying everything from our QuickWMS enterprise system to lightweight AI applications like our Vidmation pipeline.
 
 This guide walks through our complete **Hetzner VPS setup web application hosting** process, covering everything from initial provisioning to production-ready deployment. Whether you're hosting a Node.js API, Python web app, or full-stack application, these steps will get you running securely and efficiently.
 
@@ -229,7 +229,7 @@ Certbot automatically modifies your Nginx configuration to handle SSL.
 
 ### Node.js Setup
 
-For Node.js applications (like our QuickLotz WMS system):
+For Node.js applications (like our QuickWMS system):
 
 ```bash
 # Install Node.js via NodeSource
@@ -515,7 +515,7 @@ pm2 reload ecosystem.config.js
 echo "Deployment completed successfully"
 ```
 
-This approach has served us well across dozens of client projects. When we deployed the QuickLotz WMS system, this exact Hetzner VPS setup handled thousands of concurrent warehouse operations without breaking a sweat.
+This approach has served us well across dozens of client projects. When we deployed the QuickWMS system, this exact Hetzner VPS setup handled thousands of concurrent warehouse operations without breaking a sweat.
 
 ## Key Takeaways
 

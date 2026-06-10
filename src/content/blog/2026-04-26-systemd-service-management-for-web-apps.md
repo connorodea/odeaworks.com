@@ -9,7 +9,7 @@ targetKeyword: "systemd service management for web apps"
 
 Managing web applications in production requires robust process control that can handle restarts, failures, and resource constraints. At Odea Works, we've deployed dozens of applications across various infrastructures, and **systemd service management for web apps** has become our go-to solution for reliable process orchestration.
 
-From our QuickLotz warehouse management system handling millions in inventory transactions to our AI-powered Vidmation video pipeline, systemd provides the foundation for zero-downtime operations. Let's explore how to implement production-grade systemd services that actually work under pressure.
+From our enterprise warehouse management system handling millions in inventory transactions to our AI-powered Vidmation video pipeline, systemd provides the foundation for zero-downtime operations. Let's explore how to implement production-grade systemd services that actually work under pressure.
 
 ## Why Systemd for Web Application Management
 
@@ -22,7 +22,7 @@ Traditional process managers like PM2 or Forever work well for development, but 
 - **Socket activation** — Zero-downtime deployments and lazy loading
 - **Watchdog support** — Automatic restart on health check failures
 
-When we built QuickLotz WMS, we needed a system that could recover from PostgreSQL connection drops, memory spikes during large inventory imports, and network partitions. Systemd's robust failure recovery made these edge cases manageable.
+When we built QuickWMS, we needed a system that could recover from PostgreSQL connection drops, memory spikes during large inventory imports, and network partitions. Systemd's robust failure recovery made these edge cases manageable.
 
 ## Creating Your First Web App Service
 

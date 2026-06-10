@@ -37,7 +37,7 @@ Key technical areas to evaluate:
 
 The best technical solution means nothing if it doesn't solve your actual business problem. Your consultant should spend significant time understanding your operations before proposing any technology.
 
-When we worked on QuickLotz WMS (an enterprise warehouse management system), we spent weeks understanding the client's receiving, put-away, picking, and shipping processes before writing a single line of code. The resulting TypeScript system with real-time dashboards worked because it matched their workflow, not because it used the latest technology.
+When we worked on QuickWMS (an enterprise warehouse management system), we spent weeks understanding the client's receiving, put-away, picking, and shipping processes before writing a single line of code. The resulting TypeScript system with real-time dashboards worked because it matched their workflow, not because it used the latest technology.
 
 ### Portfolio of Similar Projects
 

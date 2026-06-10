@@ -7,7 +7,7 @@ tags: [PostgreSQL, Database, Performance, Query Optimization]
 targetKeyword: "postgresql advanced query optimization"
 ---
 
-PostgreSQL advanced query optimization is critical for any production application handling significant data volumes. We've built multiple enterprise-scale systems where database performance was make-or-break — from our QuickLotz WMS handling thousands of warehouse transactions daily to systems processing millions of AI-generated data points. Poor query performance doesn't just slow down your application; it cascades into user experience issues, increased infrastructure costs, and scaling bottlenecks.
+PostgreSQL advanced query optimization is critical for any production application handling significant data volumes. We've built multiple enterprise-scale systems where database performance was make-or-break — from our QuickWMS handling thousands of warehouse transactions daily to systems processing millions of AI-generated data points. Poor query performance doesn't just slow down your application; it cascades into user experience issues, increased infrastructure costs, and scaling bottlenecks.
 
 In this deep dive, we'll cover the PostgreSQL optimization techniques that actually matter in production, backed by real-world examples and measurable performance improvements.
 
@@ -34,7 +34,7 @@ This returns the actual execution plan with real timing and row counts. The most
 - **Rows** (estimated vs actual)
 - **Loops** (how many times each node executed)
 
-When we optimized queries for QuickLotz WMS, we found that a 50ms query was actually executing a nested loop over 10,000 rows, taking 500ms in production. The query planner's statistics were outdated, leading to poor plan selection.
+When we optimized queries for QuickWMS, we found that a 50ms query was actually executing a nested loop over 10,000 rows, taking 500ms in production. The query planner's statistics were outdated, leading to poor plan selection.
 
 ## Index Strategy and Design
 
@@ -311,7 +311,7 @@ From our production systems, here are optimization scenarios that delivered sign
 
 ### Case Study: Warehouse Dashboard Queries
 
-In QuickLotz WMS, our real-time dashboard required complex aggregations across inventory movements. Initial query took 3.2 seconds:
+In QuickWMS, our real-time dashboard required complex aggregations across inventory movements. Initial query took 3.2 seconds:
 
 ```sql
 -- Original slow query

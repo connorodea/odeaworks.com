@@ -7,7 +7,7 @@ tags: [Terraform, Infrastructure as Code, DevOps, Startup Infrastructure, Cloud 
 targetKeyword: "infrastructure as code for startups terraform"
 ---
 
-When we started building QuickLotz WMS — our enterprise warehouse management system — we made a critical decision early: everything would be defined as code. No clicking through AWS consoles, no manual server configurations, no "it works on my machine" deployments. This choice saved us countless hours and prevented infrastructure disasters as we scaled from prototype to production.
+When we started building QuickWMS — our enterprise warehouse management system — we made a critical decision early: everything would be defined as code. No clicking through AWS consoles, no manual server configurations, no "it works on my machine" deployments. This choice saved us countless hours and prevented infrastructure disasters as we scaled from prototype to production.
 
 Infrastructure as code for startups terraform implementation isn't just a DevOps best practice — it's a survival strategy. In this guide, we'll walk through exactly how to implement Terraform for your startup, with real examples from projects we've built and deployed.
 

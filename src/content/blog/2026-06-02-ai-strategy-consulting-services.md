@@ -111,7 +111,7 @@ Targeted projects address specific business problems with AI. These shorter enga
 **Investment**: $50K-$500K typically
 **Best For**: Companies wanting to prove AI value before larger commitments
 
-Our QuickLotz WMS project started as a focused implementation for warehouse operations but demonstrated enough value that the client expanded it across their entire supply chain.
+Our QuickWMS project started as a focused implementation for warehouse operations but demonstrated enough value that the client expanded it across their entire supply chain.
 
 ### AI Readiness Assessment
 

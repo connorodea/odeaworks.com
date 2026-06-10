@@ -26,10 +26,10 @@ projects = [
     {"name": "YouTube Automation Pipeline", "tags": "Python  ·  React  ·  YouTube API  ·  AI", "icon": "play", "color": "#8b5cf6"},
 
     # === Software Engineering (15 projects) ===
-    {"name": "QuickLotz WMS", "tags": "TypeScript  ·  React  ·  PostgreSQL", "icon": "grid", "color": "#10a37f"},
+    {"name": "QuickWMS", "tags": "TypeScript  ·  React  ·  PostgreSQL", "icon": "grid", "color": "#10a37f"},
     {"name": "MedScribd", "tags": "TypeScript  ·  Next.js  ·  AI", "icon": "plus", "color": "#ef4444"},
     {"name": "Inquizit", "tags": "TypeScript  ·  Next.js  ·  AI", "icon": "diamond", "color": "#6366f1"},
-    {"name": "QuickLotz Logistics", "tags": "TypeScript  ·  React  ·  PostgreSQL", "icon": "grid", "color": "#10a37f"},
+    {"name": "QWMS Logistics", "tags": "TypeScript  ·  React  ·  PostgreSQL", "icon": "grid", "color": "#10a37f"},
     {"name": "VideoCallSync", "tags": "TypeScript  ·  WebRTC  ·  Real-time", "icon": "play", "color": "#6366f1"},
     {"name": "LiqOS", "tags": "TypeScript  ·  Terminal  ·  PostgreSQL", "icon": "terminal", "color": "#10a37f"},
     {"name": "Upscaled Distribution", "tags": "TypeScript  ·  Next.js  ·  React", "icon": "grid", "color": "#10a37f"},

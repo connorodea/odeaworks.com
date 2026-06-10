@@ -39,7 +39,7 @@ Full-time CTOs provide dedicated technical leadership, owning product architectu
 
 **Post-product-market fit** companies almost always need full-time technical leadership. Once you're scaling users, features, and technical complexity, the coordination overhead requires dedicated attention.
 
-Consider our experience with QuickLotz WMS. The enterprise warehouse management system required constant technical decisions — database optimization, real-time dashboard performance, integration with third-party logistics providers. These decisions happened daily, not weekly. A fractional CTO couldn't have provided the responsiveness needed.
+Consider our experience with QuickWMS. The enterprise warehouse management system required constant technical decisions — database optimization, real-time dashboard performance, integration with third-party logistics providers. These decisions happened daily, not weekly. A fractional CTO couldn't have provided the responsiveness needed.
 
 **Team scaling** demands full-time leadership. Hiring engineers, establishing technical culture, conducting code reviews, and managing technical debt require consistent presence. We've seen engineering teams struggle without clear, available technical leadership during rapid growth phases.
 

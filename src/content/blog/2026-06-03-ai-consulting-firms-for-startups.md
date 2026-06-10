@@ -57,7 +57,7 @@ Many AI consulting firms excel at prototypes but struggle with production deploy
 - Performance optimization for real-world loads
 - Integration with existing business systems
 
-We learned these lessons the hard way with QuickLotz WMS, where real-time warehouse operations demanded bulletproof reliability. Your AI consultant should understand that demo-quality code doesn't cut it in production.
+We learned these lessons the hard way with QuickWMS, where real-time warehouse operations demanded bulletproof reliability. Your AI consultant should understand that demo-quality code doesn't cut it in production.
 
 ## How to Evaluate AI Consulting Firms
 

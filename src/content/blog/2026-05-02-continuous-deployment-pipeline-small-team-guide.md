@@ -15,7 +15,7 @@ This continuous deployment pipeline small team guide walks through building prod
 
 Enterprise CI/CD solutions assume you have dedicated platform teams, complex approval workflows, and tolerance for 30-minute build times. Small teams need the opposite: fast feedback loops, minimal maintenance overhead, and deployments that just work.
 
-When we built the deployment pipeline for QuickLotz WMS, our enterprise warehouse management system, the team was three engineers. We needed to deploy TypeScript backend services, React frontends, and database migrations across staging and production environments — but we couldn't afford Jenkins servers, complex Kubernetes clusters, or dedicated DevOps engineers.
+When we built the deployment pipeline for QuickWMS, our enterprise warehouse management system, the team was three engineers. We needed to deploy TypeScript backend services, React frontends, and database migrations across staging and production environments — but we couldn't afford Jenkins servers, complex Kubernetes clusters, or dedicated DevOps engineers.
 
 The solution was GitHub Actions with carefully designed workflows that handle everything from test execution to production deployment in under 5 minutes. The key insight: optimize for developer velocity and system reliability, not feature completeness.
 

@@ -17,7 +17,7 @@ Most enterprises approach AI adoption with unrealistic expectations. They see co
 
 Enterprise environments present unique constraints: legacy systems, regulatory compliance, data privacy requirements, and organizational inertia. These factors create a perfect storm that derails AI initiatives before they generate meaningful value.
 
-In our experience with QuickLotz WMS, we encountered every major enterprise challenge: integrating with 15-year-old inventory systems, meeting strict data compliance requirements, and training warehouse staff who had never used anything more sophisticated than Excel. The project succeeded because we addressed these challenges systematically rather than hoping technology alone would solve them.
+In our experience with QuickWMS, we encountered every major enterprise challenge: integrating with 15-year-old inventory systems, meeting strict data compliance requirements, and training warehouse staff who had never used anything more sophisticated than Excel. The project succeeded because we addressed these challenges systematically rather than hoping technology alone would solve them.
 
 ## Challenge 1: Legacy System Integration
 

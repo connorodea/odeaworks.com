@@ -9,7 +9,7 @@ targetKeyword: "mvp development timeline and cost estimation"
 
 Building an MVP (Minimum Viable Product) is a high-stakes balancing act. Move too fast and you ship broken software that kills user trust. Move too slow and you run out of runway or miss market opportunities. Getting MVP development timeline and cost estimation right from the start determines whether your startup survives its first year.
 
-We've built 10+ ventures from first line of code to production, including full-stack systems like QuickLotz WMS (enterprise warehouse management) and AI-powered products like ClawdHub (13K+ lines of Python for AI agent orchestration). Here's the framework we use to estimate MVP timelines and costs accurately — with real numbers you can apply immediately.
+We've built 10+ ventures from first line of code to production, including full-stack systems like QuickWMS (enterprise warehouse management) and AI-powered products like ClawdHub (13K+ lines of Python for AI agent orchestration). Here's the framework we use to estimate MVP timelines and costs accurately — with real numbers you can apply immediately.
 
 ## Understanding MVP Scope: The Foundation of Accurate Estimation
 
@@ -34,7 +34,7 @@ We use a three-tier approach to scope MVPs:
 - Error handling and monitoring
 - Basic performance optimization
 
-For QuickLotz WMS, Tier 1 was receiving inventory and basic picking. That's it. No reporting, no advanced workflows, no integrations. This focus let us ship in 8 weeks instead of the 16 weeks a "full featured" version would have taken.
+For QuickWMS, Tier 1 was receiving inventory and basic picking. That's it. No reporting, no advanced workflows, no integrations. This focus let us ship in 8 weeks instead of the 16 weeks a "full featured" version would have taken.
 
 ### Technical Complexity Multipliers
 
@@ -189,7 +189,7 @@ For Vidmation, our AI video automation pipeline, we chose a medium-cost stack wi
 
 ## Real-World Timeline Examples
 
-### Case Study 1: QuickLotz WMS (Enterprise B2B)
+### Case Study 1: QuickWMS (Enterprise B2B)
 
 **Scope**: Warehouse inventory management
 **Timeline**: 10 weeks

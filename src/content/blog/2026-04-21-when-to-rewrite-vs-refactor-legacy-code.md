@@ -9,7 +9,7 @@ targetKeyword: "when to rewrite vs refactor legacy code"
 
 Every engineering team faces this critical decision: should we refactor this legacy system or rewrite it from scratch? We've helped dozens of companies navigate this choice, from startups drowning in technical debt to enterprises maintaining decades-old codebases. The wrong decision can cost months of development time and hundreds of thousands of dollars.
 
-The answer isn't simple, but there are clear signals that point toward one approach over the other. After rebuilding systems like QuickLotz WMS from a legacy PHP monolith into a modern TypeScript application, and refactoring ClawdHub's architecture multiple times as it grew to 13,000+ lines of Python, we've learned when to rewrite vs refactor legacy code.
+The answer isn't simple, but there are clear signals that point toward one approach over the other. After rebuilding systems like QuickWMS from a legacy PHP monolith into a modern TypeScript application, and refactoring ClawdHub's architecture multiple times as it grew to 13,000+ lines of Python, we've learned when to rewrite vs refactor legacy code.
 
 ## The Real Cost of Each Approach
 
@@ -19,7 +19,7 @@ Before diving into decision criteria, let's establish the true costs. Most teams
 
 A complete rewrite typically takes 2-3x longer than initially estimated. You're not just rebuilding features — you're rediscovering business logic, handling edge cases that weren't documented, and maintaining the old system while building the new one.
 
-When we rebuilt QuickLotz WMS, the initial estimate was 6 months. The reality was 14 months, including:
+When we rebuilt QuickWMS, the initial estimate was 6 months. The reality was 14 months, including:
 - 3 months discovering undocumented business rules
 - 4 months handling data migration complexity  
 - 2 months running parallel systems during transition
@@ -65,7 +65,7 @@ We recently evaluated a Python data processing system for a client. The code was
 - You're changing business models (e.g., adding multi-tenancy)
 - Integration requirements have completely changed
 
-QuickLotz WMS fell into the rewrite category. The legacy PHP system was built for single-warehouse operations, but the business needed multi-warehouse support, real-time dashboards, and mobile-first picking workflows. The architecture couldn't accommodate these changes.
+QuickWMS fell into the rewrite category. The legacy PHP system was built for single-warehouse operations, but the business needed multi-warehouse support, real-time dashboards, and mobile-first picking workflows. The architecture couldn't accommodate these changes.
 
 ### 3. Team Knowledge and Risk Tolerance
 

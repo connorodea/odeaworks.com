@@ -17,7 +17,7 @@ The **software architecture review process** isn't just about finding problems â
 
 Most development teams have code review processes in place, but far fewer conduct regular architecture reviews. This is backwards. A poorly architected system with clean code is still a poorly architected system. Meanwhile, architectural decisions have compounding effects that become exponentially more expensive to fix over time.
 
-When we built QuickLotz WMS, our enterprise warehouse management system, we conducted architecture reviews at three critical points: initial design, after the MVP, and before adding real-time dashboards. Each review caught issues that would have cost weeks to fix later:
+When we built QuickWMS, our enterprise warehouse management system, we conducted architecture reviews at three critical points: initial design, after the MVP, and before adding real-time dashboards. Each review caught issues that would have cost weeks to fix later:
 
 - The initial review identified that our event sourcing approach was overkill for the business needs
 - The post-MVP review revealed performance bottlenecks in our inventory tracking queries

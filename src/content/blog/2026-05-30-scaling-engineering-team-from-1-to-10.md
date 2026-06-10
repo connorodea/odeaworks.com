@@ -11,7 +11,7 @@ When we work with startups on [technical strategy](/services), one of the most c
 
 We've helped dozens of startups navigate this transition, from early-stage SaaS companies to AI-powered automation platforms. The patterns are consistent: the companies that scale successfully follow specific sequences for hiring, establish clear architectural boundaries early, and implement lightweight processes that grow with the team.
 
-Here's the practical playbook we use when scaling engineering team from 1 to 10 developers, based on real experience building systems like QuickLotz WMS (enterprise warehouse management) and Vidmation (AI video automation pipeline) from first line of code to production.
+Here's the practical playbook we use when scaling engineering team from 1 to 10 developers, based on real experience building systems like QuickWMS (enterprise warehouse management) and Vidmation (AI video automation pipeline) from first line of code to production.
 
 ## The Critical Hiring Sequence
 
@@ -27,7 +27,7 @@ Look for engineers with:
 - Experience shipping features to production
 - Comfort with basic DevOps (deployment, monitoring, debugging)
 
-We learned this the hard way on QuickLotz WMS. Our second hire was a pure frontend specialist, which created a bottleneck every time we needed API changes. It took six months to find the right backend engineer, during which our velocity dropped significantly.
+We learned this the hard way on QuickWMS. Our second hire was a pure frontend specialist, which created a bottleneck every time we needed API changes. It took six months to find the right backend engineer, during which our velocity dropped significantly.
 
 ### Hire 4-5: Senior Technical Lead
 
@@ -152,7 +152,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 });
 ```
 
-On QuickLotz WMS, we established these patterns when we had 3 engineers. By engineer 8, new team members could integrate with existing APIs immediately because everything followed the same conventions.
+On QuickWMS, we established these patterns when we had 3 engineers. By engineer 8, new team members could integrate with existing APIs immediately because everything followed the same conventions.
 
 ## Process Framework That Scales
 

@@ -20,7 +20,7 @@ Cloudflare serves as both a DNS provider and a Content Delivery Network (CDN), s
 - **Enhances security** with WAF rules, bot protection, and SSL/TLS encryption
 - **Provides insights** through detailed analytics and monitoring
 
-We recently migrated QuickLotz WMS (our enterprise warehouse management system) to Cloudflare and saw a 40% reduction in page load times for global users and complete mitigation of several DDoS attempts.
+We recently migrated QuickWMS (our enterprise warehouse management system) to Cloudflare and saw a 40% reduction in page load times for global users and complete mitigation of several DDoS attempts.
 
 ## Prerequisites and Planning
 
@@ -131,7 +131,7 @@ Cache Level: Standard (caches static content only)
 Development Mode: Off (enables for development/testing)
 ```
 
-For our QuickLotz WMS application, we use these cache rules:
+For our QuickWMS application, we use these cache rules:
 
 ```
 # Static Assets (images, CSS, JS)

@@ -53,5 +53,5 @@ jobs:
             exit 0
           fi
           SLUG=$(git diff --cached --name-only | grep 'src/content/blog/' | head -1 | xargs basename | sed 's/\.md$//')
-          git commit --author="connor odea <connor@quicklotz.com>" -m "blog: publish ${SLUG}"
+          git commit --author="connor odea <connor@qwms.com>" -m "blog: publish ${SLUG}"
           git push

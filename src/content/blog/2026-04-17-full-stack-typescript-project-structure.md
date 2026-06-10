@@ -7,7 +7,7 @@ tags: [TypeScript, Full Stack, Project Structure, Software Architecture]
 targetKeyword: "full stack typescript project structure"
 ---
 
-A well-organized full stack TypeScript project structure is the foundation of maintainable, scalable applications. After building enterprise systems like QuickLotz WMS — a complex warehouse management platform handling millions in inventory transactions — we've learned that getting the structure right from day one saves countless hours of refactoring later.
+A well-organized full stack TypeScript project structure is the foundation of maintainable, scalable applications. After building enterprise systems like QuickWMS — a complex warehouse management platform handling millions in inventory transactions — we've learned that getting the structure right from day one saves countless hours of refactoring later.
 
 The wrong structure leads to import hell, circular dependencies, and code that's impossible to navigate. The right structure creates clear boundaries, enables team collaboration, and scales from prototype to production.
 
@@ -401,9 +401,9 @@ tools/
 
 This organization makes it easy to deploy different parts of your application independently or together, depending on your needs.
 
-## Real-World Application: QuickLotz WMS
+## Real-World Application: QuickWMS
 
-When we built QuickLotz WMS, this exact full stack TypeScript project structure enabled us to:
+When we built QuickWMS, this exact full stack TypeScript project structure enabled us to:
 
 - Share inventory item types between the React dashboard and Node.js API
 - Deploy the API and frontend independently for different release cycles

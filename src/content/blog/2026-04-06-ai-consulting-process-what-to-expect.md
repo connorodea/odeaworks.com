@@ -17,7 +17,7 @@ The AI consulting process starts with understanding your business, not the techn
 
 ### Business Context Mapping
 
-First, we map your current processes. For QuickLotz WMS, our enterprise warehouse management system, this meant shadowing warehouse operators for days. We documented every step: receiving, put-away, picking, packing, and shipping. Only after understanding the human workflow could we identify where AI would add value.
+First, we map your current processes. For QuickWMS, our enterprise warehouse management system, this meant shadowing warehouse operators for days. We documented every step: receiving, put-away, picking, packing, and shipping. Only after understanding the human workflow could we identify where AI would add value.
 
 This phase involves:
 - **Process documentation**: Current workflows, decision points, data sources
@@ -173,7 +173,7 @@ Deployment isn't just pushing code to production. We establish monitoring, alert
 
 ### Production Deployment
 
-We deploy using best practices from our [DevOps services](/services), including containerization, CI/CD pipelines, and blue-green deployments. For the QuickLotz WMS system, we used Docker containers with automated deployments through GitHub Actions.
+We deploy using best practices from our [DevOps services](/services), including containerization, CI/CD pipelines, and blue-green deployments. For the QuickWMS system, we used Docker containers with automated deployments through GitHub Actions.
 
 ### Monitoring and Alerting
 

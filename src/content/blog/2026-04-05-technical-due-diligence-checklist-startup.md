@@ -175,7 +175,7 @@ Ask about:
 - Third-party data processing agreements
 - Security incident response procedures
 
-For our QuickLotz WMS project, we implemented comprehensive audit logging from day one because warehouse operations require detailed tracking for compliance and dispute resolution. This upfront investment prevented expensive retrofitting later.
+For our QuickWMS project, we implemented comprehensive audit logging from day one because warehouse operations require detailed tracking for compliance and dispute resolution. This upfront investment prevented expensive retrofitting later.
 
 ## Team and Development Processes
 

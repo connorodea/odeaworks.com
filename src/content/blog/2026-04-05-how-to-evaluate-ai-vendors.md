@@ -218,7 +218,7 @@ Key indicators:
 
 ### Communication and Project Management
 
-Technical excellence means nothing without effective collaboration. When we work with clients on complex projects like QuickLotz WMS (our enterprise warehouse management system), clear communication prevents costly misunderstandings.
+Technical excellence means nothing without effective collaboration. When we work with clients on complex projects like QuickWMS (our enterprise warehouse management system), clear communication prevents costly misunderstandings.
 
 Assess their project management approach:
 - Regular technical reviews and demos

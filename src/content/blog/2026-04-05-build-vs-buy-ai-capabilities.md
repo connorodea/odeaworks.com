@@ -55,7 +55,7 @@ When milliseconds matter or you need specialized hardware integration. QuickVisi
 Highly regulated industries often can't use cloud-based AI services. We've built on-premises solutions for clients who couldn't send data to OpenAI or Anthropic APIs.
 
 ### 4. Integration Complexity
-If you need deep integration with existing systems, custom development often wins. Our QuickLotz WMS integrates AI capabilities directly into warehouse workflows — something a standalone AI platform couldn't provide.
+If you need deep integration with existing systems, custom development often wins. Our QuickWMS integrates AI capabilities directly into warehouse workflows — something a standalone AI platform couldn't provide.
 
 ## When to Buy: The Practical Approach
 

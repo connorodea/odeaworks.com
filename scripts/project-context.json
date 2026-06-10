@@ -19,7 +19,7 @@
       "url": "/work"
     },
     {
-      "name": "QuickLotz WMS",
+      "name": "QuickWMS",
       "description": "Enterprise warehouse management system handling receiving, put-away, picking, and shipping for a liquidation business. Full-stack TypeScript with real-time dashboards.",
       "tech": "TypeScript, React, PostgreSQL",
       "url": "/work"

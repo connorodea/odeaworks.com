@@ -9,7 +9,7 @@ targetKeyword: "website performance optimization checklist 2026"
 
 Website performance directly impacts user experience, search rankings, and revenue. A one-second delay in page load time can reduce conversions by 7% and increase bounce rates by 32%. In 2026, with Core Web Vitals as ranking factors and user expectations higher than ever, systematic performance optimization isn't optional—it's essential.
 
-At Odea Works, we've optimized performance across projects from high-traffic [AI automation](/ai-automation/workflow-automation) platforms to enterprise warehouse management systems like QuickLotz WMS. This website performance optimization checklist 2026 covers everything from server configuration to advanced caching strategies, giving you a complete roadmap for fast, scalable websites.
+At Odea Works, we've optimized performance across projects from high-traffic [AI automation](/ai-automation/workflow-automation) platforms to enterprise warehouse management systems like QuickWMS. This website performance optimization checklist 2026 covers everything from server configuration to advanced caching strategies, giving you a complete roadmap for fast, scalable websites.
 
 ## Frontend Performance Optimization
 
@@ -438,7 +438,7 @@ http {
 }
 ```
 
-When we built QuickLotz WMS, proper nginx configuration reduced response times by 40% while handling 10x more concurrent connections.
+When we built QuickWMS, proper nginx configuration reduced response times by 40% while handling 10x more concurrent connections.
 
 ### Database Configuration
 

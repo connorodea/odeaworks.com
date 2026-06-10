@@ -9,7 +9,7 @@ targetKeyword: "technology stack selection framework"
 
 Choosing the right technology stack is one of the most critical decisions technical leaders make — and one of the hardest to undo. We've seen teams struggle with MongoDB at scale when PostgreSQL would have been perfect, or over-engineer with microservices when a monolith would have delivered faster. A solid **technology stack selection framework** eliminates the guesswork and ensures your technical decisions align with business goals.
 
-After building 10+ ventures from first line of code to production, we've developed a systematic approach that balances technical merit with practical constraints. This framework has guided decisions from our 13K+ line ClawdHub terminal application (Python/Textual) to our QuickLotz enterprise WMS (TypeScript/React/PostgreSQL), consistently delivering the right tool for the job.
+After building 10+ ventures from first line of code to production, we've developed a systematic approach that balances technical merit with practical constraints. This framework has guided decisions from our 13K+ line ClawdHub terminal application (Python/Textual) to our QuickWMS enterprise platform (TypeScript/React/PostgreSQL), consistently delivering the right tool for the job.
 
 ## The Cost of Poor Technology Selection
 
@@ -163,7 +163,7 @@ Technology ecosystems directly impact development velocity and long-term viabili
 - Breaking change frequency and migration paths
 - Industry adoption trends
 
-When selecting the stack for QuickLotz WMS, we evaluated several options:
+When selecting the stack for QuickWMS, we evaluated several options:
 
 ```python
 ecosystem_analysis = {

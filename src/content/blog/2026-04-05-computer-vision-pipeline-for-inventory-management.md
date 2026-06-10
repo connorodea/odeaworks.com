@@ -31,7 +31,7 @@ The warehouse needed to classify items into 12 categories:
 - Jewelry and watches
 - Miscellaneous/unknown
 
-Each category routes to different sections of the warehouse, feeding into their existing [QuickLotz WMS](/work) system we'd built previously.
+Each category routes to different sections of the warehouse, feeding into their existing [QuickWMS](/work) system we'd built previously.
 
 ## Architecture: Building for Production Scale
 
@@ -204,7 +204,7 @@ The model converged after 150 epochs with these final metrics:
 
 ## Integration with Warehouse Operations
 
-The computer vision pipeline for inventory management needed seamless integration with existing warehouse workflows. This meant connecting with the QuickLotz WMS system and handling real-world operational requirements.
+The computer vision pipeline for inventory management needed seamless integration with existing warehouse workflows. This meant connecting with the QuickWMS system and handling real-world operational requirements.
 
 ### WMS Integration
 
@@ -432,7 +432,7 @@ After six months in production, QuickVisionz delivered significant operational i
 
 **Error Reduction**: Misrouted items dropped from 8% to <2%, significantly reducing manual rework.
 
-**Integration**: Seamless connection with existing QuickLotz WMS provided real-time inventory updates and automated bin assignments.
+**Integration**: Seamless connection with existing QuickWMS provided real-time inventory updates and automated bin assignments.
 
 The system processes over 12,000 items daily with 99.7% uptime, handling the full complexity of real liquidation inventory.
 

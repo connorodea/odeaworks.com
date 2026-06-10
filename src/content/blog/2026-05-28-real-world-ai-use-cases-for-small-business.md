@@ -11,7 +11,7 @@ We've implemented AI solutions for dozens of small businesses over the past few 
 
 The key isn't adopting AI because it's trendy. It's identifying specific pain points where AI can deliver measurable value, then building targeted solutions that actually work in production.
 
-Based on our experience building systems like QuickLotz WMS (enterprise warehouse management) and Vidmation (AI video automation), here are the AI use cases that consistently deliver ROI for small businesses.
+Based on our experience building systems like QuickWMS (enterprise warehouse management) and Vidmation (AI video automation), here are the AI use cases that consistently deliver ROI for small businesses.
 
 ## Document Processing and Data Entry
 
@@ -236,7 +236,7 @@ Simple anomaly detection can identify unusual transactions, duplicate payments, 
 
 ## Implementation Considerations
 
-Based on our experience with projects like QuickLotz WMS and AgentAgent, successful AI implementation requires careful planning.
+Based on our experience with projects like QuickWMS and AgentAgent, successful AI implementation requires careful planning.
 
 ### Start with High-Impact, Low-Risk Use Cases
 

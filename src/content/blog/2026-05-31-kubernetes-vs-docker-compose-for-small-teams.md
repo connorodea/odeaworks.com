@@ -19,7 +19,7 @@ Docker Compose and Kubernetes solve the same core problem — orchestrating cont
 
 **Kubernetes** is a production-grade container orchestration platform designed for distributed systems. It provides service discovery, load balancing, automated rollouts, self-healing, and horizontal scaling out of the box. But this power comes with significant operational overhead.
 
-Here's a practical example. In our QuickLotz WMS project, we initially used Docker Compose for the development environment:
+Here's a practical example. In our QuickWMS project, we initially used Docker Compose for the development environment:
 
 ```yaml
 version: '3.8'
@@ -32,12 +32,12 @@ services:
       - db
       - redis
     environment:
-      - DATABASE_URL=postgresql://user:pass@db:5432/quicklotz
+      - DATABASE_URL=postgresql://user:pass@db:5432/qwms
   
   db:
     image: postgres:14
     environment:
-      - POSTGRES_DB=quicklotz
+      - POSTGRES_DB=qwms
     volumes:
       - postgres_data:/var/lib/postgresql/data
   

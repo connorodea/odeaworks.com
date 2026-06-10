@@ -36,7 +36,7 @@ export default async function handler(req, res) {
 }
 ```
 
-The framework excels when you need dynamic functionality, user authentication, database integration, or complex state management. We used Next.js for our QuickLotz WMS project — a full-scale warehouse management system — because it provided the API routes, database connectivity, and real-time features essential for enterprise software.
+The framework excels when you need dynamic functionality, user authentication, database integration, or complex state management. We used Next.js for our QuickWMS project — a full-scale warehouse management system — because it provided the API routes, database connectivity, and real-time features essential for enterprise software.
 
 ### Astro: Islands Architecture for Content-First Sites
 
@@ -248,7 +248,7 @@ From our SEO testing, Astro sites tend to rank slightly better due to faster loa
 ### Choose Next.js When You Need:
 
 **1. Complex User Interactions**
-If your business website requires user accounts, dashboards, real-time updates, or complex forms, Next.js excels. Our QuickLotz WMS required real-time inventory tracking, user authentication, and complex state management — perfect Next.js territory.
+If your business website requires user accounts, dashboards, real-time updates, or complex forms, Next.js excels. Our QuickWMS required real-time inventory tracking, user authentication, and complex state management — perfect Next.js territory.
 
 **2. Full-Stack Application Features**
 When you need API endpoints, database integration, authentication, and server-side logic, Next.js provides everything in one package.

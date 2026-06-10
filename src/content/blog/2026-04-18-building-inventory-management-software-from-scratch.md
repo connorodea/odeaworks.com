@@ -7,7 +7,7 @@ tags: [inventory-management, software-architecture, typescript, case-study]
 targetKeyword: "building inventory management software from scratch"
 ---
 
-Building inventory management software from scratch is one of the most complex enterprise software challenges you'll face. We learned this firsthand when we built QuickLotz WMS, a full-featured warehouse management system for a liquidation business handling millions in inventory.
+Building inventory management software from scratch is one of the most complex enterprise software challenges you'll face. We learned this firsthand when we built QuickWMS, a full-featured warehouse management system for a liquidation business handling millions in inventory.
 
 When their existing system couldn't scale past 10,000 SKUs and manual processes were eating into profit margins, we had two choices: customize an existing WMS (expensive, limiting) or build from scratch. We chose to build from scratch, and over 18 months delivered a system that automated their entire warehouse operation.
 
@@ -15,7 +15,7 @@ Here's exactly how we approached building inventory management software from scr
 
 ## Why Build Inventory Management Software From Scratch?
 
-Most businesses start with the "buy vs build" question. For QuickLotz, the math was clear:
+Most businesses start with the "buy vs build" question. For the client, the math was clear:
 
 **Existing solutions fell short:**
 - NetSuite WMS: $2,000/month + customization costs
@@ -34,7 +34,7 @@ The total cost of building from scratch was less than two years of licensing fee
 
 ### Stack Selection
 
-We chose TypeScript across the full stack for QuickLotz WMS:
+We chose TypeScript across the full stack for QuickWMS:
 
 ```typescript
 // Backend: Node.js + Express + TypeScript
@@ -179,7 +179,7 @@ class InventoryTransactionEngine {
 }
 ```
 
-This pattern ensured data consistency even under high concurrency. During peak receiving periods, QuickLotz processes 50+ concurrent transactions without data corruption.
+This pattern ensured data consistency even under high concurrency. During peak receiving periods, the client processes 50+ concurrent transactions without data corruption.
 
 ### 2. Real-Time Location Tracking
 
@@ -259,7 +259,7 @@ This location system reduced average pick time by 40% compared to their previous
 
 ### ERP Integration
 
-QuickLotz needed real-time sync with their existing ERP system without disrupting daily operations:
+the client needed real-time sync with their existing ERP system without disrupting daily operations:
 
 ```typescript
 class ERPIntegrationService {
@@ -397,7 +397,7 @@ This scanning system achieved 99.8% accuracy and reduced pick errors by 85%.
 
 ## Performance Optimization
 
-Building inventory management software from scratch means optimizing for real-world usage patterns. QuickLotz needed sub-second response times even with millions of inventory movements.
+Building inventory management software from scratch means optimizing for real-world usage patterns. the client needed sub-second response times even with millions of inventory movements.
 
 ### Database Optimization
 

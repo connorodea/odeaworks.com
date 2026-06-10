@@ -111,7 +111,7 @@ AI systems rarely work in isolation. Integration costs vary based on:
 - Data format standardization requirements
 - Real-time vs. batch processing needs
 
-When we built QuickLotz WMS, the warehouse management system required integration with inventory systems, shipping APIs, and hardware scanners — adding 40% to the base development cost.
+When we built QuickWMS, the warehouse management system required integration with inventory systems, shipping APIs, and hardware scanners — adding 40% to the base development cost.
 
 ### Deployment and Infrastructure
 

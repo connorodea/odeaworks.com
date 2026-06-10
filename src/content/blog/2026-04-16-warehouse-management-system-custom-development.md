@@ -1,5 +1,5 @@
 ---
-title: "Building QuickLotz WMS: A Custom Warehouse Management System Case Study"
+title: "Building QuickWMS: A Custom Warehouse Management System Case Study"
 description: "How we built a full-stack custom warehouse management system for a liquidation business, handling 10K+ SKUs with real-time tracking and automated workflows."
 pubDate: 2026-04-16
 category: software-engineering
@@ -9,13 +9,13 @@ targetKeyword: "warehouse management system custom development"
 
 When a rapidly growing liquidation business approached us with their warehouse management challenges, they had already tried three different off-the-shelf WMS solutions. None could handle their unique workflow: processing mystery pallets, bulk lots with variable SKU counts, and dynamic pricing based on item conditions discovered during receiving.
 
-This is the story of QuickLotz WMS — a warehouse management system custom development project that transformed their operations from manual spreadsheets and sticky notes to a fully automated, real-time system managing 10,000+ SKUs across multiple warehouse locations.
+This is the story of QuickWMS — a warehouse management system custom development project that transformed their operations from manual spreadsheets and sticky notes to a fully automated, real-time system managing 10,000+ SKUs across multiple warehouse locations.
 
 ## The Problem: Why Off-the-Shelf Failed
 
 ### Unique Business Model Requirements
 
-QuickLotz operates differently from traditional warehouses. They purchase liquidation pallets sight-unseen, then must:
+The client operates differently from traditional warehouses. They purchase liquidation pallets sight-unseen, then must:
 
 - Receive pallets with unknown contents
 - Inspect and categorize items by condition (new, open box, damaged)
@@ -39,7 +39,7 @@ Previous attempts at integration required expensive middleware or manual data en
 
 ### Tech Stack Selection
 
-We chose a full-stack TypeScript approach for QuickLotz WMS:
+We chose a full-stack TypeScript approach for QuickWMS:
 
 ```typescript
 // Core stack
@@ -336,7 +336,7 @@ This kept the UI responsive during high-traffic periods while maintaining data c
 
 ### Operational Improvements
 
-After six months of operation, QuickLotz WMS delivered measurable results:
+After six months of operation, QuickWMS delivered measurable results:
 
 **Receiving Efficiency**
 - 60% reduction in receiving time per pallet
@@ -408,7 +408,7 @@ Three key factors made warehouse management system custom development the optima
 - **Multi-channel integrations require robust error handling** — external APIs will fail, and your system needs to handle it gracefully
 - **Staff training is as important as technical implementation** — the best system fails if warehouse staff don't understand how to use it effectively
 
-Building QuickLotz WMS reinforced our belief that warehouse management system custom development often delivers better ROI than forcing unique business models into rigid off-the-shelf solutions. The key is identifying early whether your requirements truly demand custom development or if configuration of existing systems will suffice.
+Building QuickWMS reinforced our belief that warehouse management system custom development often delivers better ROI than forcing unique business models into rigid off-the-shelf solutions. The key is identifying early whether your requirements truly demand custom development or if configuration of existing systems will suffice.
 
 Similar challenges around [AI automation for warehouse operations](/ai-automation/inventory-management) are becoming common as businesses look to optimize their operations further. We've also seen success applying similar custom development approaches to other complex business workflows, as detailed in our post on [automating business workflows with Python](/blog/2026-04-14-automating-business-workflows-with-python).
 

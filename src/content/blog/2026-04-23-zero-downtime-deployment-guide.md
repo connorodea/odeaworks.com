@@ -9,7 +9,7 @@ targetKeyword: "zero downtime deployment guide"
 
 # Zero Downtime Deployment Guide: Blue-Green, Rolling Updates, and Canary Patterns
 
-Every business-critical application needs zero downtime deployments. After building production systems like QuickLotz WMS (handling millions in inventory transactions) and ClawdHub (13K+ lines of Python with real-time agent orchestration), we've learned that deployment strategy can make or break your application's reliability.
+Every business-critical application needs zero downtime deployments. After building production systems like QuickWMS (handling millions in inventory transactions) and ClawdHub (13K+ lines of Python with real-time agent orchestration), we've learned that deployment strategy can make or break your application's reliability.
 
 This zero downtime deployment guide covers the three core patterns that work in production: blue-green deployments, rolling updates, and canary releases. We'll show you exactly how to implement each one with real code examples.
 
@@ -24,7 +24,7 @@ The challenge is that traditional deployments involve stopping the old version a
 Not every application needs zero downtime deployments. But you definitely need them when:
 
 - Users expect 24/7 availability (e-commerce, financial services, healthcare)
-- Downtime costs money (QuickLotz processes thousands of inventory moves per hour)
+- Downtime costs money (the client processes thousands of inventory moves per hour)
 - You deploy frequently (multiple times per day)
 - Your application serves global users across time zones
 

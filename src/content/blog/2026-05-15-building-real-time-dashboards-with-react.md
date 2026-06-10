@@ -7,7 +7,7 @@ tags: [React, Real-time, Dashboards, WebSockets, TypeScript]
 targetKeyword: "building real time dashboards with react"
 ---
 
-Building real time dashboards with React requires more than just connecting a WebSocket and updating state. After building numerous production dashboards — including the real-time monitoring interface for QuickLotz WMS that tracks warehouse operations across multiple facilities — we've learned that the devil is in the details.
+Building real time dashboards with React requires more than just connecting a WebSocket and updating state. After building numerous production dashboards — including the real-time monitoring interface for QuickWMS that tracks warehouse operations across multiple facilities — we've learned that the devil is in the details.
 
 A truly effective real-time dashboard needs to handle connection drops gracefully, manage memory efficiently with thousands of updates, and present data in a way that helps users make quick decisions. The difference between a prototype and a production system lies in these edge cases.
 
@@ -284,7 +284,7 @@ export const useRealTimeChart = (
 
 ## Handling Connection Issues and Offline States
 
-Production dashboards need to handle network issues gracefully. When building QuickLotz WMS, we learned that warehouse environments often have spotty internet connections. Here's how we handle offline scenarios:
+Production dashboards need to handle network issues gracefully. When building QuickWMS, we learned that warehouse environments often have spotty internet connections. Here's how we handle offline scenarios:
 
 ```typescript
 // components/DashboardLayout.tsx

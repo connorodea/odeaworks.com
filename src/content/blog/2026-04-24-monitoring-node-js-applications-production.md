@@ -22,7 +22,7 @@ Node.js applications have unique characteristics that make monitoring essential:
 - **Async operations**: Traditional monitoring often misses async bottlenecks
 - **High concurrency**: Small performance issues amplify under load
 
-In our QuickLotz warehouse management system, we learned this the hard way. The application handled hundreds of concurrent inventory operations, but without proper monitoring, memory leaks from unclosed database connections brought the system down during peak hours. That taught us to instrument everything from day one.
+In our enterprise warehouse management system, we learned this the hard way. The application handled hundreds of concurrent inventory operations, but without proper monitoring, memory leaks from unclosed database connections brought the system down during peak hours. That taught us to instrument everything from day one.
 
 ## Core Metrics to Track
 
@@ -196,7 +196,7 @@ const logger = winston.createLogger({
     winston.format.json()
   ),
   defaultMeta: { 
-    service: 'quicklotz-wms',
+    service: 'qwms-wms',
     environment: process.env.NODE_ENV,
     version: process.env.APP_VERSION
   },
@@ -259,7 +259,7 @@ For production systems, we integrate APM tools for deep visibility. Here's how w
 ```javascript
 // newrelic.js configuration
 exports.config = {
-  app_name: ['QuickLotz WMS'],
+  app_name: ['QuickWMS'],
   license_key: process.env.NEW_RELIC_LICENSE_KEY,
   logging: {
     level: 'info'

@@ -9,7 +9,7 @@ targetKeyword: "how to write a technical requirements document"
 
 Building software without a technical requirements document (TRD) is like constructing a house without blueprints. We've seen too many projects fail—not because of poor engineering, but because the requirements were unclear, incomplete, or constantly changing. Learning how to write a technical requirements document correctly is one of the most valuable skills any technical leader can develop.
 
-After building systems like QuickLotz WMS (a full-stack warehouse management system) and ClawdHub (13K+ lines of Python for AI agent orchestration), we've refined our approach to requirements documentation. The difference between projects that succeed and those that spiral into scope creep comes down to how well the initial requirements are captured and communicated.
+After building systems like QuickWMS (a full-stack warehouse management system) and ClawdHub (13K+ lines of Python for AI agent orchestration), we've refined our approach to requirements documentation. The difference between projects that succeed and those that spiral into scope creep comes down to how well the initial requirements are captured and communicated.
 
 A technical requirements document serves as the single source of truth between stakeholders and engineers. It defines what needs to be built, how it should behave, and what success looks like—before a single line of code gets written.
 
@@ -215,7 +215,7 @@ Agile development and detailed requirements aren't mutually exclusive—they jus
 
 **Create a requirements hierarchy.** High-level requirements (user stories, system capabilities) remain stable throughout development. Detailed requirements (API specifications, database schema) can evolve as you learn more about the problem space.
 
-**Version control requirements.** Track changes to requirements just like code. When we built our [warehouse management system](/ai-automation/inventory-management) QuickLotz WMS, requirement changes were tracked in Git alongside the codebase, making it easy to understand why certain decisions were made.
+**Version control requirements.** Track changes to requirements just like code. When we built our [warehouse management system](/ai-automation/inventory-management) QuickWMS, requirement changes were tracked in Git alongside the codebase, making it easy to understand why certain decisions were made.
 
 **Link requirements to development artifacts.** Connect user stories to specific commits, pull requests, and test cases. This traceability helps during code reviews and debugging sessions.
 

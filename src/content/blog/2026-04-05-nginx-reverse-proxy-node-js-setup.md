@@ -7,13 +7,13 @@ tags: [nginx, nodejs, reverse-proxy, devops, infrastructure]
 targetKeyword: "nginx reverse proxy node.js setup"
 ---
 
-Setting up an nginx reverse proxy for Node.js applications is one of the most critical infrastructure decisions you'll make for production deployments. We've configured this setup dozens of times across projects like QuickLotz WMS (our enterprise warehouse management system) and Vidmation (our AI-powered video automation pipeline), and the performance gains are substantial.
+Setting up an nginx reverse proxy for Node.js applications is one of the most critical infrastructure decisions you'll make for production deployments. We've configured this setup dozens of times across projects like QuickWMS (our enterprise warehouse management system) and Vidmation (our AI-powered video automation pipeline), and the performance gains are substantial.
 
 A proper nginx reverse proxy node.js setup provides SSL termination, static file serving, load balancing, and request buffering — all essential for handling real production traffic. Without it, your Node.js app handles every request directly, from serving images to processing API calls, which creates unnecessary overhead.
 
 ## Why Nginx Reverse Proxy for Node.js?
 
-Node.js excels at handling concurrent connections and asynchronous operations, but it's not optimized for serving static files or handling slow clients. When we deployed QuickLotz WMS without nginx initially, we saw significant performance degradation under load — the Node.js process was spending cycles serving CSS files instead of processing warehouse operations.
+Node.js excels at handling concurrent connections and asynchronous operations, but it's not optimized for serving static files or handling slow clients. When we deployed QuickWMS without nginx initially, we saw significant performance degradation under load — the Node.js process was spending cycles serving CSS files instead of processing warehouse operations.
 
 Here's what nginx brings to the table:
 
@@ -168,7 +168,7 @@ http {
 
 ## Load Balancing Multiple Node.js Instances
 
-For high-traffic applications, you'll want to run multiple Node.js processes. We use this approach for QuickLotz WMS to handle concurrent warehouse operations across multiple facilities.
+For high-traffic applications, you'll want to run multiple Node.js processes. We use this approach for QuickWMS to handle concurrent warehouse operations across multiple facilities.
 
 Define an upstream block in your nginx configuration:
 
